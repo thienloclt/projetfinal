@@ -1,2 +1,16 @@
 https://creately.com/app/?tempID=h165rwt81&login_type=demo#
 https://www.edrawsoft.com/download-edrawmax.php
+
+database name: factory
+
+http://localhost:8080/factory/api/formateur
+http://localhost:8080/factory/api/technicien
+http://localhost:8080/factory/api/gestionnaire
+http://localhost:8080/factory/api/stagiaire
+http://localhost:8080/factory/api/ordinateur
+http://localhost:8080/factory/api/projecteur
+http://localhost:8080/factory/api/
+http://localhost:8080/factory/api/
+http://localhost:8080/factory/api/
+
+

@@ -4,8 +4,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue(value = "Formateur")
-public class Formateur extends Personne {
+@DiscriminatorValue(value = "Technicien")
+public class Technicien extends Personne {
 	
 //	@JsonView(View.Common.class)
 //	private String nom;
@@ -22,7 +22,7 @@ public class Formateur extends Personne {
 //	@JoinColumn(name = "registre_id")
 //	private Registre registre;
 
-	public Formateur() {
+	public Technicien() {
 		super();
 	}
 }
