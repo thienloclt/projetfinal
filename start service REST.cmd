@@ -1,0 +1,1 @@
+java -jar ./factory-spring-boot/target/factory-spring-boot-0.0.1.jar

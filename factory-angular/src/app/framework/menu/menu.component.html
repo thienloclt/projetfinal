@@ -1,0 +1,11 @@
+<div class="card bg-{{globals.theme}} text-white rounded-0" style="margin-top: 10px">
+  <div class="card-header">Menu</div>
+  <ul class="list-group list-group-flush text-dark">
+    <li class="list-group-item"><a [routerLink] = "['']">Accueil</a></li>
+    <li class="list-group-item"><a [routerLink] = "['/incident']">Incident</a> >> <a [routerLink] = "['/incident-add']">Add</a></li>
+    <li class="list-group-item"><a [routerLink] = "['/usertest']">User</a> >> <a [routerLink] = "['/usertest-add']">Add</a></li>
+    <li class="list-group-item"><a [routerLink] = "['/cheval']">Cheval</a> >> <a [routerLink] = "['/cheval-add']">Add</a></li>
+    <li class="list-group-item">Logged as:<br><a href="">Se déconnecter</a></li>
+    <li class="list-group-item"><a href="">S'enregistrer</a></li>
+  </ul>
+</div>

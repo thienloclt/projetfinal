@@ -1,0 +1,15 @@
+<!--
+    <ul *ngFor="let e of obj.centreequestres">
+      <li>{{e.nom}}</li>
+    </ul>-->
+<div class="card border-{{globals.theme}} mb-3">
+  <div class="card-header"><a [routerLink] = "['/usertest', usertest.id]">{{usertest.email}}</a></div>
+  <div class="card-body">
+    <p class="card-text">{{usertest.id}}</p>
+    <p class="card-text">{{usertest.passwrd}}</p>
+  </div>
+  <div class="card-footer">
+    <a [routerLink] = "['/usertest-edit', usertest.id]"><button class="btn btn-{{globals.theme}}"><img src='/assets/images/edit.png' width="20px" height="20px"></button></a>
+    <button class="btn btn-{{globals.theme}}" (click)="deleteUserTest()"><img src='/assets/images/delete.png' width="20px" height="20px"></button>
+  </div>
+</div>

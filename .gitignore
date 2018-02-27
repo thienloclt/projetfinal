@@ -1,0 +1,13 @@
+**/.metadata/
+.metadata/**
+**/.recommenders/
+.recommenders/**
+**/bin/
+bin/**
+*.class
+**/*macos*/
+*macos*/**
+/factory-spring-boot/target/*
+!*.jar
+**/RemoteSystemsTempFiles/
+RemoteSystemsTempFiles/**

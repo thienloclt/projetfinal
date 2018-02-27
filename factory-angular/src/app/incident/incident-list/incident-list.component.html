@@ -1,0 +1,32 @@
+<div style="margin-top: 10px;">
+<p-table [columns]="cols" [value]="incidents" [resizableColumns]="true" [paginator]="true" [rows]="3" [autoLayout]="true">
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn>
+        {{col.header}}
+        <p-sortIcon [field]="col.field"></p-sortIcon>
+      </th>
+    </tr>
+  </ng-template>
+<!--  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr>
+      <td *ngFor="let col of columns">
+        {{rowData[col.field]}}
+      </td>
+    </tr>
+  </ng-template>-->
+  <ng-template pTemplate="body" let-incident>
+    <tr>
+      <td>{{incident.id}}</td>
+      <td>{{incident.titre}}</td>
+      <td>{{incident.email}}</td>
+      <td>{{incident.level}}</td>
+      <td>{{incident.type}}</td>
+      <td><p-progressBar [value]="incident.progress"></p-progressBar></td>
+      <td>{{incident.dateCreation | date}}</td>
+      <td>{{incident.dateModification | date}}</td>
+    </tr>
+  </ng-template>
+</p-table>
+</div>
+<p-growl [value]="msgs"></p-growl>

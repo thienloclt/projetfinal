@@ -1,0 +1,18 @@
+<div class="bg-{{globals.theme}} text-white clearfix">
+  <div class="float-left"	style="padding: 20px 20px;">
+    <p class="h1">Banner</p>
+    <p class="h6">Slogan</p>
+  </div>
+  <div class="float-right" style="padding-right: 10px; padding-top: 10px;">
+    <select [(ngModel)]="color" (ngModelChange)="changeThemes($event)" name="Theme">
+      <option value="danger">Red</option>
+      <option value="info">Blue</option>
+      <option value="success">Green</option>
+      <option value="warning">Yellow</option>
+      <option value="secondary">Gray</option>
+      <option value="dark">Black</option>
+    </select>
+    <a href="?language=en"><img src="/assets/images/ln-en.png" width="20px" height="20px"></a>
+    <a href="?language=fr"><img src="/assets/images/ln-fr.png" width="20px" height="20px"></a>
+  </div>
+</div>
