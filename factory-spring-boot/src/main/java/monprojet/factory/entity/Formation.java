@@ -1,11 +1,17 @@
 package monprojet.factory.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -35,10 +41,38 @@ public class Formation {
 	private String titre;
 	
 	@ManyToOne
-	@JoinColumn(name = "matiere_id")
+	@JoinColumn(name = "salle_id")
 	@NotNull
-	@JsonView(View.Matiere.class)
-	private Matiere matiere;
+	@JsonView(View.SalleJSON.class)
+	private Salle salle;
+	
+	@ManyToOne
+	@JoinColumn(name = "gestionnaire_id")
+	@NotNull
+	@JsonView(View.GestionnaireJSON.class)
+	private Gestionnaire gestionnaire;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "formation_matiere_tbl", joinColumns = @JoinColumn(name = "formation_id"), inverseJoinColumns = @JoinColumn(name = "matiere_id"))
+	@NotNull
+	@JsonView(View.MatiereJSON.class)
+	private Set<Matiere> matieres = new HashSet<Matiere>();
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "formation_formateur_tbl", joinColumns = @JoinColumn(name = "formation_id"), inverseJoinColumns = @JoinColumn(name = "formateur_id"))
+	@NotNull
+	@JsonView(View.FormateurJSON.class)
+	private Set<Formateur> formateurs = new HashSet<Formateur>();
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "formation_materiel_tbl", joinColumns = @JoinColumn(name = "formation_id"), inverseJoinColumns = @JoinColumn(name = "materiel_id"))
+	@JsonView(View.MaterielJSON.class)
+	private Set<Materiel> materiels = new HashSet<Materiel>();
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "formation_stagiaire_tbl", joinColumns = @JoinColumn(name = "formation_id"), inverseJoinColumns = @JoinColumn(name = "stagiaire_id"))
+	@JsonView(View.MaterielJSON.class)
+	private Set<Stagiaire> stagiaires = new HashSet<Stagiaire>();
 
 	public Formation() {
 		super();
@@ -73,11 +107,52 @@ public class Formation {
 		this.titre = titre;
 	}
 
-	public Matiere getMatiere() {
-		return matiere;
+	public Salle getSalle() {
+		return salle;
 	}
 
-	public void setMatiere(Matiere matiere) {
-		this.matiere = matiere;
+	public void setSalle(Salle salle) {
+		this.salle = salle;
 	}
+
+	public Set<Matiere> getMatieres() {
+		return matieres;
+	}
+
+	public void setMatieres(Set<Matiere> matieres) {
+		this.matieres = matieres;
+	}
+
+	public Gestionnaire getGestionnaire() {
+		return gestionnaire;
+	}
+
+	public void setGestionnaire(Gestionnaire gestionnaire) {
+		this.gestionnaire = gestionnaire;
+	}
+
+	public Set<Formateur> getFormateurs() {
+		return formateurs;
+	}
+
+	public void setFormateurs(Set<Formateur> formateurs) {
+		this.formateurs = formateurs;
+	}
+
+	public Set<Materiel> getMateriels() {
+		return materiels;
+	}
+
+	public void setMateriels(Set<Materiel> materiels) {
+		this.materiels = materiels;
+	}
+
+	public Set<Stagiaire> getStagiaires() {
+		return stagiaires;
+	}
+
+	public void setStagiaires(Set<Stagiaire> stagiaires) {
+		this.stagiaires = stagiaires;
+	}
+
 }

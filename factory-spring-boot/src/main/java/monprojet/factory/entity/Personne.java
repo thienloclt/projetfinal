@@ -45,15 +45,6 @@ public abstract class Personne {
 	@JsonView(View.Common.class)
 	private String email;
 
-//	@ManyToOne
-//	@JoinColumn(name = "centreEquestre_id")
-//	@JsonView(View.CentreEquestre.class)
-//	private CentreEquestre centreEquestre;
-//
-//	@OneToOne
-//	@JoinColumn(name = "registre_id")
-//	private Registre registre;
-
 	public Personne() {
 		super();
 	}

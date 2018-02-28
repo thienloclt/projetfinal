@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import monprojet.factory.dao.GestionnaireDao;
 import monprojet.factory.entity.Gestionnaire;
+import monprojet.framework.model.View;
 
 
 @CrossOrigin
@@ -29,21 +32,21 @@ public class GestionnaireRestController {
 	GestionnaireDao gestionnaireDao;
 
 	@GetMapping("")
-	//@JsonView(View.GestionnaireWithCentreEquestre.class)
+	@JsonView(View.GestionnaireWithEveythingJSON.class)
 	public ResponseEntity<List<Gestionnaire>> findAll() {
 		List<Gestionnaire> gestionnaires = gestionnaireDao.findAll();
 		return new ResponseEntity<List<Gestionnaire>>(gestionnaires, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
-	//@JsonView(View.GestionnaireWithCentreEquestre.class)
+	@JsonView(View.GestionnaireWithEveythingJSON.class)
 	public ResponseEntity<Gestionnaire> findById(@PathVariable("id") Long id) {
 		Gestionnaire gestionnaire = gestionnaireDao.find(id);
 		return new ResponseEntity<Gestionnaire>(gestionnaire, (gestionnaire != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{id}")
-	//@JsonView(View.GestionnaireWithCentreEquestre.class)
+	@JsonView(View.GestionnaireWithEveythingJSON.class)
 	public ResponseEntity<Gestionnaire> deleteGestionnaire(@PathVariable("id") Long id) {
 		Gestionnaire gestionnaire = gestionnaireDao.find(id);
 		if (gestionnaire == null)
@@ -54,7 +57,7 @@ public class GestionnaireRestController {
 	}
 	
 	@PostMapping("")
-	//@JsonView(View.GestionnaireWithCentreEquestre.class)
+	@JsonView(View.GestionnaireWithEveythingJSON.class)
 	public ResponseEntity<Gestionnaire> createGestionnaire(@RequestBody Gestionnaire gestionnaire) {
 		if(gestionnaire.getId() != null)
 			return new ResponseEntity<Gestionnaire>(gestionnaire, HttpStatus.BAD_REQUEST);
@@ -63,7 +66,7 @@ public class GestionnaireRestController {
 	}
 	
 	@PutMapping("")
-	//@JsonView(View.GestionnaireWithCentreEquestre.class)
+	@JsonView(View.GestionnaireWithEveythingJSON.class)
 	public ResponseEntity<Gestionnaire> updateGestionnaire(@RequestBody Gestionnaire gestionnaire) {
 		Gestionnaire gestionnaireFind = gestionnaireDao.find(gestionnaire.getId());
 		if (gestionnaireFind != null) {

@@ -11,7 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
@@ -45,9 +45,13 @@ public class Matiere {
 	@Enumerated(EnumType.STRING)
 	private Couleur couleur;
 	
-	@OneToMany(mappedBy = "matiere", fetch = FetchType.EAGER)
-	@JsonView(View.Formation.class)
+	@ManyToMany(mappedBy = "matieres", fetch = FetchType.EAGER)
+	@JsonView(View.FormationJSON.class)
 	private Set<Formation> formations = new HashSet<Formation>();
+	
+	@ManyToMany(mappedBy = "matieres", fetch = FetchType.EAGER)
+	@JsonView(View.FormateurJSON.class)
+	private Set<Formateur> formateurs = new HashSet<Formateur>();
 
 	public Matiere() {
 		super();
@@ -98,4 +102,13 @@ public class Matiere {
 	public void setFormations(Set<Formation> formations) {
 		this.formations = formations;
 	}
+
+	public Set<Formateur> getFormateurs() {
+		return formateurs;
+	}
+
+	public void setFormateurs(Set<Formateur> formateurs) {
+		this.formateurs = formateurs;
+	}
+	
 }

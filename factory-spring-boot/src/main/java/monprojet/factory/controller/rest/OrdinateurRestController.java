@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import monprojet.factory.dao.OrdinateurDao;
 import monprojet.factory.entity.Ordinateur;
+import monprojet.framework.model.View;
 
 
 @CrossOrigin
@@ -29,21 +32,21 @@ public class OrdinateurRestController {
 	OrdinateurDao ordinateurDao;
 
 	@GetMapping("")
-	//@JsonView(View.OrdinateurWithCentreEquestre.class)
+	@JsonView(View.OrdinateurWithEveythingJSON.class)
 	public ResponseEntity<List<Ordinateur>> findAll() {
 		List<Ordinateur> ordinateurs = ordinateurDao.findAll();
 		return new ResponseEntity<List<Ordinateur>>(ordinateurs, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
-	//@JsonView(View.OrdinateurWithCentreEquestre.class)
+	@JsonView(View.OrdinateurWithEveythingJSON.class)
 	public ResponseEntity<Ordinateur> findById(@PathVariable("id") Long id) {
 		Ordinateur ordinateur = ordinateurDao.find(id);
 		return new ResponseEntity<Ordinateur>(ordinateur, (ordinateur != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{id}")
-	//@JsonView(View.OrdinateurWithCentreEquestre.class)
+	@JsonView(View.OrdinateurWithEveythingJSON.class)
 	public ResponseEntity<Ordinateur> deleteOrdinateur(@PathVariable("id") Long id) {
 		Ordinateur ordinateur = ordinateurDao.find(id);
 		if (ordinateur == null)
@@ -54,7 +57,7 @@ public class OrdinateurRestController {
 	}
 	
 	@PostMapping("")
-	//@JsonView(View.OrdinateurWithCentreEquestre.class)
+	@JsonView(View.OrdinateurWithEveythingJSON.class)
 	public ResponseEntity<Ordinateur> createOrdinateur(@RequestBody Ordinateur ordinateur) {
 		if(ordinateur.getId() != null)
 			return new ResponseEntity<Ordinateur>(ordinateur, HttpStatus.BAD_REQUEST);
@@ -63,7 +66,7 @@ public class OrdinateurRestController {
 	}
 	
 	@PutMapping("")
-	//@JsonView(View.OrdinateurWithCentreEquestre.class)
+	@JsonView(View.OrdinateurWithEveythingJSON.class)
 	public ResponseEntity<Ordinateur> updateOrdinateur(@RequestBody Ordinateur ordinateur) {
 		Ordinateur ordinateurFind = ordinateurDao.find(ordinateur.getId());
 		if (ordinateurFind != null) {

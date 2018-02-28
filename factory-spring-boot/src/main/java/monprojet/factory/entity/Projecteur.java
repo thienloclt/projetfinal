@@ -7,21 +7,6 @@ import javax.persistence.Entity;
 @DiscriminatorValue(value = "Projecteur")
 public class Projecteur extends Materiel {
 	
-//	@JsonView(View.Common.class)
-//	private String nom;
-//	
-//	@JsonView(View.Common.class)
-//	private String remarque;
-
-//	@ManyToOne
-//	@JoinColumn(name = "centreEquestre_id")
-//	@JsonView(View.CentreEquestre.class)
-//	private CentreEquestre centreEquestre;
-//
-//	@OneToOne
-//	@JoinColumn(name = "registre_id")
-//	private Registre registre;
-
 	public Projecteur() {
 		super();
 	}

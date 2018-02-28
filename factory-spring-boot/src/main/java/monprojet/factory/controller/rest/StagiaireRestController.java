@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import monprojet.factory.dao.StagiaireDao;
 import monprojet.factory.entity.Stagiaire;
+import monprojet.framework.model.View;
 
 
 @CrossOrigin
@@ -29,21 +32,21 @@ public class StagiaireRestController {
 	StagiaireDao stagiaireDao;
 
 	@GetMapping("")
-	//@JsonView(View.StagiaireWithCentreEquestre.class)
+	@JsonView(View.StagiaireWithEveythingJSON.class)
 	public ResponseEntity<List<Stagiaire>> findAll() {
 		List<Stagiaire> stagiaires = stagiaireDao.findAll();
 		return new ResponseEntity<List<Stagiaire>>(stagiaires, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
-	//@JsonView(View.StagiaireWithCentreEquestre.class)
+	@JsonView(View.StagiaireWithEveythingJSON.class)
 	public ResponseEntity<Stagiaire> findById(@PathVariable("id") Long id) {
 		Stagiaire stagiaire = stagiaireDao.find(id);
 		return new ResponseEntity<Stagiaire>(stagiaire, (stagiaire != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{id}")
-	//@JsonView(View.StagiaireWithCentreEquestre.class)
+	@JsonView(View.StagiaireWithEveythingJSON.class)
 	public ResponseEntity<Stagiaire> deleteStagiaire(@PathVariable("id") Long id) {
 		Stagiaire stagiaire = stagiaireDao.find(id);
 		if (stagiaire == null)
@@ -54,7 +57,7 @@ public class StagiaireRestController {
 	}
 	
 	@PostMapping("")
-	//@JsonView(View.StagiaireWithCentreEquestre.class)
+	@JsonView(View.StagiaireWithEveythingJSON.class)
 	public ResponseEntity<Stagiaire> createStagiaire(@RequestBody Stagiaire stagiaire) {
 		if(stagiaire.getId() != null)
 			return new ResponseEntity<Stagiaire>(stagiaire, HttpStatus.BAD_REQUEST);
@@ -63,7 +66,7 @@ public class StagiaireRestController {
 	}
 	
 	@PutMapping("")
-	//@JsonView(View.StagiaireWithCentreEquestre.class)
+	@JsonView(View.StagiaireWithEveythingJSON.class)
 	public ResponseEntity<Stagiaire> updateStagiaire(@RequestBody Stagiaire stagiaire) {
 		Stagiaire stagiaireFind = stagiaireDao.find(stagiaire.getId());
 		if (stagiaireFind != null) {

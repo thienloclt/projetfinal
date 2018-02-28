@@ -31,21 +31,21 @@ public class FormationRestController {
 	FormationDao formationDao;
 
 	@GetMapping("")
-	@JsonView(View.FormationWithEveything.class)
+	@JsonView(View.FormationWithEveythingJSON.class)
 	public ResponseEntity<List<Formation>> findAll() {
 		List<Formation> formations = formationDao.findAll();
 		return new ResponseEntity<List<Formation>>(formations, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(View.FormationWithEveything.class)
+	@JsonView(View.FormationWithEveythingJSON.class)
 	public ResponseEntity<Formation> findById(@PathVariable("id") Long id) {
 		Formation formation = formationDao.find(id);
 		return new ResponseEntity<Formation>(formation, (formation != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{id}")
-	@JsonView(View.FormationWithEveything.class)
+	@JsonView(View.FormationWithEveythingJSON.class)
 	public ResponseEntity<Formation> deleteFormation(@PathVariable("id") Long id) {
 		Formation formation = formationDao.find(id);
 		if (formation == null)
@@ -56,7 +56,7 @@ public class FormationRestController {
 	}
 	
 	@PostMapping("")
-	@JsonView(View.FormationWithEveything.class)
+	@JsonView(View.FormationWithEveythingJSON.class)
 	public ResponseEntity<Formation> createFormation(@RequestBody Formation formation) {
 		if(formation.getId() != null)
 			return new ResponseEntity<Formation>(formation, HttpStatus.BAD_REQUEST);
@@ -65,7 +65,7 @@ public class FormationRestController {
 	}
 	
 	@PutMapping("")
-	@JsonView(View.FormationWithEveything.class)
+	@JsonView(View.FormationWithEveythingJSON.class)
 	public ResponseEntity<Formation> updateFormation(@RequestBody Formation formation) {
 		Formation formationFind = formationDao.find(formation.getId());
 		if (formationFind != null) {

@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import monprojet.factory.dao.FormateurDao;
 import monprojet.factory.entity.Formateur;
+import monprojet.framework.model.View;
 
 
 @CrossOrigin
@@ -29,21 +32,21 @@ public class FormateurRestController {
 	FormateurDao formateurDao;
 
 	@GetMapping("")
-	//@JsonView(View.FormateurWithCentreEquestre.class)
+	@JsonView(View.FormateurWithEveythingJSON.class)
 	public ResponseEntity<List<Formateur>> findAll() {
 		List<Formateur> formateurs = formateurDao.findAll();
 		return new ResponseEntity<List<Formateur>>(formateurs, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
-	//@JsonView(View.FormateurWithCentreEquestre.class)
+	@JsonView(View.FormateurWithEveythingJSON.class)
 	public ResponseEntity<Formateur> findById(@PathVariable("id") Long id) {
 		Formateur formateur = formateurDao.find(id);
 		return new ResponseEntity<Formateur>(formateur, (formateur != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{id}")
-	//@JsonView(View.FormateurWithCentreEquestre.class)
+	@JsonView(View.FormateurWithEveythingJSON.class)
 	public ResponseEntity<Formateur> deleteFormateur(@PathVariable("id") Long id) {
 		Formateur formateur = formateurDao.find(id);
 		if (formateur == null)
@@ -54,7 +57,7 @@ public class FormateurRestController {
 	}
 	
 	@PostMapping("")
-	//@JsonView(View.FormateurWithCentreEquestre.class)
+	@JsonView(View.FormateurWithEveythingJSON.class)
 	public ResponseEntity<Formateur> createFormateur(@RequestBody Formateur formateur) {
 		if(formateur.getId() != null)
 			return new ResponseEntity<Formateur>(formateur, HttpStatus.BAD_REQUEST);
@@ -63,7 +66,7 @@ public class FormateurRestController {
 	}
 	
 	@PutMapping("")
-	//@JsonView(View.FormateurWithCentreEquestre.class)
+	@JsonView(View.FormateurWithEveythingJSON.class)
 	public ResponseEntity<Formateur> updateFormateur(@RequestBody Formateur formateur) {
 		Formateur formateurFind = formateurDao.find(formateur.getId());
 		if (formateurFind != null) {

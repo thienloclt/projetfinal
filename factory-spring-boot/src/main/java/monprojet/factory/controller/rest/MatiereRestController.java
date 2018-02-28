@@ -31,21 +31,21 @@ public class MatiereRestController {
 	MatiereDao matiereDao;
 
 	@GetMapping("")
-	@JsonView(View.MatiereWithFormation.class)
+	@JsonView(View.MatiereWithEveythingJSON.class)
 	public ResponseEntity<List<Matiere>> findAll() {
 		List<Matiere> matieres = matiereDao.findAll();
 		return new ResponseEntity<List<Matiere>>(matieres, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(View.MatiereWithFormation.class)
+	@JsonView(View.MatiereWithEveythingJSON.class)
 	public ResponseEntity<Matiere> findById(@PathVariable("id") Long id) {
 		Matiere matiere = matiereDao.find(id);
 		return new ResponseEntity<Matiere>(matiere, (matiere != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{id}")
-	@JsonView(View.MatiereWithFormation.class)
+	@JsonView(View.MatiereWithEveythingJSON.class)
 	public ResponseEntity<Matiere> deleteMatiere(@PathVariable("id") Long id) {
 		Matiere matiere = matiereDao.find(id);
 		if (matiere == null)
@@ -56,7 +56,7 @@ public class MatiereRestController {
 	}
 	
 	@PostMapping("")
-	@JsonView(View.MatiereWithFormation.class)
+	@JsonView(View.MatiereWithEveythingJSON.class)
 	public ResponseEntity<Matiere> createMatiere(@RequestBody Matiere matiere) {
 		if(matiere.getId() != null)
 			return new ResponseEntity<Matiere>(matiere, HttpStatus.BAD_REQUEST);
@@ -65,7 +65,7 @@ public class MatiereRestController {
 	}
 	
 	@PutMapping("")
-	@JsonView(View.MatiereWithFormation.class)
+	@JsonView(View.MatiereWithEveythingJSON.class)
 	public ResponseEntity<Matiere> updateMatiere(@RequestBody Matiere matiere) {
 		Matiere matiereFind = matiereDao.find(matiere.getId());
 		if (matiereFind != null) {
