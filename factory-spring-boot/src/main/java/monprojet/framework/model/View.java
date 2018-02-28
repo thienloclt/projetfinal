@@ -4,9 +4,9 @@ public interface View {
 	
 	public static interface Common{}
 	
-	public static interface Cheval extends Common{}
-	public static interface CentreEquestre extends Common{}
+	public static interface Formation extends Common{}
+	public static interface Matiere extends Common{}
 	
-	public static interface ChevalWithCentreEquestre extends CentreEquestre{}
-	public static interface CentreEquestreWithCheval extends Cheval{}
+	public static interface FormationWithEveything extends Matiere{}
+	public static interface MatiereWithFormation extends Formation{}
 }

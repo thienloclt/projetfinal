@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import monprojet.factory.dao.MatiereDao;
 import monprojet.factory.entity.Matiere;
+import monprojet.framework.model.View;
 
 @CrossOrigin
 @RestController
@@ -28,21 +31,21 @@ public class MatiereRestController {
 	MatiereDao matiereDao;
 
 	@GetMapping("")
-	//@JsonView(View.MatiereWithCentreEquestre.class)
+	@JsonView(View.MatiereWithFormation.class)
 	public ResponseEntity<List<Matiere>> findAll() {
 		List<Matiere> matieres = matiereDao.findAll();
 		return new ResponseEntity<List<Matiere>>(matieres, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
-	//@JsonView(View.MatiereWithCentreEquestre.class)
+	@JsonView(View.MatiereWithFormation.class)
 	public ResponseEntity<Matiere> findById(@PathVariable("id") Long id) {
 		Matiere matiere = matiereDao.find(id);
 		return new ResponseEntity<Matiere>(matiere, (matiere != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{id}")
-	//@JsonView(View.MatiereWithCentreEquestre.class)
+	@JsonView(View.MatiereWithFormation.class)
 	public ResponseEntity<Matiere> deleteMatiere(@PathVariable("id") Long id) {
 		Matiere matiere = matiereDao.find(id);
 		if (matiere == null)
@@ -53,7 +56,7 @@ public class MatiereRestController {
 	}
 	
 	@PostMapping("")
-	//@JsonView(View.MatiereWithCentreEquestre.class)
+	@JsonView(View.MatiereWithFormation.class)
 	public ResponseEntity<Matiere> createMatiere(@RequestBody Matiere matiere) {
 		if(matiere.getId() != null)
 			return new ResponseEntity<Matiere>(matiere, HttpStatus.BAD_REQUEST);
@@ -62,7 +65,7 @@ public class MatiereRestController {
 	}
 	
 	@PutMapping("")
-	//@JsonView(View.MatiereWithCentreEquestre.class)
+	@JsonView(View.MatiereWithFormation.class)
 	public ResponseEntity<Matiere> updateMatiere(@RequestBody Matiere matiere) {
 		Matiere matiereFind = matiereDao.find(matiere.getId());
 		if (matiereFind != null) {
