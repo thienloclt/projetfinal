@@ -40,6 +40,32 @@ import { IncidentListComponent} from './incident/incident-list/incident-list.com
 import { IncidentListChildComponent} from './incident/incident-list-child/incident-list-child.component';
 import { IncidentAddComponent} from './incident/incident-add/incident-add.component';
 import { OrdinateurAddComponent } from './business/ordinateur/ordinateur-add/ordinateur-add.component';
+import {EnseignementService} from './service/enseignement.service';
+import {FormateurService} from './service/formateur.service';
+import {GestionnaireService} from './service/gestionnaire.service';
+import {MatiereService} from './service/matiere.service';
+import {OrdinateurService} from './service/ordinateur.service';
+import {ProjecteurService} from './service/projecteur.service';
+import {SalleService} from './service/salle.service';
+import {StagiaireService} from './service/stagiaire.service';
+import {TechnicienService} from './service/technicien.service';
+import { OrdinateurListComponent } from './business/ordinateur/ordinateur-list/ordinateur-list.component';
+import { OrdinateurDetailComponent } from './business/ordinateur/ordinateur-detail/ordinateur-detail.component';
+import { ProjecteurAddComponent } from './business/projecteur/projecteur-add/projecteur-add.component';
+import { ProjecteurListComponent } from './business/projecteur/projecteur-list/projecteur-list.component';
+import { ProjecteurDetailComponent } from './business/projecteur/projecteur-detail/projecteur-detail.component';
+import { TechnicienDetailComponent } from './business/technicien/technicien-detail/technicien-detail.component';
+import { TechnicienListComponent } from './business/technicien/technicien-list/technicien-list.component';
+import { TechnicienAddComponent } from './business/technicien/technicien-add/technicien-add.component';
+import { StagiaireAddComponent } from './business/stagiaire/stagiaire-add/stagiaire-add.component';
+import { StagiaireListComponent } from './business/stagiaire/stagiaire-list/stagiaire-list.component';
+import { StagiaireDetailComponent } from './business/stagiaire/stagiaire-detail/stagiaire-detail.component';
+import { GestoniaireDetailComponent } from './business/gestionnaire/gestoniaire-detail/gestoniaire-detail.component';
+import { GestoniaireAddComponent } from './business/gestionnaire/gestoniaire-add/gestoniaire-add.component';
+import { GestoniaireListComponent } from './business/gestionnaire/gestoniaire-list/gestoniaire-list.component';
+import { FormateurListComponent } from './business/formateur/formateur-list/formateur-list.component';
+import { FormateurAddComponent } from './business/formateur/formateur-add/formateur-add.component';
+import { FormateurDetailComponent } from './business/formateur/formateur-detail/formateur-detail.component';
 
 
 const routes: Routes = [
@@ -76,7 +102,24 @@ const routes: Routes = [
     IncidentListChildComponent,
     IncidentAddComponent,
     TestbootstrapComponent,
-    OrdinateurAddComponent
+    OrdinateurAddComponent,
+    OrdinateurListComponent,
+    OrdinateurDetailComponent,
+    ProjecteurAddComponent,
+    ProjecteurListComponent,
+    ProjecteurDetailComponent,
+    TechnicienDetailComponent,
+    TechnicienListComponent,
+    TechnicienAddComponent,
+    StagiaireAddComponent,
+    StagiaireListComponent,
+    StagiaireDetailComponent,
+    GestoniaireDetailComponent,
+    GestoniaireAddComponent,
+    GestoniaireListComponent,
+    FormateurListComponent,
+    FormateurAddComponent,
+    FormateurDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +133,8 @@ const routes: Routes = [
     ProgressBarModule,
     GrowlModule
   ],
-  providers: [Globals, ChevalService, CentreEquestreService, UserTestService, IncidentService, DatePipe],
+  providers: [Globals, ChevalService, CentreEquestreService, UserTestService, IncidentService, DatePipe, EnseignementService, FormateurService,
+    GestionnaireService, MatiereService, OrdinateurService, ProjecteurService, SalleService, StagiaireService, TechnicienService],
   bootstrap: [AppComponent]
 })
 
