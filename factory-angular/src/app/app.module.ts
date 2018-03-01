@@ -39,6 +39,7 @@ import { TestbootstrapComponent} from './testbootstrap/testbootstrap.component';
 import { IncidentListComponent} from './incident/incident-list/incident-list.component';
 import { IncidentListChildComponent} from './incident/incident-list-child/incident-list-child.component';
 import { IncidentAddComponent} from './incident/incident-add/incident-add.component';
+import { OrdinateurAddComponent } from './business/ordinateur/ordinateur-add/ordinateur-add.component';
 
 
 const routes: Routes = [
@@ -74,7 +75,8 @@ const routes: Routes = [
     IncidentListComponent,
     IncidentListChildComponent,
     IncidentAddComponent,
-    TestbootstrapComponent
+    TestbootstrapComponent,
+    OrdinateurAddComponent
   ],
   imports: [
     BrowserModule,
