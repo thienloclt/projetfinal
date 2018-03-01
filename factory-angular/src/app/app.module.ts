@@ -26,6 +26,7 @@ import {IncidentAddComponent} from './business/incident/incident-add/incident-ad
 import { MatiereAddComponent } from './business/matiere/matiere-add/matiere-add.component';
 import { MatiereListComponent } from './business/matiere/matiere-list/matiere-list.component';
 import {MatiereService} from './service/matiere.service';
+import { ProgrammeAddComponent } from './programme-add/programme-add.component';
 import { SalleAddComponent } from './business/salle/salle-add/salle-add.component';
 import { SalleListComponent } from './business/salle/salle-list/salle-list.component';
 import { SalleDetailComponent } from './business/salle/salle-detail/salle-detail.component';
@@ -57,6 +58,7 @@ const routes: Routes = [
     IncidentAddComponent,
     MatiereAddComponent,
     MatiereListComponent,
+    ProgrammeAddComponent,
     SalleAddComponent,
     SalleListComponent,
     SalleDetailComponent
