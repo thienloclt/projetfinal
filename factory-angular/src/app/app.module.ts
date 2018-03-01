@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { RouterModule, Routes} from '@angular/router';
 import {DatePipe} from '@angular/common';
-
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { TableModule} from 'primeng/table';
 import {CalendarModule, OrderListModule, ProgressBarModule} from 'primeng/primeng';
@@ -20,18 +19,42 @@ import { HeaderComponent } from './framework/header/header.component';
 import { FooterComponent } from './framework/footer/footer.component';
 import { MenuComponent } from './framework/menu/menu.component';
 import { DashboardComponent } from './framework/dashboard/dashboard.component';
-import {IncidentListComponent} from './business/incident/incident-list/incident-list.component';
-import {IncidentAddComponent} from './business/incident/incident-add/incident-add.component';
 import { MatiereAddComponent } from './business/matiere/matiere-add/matiere-add.component';
 import { MatiereListComponent } from './business/matiere/matiere-list/matiere-list.component';
-import {MatiereService} from './service/matiere.service';
 import { SalleAddComponent } from './business/salle/salle-add/salle-add.component';
 import { SalleListComponent } from './business/salle/salle-list/salle-list.component';
 import { SalleDetailComponent } from './business/salle/salle-detail/salle-detail.component';
+
+import { OrdinateurAddComponent } from './business/ordinateur/ordinateur-add/ordinateur-add.component';
+import {EnseignementService} from './service/enseignement.service';
+import {FormateurService} from './service/formateur.service';
+import {GestionnaireService} from './service/gestionnaire.service';
+import {MatiereService} from './service/matiere.service';
+import {OrdinateurService} from './service/ordinateur.service';
+import {ProjecteurService} from './service/projecteur.service';
 import {SalleService} from './service/salle.service';
 import { FormationAddComponent } from './business/formation/formation-add/formation-add.component';
 import {FormationService} from './service/formation.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {StagiaireService} from './service/stagiaire.service';
+import {TechnicienService} from './service/technicien.service';
+import { OrdinateurListComponent } from './business/ordinateur/ordinateur-list/ordinateur-list.component';
+import { OrdinateurDetailComponent } from './business/ordinateur/ordinateur-detail/ordinateur-detail.component';
+import { ProjecteurAddComponent } from './business/projecteur/projecteur-add/projecteur-add.component';
+import { ProjecteurListComponent } from './business/projecteur/projecteur-list/projecteur-list.component';
+import { ProjecteurDetailComponent } from './business/projecteur/projecteur-detail/projecteur-detail.component';
+import { TechnicienDetailComponent } from './business/technicien/technicien-detail/technicien-detail.component';
+import { TechnicienListComponent } from './business/technicien/technicien-list/technicien-list.component';
+import { TechnicienAddComponent } from './business/technicien/technicien-add/technicien-add.component';
+import { StagiaireAddComponent } from './business/stagiaire/stagiaire-add/stagiaire-add.component';
+import { StagiaireListComponent } from './business/stagiaire/stagiaire-list/stagiaire-list.component';
+import { StagiaireDetailComponent } from './business/stagiaire/stagiaire-detail/stagiaire-detail.component';
+import { GestoniaireDetailComponent } from './business/gestionnaire/gestoniaire-detail/gestoniaire-detail.component';
+import { GestoniaireAddComponent } from './business/gestionnaire/gestoniaire-add/gestoniaire-add.component';
+import { GestoniaireListComponent } from './business/gestionnaire/gestoniaire-list/gestoniaire-list.component';
+import { FormateurListComponent } from './business/formateur/formateur-list/formateur-list.component';
+import { FormateurAddComponent } from './business/formateur/formateur-add/formateur-add.component';
+import { FormateurDetailComponent } from './business/formateur/formateur-detail/formateur-detail.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -39,8 +62,6 @@ const routes: Routes = [
   {path: 'matiere', component: MatiereListComponent},
   {path: 'matiere-add', component: MatiereAddComponent},
   {path: 'matiere-edit/:id', component: MatiereAddComponent},
-  {path: 'incident', component: IncidentListComponent},
-  {path: 'incident-add', component: IncidentAddComponent},
   {path: 'salle', component: SalleListComponent},
   {path: 'salle-add', component: SalleAddComponent},
   {path: 'salle-edit/:id', component: SalleAddComponent},
@@ -58,14 +79,30 @@ const routes: Routes = [
     FooterComponent,
     MenuComponent,
     DashboardComponent,
-    IncidentListComponent,
-    IncidentAddComponent,
     MatiereAddComponent,
     MatiereListComponent,
     SalleAddComponent,
     SalleListComponent,
     SalleDetailComponent,
-    FormationAddComponent
+    FormationAddComponent,
+    OrdinateurAddComponent,
+    OrdinateurListComponent,
+    OrdinateurDetailComponent,
+    ProjecteurAddComponent,
+    ProjecteurListComponent,
+    ProjecteurDetailComponent,
+    TechnicienDetailComponent,
+    TechnicienListComponent,
+    TechnicienAddComponent,
+    StagiaireAddComponent,
+    StagiaireListComponent,
+    StagiaireDetailComponent,
+    GestoniaireDetailComponent,
+    GestoniaireAddComponent,
+    GestoniaireListComponent,
+    FormateurListComponent,
+    FormateurAddComponent,
+    FormateurDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +119,10 @@ const routes: Routes = [
     BrowserAnimationsModule,
     OrderListModule
   ],
-  providers: [Globals, MatiereService, IncidentService, DatePipe, SalleService, FormationService],
+
+  providers: [Globals, IncidentService, DatePipe, EnseignementService, FormateurService,
+    GestionnaireService, MatiereService, OrdinateurService, ProjecteurService, SalleService, StagiaireService, TechnicienService, FormationService],
+
   bootstrap: [AppComponent]
 })
 
