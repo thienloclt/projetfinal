@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Matiere} from '../model/matiere.model';
+import {Salle} from '../model/salle.model';
 
 @Injectable()
-export class MatiereService {
-  url = 'http://localhost:8080/matiere/matieres/';
+export class SalleService {
+  url = 'http://localhost:8080/factory/api/salle/';
   constructor(private http: HttpClient) {
   }
 
@@ -15,13 +15,13 @@ export class MatiereService {
   get(id: number): Observable<any> {
     return this.http.get(this.url + id);
   }
-  add(matiere: Matiere): Observable<any> {
+  add(obj: Salle): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(this.url, matiere,  {headers});
+    return this.http.post(this.url, obj,  {headers});
   }
-  update(matiere: Matiere): Observable<any> {
+  update(obj: Salle): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.put(this.url, matiere,  {headers});
+    return this.http.put(this.url, obj,  {headers});
   }
   delete(id: number): Observable<any> {
     return this.http.delete(this.url + id);
@@ -32,4 +32,3 @@ export class MatiereService {
     return Observable.throw(errMsg);
   }
 }
-

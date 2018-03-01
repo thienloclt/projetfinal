@@ -26,6 +26,7 @@ import {IncidentAddComponent} from './business/incident/incident-add/incident-ad
 import { MatiereAddComponent } from './business/matiere/matiere-add/matiere-add.component';
 import { MatiereListComponent } from './business/matiere/matiere-list/matiere-list.component';
 import {MatiereService} from './service/matiere.service';
+import { ProgrammeAddComponent } from './programme-add/programme-add.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -49,7 +50,8 @@ const routes: Routes = [
     IncidentListComponent,
     IncidentAddComponent,
     MatiereAddComponent,
-    MatiereListComponent
+    MatiereListComponent,
+    ProgrammeAddComponent
   ],
   imports: [
     BrowserModule,
