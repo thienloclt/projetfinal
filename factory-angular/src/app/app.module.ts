@@ -27,6 +27,10 @@ import { MatiereAddComponent } from './business/matiere/matiere-add/matiere-add.
 import { MatiereListComponent } from './business/matiere/matiere-list/matiere-list.component';
 import {MatiereService} from './service/matiere.service';
 import { ProgrammeAddComponent } from './programme-add/programme-add.component';
+import { SalleAddComponent } from './business/salle/salle-add/salle-add.component';
+import { SalleListComponent } from './business/salle/salle-list/salle-list.component';
+import { SalleDetailComponent } from './business/salle/salle-detail/salle-detail.component';
+import {SalleService} from './service/salle.service';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -35,10 +39,13 @@ const routes: Routes = [
   {path: 'matiere-add', component: MatiereAddComponent},
   {path: 'matiere-edit/:id', component: MatiereAddComponent},
   {path: 'incident', component: IncidentListComponent},
-  {path: 'incident-add', component: IncidentAddComponent}
+  {path: 'incident-add', component: IncidentAddComponent},
+  {path: 'salle', component: SalleListComponent},
+  {path: 'salle-add', component: SalleAddComponent},
+  {path: 'salle-edit/:id', component: SalleAddComponent},
+  {path: 'salle/:id', component: SalleDetailComponent}
 ];
 
-// {path: 'matiere/:id', component: ChevalDetailComponent},
 
 @NgModule({
   declarations: [
@@ -51,7 +58,10 @@ const routes: Routes = [
     IncidentAddComponent,
     MatiereAddComponent,
     MatiereListComponent,
-    ProgrammeAddComponent
+    ProgrammeAddComponent,
+    SalleAddComponent,
+    SalleListComponent,
+    SalleDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +75,7 @@ const routes: Routes = [
     ProgressBarModule,
     GrowlModule
   ],
-  providers: [Globals, MatiereService, IncidentService, DatePipe],
+  providers: [Globals, MatiereService, IncidentService, DatePipe, SalleService],
   bootstrap: [AppComponent]
 })
 
