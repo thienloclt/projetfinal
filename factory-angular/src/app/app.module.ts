@@ -7,7 +7,7 @@ import {DatePipe} from '@angular/common';
 
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { TableModule} from 'primeng/table';
-import { ProgressBarModule} from 'primeng/primeng';
+import {CalendarModule, OrderListModule, ProgressBarModule} from 'primeng/primeng';
 import {SliderModule} from 'primeng/slider';
 import {GrowlModule} from 'primeng/growl';
 
@@ -29,6 +29,9 @@ import { SalleAddComponent } from './business/salle/salle-add/salle-add.componen
 import { SalleListComponent } from './business/salle/salle-list/salle-list.component';
 import { SalleDetailComponent } from './business/salle/salle-detail/salle-detail.component';
 import {SalleService} from './service/salle.service';
+import { FormationAddComponent } from './business/formation/formation-add/formation-add.component';
+import {FormationService} from './service/formation.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -41,9 +44,12 @@ const routes: Routes = [
   {path: 'salle', component: SalleListComponent},
   {path: 'salle-add', component: SalleAddComponent},
   {path: 'salle-edit/:id', component: SalleAddComponent},
-  {path: 'salle/:id', component: SalleDetailComponent}
+  {path: 'salle/:id', component: SalleDetailComponent},
+  {path: 'formation', component: FormationAddComponent},
+  {path: 'formation-add', component: FormationAddComponent},
+  {path: 'formation-edit/:id', component: FormationAddComponent},
+  {path: 'formation/:id', component: FormationAddComponent}
 ];
-
 
 @NgModule({
   declarations: [
@@ -58,7 +64,8 @@ const routes: Routes = [
     MatiereListComponent,
     SalleAddComponent,
     SalleListComponent,
-    SalleDetailComponent
+    SalleDetailComponent,
+    FormationAddComponent
   ],
   imports: [
     BrowserModule,
@@ -70,9 +77,12 @@ const routes: Routes = [
     TableModule,
     SliderModule,
     ProgressBarModule,
-    GrowlModule
+    GrowlModule,
+    CalendarModule,
+    BrowserAnimationsModule,
+    OrderListModule
   ],
-  providers: [Globals, MatiereService, IncidentService, DatePipe, SalleService],
+  providers: [Globals, MatiereService, IncidentService, DatePipe, SalleService, FormationService],
   bootstrap: [AppComponent]
 })
 
