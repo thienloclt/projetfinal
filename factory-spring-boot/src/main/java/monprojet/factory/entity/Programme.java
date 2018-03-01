@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -27,29 +26,6 @@ public class Programme {
 	
 	@Version
 	private int version;
-	
-	@Column
-	@NotNull
-	@JsonView(View.Common.class)
-	private int duree; //jour
-	
-	@Column
-	@Size(min = 3)
-	@NotNull
-	@JsonView(View.Common.class)
-	private String objectif;
-	
-	@Column
-	@Size(min = 3)
-	@NotNull
-	@JsonView(View.Common.class)
-	private String prerequis;
-	
-	@Column
-	@Size(min = 3)
-	@NotNull
-	@JsonView(View.Common.class)
-	private String contenu;
 	
 	@Column
 	@NotNull
@@ -78,13 +54,8 @@ public class Programme {
 		super();
 	}
 
-	public Programme(@NotNull int duree, @Size(min = 3) @NotNull String objectif,
-			@Size(min = 3) @NotNull String prerequis, @Size(min = 3) @NotNull String contenu, @NotNull int ordre) {
+	public Programme(@NotNull int ordre) {
 		super();
-		this.duree = duree;
-		this.objectif = objectif;
-		this.prerequis = prerequis;
-		this.contenu = contenu;
 		this.ordre = ordre;
 	}
 
@@ -104,38 +75,6 @@ public class Programme {
 		this.version = version;
 	}
 
-	public int getDuree() {
-		return duree;
-	}
-
-	public void setDuree(int duree) {
-		this.duree = duree;
-	}
-
-	public String getObjectif() {
-		return objectif;
-	}
-
-	public void setObjectif(String objectif) {
-		this.objectif = objectif;
-	}
-
-	public String getPrerequis() {
-		return prerequis;
-	}
-
-	public void setPrerequis(String prerequis) {
-		this.prerequis = prerequis;
-	}
-
-	public String getContenu() {
-		return contenu;
-	}
-
-	public void setContenu(String contenu) {
-		this.contenu = contenu;
-	}
-
 	public int getOrdre() {
 		return ordre;
 	}
@@ -152,20 +91,20 @@ public class Programme {
 		this.formation = formation;
 	}
 
-	public Matiere getMatiere() {
-		return matiere;
-	}
-
-	public void setMatiere(Matiere matiere) {
-		this.matiere = matiere;
-	}
-
 	public Formateur getFormateur() {
 		return formateur;
 	}
 
 	public void setFormateur(Formateur formateur) {
 		this.formateur = formateur;
+	}
+
+	public Matiere getMatiere() {
+		return matiere;
+	}
+
+	public void setMatiere(Matiere matiere) {
+		this.matiere = matiere;
 	}
 
 }

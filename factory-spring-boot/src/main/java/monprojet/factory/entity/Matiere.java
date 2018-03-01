@@ -44,6 +44,29 @@ public class Matiere {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Couleur couleur;
+	
+	@Column
+	@NotNull
+	@JsonView(View.Common.class)
+	private int duree; //jour
+	
+	@Column
+	@Size(min = 3)
+	@NotNull
+	@JsonView(View.Common.class)
+	private String objectif;
+	
+	@Column
+	@Size(min = 3)
+	@NotNull
+	@JsonView(View.Common.class)
+	private String prerequis;
+	
+	@Column
+	@Size(min = 3)
+	@NotNull
+	@JsonView(View.Common.class)
+	private String contenu;
 /*-----------------------------------------------------------------*/
 	@OneToMany(mappedBy = "matiere", fetch = FetchType.EAGER)
 	@JsonView(View.ProgrammeJSON.class)
@@ -56,11 +79,17 @@ public class Matiere {
 	public Matiere() {
 		super();
 	}
-	
-	public Matiere(@Size(min = 2) @NotNull String nom, @NotNull Couleur couleur) {
+
+	public Matiere(@Size(min = 2) @NotNull String nom, @NotNull Couleur couleur, @NotNull int duree,
+			@Size(min = 3) @NotNull String objectif, @Size(min = 3) @NotNull String prerequis,
+			@Size(min = 3) @NotNull String contenu) {
 		super();
 		this.nom = nom;
 		this.couleur = couleur;
+		this.duree = duree;
+		this.objectif = objectif;
+		this.prerequis = prerequis;
+		this.contenu = contenu;
 	}
 
 	public Integer getId() {
@@ -93,6 +122,38 @@ public class Matiere {
 
 	public void setCouleur(Couleur couleur) {
 		this.couleur = couleur;
+	}
+
+	public int getDuree() {
+		return duree;
+	}
+
+	public void setDuree(int duree) {
+		this.duree = duree;
+	}
+
+	public String getObjectif() {
+		return objectif;
+	}
+
+	public void setObjectif(String objectif) {
+		this.objectif = objectif;
+	}
+
+	public String getPrerequis() {
+		return prerequis;
+	}
+
+	public void setPrerequis(String prerequis) {
+		this.prerequis = prerequis;
+	}
+
+	public String getContenu() {
+		return contenu;
+	}
+
+	public void setContenu(String contenu) {
+		this.contenu = contenu;
 	}
 
 	public Set<Programme> getProgrammes() {
