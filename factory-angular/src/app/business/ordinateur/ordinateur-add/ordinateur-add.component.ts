@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Globals} from '../../../framework/globals';
 import {ActivatedRoute, Router} from '@angular/router';
+import {OrdinateurService} from '../../../service/ordinateur.service';
+import {Ordinateur} from '../../../model/ordinateur.model';
 
 
 @Component({
