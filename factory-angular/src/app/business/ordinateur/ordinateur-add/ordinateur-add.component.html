@@ -1,0 +1,35 @@
+<div class="card border-{{globals.theme}}" style="margin-top: 10px;">
+  <div class="card-header">Edition</div>
+  <div class="card-body" style="padding-bottom: 0;">
+    <!--Begin Error Message-->
+    <div *ngIf="!myForm.valid && formsubmitted" class="ui error message">
+      <div class="alert alert-secondary" role="alert">
+        <!-----------Begin Modifier pour alert erreur --------------------------------------------------->
+        <div *ngIf="!myForm.controls['nom'].valid " class="ui error message">titre is invalid</div>
+        <div *ngIf="myForm.controls['nom'].hasError('required')" class="ui error message">titre is required</div>
+           <!-----------End Modifier pour alert erreur --------------------------------------------------->
+         </div>
+       </div>
+       <!--End Error Message-->
+       <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
+         <input formControlName="id" type="hidden" class="form-control"/>
+         <div class="modal-body" style="padding-top: 0;">
+           <!-----------Begin Modifier pour la forme --------------------------------------------------->
+           <div class="form-group">
+             <label>Nom *</label>
+             <input formControlName="nom" required class="form-control"/>
+           </div>
+           <!-----------End Modifier pour la forme --------------------------------------------------->
+           <input type="hidden" path="id" />
+         </div>
+         <div class="modal-footer">
+           <button type="submit" class="btn btn-{{globals.theme}}">
+             <img src="/assets/images/submit.png" width="20px" height="20px">
+           </button>
+           <button type="reset" class="btn btn-{{globals.theme}}">
+             <img src="/assets/images/reset.png" width="20px" height="20px">
+           </button>
+         </div>
+       </form>
+     </div>
+   </div>

@@ -38,23 +38,6 @@ import {FormationService} from './service/formation.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {StagiaireService} from './service/stagiaire.service';
 import {TechnicienService} from './service/technicien.service';
-import { OrdinateurListComponent } from './business/ordinateur/ordinateur-list/ordinateur-list.component';
-import { OrdinateurDetailComponent } from './business/ordinateur/ordinateur-detail/ordinateur-detail.component';
-import { ProjecteurAddComponent } from './business/projecteur/projecteur-add/projecteur-add.component';
-import { ProjecteurListComponent } from './business/projecteur/projecteur-list/projecteur-list.component';
-import { ProjecteurDetailComponent } from './business/projecteur/projecteur-detail/projecteur-detail.component';
-import { TechnicienDetailComponent } from './business/technicien/technicien-detail/technicien-detail.component';
-import { TechnicienListComponent } from './business/technicien/technicien-list/technicien-list.component';
-import { TechnicienAddComponent } from './business/technicien/technicien-add/technicien-add.component';
-import { StagiaireAddComponent } from './business/stagiaire/stagiaire-add/stagiaire-add.component';
-import { StagiaireListComponent } from './business/stagiaire/stagiaire-list/stagiaire-list.component';
-import { StagiaireDetailComponent } from './business/stagiaire/stagiaire-detail/stagiaire-detail.component';
-import { GestoniaireDetailComponent } from './business/gestionnaire/gestoniaire-detail/gestoniaire-detail.component';
-import { GestoniaireAddComponent } from './business/gestionnaire/gestoniaire-add/gestoniaire-add.component';
-import { GestoniaireListComponent } from './business/gestionnaire/gestoniaire-list/gestoniaire-list.component';
-import { FormateurListComponent } from './business/formateur/formateur-list/formateur-list.component';
-import { FormateurAddComponent } from './business/formateur/formateur-add/formateur-add.component';
-import { FormateurDetailComponent } from './business/formateur/formateur-detail/formateur-detail.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -85,24 +68,7 @@ const routes: Routes = [
     SalleListComponent,
     SalleDetailComponent,
     FormationAddComponent,
-    OrdinateurAddComponent,
-    OrdinateurListComponent,
-    OrdinateurDetailComponent,
-    ProjecteurAddComponent,
-    ProjecteurListComponent,
-    ProjecteurDetailComponent,
-    TechnicienDetailComponent,
-    TechnicienListComponent,
-    TechnicienAddComponent,
-    StagiaireAddComponent,
-    StagiaireListComponent,
-    StagiaireDetailComponent,
-    GestoniaireDetailComponent,
-    GestoniaireAddComponent,
-    GestoniaireListComponent,
-    FormateurListComponent,
-    FormateurAddComponent,
-    FormateurDetailComponent
+    OrdinateurAddComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +87,8 @@ const routes: Routes = [
   ],
 
   providers: [Globals, IncidentService, DatePipe, EnseignementService, FormateurService,
-    GestionnaireService, MatiereService, OrdinateurService, ProjecteurService, SalleService, StagiaireService, TechnicienService, FormationService],
+    GestionnaireService, MatiereService, OrdinateurService, ProjecteurService,
+    SalleService, StagiaireService, TechnicienService, FormationService],
 
   bootstrap: [AppComponent]
 })

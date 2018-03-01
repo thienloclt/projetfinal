@@ -1,0 +1,58 @@
+<div class="card border-{{globals.theme}}" style="margin-top: 10px;">
+  <div class="card-header">Edition</div>
+  <div class="card-body" style="padding-bottom: 0;">
+    <!--Begin Error Message-->
+    <div *ngIf="!myForm.valid && formsubmitted" class="ui error message">
+      <div class="alert alert-secondary" role="alert">
+        <!-----------Begin Modifier pour alert erreur --------------------------------------------------->
+        <div *ngIf="!myForm.controls['titre'].valid " class="ui error message">titre is invalid</div>
+        <div *ngIf="myForm.controls['titre'].hasError('required')" class="ui error message">titre is required</div>
+
+        <div *ngIf="!myForm.controls['dateDebut'].valid " class="ui error message">dateDebut is invalid</div>
+        <div *ngIf="myForm.controls['dateDebut'].hasError('required')" class="ui error message">dateDebut is required</div>
+
+        <div *ngIf="!myForm.controls['dateFin'].valid " class="ui error message">dateFin is invalid</div>
+        <div *ngIf="myForm.controls['dateFin'].hasError('required')" class="ui error message">dateFin is required</div>
+        <!-----------End Modifier pour alert erreur --------------------------------------------------->
+      </div>
+    </div>
+    <!--End Error Message-->
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
+      <input formControlName="id" type="hidden" class="form-control"/>
+      <div class="modal-body" style="padding-top: 0;">
+        <!-----------Begin Modifier pour la forme --------------------------------------------------->
+        <div class="form-group">
+          <label>Titre *</label>
+          <input formControlName="titre" required class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label>Date debut *</label>
+          <p-calendar formControlName="dateDebut" [(ngModel)]="dateDebut" [showIcon]="true" required class="form-control"></p-calendar>
+        </div>
+        <div class="form-group">
+          <label>Date fin *</label>
+          <p-calendar formControlName="dateFin" [(ngModel)]="dateFin" [showIcon]="true" required class="form-control"></p-calendar>
+        </div>
+
+        <p-orderList [value]="cars">
+          <ng-template let-car pTemplate="item">
+            <div class="ui-helper-clearfix">
+              <img src="assets/images/add.png" style="display:inline-block; margin:2px 0 2px 2px;" width="40">
+              <div style="float:right; margin: 15px 0 0 0;;">{{car}}</div>
+            </div>
+          </ng-template>
+        </p-orderList>
+        <!-----------End Modifier pour la forme --------------------------------------------------->
+        <input type="hidden" path="id" />
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-{{globals.theme}}">
+          <img src="/assets/images/submit.png" width="20px" height="20px">
+        </button>
+        <button type="reset" class="btn btn-{{globals.theme}}">
+          <img src="/assets/images/reset.png" width="20px" height="20px">
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

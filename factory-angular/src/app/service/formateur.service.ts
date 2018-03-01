@@ -1,48 +1,29 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Matiere} from '../model/matiere.model';
+import {Formateur} from '../model/formateur';
 
-<<<<<<< HEAD
-@Injectable()
-export class MatiereService {
-  url = 'http://localhost:8080/matiere/matieres/';
-  constructor(private http: HttpClient) {
-  }
-
-=======
 
 @Injectable()
-export class MatiereService {
-  url = 'http://localhost:8080/factory/api/matiere/';
+export class FormateurService {
+  url = 'http://localhost:8080/factory/api/formateur/';
   constructor(private http: HttpClient) {
   }
 
 
->>>>>>> solange
   list(): Observable<any> {
     return this.http.get(this.url);
   }
   get(id: number): Observable<any> {
     return this.http.get(this.url + id);
   }
-<<<<<<< HEAD
-  add(matiere: Matiere): Observable<any> {
-    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(this.url, matiere,  {headers});
-  }
-  update(matiere: Matiere): Observable<any> {
-    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.put(this.url, matiere,  {headers});
-=======
-  add(obj: Matiere): Observable<any> {
+  add(obj: Formateur): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(this.url, obj,  {headers});
   }
-  update(obj: Matiere): Observable<any> {
+  update(obj: Formateur): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.put(this.url, obj,  {headers});
->>>>>>> solange
   }
   delete(id: number): Observable<any> {
     return this.http.delete(this.url + id);
@@ -53,7 +34,3 @@ export class MatiereService {
     return Observable.throw(errMsg);
   }
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> solange
