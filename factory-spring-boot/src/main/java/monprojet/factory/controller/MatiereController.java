@@ -41,21 +41,21 @@ public class MatiereController {
 	}
 
 	@RequestMapping("/detail/{id}")
-	public String detailMatiere(@PathVariable("id") Long id, Model model) {
+	public String detailMatiere(@PathVariable("id") int id, Model model) {
 
 		model.addAttribute("matiere", matiereDao.find(id));
 		return "business/matiere/matieredetail";
 	}
 
 	@RequestMapping("/del/{id}")
-	public String delMatiere(@PathVariable("id") Long id, Model model) {
+	public String delMatiere(@PathVariable("id") int id, Model model) {
 		
 		matiereDao.delete(matiereDao.find(id));
 		return listMatiere(model);
 	}
 
 	@RequestMapping("/edit/{id}")
-	public String editMatiere(@PathVariable("id") Long id, Model model) {
+	public String editMatiere(@PathVariable("id") int id, Model model) {
 
 		//model.addAttribute("centreEquestres", centreEquestreDao.findAll());
 		model.addAttribute("matiereObj", matiereDao.find(id));

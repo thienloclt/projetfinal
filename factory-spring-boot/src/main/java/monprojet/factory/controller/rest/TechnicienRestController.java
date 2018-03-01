@@ -37,14 +37,14 @@ public class TechnicienRestController {
 
 	@GetMapping("/{id}")
 	//@JsonView(View.TechnicienWithCentreEquestre.class)
-	public ResponseEntity<Technicien> findById(@PathVariable("id") Long id) {
+	public ResponseEntity<Technicien> findById(@PathVariable("id") int id) {
 		Technicien technicien = technicienDao.find(id);
 		return new ResponseEntity<Technicien>(technicien, (technicien != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{id}")
 	//@JsonView(View.TechnicienWithCentreEquestre.class)
-	public ResponseEntity<Technicien> deleteTechnicien(@PathVariable("id") Long id) {
+	public ResponseEntity<Technicien> deleteTechnicien(@PathVariable("id") int id) {
 		Technicien technicien = technicienDao.find(id);
 		if (technicien == null)
 			return new ResponseEntity<Technicien>(technicien, HttpStatus.NOT_FOUND);

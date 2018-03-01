@@ -40,14 +40,14 @@ public class FormateurRestController {
 
 	@GetMapping("/{id}")
 	@JsonView(View.FormateurWithEveythingJSON.class)
-	public ResponseEntity<Formateur> findById(@PathVariable("id") Long id) {
+	public ResponseEntity<Formateur> findById(@PathVariable("id") int id) {
 		Formateur formateur = formateurDao.find(id);
 		return new ResponseEntity<Formateur>(formateur, (formateur != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{id}")
 	@JsonView(View.FormateurWithEveythingJSON.class)
-	public ResponseEntity<Formateur> deleteFormateur(@PathVariable("id") Long id) {
+	public ResponseEntity<Formateur> deleteFormateur(@PathVariable("id") int id) {
 		Formateur formateur = formateurDao.find(id);
 		if (formateur == null)
 			return new ResponseEntity<Formateur>(formateur, HttpStatus.NOT_FOUND);

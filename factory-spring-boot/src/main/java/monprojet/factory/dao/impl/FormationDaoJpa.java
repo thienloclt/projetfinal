@@ -19,7 +19,7 @@ public class FormationDaoJpa implements FormationDao {
 	@PersistenceContext
 	private EntityManager em;
 
-	public Formation find(Long id) {
+	public Formation find(Integer id) {
 		return em.find(Formation.class, id);
 	}
 

@@ -19,7 +19,7 @@ public class TechnicienDaoJpa implements TechnicienDao {
 	@PersistenceContext
 	private EntityManager em;
 
-	public Technicien find(Long id) {
+	public Technicien find(Integer id) {
 		return em.find(Technicien.class, id);
 	}
 

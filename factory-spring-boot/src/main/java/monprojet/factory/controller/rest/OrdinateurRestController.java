@@ -40,14 +40,14 @@ public class OrdinateurRestController {
 
 	@GetMapping("/{id}")
 	@JsonView(View.OrdinateurWithEveythingJSON.class)
-	public ResponseEntity<Ordinateur> findById(@PathVariable("id") Long id) {
+	public ResponseEntity<Ordinateur> findById(@PathVariable("id") int id) {
 		Ordinateur ordinateur = ordinateurDao.find(id);
 		return new ResponseEntity<Ordinateur>(ordinateur, (ordinateur != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{id}")
 	@JsonView(View.OrdinateurWithEveythingJSON.class)
-	public ResponseEntity<Ordinateur> deleteOrdinateur(@PathVariable("id") Long id) {
+	public ResponseEntity<Ordinateur> deleteOrdinateur(@PathVariable("id") int id) {
 		Ordinateur ordinateur = ordinateurDao.find(id);
 		if (ordinateur == null)
 			return new ResponseEntity<Ordinateur>(ordinateur, HttpStatus.NOT_FOUND);

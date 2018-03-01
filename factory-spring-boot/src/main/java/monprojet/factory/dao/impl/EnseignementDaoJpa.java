@@ -9,39 +9,39 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import monprojet.factory.dao.FormateurDao;
-import monprojet.factory.entity.Formateur;
+import monprojet.factory.dao.EnseignementDao;
+import monprojet.factory.entity.Enseignement;
 
 @Transactional
 @Repository
-public class FormateurDaoJpa implements FormateurDao {
+public class EnseignementDaoJpa implements EnseignementDao {
 
 	@PersistenceContext
 	private EntityManager em;
 
-	public Formateur find(Integer id) {
-		return em.find(Formateur.class, id);
+	public Enseignement find(Integer id) {
+		return em.find(Enseignement.class, id);
 	}
 
-	public void create(Formateur obj) {
+	public void create(Enseignement obj) {
 		em.persist(obj);
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Formateur> findAll() {
-		List<Formateur> list = null;
+	public List<Enseignement> findAll() {
+		List<Enseignement> list = null;
 
-		Query query = em.createQuery("from Formateur");
+		Query query = em.createQuery("from Enseignement");
 		list = query.getResultList();
 
 		return list;
 	}
 
-	public Formateur update(Formateur obj) {
+	public Enseignement update(Enseignement obj) {
 		return em.merge(obj);
 	}
 
-	public void delete(Formateur obj) {
+	public void delete(Enseignement obj) {
 		em.remove(em.merge(obj));
 	}
 }

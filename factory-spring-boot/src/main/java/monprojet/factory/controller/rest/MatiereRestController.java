@@ -39,14 +39,14 @@ public class MatiereRestController {
 
 	@GetMapping("/{id}")
 	@JsonView(View.MatiereWithEveythingJSON.class)
-	public ResponseEntity<Matiere> findById(@PathVariable("id") Long id) {
+	public ResponseEntity<Matiere> findById(@PathVariable("id") int id) {
 		Matiere matiere = matiereDao.find(id);
 		return new ResponseEntity<Matiere>(matiere, (matiere != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{id}")
 	@JsonView(View.MatiereWithEveythingJSON.class)
-	public ResponseEntity<Matiere> deleteMatiere(@PathVariable("id") Long id) {
+	public ResponseEntity<Matiere> deleteMatiere(@PathVariable("id") int id) {
 		Matiere matiere = matiereDao.find(id);
 		if (matiere == null)
 			return new ResponseEntity<Matiere>(matiere, HttpStatus.NOT_FOUND);

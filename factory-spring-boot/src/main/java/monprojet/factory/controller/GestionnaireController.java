@@ -41,21 +41,21 @@ public class GestionnaireController {
 	}
 
 	@RequestMapping("/detail/{id}")
-	public String detailGestionnaire(@PathVariable("id") Long id, Model model) {
+	public String detailGestionnaire(@PathVariable("id") int id, Model model) {
 
 		model.addAttribute("gestionnaire", gestionnaireDao.find(id));
 		return "business/gestionnaire/gestionnairedetail";
 	}
 
 	@RequestMapping("/del/{id}")
-	public String delGestionnaire(@PathVariable("id") Long id, Model model) {
+	public String delGestionnaire(@PathVariable("id") int id, Model model) {
 		
 		gestionnaireDao.delete(gestionnaireDao.find(id));
 		return listGestionnaire(model);
 	}
 
 	@RequestMapping("/edit/{id}")
-	public String editGestionnaire(@PathVariable("id") Long id, Model model) {
+	public String editGestionnaire(@PathVariable("id") int id, Model model) {
 
 		//model.addAttribute("centreEquestres", centreEquestreDao.findAll());
 		model.addAttribute("gestionnaireObj", gestionnaireDao.find(id));

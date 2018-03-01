@@ -41,21 +41,21 @@ public class FormationController {
 	}
 
 	@RequestMapping("/detail/{id}")
-	public String detailFormation(@PathVariable("id") Long id, Model model) {
+	public String detailFormation(@PathVariable("id") int id, Model model) {
 
 		model.addAttribute("formation", formationDao.find(id));
 		return "business/formation/formationdetail";
 	}
 
 	@RequestMapping("/del/{id}")
-	public String delFormation(@PathVariable("id") Long id, Model model) {
+	public String delFormation(@PathVariable("id") int id, Model model) {
 		
 		formationDao.delete(formationDao.find(id));
 		return listFormation(model);
 	}
 
 	@RequestMapping("/edit/{id}")
-	public String editFormation(@PathVariable("id") Long id, Model model) {
+	public String editFormation(@PathVariable("id") int id, Model model) {
 
 		//model.addAttribute("centreEquestres", centreEquestreDao.findAll());
 		model.addAttribute("formationObj", formationDao.find(id));

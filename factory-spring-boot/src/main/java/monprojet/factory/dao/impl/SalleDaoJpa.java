@@ -19,7 +19,7 @@ public class SalleDaoJpa implements SalleDao {
 	@PersistenceContext
 	private EntityManager em;
 
-	public Salle find(Long id) {
+	public Salle find(Integer id) {
 		return em.find(Salle.class, id);
 	}
 

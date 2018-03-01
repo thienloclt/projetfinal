@@ -22,7 +22,6 @@ import monprojet.factory.dao.GestionnaireDao;
 import monprojet.factory.entity.Gestionnaire;
 import monprojet.framework.model.View;
 
-
 @CrossOrigin
 @RestController
 @RequestMapping("/api/gestionnaire")
@@ -40,14 +39,14 @@ public class GestionnaireRestController {
 
 	@GetMapping("/{id}")
 	@JsonView(View.GestionnaireWithEveythingJSON.class)
-	public ResponseEntity<Gestionnaire> findById(@PathVariable("id") Long id) {
+	public ResponseEntity<Gestionnaire> findById(@PathVariable("id") int id) {
 		Gestionnaire gestionnaire = gestionnaireDao.find(id);
 		return new ResponseEntity<Gestionnaire>(gestionnaire, (gestionnaire != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{id}")
 	@JsonView(View.GestionnaireWithEveythingJSON.class)
-	public ResponseEntity<Gestionnaire> deleteGestionnaire(@PathVariable("id") Long id) {
+	public ResponseEntity<Gestionnaire> deleteGestionnaire(@PathVariable("id") int id) {
 		Gestionnaire gestionnaire = gestionnaireDao.find(id);
 		if (gestionnaire == null)
 			return new ResponseEntity<Gestionnaire>(gestionnaire, HttpStatus.NOT_FOUND);

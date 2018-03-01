@@ -19,7 +19,7 @@ public class StagiaireDaoJpa implements StagiaireDao {
 	@PersistenceContext
 	private EntityManager em;
 
-	public Stagiaire find(Long id) {
+	public Stagiaire find(Integer id) {
 		return em.find(Stagiaire.class, id);
 	}
 

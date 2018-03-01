@@ -19,7 +19,7 @@ public class ProjecteurDaoJpa implements ProjecteurDao {
 	@PersistenceContext
 	private EntityManager em;
 
-	public Projecteur find(Long id) {
+	public Projecteur find(Integer id) {
 		return em.find(Projecteur.class, id);
 	}
 

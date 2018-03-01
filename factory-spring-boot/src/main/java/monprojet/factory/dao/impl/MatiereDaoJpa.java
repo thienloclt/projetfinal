@@ -19,7 +19,7 @@ public class MatiereDaoJpa implements MatiereDao {
 	@PersistenceContext
 	private EntityManager em;
 
-	public Matiere find(Long id) {
+	public Matiere find(Integer id) {
 		return em.find(Matiere.class, id);
 	}
 

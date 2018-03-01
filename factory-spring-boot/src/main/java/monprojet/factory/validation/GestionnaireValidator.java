@@ -3,7 +3,6 @@ package monprojet.factory.validation;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import monprojet.factory.entity.Formateur;
 import monprojet.factory.entity.Gestionnaire;
 
 public class GestionnaireValidator implements Validator {

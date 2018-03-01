@@ -39,14 +39,14 @@ public class FormationRestController {
 
 	@GetMapping("/{id}")
 	@JsonView(View.FormationWithEveythingJSON.class)
-	public ResponseEntity<Formation> findById(@PathVariable("id") Long id) {
+	public ResponseEntity<Formation> findById(@PathVariable("id") int id) {
 		Formation formation = formationDao.find(id);
 		return new ResponseEntity<Formation>(formation, (formation != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{id}")
 	@JsonView(View.FormationWithEveythingJSON.class)
-	public ResponseEntity<Formation> deleteFormation(@PathVariable("id") Long id) {
+	public ResponseEntity<Formation> deleteFormation(@PathVariable("id") int id) {
 		Formation formation = formationDao.find(id);
 		if (formation == null)
 			return new ResponseEntity<Formation>(formation, HttpStatus.NOT_FOUND);

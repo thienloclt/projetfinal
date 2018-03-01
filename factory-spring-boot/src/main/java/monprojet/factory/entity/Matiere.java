@@ -11,7 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
@@ -29,7 +29,7 @@ public class Matiere {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@JsonView(View.Common.class)
-	private Long id;
+	private Integer id;
 
 	@Version
 	private int version;
@@ -44,14 +44,14 @@ public class Matiere {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Couleur couleur;
+/*-----------------------------------------------------------------*/
+	@OneToMany(mappedBy = "matiere", fetch = FetchType.EAGER)
+	@JsonView(View.ProgrammeJSON.class)
+	private Set<Programme> programmes = new HashSet<Programme>();
 	
-	@ManyToMany(mappedBy = "matieres", fetch = FetchType.EAGER)
-	@JsonView(View.FormationJSON.class)
-	private Set<Formation> formations = new HashSet<Formation>();
-	
-	@ManyToMany(mappedBy = "matieres", fetch = FetchType.EAGER)
-	@JsonView(View.FormateurJSON.class)
-	private Set<Formateur> formateurs = new HashSet<Formateur>();
+	@OneToMany(mappedBy = "matiere", fetch = FetchType.EAGER)
+	@JsonView(View.EnseignementJSON.class)
+	private Set<Enseignement> enseignements = new HashSet<Enseignement>();
 
 	public Matiere() {
 		super();
@@ -63,11 +63,11 @@ public class Matiere {
 		this.couleur = couleur;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -95,20 +95,20 @@ public class Matiere {
 		this.couleur = couleur;
 	}
 
-	public Set<Formation> getFormations() {
-		return formations;
+	public Set<Programme> getProgrammes() {
+		return programmes;
 	}
 
-	public void setFormations(Set<Formation> formations) {
-		this.formations = formations;
+	public void setProgrammes(Set<Programme> programmes) {
+		this.programmes = programmes;
 	}
 
-	public Set<Formateur> getFormateurs() {
-		return formateurs;
+	public Set<Enseignement> getEnseignements() {
+		return enseignements;
 	}
 
-	public void setFormateurs(Set<Formateur> formateurs) {
-		this.formateurs = formateurs;
+	public void setEnseignements(Set<Enseignement> enseignements) {
+		this.enseignements = enseignements;
 	}
 	
 }

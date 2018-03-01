@@ -41,21 +41,21 @@ public class StagiaireController {
 	}
 
 	@RequestMapping("/detail/{id}")
-	public String detailStagiaire(@PathVariable("id") Long id, Model model) {
+	public String detailStagiaire(@PathVariable("id") int id, Model model) {
 
 		model.addAttribute("stagiaire", stagiaireDao.find(id));
 		return "business/stagiaire/stagiairedetail";
 	}
 
 	@RequestMapping("/del/{id}")
-	public String delStagiaire(@PathVariable("id") Long id, Model model) {
+	public String delStagiaire(@PathVariable("id") int id, Model model) {
 		
 		stagiaireDao.delete(stagiaireDao.find(id));
 		return listStagiaire(model);
 	}
 
 	@RequestMapping("/edit/{id}")
-	public String editStagiaire(@PathVariable("id") Long id, Model model) {
+	public String editStagiaire(@PathVariable("id") int id, Model model) {
 
 		//model.addAttribute("centreEquestres", centreEquestreDao.findAll());
 		model.addAttribute("stagiaireObj", stagiaireDao.find(id));

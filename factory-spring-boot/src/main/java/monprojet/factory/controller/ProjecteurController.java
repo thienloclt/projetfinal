@@ -41,21 +41,21 @@ public class ProjecteurController {
 	}
 
 	@RequestMapping("/detail/{id}")
-	public String detailProjecteur(@PathVariable("id") Long id, Model model) {
+	public String detailProjecteur(@PathVariable("id") int id, Model model) {
 
 		model.addAttribute("projecteur", projecteurDao.find(id));
 		return "business/projecteur/projecteurdetail";
 	}
 
 	@RequestMapping("/del/{id}")
-	public String delProjecteur(@PathVariable("id") Long id, Model model) {
+	public String delProjecteur(@PathVariable("id") int id, Model model) {
 		
 		projecteurDao.delete(projecteurDao.find(id));
 		return listProjecteur(model);
 	}
 
 	@RequestMapping("/edit/{id}")
-	public String editProjecteur(@PathVariable("id") Long id, Model model) {
+	public String editProjecteur(@PathVariable("id") int id, Model model) {
 
 		//model.addAttribute("centreEquestres", centreEquestreDao.findAll());
 		model.addAttribute("projecteurObj", projecteurDao.find(id));

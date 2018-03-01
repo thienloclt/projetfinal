@@ -1,5 +1,6 @@
 package monprojet.factory.entity;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -29,7 +33,7 @@ public class Formation {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@JsonView(View.Common.class)
-	private Long id;
+	private Integer id;
 
 	@Version
 	private int version;
@@ -40,6 +44,18 @@ public class Formation {
 	@JsonView(View.Common.class)
 	private String titre;
 	
+	@Column
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	@JsonView(View.Common.class)
+	private Date dateDebut;
+	
+	@Column
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	@JsonView(View.Common.class)
+	private Date dateFin;
+/*-----------------------------------------------------------------------*/
 	@ManyToOne
 	@JoinColumn(name = "salle_id")
 	@NotNull
@@ -52,11 +68,15 @@ public class Formation {
 	@JsonView(View.GestionnaireJSON.class)
 	private Gestionnaire gestionnaire;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "formation_matiere_tbl", joinColumns = @JoinColumn(name = "formation_id"), inverseJoinColumns = @JoinColumn(name = "matiere_id"))
-	@NotNull
-	@JsonView(View.MatiereJSON.class)
-	private Set<Matiere> matieres = new HashSet<Matiere>();
+//	@ManyToMany(fetch = FetchType.EAGER)
+//	@JoinTable(name = "formation_matiere_tbl", joinColumns = @JoinColumn(name = "formation_id"), inverseJoinColumns = @JoinColumn(name = "matiere_id"))
+//	@NotNull
+//	@JsonView(View.MatiereJSON.class)
+//	private Set<Matiere> matieres = new HashSet<Matiere>();
+	
+	@OneToMany(mappedBy = "formation", fetch = FetchType.EAGER)
+	@JsonView(View.ProgrammeJSON.class)
+	private Set<Programme> programmes = new HashSet<Programme>();
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "formation_formateur_tbl", joinColumns = @JoinColumn(name = "formation_id"), inverseJoinColumns = @JoinColumn(name = "formateur_id"))
@@ -77,17 +97,12 @@ public class Formation {
 	public Formation() {
 		super();
 	}
-	
-	public Formation(@Size(min = 2) @NotNull String titre) {
-		super();
-		this.titre = titre;
-	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -107,6 +122,22 @@ public class Formation {
 		this.titre = titre;
 	}
 
+	public Date getDateDebut() {
+		return dateDebut;
+	}
+
+	public void setDateDebut(Date dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+
+	public Date getDateFin() {
+		return dateFin;
+	}
+
+	public void setDateFin(Date dateFin) {
+		this.dateFin = dateFin;
+	}
+
 	public Salle getSalle() {
 		return salle;
 	}
@@ -115,20 +146,20 @@ public class Formation {
 		this.salle = salle;
 	}
 
-	public Set<Matiere> getMatieres() {
-		return matieres;
-	}
-
-	public void setMatieres(Set<Matiere> matieres) {
-		this.matieres = matieres;
-	}
-
 	public Gestionnaire getGestionnaire() {
 		return gestionnaire;
 	}
 
 	public void setGestionnaire(Gestionnaire gestionnaire) {
 		this.gestionnaire = gestionnaire;
+	}
+
+	public Set<Programme> getProgrammes() {
+		return programmes;
+	}
+
+	public void setProgrammes(Set<Programme> programmes) {
+		this.programmes = programmes;
 	}
 
 	public Set<Formateur> getFormateurs() {
@@ -154,5 +185,4 @@ public class Formation {
 	public void setStagiaires(Set<Stagiaire> stagiaires) {
 		this.stagiaires = stagiaires;
 	}
-
 }

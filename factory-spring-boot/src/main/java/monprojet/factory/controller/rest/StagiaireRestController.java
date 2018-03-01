@@ -40,14 +40,14 @@ public class StagiaireRestController {
 
 	@GetMapping("/{id}")
 	@JsonView(View.StagiaireWithEveythingJSON.class)
-	public ResponseEntity<Stagiaire> findById(@PathVariable("id") Long id) {
+	public ResponseEntity<Stagiaire> findById(@PathVariable("id") int id) {
 		Stagiaire stagiaire = stagiaireDao.find(id);
 		return new ResponseEntity<Stagiaire>(stagiaire, (stagiaire != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{id}")
 	@JsonView(View.StagiaireWithEveythingJSON.class)
-	public ResponseEntity<Stagiaire> deleteStagiaire(@PathVariable("id") Long id) {
+	public ResponseEntity<Stagiaire> deleteStagiaire(@PathVariable("id") int id) {
 		Stagiaire stagiaire = stagiaireDao.find(id);
 		if (stagiaire == null)
 			return new ResponseEntity<Stagiaire>(stagiaire, HttpStatus.NOT_FOUND);

@@ -19,7 +19,7 @@ public class OrdinateurDaoJpa implements OrdinateurDao {
 	@PersistenceContext
 	private EntityManager em;
 
-	public Ordinateur find(Long id) {
+	public Ordinateur find(Integer id) {
 		return em.find(Ordinateur.class, id);
 	}
 

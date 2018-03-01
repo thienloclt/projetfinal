@@ -41,21 +41,21 @@ public class OrdinateurController {
 	}
 
 	@RequestMapping("/detail/{id}")
-	public String detailOrdinateur(@PathVariable("id") Long id, Model model) {
+	public String detailOrdinateur(@PathVariable("id") int id, Model model) {
 
 		model.addAttribute("ordinateur", ordinateurDao.find(id));
 		return "business/ordinateur/ordinateurdetail";
 	}
 
 	@RequestMapping("/del/{id}")
-	public String delOrdinateur(@PathVariable("id") Long id, Model model) {
+	public String delOrdinateur(@PathVariable("id") int id, Model model) {
 		
 		ordinateurDao.delete(ordinateurDao.find(id));
 		return listOrdinateur(model);
 	}
 
 	@RequestMapping("/edit/{id}")
-	public String editOrdinateur(@PathVariable("id") Long id, Model model) {
+	public String editOrdinateur(@PathVariable("id") int id, Model model) {
 
 		//model.addAttribute("centreEquestres", centreEquestreDao.findAll());
 		model.addAttribute("ordinateurObj", ordinateurDao.find(id));

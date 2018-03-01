@@ -32,7 +32,7 @@ public abstract class Materiel {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@JsonView(View.Common.class)
-	private Long id;
+	private Integer id;
 
 	@Version
 	private int version;
@@ -49,6 +49,10 @@ public abstract class Materiel {
 	@JsonView(View.Common.class)
 	private String nom;
 
+	@Column
+	@JsonView(View.Common.class)
+	private int coutJournalier;
+/*------------------------------------------------------------------------------------*/
 	@ManyToMany(mappedBy = "materiels", fetch = FetchType.EAGER)
 	@JsonView(View.FormationJSON.class)
 	private Set<Formation> formations = new HashSet<Formation>();
@@ -57,11 +61,18 @@ public abstract class Materiel {
 		super();
 	}
 
-	public Long getId() {
+	public Materiel(@Size(min = 3) @NotNull String code, @Size(min = 3) @NotNull String nom, int coutJournalier) {
+		super();
+		this.code = code;
+		this.nom = nom;
+		this.coutJournalier = coutJournalier;
+	}
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -71,12 +82,6 @@ public abstract class Materiel {
 
 	public void setVersion(int version) {
 		this.version = version;
-	}
-
-	public Materiel(@Size(min = 3) @NotNull String code, @Size(min = 3) @NotNull String nom) {
-		super();
-		this.code = code;
-		this.nom = nom;
 	}
 
 	public String getCode() {
@@ -93,6 +98,14 @@ public abstract class Materiel {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	public int getCoutJournalier() {
+		return coutJournalier;
+	}
+
+	public void setCoutJournalier(int coutJournalier) {
+		this.coutJournalier = coutJournalier;
 	}
 
 	public Set<Formation> getFormations() {

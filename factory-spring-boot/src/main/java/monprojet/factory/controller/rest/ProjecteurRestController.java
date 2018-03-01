@@ -37,14 +37,14 @@ public class ProjecteurRestController {
 
 	@GetMapping("/{id}")
 	//@JsonView(View.ProjecteurWithCentreEquestre.class)
-	public ResponseEntity<Projecteur> findById(@PathVariable("id") Long id) {
+	public ResponseEntity<Projecteur> findById(@PathVariable("id") int id) {
 		Projecteur projecteur = projecteurDao.find(id);
 		return new ResponseEntity<Projecteur>(projecteur, (projecteur != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{id}")
 	//@JsonView(View.ProjecteurWithCentreEquestre.class)
-	public ResponseEntity<Projecteur> deleteProjecteur(@PathVariable("id") Long id) {
+	public ResponseEntity<Projecteur> deleteProjecteur(@PathVariable("id") int id) {
 		Projecteur projecteur = projecteurDao.find(id);
 		if (projecteur == null)
 			return new ResponseEntity<Projecteur>(projecteur, HttpStatus.NOT_FOUND);

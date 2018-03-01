@@ -19,7 +19,7 @@ public class GestionnaireDaoJpa implements GestionnaireDao {
 	@PersistenceContext
 	private EntityManager em;
 
-	public Gestionnaire find(Long id) {
+	public Gestionnaire find(Integer id) {
 		return em.find(Gestionnaire.class, id);
 	}
 

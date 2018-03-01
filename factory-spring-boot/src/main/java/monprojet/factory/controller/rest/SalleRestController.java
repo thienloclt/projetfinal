@@ -40,14 +40,14 @@ public class SalleRestController {
 
 	@GetMapping("/{id}")
 	@JsonView(View.SalleWithEveythingJSON.class)
-	public ResponseEntity<Salle> findById(@PathVariable("id") Long id) {
+	public ResponseEntity<Salle> findById(@PathVariable("id") int id) {
 		Salle salle = salleDao.find(id);
 		return new ResponseEntity<Salle>(salle, (salle != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{id}")
 	@JsonView(View.SalleWithEveythingJSON.class)
-	public ResponseEntity<Salle> deleteSalle(@PathVariable("id") Long id) {
+	public ResponseEntity<Salle> deleteSalle(@PathVariable("id") int id) {
 		Salle salle = salleDao.find(id);
 		if (salle == null)
 			return new ResponseEntity<Salle>(salle, HttpStatus.NOT_FOUND);

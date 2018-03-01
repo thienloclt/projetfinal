@@ -19,7 +19,7 @@ public class MaterielDaoJpa implements MaterielDao {
 	@PersistenceContext
 	private EntityManager em;
 
-	public Materiel find(Long id) {
+	public Materiel find(Integer id) {
 		return em.find(Materiel.class, id);
 	}
 

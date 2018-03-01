@@ -41,21 +41,21 @@ public class FormateurController {
 	}
 
 	@RequestMapping("/detail/{id}")
-	public String detailFormateur(@PathVariable("id") Long id, Model model) {
+	public String detailFormateur(@PathVariable("id") int id, Model model) {
 
 		model.addAttribute("formateur", formateurDao.find(id));
 		return "business/formateur/formateurdetail";
 	}
 
 	@RequestMapping("/del/{id}")
-	public String delFormateur(@PathVariable("id") Long id, Model model) {
+	public String delFormateur(@PathVariable("id") int id, Model model) {
 		
 		formateurDao.delete(formateurDao.find(id));
 		return listFormateur(model);
 	}
 
 	@RequestMapping("/edit/{id}")
-	public String editFormateur(@PathVariable("id") Long id, Model model) {
+	public String editFormateur(@PathVariable("id") int id, Model model) {
 
 		//model.addAttribute("centreEquestres", centreEquestreDao.findAll());
 		model.addAttribute("formateurObj", formateurDao.find(id));
