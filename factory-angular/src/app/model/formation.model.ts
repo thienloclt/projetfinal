@@ -1,5 +1,3 @@
-import {Matiere} from './matiere.model';
-
 export class Formation {
 
   public id: number;

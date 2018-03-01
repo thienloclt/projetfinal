@@ -1,16 +1,8 @@
 export class Salle {
 
   public id: number;
-<<<<<<< HEAD
   public nom: string;
 
-  constructor() { }
+  constructor() {
+  }
 }
-=======
-  public nom: string
-
-
-  constructor() { }
-}
-
->>>>>>> solange
