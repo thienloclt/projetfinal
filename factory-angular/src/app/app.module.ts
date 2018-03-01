@@ -20,13 +20,11 @@ import { HeaderComponent } from './framework/header/header.component';
 import { FooterComponent } from './framework/footer/footer.component';
 import { MenuComponent } from './framework/menu/menu.component';
 import { DashboardComponent } from './framework/dashboard/dashboard.component';
-
 import {IncidentListComponent} from './business/incident/incident-list/incident-list.component';
 import {IncidentAddComponent} from './business/incident/incident-add/incident-add.component';
 import { MatiereAddComponent } from './business/matiere/matiere-add/matiere-add.component';
 import { MatiereListComponent } from './business/matiere/matiere-list/matiere-list.component';
 import {MatiereService} from './service/matiere.service';
-import { ProgrammeAddComponent } from './programme-add/programme-add.component';
 import { SalleAddComponent } from './business/salle/salle-add/salle-add.component';
 import { SalleListComponent } from './business/salle/salle-list/salle-list.component';
 import { SalleDetailComponent } from './business/salle/salle-detail/salle-detail.component';
@@ -58,7 +56,6 @@ const routes: Routes = [
     IncidentAddComponent,
     MatiereAddComponent,
     MatiereListComponent,
-    ProgrammeAddComponent,
     SalleAddComponent,
     SalleListComponent,
     SalleDetailComponent
