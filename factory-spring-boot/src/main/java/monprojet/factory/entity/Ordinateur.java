@@ -7,11 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -20,14 +16,6 @@ import monprojet.framework.model.View;
 @Entity
 @DiscriminatorValue(value = "Ordinateur")
 public class Ordinateur extends Materiel {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@JsonView(View.Common.class)
-	private Integer id;
-
-	@Version
-	private int version;
 	
 	@Column
 	@JsonView(View.Common.class)
@@ -46,19 +34,58 @@ public class Ordinateur extends Materiel {
 	private int anneeAchat;
 /*--------------------------------------------------------------------------*/
 	@OneToMany(mappedBy = "ordinateur", fetch = FetchType.EAGER)
-	@JsonView(View.StagiaireJSON.class)
-	private Set<Stagiaire> stagiaires = new HashSet<Stagiaire>();
+	@JsonView(View.AllocationJSON.class)
+	private Set<Allocation> allocations = new HashSet<Allocation>();
 	
 	public Ordinateur() {
 		super();
 	}
 
-	public Set<Stagiaire> getStagiaires() {
-		return stagiaires;
+	public Ordinateur(String processeur, String ram, String disqueDur, int anneeAchat) {
+		super();
+		this.processeur = processeur;
+		this.ram = ram;
+		this.disqueDur = disqueDur;
+		this.anneeAchat = anneeAchat;
 	}
 
-	public void setStagiaires(Set<Stagiaire> stagiaires) {
-		this.stagiaires = stagiaires;
+	public String getProcesseur() {
+		return processeur;
 	}
-	
+
+	public void setProcesseur(String processeur) {
+		this.processeur = processeur;
+	}
+
+	public String getRam() {
+		return ram;
+	}
+
+	public void setRam(String ram) {
+		this.ram = ram;
+	}
+
+	public String getDisqueDur() {
+		return disqueDur;
+	}
+
+	public void setDisqueDur(String disqueDur) {
+		this.disqueDur = disqueDur;
+	}
+
+	public int getAnneeAchat() {
+		return anneeAchat;
+	}
+
+	public void setAnneeAchat(int anneeAchat) {
+		this.anneeAchat = anneeAchat;
+	}
+
+	public Set<Allocation> getAllocations() {
+		return allocations;
+	}
+
+	public void setAllocations(Set<Allocation> allocations) {
+		this.allocations = allocations;
+	}
 }

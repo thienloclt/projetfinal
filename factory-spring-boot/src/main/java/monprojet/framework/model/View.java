@@ -14,20 +14,23 @@ public interface View {
 	public static interface OrdinateurJSON extends Common{}
 	public static interface ProgrammeJSON extends Common{}
 	public static interface EnseignementJSON extends Common{}
+	public static interface AllocationJSON extends Common{}
+	public static interface ProjecteurJSON extends Common{}
 	
-	public static interface ProgrammeWithEveythingJSON extends FormationJSON, MatiereJSON{}
+	public static interface ProgrammeWithEveythingJSON extends FormationJSON, FormateurJSON, MatiereJSON{}
 	public static interface MatiereWithEveythingJSON extends ProgrammeJSON, EnseignementJSON{}
+	public static interface FormateurWithEveythingJSON extends ProgrammeJSON, EnseignementJSON{}
 	public static interface EnseignementWithEveythingJSON extends FormateurJSON, MatiereJSON{}
 	public static interface GestionnaireWithEveythingJSON extends FormationJSON{}
 	public static interface SalleWithEveythingJSON extends FormationJSON{}
+	public static interface ProjecteurWithEveythingJSON extends FormationJSON{}
+	public static interface OrdinateurWithEveythingJSON extends AllocationJSON{}
+	public static interface StagiaireWithEveythingJSON extends AllocationJSON{}
+	public static interface AllocationWithEveythingJSON extends FormationJSON, StagiaireJSON, OrdinateurJSON, ProjecteurJSON{}
+	public static interface FormationWithEveythingJSON extends ProgrammeJSON, AllocationJSON, SalleJSON, ProjecteurJSON, GestionnaireJSON{}
+
 	
-	
-	
-	public static interface FormationWithEveythingJSON extends ProgrammeJSON, MatiereJSON, SalleJSON, FormateurJSON, MaterielJSON, StagiaireJSON, GestionnaireJSON{}
-	public static interface MaterielWithEveythingJSON extends FormationJSON{}
-	public static interface FormateurWithEveythingJSON extends FormationJSON, MatiereJSON{}
-	public static interface StagiaireWithEveythingJSON extends FormationJSON, OrdinateurJSON{}
-	public static interface OrdinateurWithEveythingJSON extends MatiereJSON, StagiaireJSON{}
+
 	
 	
 }

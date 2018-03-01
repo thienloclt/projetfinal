@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import monprojet.factory.dao.ProjecteurDao;
 import monprojet.factory.entity.Projecteur;
+import monprojet.framework.model.View;
 
 
 @CrossOrigin
@@ -29,21 +32,21 @@ public class ProjecteurRestController {
 	ProjecteurDao projecteurDao;
 
 	@GetMapping("")
-	//@JsonView(View.ProjecteurWithCentreEquestre.class)
+	@JsonView(View.ProjecteurWithEveythingJSON.class)
 	public ResponseEntity<List<Projecteur>> findAll() {
 		List<Projecteur> projecteurs = projecteurDao.findAll();
 		return new ResponseEntity<List<Projecteur>>(projecteurs, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
-	//@JsonView(View.ProjecteurWithCentreEquestre.class)
+	@JsonView(View.ProjecteurWithEveythingJSON.class)
 	public ResponseEntity<Projecteur> findById(@PathVariable("id") int id) {
 		Projecteur projecteur = projecteurDao.find(id);
 		return new ResponseEntity<Projecteur>(projecteur, (projecteur != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{id}")
-	//@JsonView(View.ProjecteurWithCentreEquestre.class)
+	@JsonView(View.ProjecteurWithEveythingJSON.class)
 	public ResponseEntity<Projecteur> deleteProjecteur(@PathVariable("id") int id) {
 		Projecteur projecteur = projecteurDao.find(id);
 		if (projecteur == null)
@@ -54,7 +57,7 @@ public class ProjecteurRestController {
 	}
 	
 	@PostMapping("")
-	//@JsonView(View.ProjecteurWithCentreEquestre.class)
+	@JsonView(View.ProjecteurWithEveythingJSON.class)
 	public ResponseEntity<Projecteur> createProjecteur(@RequestBody Projecteur projecteur) {
 		if(projecteur.getId() != null)
 			return new ResponseEntity<Projecteur>(projecteur, HttpStatus.BAD_REQUEST);
@@ -63,7 +66,7 @@ public class ProjecteurRestController {
 	}
 	
 	@PutMapping("")
-	//@JsonView(View.ProjecteurWithCentreEquestre.class)
+	@JsonView(View.ProjecteurWithEveythingJSON.class)
 	public ResponseEntity<Projecteur> updateProjecteur(@RequestBody Projecteur projecteur) {
 		Projecteur projecteurFind = projecteurDao.find(projecteur.getId());
 		if (projecteurFind != null) {

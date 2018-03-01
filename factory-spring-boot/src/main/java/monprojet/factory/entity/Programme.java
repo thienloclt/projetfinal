@@ -63,6 +63,12 @@ public class Programme {
 	private Formation formation;
 	
 	@ManyToOne
+	@JoinColumn(name = "formateur_id")
+	@NotNull
+	@JsonView(View.FormateurJSON.class)
+	private Formateur formateur;
+	
+	@ManyToOne
 	@JoinColumn(name = "matiere_id")
 	@NotNull
 	@JsonView(View.MatiereJSON.class)
@@ -152,6 +158,14 @@ public class Programme {
 
 	public void setMatiere(Matiere matiere) {
 		this.matiere = matiere;
+	}
+
+	public Formateur getFormateur() {
+		return formateur;
+	}
+
+	public void setFormateur(Formateur formateur) {
+		this.formateur = formateur;
 	}
 
 }

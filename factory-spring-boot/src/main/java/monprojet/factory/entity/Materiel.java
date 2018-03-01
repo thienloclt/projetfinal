@@ -1,19 +1,14 @@
 package monprojet.factory.entity;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
@@ -52,10 +47,6 @@ public abstract class Materiel {
 	@Column
 	@JsonView(View.Common.class)
 	private int coutJournalier;
-/*------------------------------------------------------------------------------------*/
-	@ManyToMany(mappedBy = "materiels", fetch = FetchType.EAGER)
-	@JsonView(View.FormationJSON.class)
-	private Set<Formation> formations = new HashSet<Formation>();
 
 	public Materiel() {
 		super();
@@ -106,14 +97,6 @@ public abstract class Materiel {
 
 	public void setCoutJournalier(int coutJournalier) {
 		this.coutJournalier = coutJournalier;
-	}
-
-	public Set<Formation> getFormations() {
-		return formations;
-	}
-
-	public void setFormations(Set<Formation> formations) {
-		this.formations = formations;
 	}
 
 }

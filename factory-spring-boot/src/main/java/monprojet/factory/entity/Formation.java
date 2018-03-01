@@ -11,8 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -51,51 +49,42 @@ public class Formation {
 	private Date dateDebut;
 	
 	@Column
-	@NotNull
 	@Temporal(TemporalType.DATE)
 	@JsonView(View.Common.class)
 	private Date dateFin;
 /*-----------------------------------------------------------------------*/
 	@ManyToOne
 	@JoinColumn(name = "salle_id")
-	@NotNull
 	@JsonView(View.SalleJSON.class)
 	private Salle salle;
 	
 	@ManyToOne
+	@JoinColumn(name = "projecteur_id")
+	@JsonView(View.ProjecteurJSON.class)
+	private Projecteur projecteur;
+	
+	@ManyToOne
 	@JoinColumn(name = "gestionnaire_id")
-	@NotNull
 	@JsonView(View.GestionnaireJSON.class)
 	private Gestionnaire gestionnaire;
-	
-//	@ManyToMany(fetch = FetchType.EAGER)
-//	@JoinTable(name = "formation_matiere_tbl", joinColumns = @JoinColumn(name = "formation_id"), inverseJoinColumns = @JoinColumn(name = "matiere_id"))
-//	@NotNull
-//	@JsonView(View.MatiereJSON.class)
-//	private Set<Matiere> matieres = new HashSet<Matiere>();
 	
 	@OneToMany(mappedBy = "formation", fetch = FetchType.EAGER)
 	@JsonView(View.ProgrammeJSON.class)
 	private Set<Programme> programmes = new HashSet<Programme>();
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "formation_formateur_tbl", joinColumns = @JoinColumn(name = "formation_id"), inverseJoinColumns = @JoinColumn(name = "formateur_id"))
-	@NotNull
-	@JsonView(View.FormateurJSON.class)
-	private Set<Formateur> formateurs = new HashSet<Formateur>();
-	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "formation_materiel_tbl", joinColumns = @JoinColumn(name = "formation_id"), inverseJoinColumns = @JoinColumn(name = "materiel_id"))
-	@JsonView(View.MaterielJSON.class)
-	private Set<Materiel> materiels = new HashSet<Materiel>();
-	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "formation_stagiaire_tbl", joinColumns = @JoinColumn(name = "formation_id"), inverseJoinColumns = @JoinColumn(name = "stagiaire_id"))
-	@JsonView(View.MaterielJSON.class)
-	private Set<Stagiaire> stagiaires = new HashSet<Stagiaire>();
+	@OneToMany(mappedBy = "formation", fetch = FetchType.EAGER)
+	@JsonView(View.AllocationJSON.class)
+	private Set<Allocation> allocations = new HashSet<Allocation>();
 
 	public Formation() {
 		super();
+	}
+
+	public Formation(@Size(min = 3) @NotNull String titre, @NotNull Date dateDebut, Date dateFin) {
+		super();
+		this.titre = titre;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
 	}
 
 	public Integer getId() {
@@ -146,6 +135,14 @@ public class Formation {
 		this.salle = salle;
 	}
 
+	public Projecteur getProjecteur() {
+		return projecteur;
+	}
+
+	public void setProjecteur(Projecteur projecteur) {
+		this.projecteur = projecteur;
+	}
+
 	public Gestionnaire getGestionnaire() {
 		return gestionnaire;
 	}
@@ -162,27 +159,11 @@ public class Formation {
 		this.programmes = programmes;
 	}
 
-	public Set<Formateur> getFormateurs() {
-		return formateurs;
+	public Set<Allocation> getAllocations() {
+		return allocations;
 	}
 
-	public void setFormateurs(Set<Formateur> formateurs) {
-		this.formateurs = formateurs;
-	}
-
-	public Set<Materiel> getMateriels() {
-		return materiels;
-	}
-
-	public void setMateriels(Set<Materiel> materiels) {
-		this.materiels = materiels;
-	}
-
-	public Set<Stagiaire> getStagiaires() {
-		return stagiaires;
-	}
-
-	public void setStagiaires(Set<Stagiaire> stagiaires) {
-		this.stagiaires = stagiaires;
+	public void setAllocations(Set<Allocation> allocations) {
+		this.allocations = allocations;
 	}
 }

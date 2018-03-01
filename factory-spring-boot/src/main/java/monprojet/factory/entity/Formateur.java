@@ -7,9 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -27,33 +25,45 @@ public class Formateur extends Personne {
 	@JsonView(View.Common.class)
 	private String competence;
 /*-----------------------------------------------------------------------------------*/
-	@ManyToMany(mappedBy = "formateurs", fetch = FetchType.EAGER)
-	@JsonView(View.FormationJSON.class)
-	private Set<Formation> formations = new HashSet<Formation>();
+	@OneToMany(mappedBy = "formateur", fetch = FetchType.EAGER)
+	@JsonView(View.ProgrammeJSON.class)
+	private Set<Programme> programmes = new HashSet<Programme>();
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "formateur_matiere_tbl", joinColumns = @JoinColumn(name = "formateur_id"), inverseJoinColumns = @JoinColumn(name = "matiere_id"))
-	@NotNull
-	@JsonView(View.MatiereJSON.class)
-	private Set<Matiere> matieres = new HashSet<Matiere>();
+	@OneToMany(mappedBy = "formateur", fetch = FetchType.EAGER)
+	@JsonView(View.EnseignementJSON.class)
+	private Set<Enseignement> enseignements = new HashSet<Enseignement>();
 
 	public Formateur() {
 		super();
 	}
-
-	public Set<Formation> getFormations() {
-		return formations;
+	
+	public Formateur(@Size(min = 3) @NotNull String competence) {
+		super();
+		this.competence = competence;
 	}
 
-	public void setFormations(Set<Formation> formations) {
-		this.formations = formations;
+	public String getCompetence() {
+		return competence;
 	}
 
-	public Set<Matiere> getMatieres() {
-		return matieres;
+	public void setCompetence(String competence) {
+		this.competence = competence;
 	}
 
-	public void setMatieres(Set<Matiere> matieres) {
-		this.matieres = matieres;
+	public Set<Programme> getProgrammes() {
+		return programmes;
 	}
+
+	public void setProgrammes(Set<Programme> programmes) {
+		this.programmes = programmes;
+	}
+
+	public Set<Enseignement> getEnseignements() {
+		return enseignements;
+	}
+
+	public void setEnseignements(Set<Enseignement> enseignements) {
+		this.enseignements = enseignements;
+	}
+
 }
