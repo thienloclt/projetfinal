@@ -129,7 +129,7 @@ const routes: Routes = [
     OrdinateurAddComponent,
     FormationListComponent,
     FormationDetailComponent,
-    FormationAddChildComponent
+    FormationAddChildComponent,
     FormateurAddComponent,
     FormateurListComponent,
     FormateurDetailComponent,
