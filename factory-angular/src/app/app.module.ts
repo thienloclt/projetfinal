@@ -6,7 +6,7 @@ import { RouterModule, Routes} from '@angular/router';
 import { DatePipe} from '@angular/common';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { TableModule} from 'primeng/table';
-import {CalendarModule, ConfirmDialogModule, OrderListModule, ProgressBarModule} from 'primeng/primeng';
+import {CalendarModule, ConfirmDialogModule, DropdownModule, OrderListModule, ProgressBarModule} from 'primeng/primeng';
 import { SliderModule} from 'primeng/slider';
 import { GrowlModule} from 'primeng/growl';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -43,6 +43,8 @@ import { FormationService} from './service/formation.service';
 import { StagiaireService} from './service/stagiaire.service';
 import { TechnicienService} from './service/technicien.service';
 import {PanelModule} from 'primeng/panel';
+import {DialogModule} from 'primeng/dialog';
+import { FormationAddChildComponent } from './business/formation/formation-add-child/formation-add-child.component';
 
 
 const routes: Routes = [
@@ -76,7 +78,8 @@ const routes: Routes = [
     FormationAddComponent,
     OrdinateurAddComponent,
     FormationListComponent,
-    FormationDetailComponent
+    FormationDetailComponent,
+    FormationAddChildComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +95,9 @@ const routes: Routes = [
     CalendarModule,
     BrowserAnimationsModule,
     OrderListModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DialogModule,
+    DropdownModule
   ],
 
   providers: [ConfirmationService, Globals, DatePipe, IncidentService, EnseignementService, FormateurService,
