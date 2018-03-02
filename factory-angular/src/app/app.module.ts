@@ -43,6 +43,27 @@ import { FormationService} from './service/formation.service';
 import { StagiaireService} from './service/stagiaire.service';
 import { TechnicienService} from './service/technicien.service';
 import {PanelModule} from 'primeng/panel';
+import {FormateurAddComponent} from './business/formateur/formateur-add/formateur-add.component';
+import {FormateurListComponent} from './business/formateur/formateur-list/formateur-list.component';
+import {FormateurDetailComponent} from './business/formateur/formateur-detail/formateur-detail.component';
+import {GestionnaireAddComponent} from './business/gestionnaire/gestionnaire-add/gestionnaire-add.component';
+import {GestionnaireListComponent} from './business/gestionnaire/gestionnaire-list/gestionnaire-list.component';
+import {GestionnaireDetailComponent} from './business/gestionnaire/gestionnaire-detail/gestionnaire-detail.component';
+import {OrdinateurDetailComponent} from './business/ordinateur/ordinateur-detail/ordinateur-detail.component';
+import {OrdinateurListComponent} from './business/ordinateur/ordinateur-list/ordinateur-list.component';
+import {ProjecteurAddComponent} from './business/projecteur/projecteur-add/projecteur-add.component';
+import {ProjecteurListComponent} from './business/projecteur/projecteur-list/projecteur-list.component';
+import {ProjecteurDetailComponent} from './business/projecteur/projecteur-detail/projecteur-detail.component';
+import {StagiaireAddComponent} from './business/stagiaire/stagiaire-add/stagiaire-add.component';
+import {StagiaireListComponent} from './business/stagiaire/stagiaire-list/stagiaire-list.component';
+import {StagiaireDetailComponent} from './business/stagiaire/stagiaire-detail/stagiaire-detail.component';
+import {TechnicienDetailComponent} from './business/technicien/technicien-detail/technicien-detail.component';
+import {TechnicienAddComponent} from './business/technicien/technicien-add/technicien-add.component';
+import {TechnicienListComponent} from './business/technicien/technicien-list/technicien-list.component';
+import { MatiereDetailComponent } from './business/matiere/matiere-detail/matiere-detail.component';
+import { EnseignementDetailComponent } from './business/enseignement/enseignement-detail/enseignement-detail.component';
+import { EnseignementAddComponent } from './business/enseignement/enseignement-add/enseignement-add.component';
+import { EnseignementListComponent } from './business/enseignement/enseignement-list/enseignement-list.component';
 
 
 const routes: Routes = [
@@ -58,7 +79,34 @@ const routes: Routes = [
   {path: 'formation', component: FormationListComponent},
   {path: 'formation-add', component: FormationAddComponent},
   {path: 'formation-edit/:id', component: FormationAddComponent},
-  {path: 'formation/:id', component: FormationDetailComponent}
+  {path: 'formation/:id', component: FormationDetailComponent},
+  {path: 'formateur', component: FormationListComponent},
+  {path: 'formateur-add', component: FormateurAddComponent},
+  {path: 'formateur-edit/:id', component: FormateurAddComponent},
+  {path: 'formateur/:id', component: FormateurDetailComponent},
+  {path: 'gestionaire-add', component: GestionnaireAddComponent},
+  {path: 'gestionaire-edit/:id', component: GestionnaireAddComponent},
+  {path: 'ordinateur/:id', component: OrdinateurDetailComponent},
+  {path: 'ordinateur-add', component: OrdinateurAddComponent},
+  {path: 'ordinateur-edit/:id', component: OrdinateurAddComponent},
+  {path: 'ordinateur/:id', component: OrdinateurDetailComponent},
+  {path: 'projecteur/:id', component: ProjecteurDetailComponent},
+  {path: 'projecteur-add', component: ProjecteurAddComponent},
+  {path: 'projecteur-edit/:id', component: ProjecteurAddComponent},
+  {path: 'projecteur/:id', component: ProjecteurDetailComponent},
+  {path: 'stagiaire/:id', component: StagiaireDetailComponent},
+  {path: 'stagiaire-add', component: StagiaireAddComponent},
+  {path: 'stagiaire-edit/:id', component: StagiaireAddComponent},
+  {path: 'stagiaire/:id', component: StagiaireDetailComponent},
+  {path: 'technicien/:id', component: TechnicienDetailComponent},
+  {path: 'technicien-add', component: TechnicienAddComponent},
+  {path: 'technicien-edit/:id', component: TechnicienAddComponent},
+  {path: 'technicien/:id', component: TechnicienDetailComponent},
+  {path: 'matiere/:id', component: MatiereDetailComponent},
+  {path: 'enseignement/:id', component: EnseignementDetailComponent},
+  {path: 'enseignement-add', component: EnseignementAddComponent},
+  {path: 'enseignement-edit/:id', component: EnseignementAddComponent},
+  {path: 'enseignement/:id', component: EnseignementDetailComponent},
 ];
 
 @NgModule({
@@ -76,7 +124,29 @@ const routes: Routes = [
     FormationAddComponent,
     OrdinateurAddComponent,
     FormationListComponent,
-    FormationDetailComponent
+    FormationDetailComponent,
+    FormateurAddComponent,
+    FormateurListComponent,
+    FormateurDetailComponent,
+    GestionnaireAddComponent,
+    GestionnaireListComponent,
+    GestionnaireDetailComponent,
+    OrdinateurAddComponent,
+    OrdinateurListComponent,
+    OrdinateurDetailComponent,
+    ProjecteurAddComponent,
+    ProjecteurListComponent,
+    ProjecteurDetailComponent,
+    StagiaireAddComponent,
+    StagiaireListComponent,
+    StagiaireDetailComponent,
+    TechnicienAddComponent,
+    TechnicienListComponent,
+    TechnicienDetailComponent,
+    EnseignementDetailComponent,
+    EnseignementAddComponent,
+    EnseignementListComponent
+
   ],
   imports: [
     BrowserModule,

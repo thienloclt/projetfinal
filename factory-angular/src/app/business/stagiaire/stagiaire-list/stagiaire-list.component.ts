@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {SortEvent} from 'primeng/api';
+import {ConfirmationService, SortEvent} from 'primeng/api';
 import {DatePipe} from '@angular/common';
 import {Stagiaire} from '../../../model/stagiaire';
 import {StagiaireService} from '../../../service/stagiaire.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-stagiaire-list',
@@ -12,40 +13,30 @@ import {StagiaireService} from '../../../service/stagiaire.service';
 export class StagiaireListComponent implements OnInit {
   objs: Array<Stagiaire> = [];
   cols: any[];
-  value: number = 20;
 
-
-  constructor(private objservice: StagiaireService, private datePipe: DatePipe) {}
-
+  constructor(private objService: StagiaireService, private datePipe: DatePipe, private confirmationService: ConfirmationService, private router: Router) {}
 
   ngOnInit() {
     this.getList();
     this.cols = [
       { field: 'id', header: '#' },
-      { field: 'titre', header: 'Titre' },
-      { field: 'email', header: 'Email' },
-      { field: 'level', header: 'level' },
-      { field: 'type', header: 'Type' },
-      { field: 'progress', header: 'Progress' },
-      { field: 'dateCreation', header: 'Progress' },
-      { field: 'dateModification', header: 'Progress' },
+      { field: 'nom', header: 'nom' },
+      { field: 'dateDebut', header: 'dateDebut' },
+      { field: 'dateFin', header: 'dateFin' }
     ];
   }
 
-
   getList() {
-    this.objservice.list().subscribe(objsFromREST => {
+    this.objService.list().subscribe(objsFromREST => {
       this.objs = objsFromREST;
     });
   }
-
 
   customSort(event: SortEvent) {
     event.data.sort((data1, data2) => {
       let value1 = data1[event.field];
       let value2 = data2[event.field];
       let result = null;
-
 
       if (value1 == null && value2 != null)
         result = -1;
@@ -58,9 +49,33 @@ export class StagiaireListComponent implements OnInit {
       else
         result = (value1 < value2) ? -1 : (value1 > value2) ? 1 : 0;
 
-
       return (event.order * result);
     });
   }
-}
 
+  detailObj(obj: Stagiaire) {
+    this.router.navigateByUrl('/formation/' + obj.id);
+  }
+
+  deleteObj(obj: Stagiaire) {
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'fa fa-trash',
+      accept: () => {
+        this.objService.delete(obj.id).subscribe( value => {
+          let index = -1;
+          for (let i = 0; i < this.objs.length; i++) {
+            if (this.objs[i].id === obj.id) {
+              index = i;
+              break;
+            }
+          }
+          this.objs.splice(index, 1);
+        });
+      },
+      reject: () => {
+      }
+    });
+  }
+}

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GestoniaireListComponent } from './gestoniaire-list.component';
+import { GestoniaireDetailComponent } from './gestionnaire-detail.component';
 
-describe('GestoniaireListComponent', () => {
-  let component: GestoniaireListComponent;
-  let fixture: ComponentFixture<GestoniaireListComponent>;
+describe('GestoniaireDetailComponent', () => {
+  let component: GestoniaireDetailComponent;
+  let fixture: ComponentFixture<GestoniaireDetailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GestoniaireListComponent ]
+      declarations: [ GestoniaireDetailComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GestoniaireListComponent);
+    fixture = TestBed.createComponent(GestoniaireDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
