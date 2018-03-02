@@ -30,11 +30,7 @@ export class FormationAddChildComponent implements OnInit {
   selectedSalle: Salle;
   selectedProjecteur: Projecteur;
 
-  constructor(public globals: Globals, private fb: FormBuilder, private route: ActivatedRoute, private objService: FormationService, private salleService: SalleService, private projecteurService: ProjecteurService) {
-    this.route.params.subscribe(param => {
-      this.id = param['id'];
-    });
-
+  constructor(public globals: Globals, private fb: FormBuilder, private objService: FormationService, private salleService: SalleService, private projecteurService: ProjecteurService) {
     this.myForm = this.fb.group({
       'version': [''],
       'salle': [''],
