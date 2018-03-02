@@ -6,6 +6,8 @@ import {OrdinateurService} from '../../../service/ordinateur.service';
 import {Ordinateur} from '../../../model/ordinateur.model';
 import {StagiaireService} from '../../../service/stagiaire.service';
 import {Stagiaire} from '../../../model/stagiaire';
+import {All} from 'tslint/lib/rules/completedDocsRule';
+import {Allocation} from '../../../model/allocation.model';
 
 @Component({
   selector: 'app-stagiaire-add',
@@ -30,7 +32,13 @@ export class StagiaireAddComponent implements OnInit {
 
     this.myForm = this.fb.group({
       'id': [''],
-      'nom': ['', Validators.compose([Validators.required, Validators.minLength(3)])]
+      'nom': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'prenom': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'dateNaissance': [''],
+      'adresse': [''],
+      'email': ['', Validators.compose([Validators.email])],
+      'numTel': ['']
+      // 'allocations': ['']
     });
   }
 
@@ -42,25 +50,14 @@ export class StagiaireAddComponent implements OnInit {
 
 
   onSubmit() {
+
+
     this.formsubmitted = true;
 
 
     if (this.myForm.valid) {
       let obj: Stagiaire;
       obj = this.myForm.value;
-
-
-      /*      let centreEquestres: CentreEquestre[];
-        centreEquestres = this.myForm.controls['centreEquestre'].value;
-        for (let i = 0; i < centreEquestres.length; i++) {
-        }*/
-
-
-      //     let centreEquestres: CentreEquestre[];
-      //     centreEquestres = this.centreequestres.filter(value => value.id === parseInt(this.myForm.controls['centreEquestre'].value));
-      //     cheval.centreEquestre = centreEquestres[0];
-
-      //incident.centreEquestre = this.myForm.controls['centreEquestre'].value;
 
       if (this.id) {
       } else {

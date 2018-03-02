@@ -28,7 +28,12 @@ export class TechnicienAddComponent implements OnInit {
 
     this.myForm = this.fb.group({
       'id': [''],
-      'nom': ['', Validators.compose([Validators.required, Validators.minLength(3)])]
+      'nom': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'prenom': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'dateNaissance': [''],
+      'adresse': [''],
+      'email': ['', Validators.compose([Validators.email])],
+      'numTel': ['']
     });
   }
 

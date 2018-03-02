@@ -7,6 +7,8 @@
         <!-----------Begin Modifier pour alert erreur --------------------------------------------------->
         <div *ngIf="!myForm.controls['nom'].valid " class="ui error message">titre is invalid</div>
         <div *ngIf="myForm.controls['nom'].hasError('required')" class="ui error message">titre is required</div>
+        <div *ngIf="!myForm.controls['prenom'].valid " class="ui error message">prenom is invalid</div>
+        <div *ngIf="myForm.controls['prenom'].hasError('required')" class="ui error message">prenom is required</div>
         <!-----------End Modifier pour alert erreur --------------------------------------------------->
       </div>
     </div>
@@ -19,6 +21,31 @@
           <label>Nom *</label>
           <input formControlName="nom" required class="form-control"/>
         </div>
+        <div class="form-group">
+          <label>Prenom *</label>
+          <input formControlName="prenom" required class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label>dateNaissance </label>
+          <input formControlName="dateNaissance"  class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label>Adresse </label>
+          <input formControlName="adresse"  class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label>Email </label>
+          <input formControlName="email"  class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label>Tel </label>
+          <input formControlName="numTel"  class="form-control"/>
+        </div>
+        <!--<div class="form-group">-->
+          <!--<label>Allocations </label>-->
+          <!--<input formControlName="allocations"  class="form-control"/>-->
+        <!--</div>-->
+
         <!-----------End Modifier pour la forme --------------------------------------------------->
         <input type="hidden" path="id" />
       </div>

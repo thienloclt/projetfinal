@@ -28,9 +28,13 @@ export class OrdinateurAddComponent implements OnInit {
 
     this.myForm = this.fb.group({
       'id': [''],
-      'titre': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-      'dateDebut': ['', Validators.compose([Validators.required])],
-      'dateFin': ['', Validators.compose([Validators.required])]
+      'code': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'nom': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'coutJournalier': [''],
+      'processeur': [''],
+      'disqueDur': [''],
+      'ram': [''],
+      'anneeAchat': ['']
     });
   }
 

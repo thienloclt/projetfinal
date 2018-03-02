@@ -5,8 +5,15 @@
     <div *ngIf="!myForm.valid && formsubmitted" class="ui error message">
       <div class="alert alert-secondary" role="alert">
         <!-----------Begin Modifier pour alert erreur --------------------------------------------------->
-        <div *ngIf="!myForm.controls['nom'].valid " class="ui error message">titre is invalid</div>
-        <div *ngIf="myForm.controls['nom'].hasError('required')" class="ui error message">titre is required</div>
+        <div *ngIf="!myForm.controls['nom'].valid " class="ui error message">nom is invalid</div>
+        <div *ngIf="myForm.controls['nom'].hasError('required')" class="ui error message">nom is required</div>
+        <div *ngIf="!myForm.controls['prenom'].valid " class="ui error message">prenom is invalid</div>
+        <div *ngIf="myForm.controls['prenom'].hasError('required')" class="ui error message">prenom is required</div>
+        <div *ngIf="!myForm.controls['competence'].valid " class="ui error message">competences is invalid</div>
+        <div *ngIf="myForm.controls['competence'].hasError('required')" class="ui error message">competences is required</div>
+        <!--<div *ngIf="!myForm.controls['email'].valid " class="ui error message">email is invalid</div>-->
+
+
         <!-----------End Modifier pour alert erreur --------------------------------------------------->
       </div>
     </div>
@@ -19,6 +26,39 @@
           <label>Nom *</label>
           <input formControlName="nom" required class="form-control"/>
         </div>
+        <div class="form-group">
+          <label>Prenom *</label>
+          <input formControlName="prenom" required class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label>Competence *</label>
+          <input formControlName="competence" required class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label>dateNaissance </label>
+          <input formControlName="dateNaissance"  class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label>Adresse </label>
+          <input formControlName="adresse"  class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label>Email </label>
+          <input formControlName="email"  class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label>Tel </label>
+          <input formControlName="numTel"  class="form-control"/>
+        </div>
+
+        <!--<div class="form-group">-->
+          <!--<label>Enseignements </label>-->
+          <!--<input formControlName="enseignements"  class="form-control"/>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+          <!--<label>Programmes </label>-->
+          <!--<input formControlName="programmes"  class="form-control"/>-->
+        <!--</div>-->
         <!-----------End Modifier pour la forme --------------------------------------------------->
         <input type="hidden" path="id" />
       </div>
