@@ -20,7 +20,7 @@ export class SalleListComponent implements OnInit {
     this.getList();
     this.cols = [
       { field: 'id', header: '#' },
-      { field: 'titre', header: 'Titre' },
+      { field: 'nom', header: 'Nom' },
       { field: 'email', header: 'Email' },
       { field: 'level', header: 'level' },
       { field: 'type', header: 'Type' },

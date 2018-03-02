@@ -1,22 +1,21 @@
-
 import { Component, OnInit } from '@angular/core';
-import {Ordinateur} from '../../../model/ordinateur.model';
-import {OrdinateurService} from '../../../service/ordinateur.service';
-import {DatePipe} from '@angular/common';
 import {ConfirmationService, SortEvent} from 'primeng/api';
 
 import {Router} from '@angular/router';
+import {DatePipe} from '@angular/common';
+import {Enseignement} from '../../../model/enseignement';
+import {EnseignementService} from '../../../service/enseignement.service';
 
 @Component({
-  selector: 'app-ordinateur-list',
-  templateUrl: './ordinateur-list.component.html',
-  styleUrls: ['./ordinateur-list.component.css']
+  selector: 'app-enseignement-list',
+  templateUrl: './enseignement-list.component.html',
+  styleUrls: ['./enseignement-list.component.css']
 })
-export class OrdinateurListComponent implements OnInit {
-  objs: Array<Ordinateur> = [];
+export class EnseignementListComponent implements OnInit {
+  objs: Array<Enseignement> = [];
   cols: any[];
 
-  constructor(private objService: OrdinateurService, private datePipe: DatePipe, private confirmationService: ConfirmationService, private router: Router) {}
+  constructor(private objService: EnseignementService, private datePipe: DatePipe, private confirmationService: ConfirmationService, private router: Router) {}
 
   ngOnInit() {
     this.getList();
@@ -55,11 +54,11 @@ export class OrdinateurListComponent implements OnInit {
     });
   }
 
-  detailObj(obj: Ordinateur) {
+  detailObj(obj: Enseignement) {
     this.router.navigateByUrl('/formation/' + obj.id);
   }
 
-  deleteObj(obj: Ordinateur) {
+  deleteObj(obj: Enseignement) {
     this.confirmationService.confirm({
       message: 'Do you want to delete this record?',
       header: 'Delete Confirmation',

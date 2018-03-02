@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {Matiere} from '../../../model/matiere.model';
 
 import {MatiereService} from '../../../service/matiere.service';
-import {SortEvent} from 'primeng/api';
-import {Formation} from '../../../model/formation.model';
+import {ConfirmationService, SortEvent} from 'primeng/api';
+
+import {Router} from '@angular/router';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-matiere-list',
@@ -11,28 +13,24 @@ import {Formation} from '../../../model/formation.model';
   styleUrls: ['./matiere-list.component.css']
 })
 export class MatiereListComponent implements OnInit {
-formations: Array<Formation> =  [];
-matieres: Array<Matiere> = [];
+  objs: Array<Matiere> = [];
   cols: any[];
-  value: number = 20;
 
-
-  constructor(private matiereservice: MatiereService) {}
+  constructor(private objService: MatiereService, private datePipe: DatePipe, private confirmationService: ConfirmationService, private router: Router) {}
 
   ngOnInit() {
     this.getList();
     this.cols = [
       { field: 'id', header: '#' },
-      { field: 'nom', header: 'Nom' },
-      { field: 'couleur', header: 'Couleur' },
-      { field: 'programmes', header: 'programmes' },
-      { field: 'enseignements', header: 'enseignements' },
+      { field: 'nom', header: 'nom' },
+      { field: 'dateDebut', header: 'dateDebut' },
+      { field: 'dateFin', header: 'dateFin' }
     ];
   }
 
   getList() {
-    this.matiereservice.list().subscribe(matieresFromREST => {
-      this.matieres=matieresFromREST;
+    this.objService.list().subscribe(objsFromREST => {
+      this.objs = objsFromREST;
     });
   }
 
@@ -56,5 +54,30 @@ matieres: Array<Matiere> = [];
       return (event.order * result);
     });
   }
-}
 
+  detailObj(obj: Matiere) {
+    this.router.navigateByUrl('/formation/' + obj.id);
+  }
+
+  deleteObj(obj: Matiere) {
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'fa fa-trash',
+      accept: () => {
+        this.objService.delete(obj.id).subscribe( value => {
+          let index = -1;
+          for (let i = 0; i < this.objs.length; i++) {
+            if (this.objs[i].id === obj.id) {
+              index = i;
+              break;
+            }
+          }
+          this.objs.splice(index, 1);
+        });
+      },
+      reject: () => {
+      }
+    });
+  }
+}

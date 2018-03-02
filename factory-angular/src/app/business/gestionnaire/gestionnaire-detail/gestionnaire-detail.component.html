@@ -1,9 +1,8 @@
 <div class="card border-{{globals.theme}} rounded-0 mb-3" style="margin-top: 10px">
-  <div class="card-header">{{obj.titre}}</div>
+  <div class="card-header">{{obj.nom}}</div>
   <div class="card-body text-secondary">
     <p class="card-text">{{obj.id}}</p>
-    <p class="card-text">{{obj.dateDebut}}</p>
-    <p class="card-text">{{obj.dateFin}}</p>
+
   </div>
   <div class="card-footer clearfix">
     <a [routerLink]="['/formation-edit', obj.id]">
@@ -11,9 +10,7 @@
     </a>
     <button pButton type="button" label="Delete" (click)="deleteObj()" icon="fa-trash" class="btn btn-{{globals.theme}}"></button>
 
-    <app-formation-add-child [id]="obj.id"></app-formation-add-child>
-    <button pButton type="button" label="Materiel" icon="fa-camera-retro" class="btn btn-{{globals.theme}} float-right"></button>
-    <button pButton type="button" label="Stagiaire" icon="fa-child" class="btn btn-{{globals.theme}} float-right"></button>
+
   </div>
 </div>
 <p-confirmDialog></p-confirmDialog>

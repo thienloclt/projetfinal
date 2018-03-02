@@ -7,11 +7,11 @@ import {Gestionnaire} from '../../../model/gestionnaire';
 
 
 @Component({
-  selector: 'app-gestoniaire-add',
-  templateUrl: './gestoniaire-add.component.html',
-  styleUrls: ['./gestoniaire-add.component.css']
+  selector: 'app-gestionnaire-add',
+  templateUrl: './gestionnaire-add.component.html',
+  styleUrls: ['./gestionnaire-add.component.css']
 })
-export class GestoniaireAddComponent implements OnInit {
+export class GestionnaireAddComponent implements OnInit {
 
   id: number;
   myForm: FormGroup;
@@ -47,7 +47,7 @@ export class GestoniaireAddComponent implements OnInit {
     if (this.myForm.valid) {
       let obj: Gestionnaire;
       obj = this.myForm.value;
-
+      console.log(obj);
 
       /*      let centreEquestres: CentreEquestre[];
         centreEquestres = this.myForm.controls['centreEquestre'].value;

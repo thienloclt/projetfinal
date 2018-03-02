@@ -5,8 +5,8 @@
     <div *ngIf="!myForm.valid && formsubmitted" class="ui error message">
       <div class="alert alert-secondary" role="alert">
         <!-----------Begin Modifier pour alert erreur --------------------------------------------------->
-        <div *ngIf="!myForm.controls['titre'].valid " class="ui error message">titre is invalid</div>
-        <div *ngIf="myForm.controls['titre'].hasError('required')" class="ui error message">titre is required</div>
+        <div *ngIf="!myForm.controls['nom'].valid " class="ui error message">titre is invalid</div>
+        <div *ngIf="myForm.controls['nom'].hasError('required')" class="ui error message">titre is required</div>
 
         <div *ngIf="!myForm.controls['dateDebut'].valid " class="ui error message">dateDebut is invalid</div>
         <div *ngIf="myForm.controls['dateDebut'].hasError('required')" class="ui error message">dateDebut is required</div>
@@ -22,8 +22,8 @@
       <div class="modal-body" style="padding-top: 0;">
         <!-----------Begin Modifier pour la forme --------------------------------------------------->
         <div class="form-group">
-          <label>Titre *</label>
-          <input formControlName="titre" required class="form-control"/>
+          <label>Nom *</label>
+          <input formControlName="nom" required class="form-control"/>
         </div>
         <div class="form-group">
           <label>Date debut *</label>

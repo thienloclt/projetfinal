@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Globals} from '../../../framework/globals';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {OrdinateurService} from '../../../service/ordinateur.service';
-import {Ordinateur} from '../../../model/ordinateur.model';
+import {EnseignementService} from '../../../service/enseignement.service';
+import {Enseignement} from '../../../model/enseignement';
+
 
 
 
 @Component({
-  selector: 'app-ordinateur-add',
-  templateUrl: './ordinateur-add.component.html',
-  styleUrls: ['./ordinateur-add.component.css']
+  selector: 'app-enseignement-add',
+  templateUrl: './enseignement-add.component.html',
+  styleUrls: ['./enseignement-add.component.css']
 })
-export class OrdinateurAddComponent implements OnInit {
+export class EnseignementAddComponent implements OnInit {
   id: number;
   myForm: FormGroup;
   formsubmitted: boolean = false;
@@ -20,7 +21,7 @@ export class OrdinateurAddComponent implements OnInit {
   cars: ['aaaaa', 'bbbb', 'ccccc'];
 
   constructor(public globals: Globals, private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
-              private objService: OrdinateurService) {
+              private objService: EnseignementService) {
 
     this.route.params.subscribe(param => {
       this.id = param['id'];
@@ -28,7 +29,7 @@ export class OrdinateurAddComponent implements OnInit {
 
     this.myForm = this.fb.group({
       'id': [''],
-      'titre': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'nom': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       'dateDebut': ['', Validators.compose([Validators.required])],
       'dateFin': ['', Validators.compose([Validators.required])]
     });
@@ -46,7 +47,7 @@ export class OrdinateurAddComponent implements OnInit {
     this.formsubmitted = true;
 
     if (this.myForm.valid) {
-      let obj: Ordinateur;
+      let obj: Enseignement;
       obj = this.myForm.value;
 
       console.log(obj);
@@ -54,7 +55,7 @@ export class OrdinateurAddComponent implements OnInit {
       if (this.id) {
       } else {
         this.objService.add(obj).subscribe(val => {
-          this.router.navigateByUrl('/ordinateur');
+          this.router.navigateByUrl('/enseignement');
         });
       }
     }
