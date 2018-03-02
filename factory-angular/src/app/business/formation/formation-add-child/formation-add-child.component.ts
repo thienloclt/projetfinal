@@ -22,14 +22,14 @@ export class FormationAddChildComponent implements OnInit {
   salles: Array<Salle> = [];
   projecteurs: Array<Projecteur> = [];
   selectedSalle: Salle;
+  selectedProjecteur: Projecteur;
 
   constructor(public globals: Globals, private fb: FormBuilder, private objService: FormationService, private salleService: SalleService, private projecteurService: ProjecteurService) {
-    this.salleService.list().subscribe(objFromREST => {
-      this.salles = objFromREST;
-      console.log(this.salles);
+    this.salleService.list().subscribe(sallesFromREST => {
+      this.salles = sallesFromREST;
     });
-    this.projecteurService.list().subscribe(objFromREST => {
-      this.projecteurs = objFromREST;
+    this.projecteurService.list().subscribe(projecteursFromREST => {
+      this.projecteurs = projecteursFromREST;
     });
 
     this.myForm = this.fb.group({

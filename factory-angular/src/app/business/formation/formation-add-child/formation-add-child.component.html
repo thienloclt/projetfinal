@@ -1,6 +1,7 @@
 <button pButton type="button" (click)="showDialog()" label="Programme" icon="fa-file-text" class="btn btn-{{globals.theme}} float-right"></button>
-<p-dialog header="Godfather I" [(visible)]="display" width="600" modal="modal" [closeOnEscape]="false" [closable]="false">
+<p-dialog header="Formation-Materiel" [(visible)]="display" [width]="600" modal="modal" [closeOnEscape]="false" [closable]="false">
   <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
+  <p>{{id}}</p>
   <!--Begin Error Message-->
 <!--  <div *ngIf="!myForm.valid && formsubmitted" class="ui error message">
     <div class="alert alert-secondary" role="alert">
@@ -13,26 +14,30 @@
   <!--End Error Message-->
 
     <input formControlName="id" type="hidden" class="form-control"/>
-    <div class="modal-body" style="padding-top: 0;">
-      <!--<div class="form-group">
-        <label>Nom *</label>
-        <input formControlName="nom" required class="form-control"/>
-      </div>
-      <div class="form-group">
-        <label>Remarque *</label>
-        <input formControlName="remarque" class="form-control"/>
-      </div>-->
-      <div class="ui-g-12 ui-md-6">
-        <div class="ui-g-4">
-          Dropdown
-        </div>
-        <div class="ui-g-8">
-          <p-dropdown formControlName="salle" [options]="salles" [(ngModel)]="selectedSalle" [autoWidth]="true"></p-dropdown>
-        </div>
-      </div>
 
+    <div class="modal-body" style="padding-top: 0;">
+      <div *ngIf="salles?.length > 0; else nothing;">
+        <div class="form-group">
+          <label>Salle:</label>
+          <select formControlName="salle" [(ngModel)]="selectedSalle" class="form-control">
+            <option *ngFor="let salle of salles" [ngValue]="salle">{{salle.nom}}</option>
+          </select>
+        </div>
+      </div>
+      <ng-template #nothing>Il n'y a plus d'auteurs dans la liste</ng-template>
     </div>
 
+    <div class="modal-body" style="padding-top: 0;">
+      <div *ngIf="projecteurs?.length > 0; else nothing;">
+        <div class="form-group">
+          <label>Projecteur:</label>
+          <select formControlName="projecteur" [(ngModel)]="selectedProjecteur" class="form-control">
+            <option *ngFor="let projecteur of projecteurs" [ngValue]="projecteur">{{projecteur.nom}}</option>
+          </select>
+        </div>
+      </div>
+      <ng-template #nothing>Il n'y a plus d'auteurs dans la liste</ng-template>
+    </div>
 
   <p-footer>
     <button type="button" pButton icon="fa-check" (click)="OKDialog()" label="Yes"></button>

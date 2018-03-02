@@ -6,7 +6,7 @@ import {Projecteur} from '../model/projecteur.model';
 
 @Injectable()
 export class ProjecteurService {
-  url = 'http://localhost:8080/factory/api/salle/';
+  url = 'http://localhost:8080/factory/api/projecteur/';
   constructor(private http: HttpClient) {
   }
 
