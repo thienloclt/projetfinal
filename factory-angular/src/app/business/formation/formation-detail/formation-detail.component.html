@@ -1,9 +1,17 @@
 <div class="card border-{{globals.theme}} rounded-0 mb-3" style="margin-top: 10px">
-  <div class="card-header">{{obj.titre}}</div>
+  <div class="card-header">titre: {{obj.titre}}</div>
   <div class="card-body text-secondary">
-    <p class="card-text">{{obj.id}}</p>
-    <p class="card-text">{{obj.dateDebut}}</p>
-    <p class="card-text">{{obj.dateFin}}</p>
+    <p class="card-text">id: {{obj.id}}</p>
+    <p class="card-text">dateDebut: {{obj.dateDebut}}</p>
+    <p class="card-text">dateFin: {{obj.dateFin}}</p>
+    <p class="card-text">gestionnaire: {{obj.gestionnaire != null ? obj.gestionnaire.nom : ''}}</p>
+    <p class="card-text">projecteur: {{obj.projecteur != null ? obj.projecteur.nom : ''}}</p>
+    <p class="card-text">salle: {{obj.salle != null ? obj.salle.nom : ''}}</p>
+    <p class="card-text">programmes:</p>
+      <ul *ngFor="let e of obj.programmes">
+        <!--<li>{{e.matieres.}}</li>-->
+      </ul>
+
   </div>
   <div class="card-footer clearfix">
     <a [routerLink]="['/formation-edit', obj.id]">
@@ -11,9 +19,9 @@
     </a>
     <button pButton type="button" label="Delete" (click)="deleteObj()" icon="fa-trash" class="btn btn-{{globals.theme}}"></button>
 
-    <app-formation-add-child [id]="obj.id"></app-formation-add-child>
-    <button pButton type="button" label="Materiel" icon="fa-camera-retro" class="btn btn-{{globals.theme}} float-right"></button>
-    <button pButton type="button" label="Stagiaire" icon="fa-child" class="btn btn-{{globals.theme}} float-right"></button>
+    <app-formation-add-child [id]="obj.id" (eventemitter)="getFromChild($event)"></app-formation-add-child>
+    <button pButton type="button" label="Programme" icon="fa-file-text" class="btn btn-{{globals.theme}} float-right"></button>
+    <app-formation-add-stagiaire [id]="obj.id"></app-formation-add-stagiaire>
   </div>
 </div>
 <p-confirmDialog></p-confirmDialog>

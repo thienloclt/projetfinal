@@ -1,0 +1,29 @@
+<button pButton type="button" (click)="showDialog()" label="Stagiaire" icon="fa-child" class="btn btn-{{globals.theme}} float-right"></button>
+<p-dialog header="Formation-Stagiaire" [(visible)]="display" [width]="800" modal="modal" [closeOnEscape]="false" [closable]="false">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
+    <input formControlName="id" type="hidden" class="form-control"/>
+
+<!--    <p-orderList [value]="cars">
+      <ng-template let-car pTemplate="item">
+        <div class="ui-helper-clearfix">
+          <img src="assets/images/add.png" style="display:inline-block; margin:2px 0 2px 2px;" width="40">
+          <div style="float:right; margin: 15px 0 0 0;;">{{car}}</div>
+        </div>
+      </ng-template>
+    </p-orderList>-->
+
+    <p-pickList [source]="sourceStagiaires" [target]="targetStagiaires" [showSourceControls]="false" [showTargetControls]="false" sourceHeader="Available" targetHeader="Selected" [responsive]="true" filterBy="nom"
+                dragdrop="true" dragdropScope="stagiaires" sourceFilterPlaceholder="Search by nom" targetFilterPlaceholder="Search by nom">
+      <ng-template let-stagiaire pTemplate="item">
+        <div class="ui-helper-clearfix">
+          {{stagiaire.nom}} {{stagiaire.prenom}}
+        </div>
+      </ng-template>
+    </p-pickList>
+
+    <p-footer>
+      <button type="button" pButton icon="fa-check" (click)="OKDialog()" label="Yes"></button>
+      <button type="button" pButton icon="fa-close" (click)="CancelDialog()" label="No"></button>
+    </p-footer>
+  </form>
+</p-dialog>

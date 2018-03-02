@@ -6,7 +6,7 @@ import { RouterModule, Routes} from '@angular/router';
 import { DatePipe} from '@angular/common';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { TableModule} from 'primeng/table';
-import {CalendarModule, ConfirmDialogModule, DropdownModule, OrderListModule, ProgressBarModule} from 'primeng/primeng';
+import {CalendarModule, ConfirmDialogModule, DropdownModule, OrderListModule, PickListModule, ProgressBarModule} from 'primeng/primeng';
 import { SliderModule} from 'primeng/slider';
 import { GrowlModule} from 'primeng/growl';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -65,6 +65,7 @@ import { MatiereDetailComponent } from './business/matiere/matiere-detail/matier
 import { EnseignementDetailComponent } from './business/enseignement/enseignement-detail/enseignement-detail.component';
 import { EnseignementAddComponent } from './business/enseignement/enseignement-add/enseignement-add.component';
 import { EnseignementListComponent } from './business/enseignement/enseignement-list/enseignement-list.component';
+import { FormationAddStagiaireComponent } from './business/formation/formation-add-stagiaire/formation-add-stagiaire.component';
 
 
 const routes: Routes = [
@@ -150,7 +151,8 @@ const routes: Routes = [
     TechnicienDetailComponent,
     EnseignementDetailComponent,
     EnseignementAddComponent,
-    EnseignementListComponent
+    EnseignementListComponent,
+    FormationAddStagiaireComponent
   ],
   imports: [
     BrowserModule,
@@ -168,7 +170,8 @@ const routes: Routes = [
     OrderListModule,
     ConfirmDialogModule,
     DialogModule,
-    DropdownModule
+    DropdownModule,
+    PickListModule
   ],
 
   providers: [ConfirmationService, Globals, DatePipe, IncidentService, EnseignementService, FormateurService,

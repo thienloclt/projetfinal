@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FormationService} from '../../../service/formation.service';
 import {Formation} from '../../../model/formation.model';
+import {GestionnaireService} from '../../../service/gestionnaire.service';
+import {Gestionnaire} from '../../../model/gestionnaire';
 
 @Component({
   selector: 'app-formation-add',
@@ -15,27 +17,30 @@ export class FormationAddComponent implements OnInit {
   myForm: FormGroup;
   formsubmitted: boolean = false;
 
-  cars: ['aaaaa', 'bbbb', 'ccccc'];
+  gestionnaires: Array<Gestionnaire> = [];
+  selectedGestionnaire = Gestionnaire;
 
   constructor(public globals: Globals, private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
-              private objService: FormationService) {
+              private objService: FormationService, private gestionnaireService: GestionnaireService) {
 
     this.route.params.subscribe(param => {
       this.id = param['id'];
     });
 
+    this.gestionnaireService.list().subscribe(objsFromREST => {
+      this.gestionnaires = objsFromREST;
+    });
+
     this.myForm = this.fb.group({
-      'id': [''],
+      'id': [null],
       'titre': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       'dateDebut': ['', Validators.compose([Validators.required])],
-      'dateFin': ['', Validators.compose([Validators.required])]
+      'dateFin': ['', Validators.compose([Validators.required])],
+      'gestionnaire': [null]
     });
   }
 
   ngOnInit() {
-
-    this.cars = ['aaaaa', 'bbbb', 'ccccc'];
-
     if (this.id) {
     }
   }
@@ -48,7 +53,6 @@ export class FormationAddComponent implements OnInit {
       obj = this.myForm.value;
 
       console.log(obj);
-      console.log(this.cars);
       if (this.id) {
       } else {
         this.objService.add(obj).subscribe(val => {

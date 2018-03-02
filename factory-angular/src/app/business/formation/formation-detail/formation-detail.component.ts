@@ -12,7 +12,7 @@ import {ConfirmationService} from 'primeng/api';
 })
 export class FormationDetailComponent implements OnInit {
   id: number;
-  obj = Formation;
+  obj = new Formation();
 
   constructor(public globals: Globals, private route: ActivatedRoute, private router: Router, private objService: FormationService, private confirmationService: ConfirmationService) {
     route.params.subscribe(param => {
@@ -23,6 +23,7 @@ export class FormationDetailComponent implements OnInit {
   ngOnInit() {
     this.objService.get(this.id).subscribe(objFromREST => {
       this.obj = objFromREST;
+      console.log(this.obj);
     });
   }
 
@@ -38,6 +39,14 @@ export class FormationDetailComponent implements OnInit {
       },
       reject: () => {
       }
+    });
+  }
+
+  getFromChild(event) {
+    console.log('=========================');
+    this.objService.get(this.id).subscribe(objFromREST => {
+      this.obj = objFromREST;
+      console.log(this.obj);
     });
   }
 }
