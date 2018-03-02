@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Globals} from '../../../framework/globals';
-import {Projecteur} from '../../../model/projecteur.model';
+
 import {FormateurService} from '../../../service/formateur.service';
+import {Formateur} from '../../../model/formateur';
+
 
 @Component({
   selector: 'app-formateur-add',
@@ -11,6 +13,7 @@ import {FormateurService} from '../../../service/formateur.service';
   styleUrls: ['./formateur-add.component.css']
 })
 export class FormateurAddComponent implements OnInit {
+
   id: number;
   myForm: FormGroup;
   formsubmitted: boolean = false;
@@ -43,7 +46,7 @@ export class FormateurAddComponent implements OnInit {
 
 
     if (this.myForm.valid) {
-      let obj: Projecteur;
+      let obj: Formateur;
       obj = this.myForm.value;
 
 

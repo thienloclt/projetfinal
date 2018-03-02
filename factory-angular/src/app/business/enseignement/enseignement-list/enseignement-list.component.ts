@@ -21,7 +21,7 @@ export class EnseignementListComponent implements OnInit {
     this.getList();
     this.cols = [
       { field: 'id', header: '#' },
-      { field: 'titre', header: 'titre' },
+      { field: 'nom', header: 'nom' },
       { field: 'dateDebut', header: 'dateDebut' },
       { field: 'dateFin', header: 'dateFin' }
     ];

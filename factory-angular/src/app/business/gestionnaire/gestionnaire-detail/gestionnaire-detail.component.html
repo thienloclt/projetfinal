@@ -1,3 +1,16 @@
-<p>
-  gestionnaire-detail works!
-</p>
+<div class="card border-{{globals.theme}} rounded-0 mb-3" style="margin-top: 10px">
+  <div class="card-header">{{obj.nom}}</div>
+  <div class="card-body text-secondary">
+    <p class="card-text">{{obj.id}}</p>
+
+  </div>
+  <div class="card-footer clearfix">
+    <a [routerLink]="['/formation-edit', obj.id]">
+      <button pButton type="button" label="Edit" icon="fa-edit" class="btn btn-{{globals.theme}}"></button>
+    </a>
+    <button pButton type="button" label="Delete" (click)="deleteObj()" icon="fa-trash" class="btn btn-{{globals.theme}}"></button>
+
+
+  </div>
+</div>
+<p-confirmDialog></p-confirmDialog>

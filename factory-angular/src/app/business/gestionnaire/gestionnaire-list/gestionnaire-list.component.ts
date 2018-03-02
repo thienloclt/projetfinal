@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {ConfirmationService, SortEvent} from 'primeng/api';
-import {DatePipe} from '@angular/common';
+
 import {Gestionnaire} from '../../../model/gestionnaire';
 import {GestionnaireService} from '../../../service/gestionnaire.service';
 
 import {Router} from '@angular/router';
+
+import {DatePipe} from '@angular/common';
 
 
 
@@ -57,7 +59,7 @@ export class GestionnaireListComponent implements OnInit {
   }
 
   detailObj(obj: Gestionnaire) {
-    this.router.navigateByUrl('/formation/' + obj.id);
+    this.router.navigateByUrl('/gestionnaire/' + obj.id);
   }
 
   deleteObj(obj: Gestionnaire) {

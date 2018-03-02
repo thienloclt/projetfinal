@@ -47,7 +47,7 @@ export class GestionnaireAddComponent implements OnInit {
     if (this.myForm.valid) {
       let obj: Gestionnaire;
       obj = this.myForm.value;
-
+      console.log(obj);
 
       /*      let centreEquestres: CentreEquestre[];
         centreEquestres = this.myForm.controls['centreEquestre'].value;

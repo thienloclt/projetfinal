@@ -6,6 +6,8 @@ import {EnseignementService} from '../../../service/enseignement.service';
 import {Enseignement} from '../../../model/enseignement';
 
 
+
+
 @Component({
   selector: 'app-enseignement-add',
   templateUrl: './enseignement-add.component.html',
@@ -16,6 +18,8 @@ export class EnseignementAddComponent implements OnInit {
   myForm: FormGroup;
   formsubmitted: boolean = false;
 
+  cars: ['aaaaa', 'bbbb', 'ccccc'];
+
   constructor(public globals: Globals, private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
               private objService: EnseignementService) {
 
@@ -25,11 +29,16 @@ export class EnseignementAddComponent implements OnInit {
 
     this.myForm = this.fb.group({
       'id': [''],
-      'nom': ['', Validators.compose([Validators.required, Validators.minLength(3)])]
+      'nom': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'dateDebut': ['', Validators.compose([Validators.required])],
+      'dateFin': ['', Validators.compose([Validators.required])]
     });
   }
 
   ngOnInit() {
+
+    this.cars = ['aaaaa', 'bbbb', 'ccccc'];
+
     if (this.id) {
     }
   }
@@ -41,21 +50,12 @@ export class EnseignementAddComponent implements OnInit {
       let obj: Enseignement;
       obj = this.myForm.value;
 
-      /*      let centreEquestres: CentreEquestre[];
-            centreEquestres = this.myForm.controls['centreEquestre'].value;
-            for (let i = 0; i < centreEquestres.length; i++) {
-            }*/
-
-      //     let centreEquestres: CentreEquestre[];
-      //     centreEquestres = this.centreequestres.filter(value => value.id === parseInt(this.myForm.controls['centreEquestre'].value));
-      //     cheval.centreEquestre = centreEquestres[0];
-
-      //incident.centreEquestre = this.myForm.controls['centreEquestre'].value;
-
+      console.log(obj);
+      console.log(this.cars);
       if (this.id) {
       } else {
         this.objService.add(obj).subscribe(val => {
-          this.router.navigateByUrl('/incident');
+          this.router.navigateByUrl('/enseignement');
         });
       }
     }

@@ -57,7 +57,7 @@ export class FormateurListComponent implements OnInit {
   }
 
   detailObj(obj: Formateur) {
-    this.router.navigateByUrl('/formation/' + obj.id);
+    this.router.navigateByUrl('/formateur/' + obj.id);
   }
 
   deleteObj(obj: Formateur) {
