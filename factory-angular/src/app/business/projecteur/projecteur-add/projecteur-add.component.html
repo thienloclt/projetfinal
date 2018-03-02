@@ -5,8 +5,12 @@
     <div *ngIf="!myForm.valid && formsubmitted" class="ui error message">
       <div class="alert alert-secondary" role="alert">
         <!-----------Begin Modifier pour alert erreur --------------------------------------------------->
-        <div *ngIf="!myForm.controls['nom'].valid " class="ui error message">titre is invalid</div>
-        <div *ngIf="myForm.controls['nom'].hasError('required')" class="ui error message">titre is required</div>
+        <div *ngIf="!myForm.controls['code'].valid " class="ui error message">code is invalid</div>
+        <div *ngIf="myForm.controls['code'].hasError('required')" class="ui error message">code is required</div>
+
+        <div *ngIf="!myForm.controls['nom'].valid " class="ui error message">nom is invalid</div>
+        <div *ngIf="myForm.controls['nom'].hasError('required')" class="ui error message">nom is required</div>
+
         <!-----------End Modifier pour alert erreur --------------------------------------------------->
       </div>
     </div>
@@ -16,9 +20,18 @@
       <div class="modal-body" style="padding-top: 0;">
         <!-----------Begin Modifier pour la forme --------------------------------------------------->
         <div class="form-group">
+          <label>Code *</label>
+          <input formControlName="code" required class="form-control"/>
+        </div>
+        <div class="form-group">
           <label>Nom *</label>
           <input formControlName="nom" required class="form-control"/>
         </div>
+        <div class="form-group">
+          <label>coutJournalier </label>
+          <input formControlName="coutJournalier"  class="form-control"/>
+        </div>
+
         <!-----------End Modifier pour la forme --------------------------------------------------->
         <input type="hidden" path="id" />
       </div>

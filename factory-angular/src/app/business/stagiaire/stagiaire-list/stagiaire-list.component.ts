@@ -21,8 +21,11 @@ export class StagiaireListComponent implements OnInit {
     this.cols = [
       { field: 'id', header: '#' },
       { field: 'nom', header: 'nom' },
-      { field: 'dateDebut', header: 'dateDebut' },
-      { field: 'dateFin', header: 'dateFin' }
+      { field: 'prenom', header: 'prenom' },
+      { field: 'dateNaissance', header: 'dateNaissance' },
+      { field: 'adresse', header: 'adresse' },
+      { field: 'email', header: 'email' },
+      { field: 'numTel', header: 'Tel' }
     ];
   }
 

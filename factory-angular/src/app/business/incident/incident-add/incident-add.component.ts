@@ -1,3 +1,4 @@
+
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -14,7 +15,7 @@ import {IncidentService} from '../../../service/incident.service';
 export class IncidentAddComponent implements OnInit {
   id: number;
   myForm: FormGroup;
-  formsubmitted: boolean = false;
+  formsubmitted = false;
 
   incidents: Array<Incident> = [];
   typeIncident = TypeIncident;
@@ -57,16 +58,7 @@ export class IncidentAddComponent implements OnInit {
       let incident: Incident;
       incident  = this.myForm.value;
 
-/*      let centreEquestres: CentreEquestre[];
-      centreEquestres = this.myForm.controls['centreEquestre'].value;
-      for (let i = 0; i < centreEquestres.length; i++) {
-      }*/
 
-      //     let centreEquestres: CentreEquestre[];
- //     centreEquestres = this.centreequestres.filter(value => value.id === parseInt(this.myForm.controls['centreEquestre'].value));
- //     cheval.centreEquestre = centreEquestres[0];
-
-      //incident.centreEquestre = this.myForm.controls['centreEquestre'].value;
 
       if (this.id) {
       } else {

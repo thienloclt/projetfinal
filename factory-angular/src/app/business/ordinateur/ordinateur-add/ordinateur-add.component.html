@@ -5,14 +5,12 @@
     <div *ngIf="!myForm.valid && formsubmitted" class="ui error message">
       <div class="alert alert-secondary" role="alert">
         <!-----------Begin Modifier pour alert erreur --------------------------------------------------->
-        <div *ngIf="!myForm.controls['titre'].valid " class="ui error message">titre is invalid</div>
-        <div *ngIf="myForm.controls['titre'].hasError('required')" class="ui error message">titre is required</div>
+        <div *ngIf="!myForm.controls['code'].valid " class="ui error message">titre is invalid</div>
+        <div *ngIf="myForm.controls['code'].hasError('required')" class="ui error message">titre is required</div>
 
-        <div *ngIf="!myForm.controls['dateDebut'].valid " class="ui error message">dateDebut is invalid</div>
-        <div *ngIf="myForm.controls['dateDebut'].hasError('required')" class="ui error message">dateDebut is required</div>
+        <div *ngIf="!myForm.controls['nom'].valid " class="ui error message">titre is invalid</div>
+        <div *ngIf="myForm.controls['nom'].hasError('required')" class="ui error message">titre is required</div>
 
-        <div *ngIf="!myForm.controls['dateFin'].valid " class="ui error message">dateFin is invalid</div>
-        <div *ngIf="myForm.controls['dateFin'].hasError('required')" class="ui error message">dateFin is required</div>
         <!-----------End Modifier pour alert erreur --------------------------------------------------->
       </div>
     </div>
@@ -22,17 +20,37 @@
       <div class="modal-body" style="padding-top: 0;">
         <!-----------Begin Modifier pour la forme --------------------------------------------------->
         <div class="form-group">
-          <label>Titre *</label>
-          <input formControlName="titre" required class="form-control"/>
+          <label>Code *</label>
+          <input formControlName="code" required class="form-control"/>
         </div>
         <div class="form-group">
-          <label>Date debut *</label>
-          <p-calendar formControlName="dateDebut" [(ngModel)]="dateDebut" [showIcon]="true" required class="form-control"></p-calendar>
+          <label>Nom *</label>
+          <input formControlName="nom" required class="form-control"/>
         </div>
         <div class="form-group">
-          <label>Date fin *</label>
-          <p-calendar formControlName="dateFin" [(ngModel)]="dateFin" [showIcon]="true" required class="form-control"></p-calendar>
+          <label>coutJournalier </label>
+          <input formControlName="coutJournalier"  class="form-control"/>
         </div>
+        <div class="form-group">
+          <label>Processeur </label>
+          <input formControlName="processeur"  class="form-control"/>
+        </div>
+
+        <div class="form-group">
+        <label>Ram </label>
+        <input formControlName="ram"  class="form-control"/>
+      </div>
+
+        <div class="form-group">
+          <label>disqueDur </label>
+          <input formControlName="disqueDur"  class="form-control"/>
+        </div>
+
+        <div class="form-group">
+          <label>anneeAchat </label>
+          <input formControlName="anneeAchat"  class="form-control"/>
+        </div>
+
 
         <p-orderList [value]="cars">
           <ng-template let-car pTemplate="item">

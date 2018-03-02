@@ -22,9 +22,9 @@ export class ProjecteurListComponent implements OnInit {
     this.getList();
     this.cols = [
       { field: 'id', header: '#' },
+      { field: 'code', header: 'code' },
       { field: 'nom', header: 'nom' },
-      { field: 'dateDebut', header: 'dateDebut' },
-      { field: 'dateFin', header: 'dateFin' }
+      { field: 'coutJournalier', header: 'coutJournalier' }
     ];
   }
 
@@ -56,7 +56,7 @@ export class ProjecteurListComponent implements OnInit {
   }
 
   detailObj(obj: Projecteur) {
-    this.router.navigateByUrl('/formation/' + obj.id);
+    this.router.navigateByUrl('/projecteur/' + obj.id);
   }
 
   deleteObj(obj: Projecteur) {

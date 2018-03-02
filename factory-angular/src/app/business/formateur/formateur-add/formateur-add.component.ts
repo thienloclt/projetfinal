@@ -5,6 +5,7 @@ import {Globals} from '../../../framework/globals';
 
 import {FormateurService} from '../../../service/formateur.service';
 import {Formateur} from '../../../model/formateur';
+import {Enseignement} from '../../../model/enseignement';
 
 
 @Component({
@@ -13,7 +14,7 @@ import {Formateur} from '../../../model/formateur';
   styleUrls: ['./formateur-add.component.css']
 })
 export class FormateurAddComponent implements OnInit {
-
+enseignements:Set<Enseignement>;
   id: number;
   myForm: FormGroup;
   formsubmitted: boolean = false;
@@ -30,10 +31,17 @@ export class FormateurAddComponent implements OnInit {
 
     this.myForm = this.fb.group({
       'id': [''],
-      'nom': ['', Validators.compose([Validators.required, Validators.minLength(3)])]
+      'nom': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'prenom': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'competence': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'dateNaissance': [''],
+      'adresse': [''],
+      'email': ['', Validators.compose([Validators.email])],
+      'numTel': ['']
+      // 'enseignements': [''],
+      // 'programmes': ['']
     });
   }
-
 
   ngOnInit() {
     if (this.id) {
@@ -62,9 +70,11 @@ export class FormateurAddComponent implements OnInit {
 
       //incident.centreEquestre = this.myForm.controls['centreEquestre'].value;
 
+      console.log(obj);
       if (this.id) {
       } else {
         this.objService.add(obj).subscribe(val => {
+
           this.router.navigateByUrl('/formateur');
         });
       }

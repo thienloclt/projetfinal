@@ -29,7 +29,13 @@ export class GestionnaireAddComponent implements OnInit {
 
     this.myForm = this.fb.group({
       'id': [''],
-      'nom': ['', Validators.compose([Validators.required, Validators.minLength(3)])]
+      'nom': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'prenom': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'dateNaissance': [''],
+      'adresse': [''],
+      'email': ['', Validators.compose([Validators.email])],
+      'numTel': ['']
+      // 'formations': ['']
     });
   }
 
@@ -41,30 +47,19 @@ export class GestionnaireAddComponent implements OnInit {
 
 
   onSubmit() {
+
+
     this.formsubmitted = true;
 
 
     if (this.myForm.valid) {
       let obj: Gestionnaire;
       obj = this.myForm.value;
-      console.log(obj);
-
-      /*      let centreEquestres: CentreEquestre[];
-        centreEquestres = this.myForm.controls['centreEquestre'].value;
-        for (let i = 0; i < centreEquestres.length; i++) {
-        }*/
-
-
-      //     let centreEquestres: CentreEquestre[];
-      //     centreEquestres = this.centreequestres.filter(value => value.id === parseInt(this.myForm.controls['centreEquestre'].value));
-      //     cheval.centreEquestre = centreEquestres[0];
-
-      //incident.centreEquestre = this.myForm.controls['centreEquestre'].value;
 
       if (this.id) {
       } else {
         this.objService.add(obj).subscribe(val => {
-          this.router.navigateByUrl('/gestionnaire');
+          this.router.navigateByUrl('/stagiaire');
         });
       }
     }
