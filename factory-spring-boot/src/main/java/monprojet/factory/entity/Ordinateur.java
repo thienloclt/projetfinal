@@ -31,7 +31,7 @@ public class Ordinateur extends Materiel {
 	
 	@Column
 	@JsonView(View.Common.class)
-	private int anneeAchat;
+	private Integer anneeAchat;
 /*--------------------------------------------------------------------------*/
 	@OneToMany(mappedBy = "ordinateur", fetch = FetchType.EAGER)
 	@JsonView(View.AllocationJSON.class)
@@ -73,11 +73,11 @@ public class Ordinateur extends Materiel {
 		this.disqueDur = disqueDur;
 	}
 
-	public int getAnneeAchat() {
+	public Integer getAnneeAchat() {
 		return anneeAchat;
 	}
 
-	public void setAnneeAchat(int anneeAchat) {
+	public void setAnneeAchat(Integer anneeAchat) {
 		this.anneeAchat = anneeAchat;
 	}
 

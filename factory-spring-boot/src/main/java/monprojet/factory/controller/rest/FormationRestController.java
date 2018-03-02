@@ -75,8 +75,8 @@ public class FormationRestController {
 		return new ResponseEntity<Formation>(formationFind, HttpStatus.BAD_REQUEST);
 	}
 	
-	@ExceptionHandler({ Exception.class })
-	public ResponseEntity<Object> errors() {
-		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
-	}
+//	@ExceptionHandler({ Exception.class })
+//	public ResponseEntity<Object> errors() {
+//		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+//	}
 }

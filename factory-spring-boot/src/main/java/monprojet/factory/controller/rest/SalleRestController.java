@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,7 +43,6 @@ public class SalleRestController {
 		return new ResponseEntity<Salle>(salle, (salle != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
-	@DeleteMapping("/{id}")
 	@JsonView(View.SalleWithEveythingJSON.class)
 	public ResponseEntity<Salle> deleteSalle(@PathVariable("id") int id) {
 		Salle salle = salleDao.find(id);
@@ -76,8 +73,8 @@ public class SalleRestController {
 		return new ResponseEntity<Salle>(salleFind, HttpStatus.BAD_REQUEST);
 	}
 	
-	@ExceptionHandler({ Exception.class })
-	public ResponseEntity<Object> errors() {
-		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
-	}
+//	@ExceptionHandler({ Exception.class })
+//	public ResponseEntity<Object> errors() {
+//		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+//	}
 }

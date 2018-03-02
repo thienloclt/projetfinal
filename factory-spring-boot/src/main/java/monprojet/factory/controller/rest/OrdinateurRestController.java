@@ -76,8 +76,8 @@ public class OrdinateurRestController {
 		return new ResponseEntity<Ordinateur>(ordinateurFind, HttpStatus.BAD_REQUEST);
 	}
 	
-	@ExceptionHandler({ Exception.class })
-	public ResponseEntity<Object> errors() {
-		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
-	}
+//	@ExceptionHandler({ Exception.class })
+//	public ResponseEntity<Object> errors() {
+//		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+//	}
 }

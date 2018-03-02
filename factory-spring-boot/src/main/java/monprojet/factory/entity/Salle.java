@@ -21,7 +21,7 @@ public class Salle extends Materiel{
 	@NotNull
 	@Column
 	@JsonView(View.Common.class)
-	private int capacite;
+	private Integer capacite;
 /*-----------------------------------------------------------------*/
 	@OneToMany(mappedBy = "salle", fetch = FetchType.EAGER)
 	@JsonView(View.FormationJSON.class)
@@ -36,11 +36,11 @@ public class Salle extends Materiel{
 		this.capacite = capacite;
 	}
 
-	public int getCapacite() {
+	public Integer getCapacite() {
 		return capacite;
 	}
 
-	public void setCapacite(int capacite) {
+	public void setCapacite(Integer capacite) {
 		this.capacite = capacite;
 	}
 

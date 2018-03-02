@@ -48,7 +48,7 @@ public class Matiere {
 	@Column
 	@NotNull
 	@JsonView(View.Common.class)
-	private int duree; //jour
+	private Integer duree; //jour
 	
 	@Column
 	@Size(min = 3)
@@ -80,7 +80,7 @@ public class Matiere {
 		super();
 	}
 
-	public Matiere(@Size(min = 2) @NotNull String nom, @NotNull Couleur couleur, @NotNull int duree,
+	public Matiere(@Size(min = 2) @NotNull String nom, @NotNull Couleur couleur, @NotNull Integer duree,
 			@Size(min = 3) @NotNull String objectif, @Size(min = 3) @NotNull String prerequis,
 			@Size(min = 3) @NotNull String contenu) {
 		super();
@@ -124,11 +124,11 @@ public class Matiere {
 		this.couleur = couleur;
 	}
 
-	public int getDuree() {
+	public Integer getDuree() {
 		return duree;
 	}
 
-	public void setDuree(int duree) {
+	public void setDuree(Integer duree) {
 		this.duree = duree;
 	}
 

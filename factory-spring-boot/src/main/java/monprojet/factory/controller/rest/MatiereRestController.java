@@ -75,8 +75,8 @@ public class MatiereRestController {
 		return new ResponseEntity<Matiere>(matiereFind, HttpStatus.BAD_REQUEST);
 	}
 	
-	@ExceptionHandler({ Exception.class })
-	public ResponseEntity<Object> errors() {
-		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
-	}
+//	@ExceptionHandler({ Exception.class })
+//	public ResponseEntity<Object> errors() {
+//		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+//	}
 }

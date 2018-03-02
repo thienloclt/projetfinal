@@ -30,7 +30,7 @@ public class Programme {
 	@Column
 	@NotNull
 	@JsonView(View.Common.class)
-	private int ordre;
+	private Integer ordre;
 /*-----------------------------------------------------------------*/
 	@ManyToOne
 	@JoinColumn(name = "formation_id")
@@ -54,7 +54,7 @@ public class Programme {
 		super();
 	}
 
-	public Programme(@NotNull int ordre) {
+	public Programme(@NotNull Integer ordre) {
 		super();
 		this.ordre = ordre;
 	}
@@ -75,11 +75,11 @@ public class Programme {
 		this.version = version;
 	}
 
-	public int getOrdre() {
+	public Integer getOrdre() {
 		return ordre;
 	}
 
-	public void setOrdre(int ordre) {
+	public void setOrdre(Integer ordre) {
 		this.ordre = ordre;
 	}
 
