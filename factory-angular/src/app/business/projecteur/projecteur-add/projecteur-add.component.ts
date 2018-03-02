@@ -27,7 +27,9 @@ export class ProjecteurAddComponent implements OnInit {
 
     this.myForm = this.fb.group({
       'id': [''],
-      'nom': ['', Validators.compose([Validators.required, Validators.minLength(3)])]
+      'code': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'nom': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'coutJournalier': ['']
     });
   }
 
@@ -47,17 +49,6 @@ export class ProjecteurAddComponent implements OnInit {
       obj = this.myForm.value;
 
 
-      /*      let centreEquestres: CentreEquestre[];
-        centreEquestres = this.myForm.controls['centreEquestre'].value;
-        for (let i = 0; i < centreEquestres.length; i++) {
-        }*/
-
-
-      //     let centreEquestres: CentreEquestre[];
-      //     centreEquestres = this.centreequestres.filter(value => value.id === parseInt(this.myForm.controls['centreEquestre'].value));
-      //     cheval.centreEquestre = centreEquestres[0];
-
-      //incident.centreEquestre = this.myForm.controls['centreEquestre'].value;
 
       if (this.id) {
       } else {

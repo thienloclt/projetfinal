@@ -22,11 +22,17 @@ export class OrdinateurListComponent implements OnInit {
     this.getList();
     this.cols = [
       { field: 'id', header: '#' },
+      { field: 'code', header: 'code' },
       { field: 'nom', header: 'nom' },
-      { field: 'dateDebut', header: 'dateDebut' },
-      { field: 'dateFin', header: 'dateFin' }
+      { field: 'coutJournalier', header: 'coutJournalier' },
+      { field: 'processeur', header: 'processeur' },
+      { field: 'ram', header: 'ram' },
+      { field: 'disqueDur', header: 'disqueDur' },
+      { field: 'anneeAchat', header: 'anneeAchat' }
     ];
   }
+
+
 
   getList() {
     this.objService.list().subscribe(objsFromREST => {
