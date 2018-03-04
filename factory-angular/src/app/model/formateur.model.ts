@@ -1,5 +1,5 @@
 import {Programme} from './programme.model';
-import {Enseignement} from './enseignement';
+import {Enseignement} from './enseignement.model';
 
 export class Formateur {
 
@@ -11,8 +11,8 @@ export class Formateur {
   public numTel:string;
   public email:string;
   public competence: string;
-  public enseignements:Set<Enseignement>;
-  public programmes:Set<Programme>;
+  public enseignements: Array<Enseignement> = [];
+  public programmes: Array<Programme> = [];
 
   constructor() { }
 }

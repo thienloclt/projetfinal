@@ -10,7 +10,7 @@ export class Ordinateur {
   public ram: string;
   public disqueDur: string;
   public anneeAchat: number;
-  public formations: Set<Formation>;
+  public formations: Array<Formation> = [];
 
 
   constructor() { }

@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Globals} from '../../../framework/globals';
 import {TechnicienService} from '../../../service/technicien.service';
-import {Technicien} from '../../../model/technicien';
+import {Technicien} from '../../../model/technicien.model';
 
 @Component({
   selector: 'app-technicien-add',

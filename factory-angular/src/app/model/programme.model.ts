@@ -5,7 +5,7 @@ export class Programme {
   public id: number;
   public version: number;
   public titre: string;
-  public matieres:Set<Matiere>;
+  public matieres: Array<Matiere> = [];
 
   constructor() { }
 }

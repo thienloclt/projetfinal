@@ -4,7 +4,7 @@ import {Globals} from '../../../framework/globals';
 import {ActivatedRoute, Router} from '@angular/router';
 
 import {ConfirmationService} from 'primeng/api';
-import {Gestionnaire} from '../../../model/gestionnaire';
+import {Gestionnaire} from '../../../model/gestionnaire.model';
 import {GestionnaireService} from '../../../service/gestionnaire.service';
 
 @Component({

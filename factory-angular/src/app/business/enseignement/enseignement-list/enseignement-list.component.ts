@@ -3,7 +3,7 @@ import {ConfirmationService, SortEvent} from 'primeng/api';
 
 import {Router} from '@angular/router';
 import {DatePipe} from '@angular/common';
-import {Enseignement} from '../../../model/enseignement';
+import {Enseignement} from '../../../model/enseignement.model';
 import {EnseignementService} from '../../../service/enseignement.service';
 
 @Component({

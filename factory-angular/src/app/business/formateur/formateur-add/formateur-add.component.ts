@@ -4,8 +4,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Globals} from '../../../framework/globals';
 
 import {FormateurService} from '../../../service/formateur.service';
-import {Formateur} from '../../../model/formateur';
-import {Enseignement} from '../../../model/enseignement';
+import {Formateur} from '../../../model/formateur.model';
+import {Enseignement} from '../../../model/enseignement.model';
 
 
 @Component({

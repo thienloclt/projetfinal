@@ -1,4 +1,4 @@
-import {Enseignement} from './enseignement';
+import {Enseignement} from './enseignement.model';
 import {Programme} from './programme.model';
 
 export class Matiere {
@@ -6,8 +6,8 @@ export class Matiere {
   public id: number;
   public nom: string;
   public couleur: Couleur;
-  public programmes: Set<Programme>;
-  public enseignements: Set<Enseignement>;
+  public programmes: Array<Programme> = [];
+  public enseignements: Array<Enseignement> = [];
 
   constructor() {
   }

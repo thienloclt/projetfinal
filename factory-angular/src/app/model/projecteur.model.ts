@@ -6,7 +6,7 @@ export class Projecteur {
   public code: number;
   public nom: string;
   public coutJournalier: number;
-  public formations:Set<Formation>;
+  public formations: Array<Formation> = [];
 
 
   constructor() { }

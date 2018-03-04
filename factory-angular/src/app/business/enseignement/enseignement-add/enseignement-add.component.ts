@@ -3,7 +3,7 @@ import {Globals} from '../../../framework/globals';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EnseignementService} from '../../../service/enseignement.service';
-import {Enseignement} from '../../../model/enseignement';
+import {Enseignement} from '../../../model/enseignement.model';
 
 
 

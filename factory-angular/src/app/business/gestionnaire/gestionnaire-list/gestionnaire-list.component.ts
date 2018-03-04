@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ConfirmationService, SortEvent} from 'primeng/api';
 
-import {Gestionnaire} from '../../../model/gestionnaire';
+import {Gestionnaire} from '../../../model/gestionnaire.model';
 import {GestionnaireService} from '../../../service/gestionnaire.service';
 
 import {Router} from '@angular/router';

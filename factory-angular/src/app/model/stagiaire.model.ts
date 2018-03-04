@@ -9,7 +9,7 @@ export class Stagiaire {
   public adresse:string;
   public numTel:string;
   public email:string;
-  public allocations:Set<Allocation>;
+  public allocations: Array<Allocation> = [];
 
 
   constructor() { }

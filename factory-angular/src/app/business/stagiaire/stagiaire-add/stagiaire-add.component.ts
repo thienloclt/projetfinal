@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Globals} from '../../../framework/globals';
-import {OrdinateurService} from '../../../service/ordinateur.service';
-import {Ordinateur} from '../../../model/ordinateur.model';
 import {StagiaireService} from '../../../service/stagiaire.service';
-import {Stagiaire} from '../../../model/stagiaire';
-import {All} from 'tslint/lib/rules/completedDocsRule';
+import {Stagiaire} from '../../../model/stagiaire.model';
+
 import {Allocation} from '../../../model/allocation.model';
+import {AllocationService} from '../../../service/allocation.service';
 
 @Component({
   selector: 'app-stagiaire-add',
@@ -20,15 +19,20 @@ export class StagiaireAddComponent implements OnInit {
   myForm: FormGroup;
   formsubmitted: boolean = false;
 
+  allocations: Array<Allocation> = [];
+  selectedAllocation = Allocation;
 
   constructor(public globals: Globals, private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
-              private objService: StagiaireService) {
+              private objService: StagiaireService, private allocationService: AllocationService) {
 
 
     this.route.params.subscribe(param => {
       this.id = param['id'];
     });
 
+    this.allocationService.list().subscribe(objsFromREST => {
+      this.id = objsFromREST;
+    });
 
     this.myForm = this.fb.group({
       'id': [''],
@@ -37,8 +41,8 @@ export class StagiaireAddComponent implements OnInit {
       'dateNaissance': [''],
       'adresse': [''],
       'email': ['', Validators.compose([Validators.email])],
-      'numTel': ['']
-      // 'allocations': ['']
+      'numTel': [''],
+      'allocation': [null]
     });
   }
 
@@ -59,6 +63,7 @@ export class StagiaireAddComponent implements OnInit {
       let obj: Stagiaire;
       obj = this.myForm.value;
 
+      console.log(obj);
       if (this.id) {
       } else {
         this.objService.add(obj).subscribe(val => {

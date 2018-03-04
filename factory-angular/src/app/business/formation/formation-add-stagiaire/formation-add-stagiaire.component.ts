@@ -6,7 +6,7 @@ import {FormationService} from '../../../service/formation.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Salle} from '../../../model/salle.model';
 import {SalleService} from '../../../service/salle.service';
-import {Stagiaire} from '../../../model/stagiaire';
+import {Stagiaire} from '../../../model/stagiaire.model';
 import {StagiaireService} from '../../../service/stagiaire.service';
 
 @Component({

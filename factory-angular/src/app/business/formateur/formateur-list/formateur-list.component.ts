@@ -5,7 +5,7 @@ import {DatePipe} from '@angular/common';
 
 
 import {Router} from '@angular/router';
-import {Formateur} from '../../../model/formateur';
+import {Formateur} from '../../../model/formateur.model';
 import {FormateurService} from '../../../service/formateur.service';
 
 @Component({

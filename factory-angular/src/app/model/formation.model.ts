@@ -1,6 +1,6 @@
 import {Salle} from './salle.model';
 import {Projecteur} from './projecteur.model';
-import {Gestionnaire} from './gestionnaire';
+import {Gestionnaire} from './gestionnaire.model';
 import {Programme} from './programme.model';
 import {Allocation} from './allocation.model';
 

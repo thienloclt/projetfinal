@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Gestionnaire} from '../model/gestionnaire';
+import {Gestionnaire} from '../model/gestionnaire.model';
 
 @Injectable()
 export class GestionnaireService {

@@ -5,7 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FormationService} from '../../../service/formation.service';
 import {Formation} from '../../../model/formation.model';
 import {GestionnaireService} from '../../../service/gestionnaire.service';
-import {Gestionnaire} from '../../../model/gestionnaire';
+import {Gestionnaire} from '../../../model/gestionnaire.model';
 
 @Component({
   selector: 'app-formation-add',

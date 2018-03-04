@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ConfirmationService, SortEvent} from 'primeng/api';
 import {DatePipe} from '@angular/common';
-import {Stagiaire} from '../../../model/stagiaire';
+import {Stagiaire} from '../../../model/stagiaire.model';
 import {StagiaireService} from '../../../service/stagiaire.service';
 import {Router} from '@angular/router';
 

@@ -1,4 +1,4 @@
-import {Formateur} from './formateur';
+import {Formateur} from './formateur.model';
 import {Matiere} from './matiere.model';
 
 export class Enseignement {

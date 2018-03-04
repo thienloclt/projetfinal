@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Globals} from '../../../framework/globals';
 import {GestionnaireService} from '../../../service/gestionnaire.service';
-import {Gestionnaire} from '../../../model/gestionnaire';
+import {Gestionnaire} from '../../../model/gestionnaire.model';
 
 
 @Component({
