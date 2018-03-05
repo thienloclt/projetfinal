@@ -1,8 +1,5 @@
 <button pButton type="button" (click)="showDialog()" label="Stagiaire" icon="fa-child" class="btn btn-{{globals.theme}} float-right"></button>
 <p-dialog header="Formation-Stagiaire" [(visible)]="display" [width]="800" modal="modal" [closeOnEscape]="false" [closable]="false">
-  <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
-    <input formControlName="id" type="hidden" class="form-control"/>
-
 <!--    <p-orderList [value]="cars">
       <ng-template let-car pTemplate="item">
         <div class="ui-helper-clearfix">
@@ -22,8 +19,7 @@
     </p-pickList>
 
     <p-footer>
-      <button type="button" pButton icon="fa-check" (click)="OKDialog()" label="Yes"></button>
-      <button type="button" pButton icon="fa-close" (click)="CancelDialog()" label="No"></button>
+      <button type="button" pButton icon="fa-check" (click)="onSubmit()" label="Yes"></button>
+      <button type="button" pButton icon="fa-close" (click)="onCancel()" label="No"></button>
     </p-footer>
-  </form>
 </p-dialog>

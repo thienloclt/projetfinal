@@ -69,6 +69,28 @@ public class FormationController {
 		model.addAttribute("formationObj", new Formation());
 		return "business/formation/formationadd";
 	}
+	
+	@RequestMapping("/test")
+	public String testFormation(Model model) {
+		
+		Formation formation = new Formation();
+		formation.setTitre("vv1");
+		formationDao.create(formation);
+		Formation find = formationDao.find(formation.getId());
+		find.setTitre("vv2");
+		find = formationDao.update(find);
+		find = formationDao.find(find.getId());
+		find.setTitre("vv3");
+		find = formationDao.update(find);
+		find = formationDao.find(find.getId());
+		find.setTitre("vv4");
+		find = formationDao.update(find);
+		find = formationDao.find(find.getId());
+		find.setTitre("vv5");
+		find = formationDao.update(find);
+		find = formationDao.find(find.getId());
+		return listFormation(model);
+	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String submitFormation(@Valid @ModelAttribute("formationObj") Formation formation, BindingResult bindingResult, Model model) {

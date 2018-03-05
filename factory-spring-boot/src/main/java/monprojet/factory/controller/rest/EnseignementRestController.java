@@ -70,6 +70,7 @@ public class EnseignementRestController {
 	public ResponseEntity<Enseignement> updateEnseignement(@RequestBody Enseignement enseignement) {
 		Enseignement enseignementFind = enseignementDao.find(enseignement.getId());
 		if (enseignementFind != null) {
+			enseignement.setVersion(enseignementFind.getVersion());
 			enseignementDao.update(enseignement);
 			return new ResponseEntity<Enseignement>(enseignementFind, HttpStatus.OK);
 		}

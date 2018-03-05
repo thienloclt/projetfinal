@@ -70,6 +70,7 @@ public class ProjecteurRestController {
 	public ResponseEntity<Projecteur> updateProjecteur(@RequestBody Projecteur projecteur) {
 		Projecteur projecteurFind = projecteurDao.find(projecteur.getId());
 		if (projecteurFind != null) {
+			projecteur.setVersion(projecteurFind.getVersion());
 			projecteurDao.update(projecteur);
 			return new ResponseEntity<Projecteur>(projecteurFind, HttpStatus.OK);
 		}

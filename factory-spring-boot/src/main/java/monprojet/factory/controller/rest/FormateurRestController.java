@@ -70,6 +70,7 @@ public class FormateurRestController {
 	public ResponseEntity<Formateur> updateFormateur(@RequestBody Formateur formateur) {
 		Formateur formateurFind = formateurDao.find(formateur.getId());
 		if (formateurFind != null) {
+			formateur.setVersion(formateurFind.getVersion());
 			formateurDao.update(formateur);
 			return new ResponseEntity<Formateur>(formateurFind, HttpStatus.OK);
 		}

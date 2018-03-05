@@ -43,6 +43,7 @@ public class Matiere {
 	@Column
 	@NotNull
 	@Enumerated(EnumType.STRING)
+	@JsonView(View.Common.class)
 	private Couleur couleur;
 	
 	@Column

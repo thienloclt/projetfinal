@@ -1,13 +1,13 @@
 
 <button pButton type="button" (click)="showDialog()" label="Materiel" icon="fa-camera-retro" class="btn btn-{{globals.theme}} float-right"></button>
-<p-dialog header="Formation-Materiel" [(visible)]="display" [width]="600" modal="modal" [closeOnEscape]="false" [closable]="false">
-  <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
-    <input formControlName="version" type="hidden" class="form-control"/>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate style="display:inline!important;"> <p-dialog header="Formation-Materiel" [(visible)]="display" [width]="600" modal="modal" [closeOnEscape]="false" [closable]="false">
+
+
 
     <div *ngIf="salles?.length > 0; else nothing;">
       <div class="form-group">
         <label>Salle:</label>
-        <select formControlName="salle" [(ngModel)]="selectedSalle" class="form-control">
+        <select formControlName="salle" [compareWith]="equalsSalle" [(ngModel)]="selectedSalle" class="form-control">
           <option *ngFor="let salle of salles" [ngValue]="salle">{{salle.nom}}</option>
         </select>
       </div>
@@ -17,7 +17,7 @@
     <div *ngIf="projecteurs?.length > 0; else nothing;">
       <div class="form-group">
         <label>Projecteur:</label>
-        <select formControlName="projecteur" [(ngModel)]="selectedProjecteur" class="form-control">
+        <select formControlName="projecteur" [compareWith]="equalsProjecteur" [(ngModel)]="selectedProjecteur" class="form-control">
           <option *ngFor="let projecteur of projecteurs" [ngValue]="projecteur">{{projecteur.nom}}</option>
         </select>
       </div>
@@ -26,7 +26,9 @@
 
   <p-footer>
     <button type="submit" pButton icon="fa-check" label="Yes"></button>
-    <button type="button" pButton icon="fa-close" (click)="CancelDialog()" label="No"></button>
+    <button type="button" pButton icon="fa-close" (click)="onCancel()" label="No"></button>
   </p-footer>
-  </form>
+
+
 </p-dialog>
+</form>

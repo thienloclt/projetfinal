@@ -3,10 +3,14 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Globals} from '../../../framework/globals';
 import {StagiaireService} from '../../../service/stagiaire.service';
+<<<<<<< HEAD
 import {Stagiaire} from '../../../model/stagiaire.model';
 
 import {Allocation} from '../../../model/allocation.model';
 import {AllocationService} from '../../../service/allocation.service';
+=======
+import {Stagiaire} from '../../../model/stagiaire';
+>>>>>>> master
 
 @Component({
   selector: 'app-stagiaire-add',

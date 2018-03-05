@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,7 +43,21 @@ public class StagiaireRestController {
 		Stagiaire stagiaire = stagiaireDao.find(id);
 		return new ResponseEntity<Stagiaire>(stagiaire, (stagiaire != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
-
+	
+	@GetMapping("/outofformation/{id}")
+	@JsonView(View.StagiaireWithEveythingJSON.class)
+	public ResponseEntity<List<Stagiaire>> findByOutOfFormation(@PathVariable("id") int id) {
+		List<Stagiaire> stagiaires = stagiaireDao.findByOutOfFormation(id);
+		return new ResponseEntity<List<Stagiaire>>(stagiaires, HttpStatus.OK);
+	}
+	
+	@GetMapping("/formation/{id}")
+	@JsonView(View.StagiaireWithEveythingJSON.class)
+	public ResponseEntity<List<Stagiaire>> findByFormation(@PathVariable("id") int id) {
+		List<Stagiaire> stagiaires = stagiaireDao.findByFormation(id);
+		return new ResponseEntity<List<Stagiaire>>(stagiaires, HttpStatus.OK);
+	}
+	
 	@DeleteMapping("/{id}")
 	@JsonView(View.StagiaireWithEveythingJSON.class)
 	public ResponseEntity<Stagiaire> deleteStagiaire(@PathVariable("id") int id) {
@@ -70,6 +83,7 @@ public class StagiaireRestController {
 	public ResponseEntity<Stagiaire> updateStagiaire(@RequestBody Stagiaire stagiaire) {
 		Stagiaire stagiaireFind = stagiaireDao.find(stagiaire.getId());
 		if (stagiaireFind != null) {
+			stagiaire.setVersion(stagiaireFind.getVersion());
 			stagiaireDao.update(stagiaire);
 			return new ResponseEntity<Stagiaire>(stagiaireFind, HttpStatus.OK);
 		}

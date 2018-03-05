@@ -8,7 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
-import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -26,15 +25,15 @@ public class Allocation {
 	@Version
 	private int version;
 /*-----------------------------------------------------------------*/
+	//@NotNull
 	@ManyToOne
 	@JoinColumn(name = "formation_id")
-	@NotNull
 	@JsonView(View.FormationJSON.class)
 	private Formation formation;
 	
+	//@NotNull
 	@ManyToOne
 	@JoinColumn(name = "stagiaire_id")
-	@NotNull
 	@JsonView(View.StagiaireJSON.class)
 	private Stagiaire stagiaire;
 	

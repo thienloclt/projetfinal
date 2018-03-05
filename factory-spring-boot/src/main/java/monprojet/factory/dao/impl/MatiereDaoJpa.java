@@ -26,6 +26,28 @@ public class MatiereDaoJpa implements MatiereDao {
 	public void create(Matiere obj) {
 		em.persist(obj);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Matiere> findByOutOfFormation(Integer formation_id) {
+		List<Matiere> list = null;
+
+		Query query = em.createQuery("SELECT m FROM Matiere m WHERE m NOT IN (SELECT p.matiere FROM Programme p, Formation f WHERE (p.formation = f) AND (f.id = :formation_id))");
+		query.setParameter("formation_id", formation_id);
+		list = query.getResultList();	
+
+		return list;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Matiere> findByFormation(Integer formation_id) {
+		List<Matiere> list = null;
+
+		Query query = em.createQuery("SELECT m FROM Matiere m, Programme p, Formation f WHERE (p.matiere = m) AND (p.formation = f) AND (f.id = :formation_id)");
+		query.setParameter("formation_id", formation_id);
+		list = query.getResultList();	
+
+		return list;
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<Matiere> findAll() {

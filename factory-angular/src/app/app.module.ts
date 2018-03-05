@@ -66,6 +66,10 @@ import { EnseignementDetailComponent } from './business/enseignement/enseignemen
 import { EnseignementAddComponent } from './business/enseignement/enseignement-add/enseignement-add.component';
 import { EnseignementListComponent } from './business/enseignement/enseignement-list/enseignement-list.component';
 import { FormationAddStagiaireComponent } from './business/formation/formation-add-stagiaire/formation-add-stagiaire.component';
+import {FormationAddMaterielComponent} from './business/formation/formation-add-materiel/formation-add-materiel.component';
+import {ProgrammeService} from './service/programme.service';
+import {AllocationService} from './service/allocation.service';
+import { FormationAddMatiereComponent } from './business/formation/formation-add-matiere/formation-add-matiere.component';
 
 
 const routes: Routes = [
@@ -130,10 +134,12 @@ const routes: Routes = [
     OrdinateurAddComponent,
     FormationListComponent,
     FormationDetailComponent,
-    FormationAddChildComponent,
+    FormationAddMaterielComponent,
     FormateurAddComponent,
     FormateurListComponent,
-    FormateurDetailComponent,
+    FormateurDetailComponent
+    FormationAddChildComponent
+    FormationAddMaterielComponent,
     GestionnaireAddComponent,
     GestionnaireListComponent,
     GestionnaireDetailComponent,
@@ -152,7 +158,8 @@ const routes: Routes = [
     EnseignementDetailComponent,
     EnseignementAddComponent,
     EnseignementListComponent,
-    FormationAddStagiaireComponent
+    FormationAddStagiaireComponent,
+    FormationAddMatiereComponent
   ],
   imports: [
     BrowserModule,

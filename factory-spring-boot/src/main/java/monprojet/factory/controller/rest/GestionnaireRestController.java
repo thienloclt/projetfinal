@@ -69,6 +69,7 @@ public class GestionnaireRestController {
 	public ResponseEntity<Gestionnaire> updateGestionnaire(@RequestBody Gestionnaire gestionnaire) {
 		Gestionnaire gestionnaireFind = gestionnaireDao.find(gestionnaire.getId());
 		if (gestionnaireFind != null) {
+			gestionnaire.setVersion(gestionnaireFind.getVersion());
 			gestionnaireDao.update(gestionnaire);
 			return new ResponseEntity<Gestionnaire>(gestionnaireFind, HttpStatus.OK);
 		}

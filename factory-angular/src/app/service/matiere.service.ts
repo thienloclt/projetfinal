@@ -17,6 +17,14 @@ export class MatiereService {
     return this.http.get(this.url + id);
   }
 
+  getByOutOfFormation(id: number): Observable<any> {
+    return this.http.get(this.url + 'outofformation/' + id);
+  }
+
+  getByFormation(id: number): Observable<any> {
+    return this.http.get(this.url + 'formation/' + id);
+  }
+
   add(obj: Matiere): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(this.url, obj,  {headers});
