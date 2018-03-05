@@ -41,11 +41,15 @@
           <label>Tel </label>
           <input formControlName="numTel"  class="form-control"/>
         </div>
-        <!--<div class="form-group">-->
-          <!--<label>Allocations </label>-->
-          <!--<input formControlName="allocations"  class="form-control"/>-->
-        <!--</div>-->
-
+        <div *ngIf="allocations?.length > 0; else nothing;">
+          <div class="form-group">
+            <label>Allocation:</label>
+            <select formControlName="allocation" [(ngModel)]="selectedAllocation" class="form-control">
+              <option *ngFor="let allocation of allocations" [ngValue]="allocation">{{allocation.ordinateur}}</option>
+            </select>
+          </div>
+        </div>
+        <ng-template #nothing>Il n'y a plus d'allocation dans la liste</ng-template>
         <!-----------End Modifier pour la forme --------------------------------------------------->
         <input type="hidden" path="id" />
       </div>

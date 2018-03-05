@@ -30,11 +30,11 @@ export class StagiaireAddComponent implements OnInit {
     });
 
     this.allocationService.list().subscribe(objsFromREST => {
-      this.id = objsFromREST;
+      this.allocations = objsFromREST;
     });
 
     this.myForm = this.fb.group({
-      'id': [''],
+      'id': [null],
       'nom': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       'prenom': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       'dateNaissance': [''],

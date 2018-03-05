@@ -57,7 +57,7 @@ export class StagiaireListComponent implements OnInit {
   }
 
   detailObj(obj: Stagiaire) {
-    this.router.navigateByUrl('/formation/' + obj.id);
+    this.router.navigateByUrl('/stagiaire/' + obj.id);
   }
 
   deleteObj(obj: Stagiaire) {
