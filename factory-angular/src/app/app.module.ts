@@ -151,7 +151,7 @@ const routes: Routes = [
     ProjecteurDetailComponent,
     StagiaireAddComponent,
     StagiaireListComponent,
-    StagiaireDetailComponent,
+    StagiaireDetailComponent,.
     TechnicienAddComponent,
     TechnicienListComponent,
     TechnicienDetailComponent,
