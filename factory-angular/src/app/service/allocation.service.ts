@@ -1,8 +1,5 @@
-<<<<<<< HEAD
+
 import { Injectable } from '@angular/core';
-=======
-import {Injectable } from '@angular/core';
->>>>>>> master
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Allocation} from '../model/allocation.model';
@@ -14,22 +11,17 @@ export class AllocationService {
   }
 
 
-<<<<<<< HEAD
+
   list(): Observable<any> {
     return this.http.get(this.url);
   }
   get(id: number): Observable<any> {
     return this.http.get(this.url + id);
   }
-=======
+
   url = 'http://localhost:8080/factory/api/allocation/';
 
-  constructor(private http: HttpClient) {
-  }
 
-  list(): Observable<any> {
-    return this.http.get(this.url);
-  }
 
   getStagiairesByFormation(id: number): Observable<any> {
     return this.http.get(this.url + 'stagiairebyformation/' + id);
@@ -43,15 +35,11 @@ export class AllocationService {
     return this.http.get(this.url + id);
   }
 
->>>>>>> master
   add(obj: Allocation): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(this.url, obj,  {headers});
   }
-<<<<<<< HEAD
-=======
 
->>>>>>> master
   update(obj: Allocation): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.put(this.url, obj,  {headers});
@@ -59,10 +47,7 @@ export class AllocationService {
   delete(id: number): Observable<any> {
     return this.http.delete(this.url + id);
   }
-<<<<<<< HEAD
-=======
 
->>>>>>> master
   private handleError(error: any) {
     let errMsg = (error.message) ? error.message : error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg);
