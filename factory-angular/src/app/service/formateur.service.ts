@@ -1,26 +1,29 @@
-import { Injectable } from '@angular/core';
+import {Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Formateur} from '../model/formateur';
 
-
 @Injectable()
 export class FormateurService {
+
   url = 'http://localhost:8080/factory/api/formateur/';
+
   constructor(private http: HttpClient) {
   }
-
 
   list(): Observable<any> {
     return this.http.get(this.url);
   }
+
   get(id: number): Observable<any> {
     return this.http.get(this.url + id);
   }
+
   add(obj: Formateur): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(this.url, obj,  {headers});
   }
+
   update(obj: Formateur): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.put(this.url, obj,  {headers});
@@ -28,6 +31,7 @@ export class FormateurService {
   delete(id: number): Observable<any> {
     return this.http.delete(this.url + id);
   }
+
   private handleError(error: any) {
     let errMsg = (error.message) ? error.message : error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg);

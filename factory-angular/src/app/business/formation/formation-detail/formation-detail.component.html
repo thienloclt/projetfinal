@@ -7,11 +7,11 @@
     <p class="card-text">gestionnaire: {{obj.gestionnaire != null ? obj.gestionnaire.nom : ''}}</p>
     <p class="card-text">projecteur: {{obj.projecteur != null ? obj.projecteur.nom : ''}}</p>
     <p class="card-text">salle: {{obj.salle != null ? obj.salle.nom : ''}}</p>
-    <p class="card-text">programmes:</p>
-      <ul *ngFor="let e of obj.programmes">
-        <!--<li>{{e.matieres.}}</li>-->
+    <p class="card-text">stagiaire: {{obj.allocations?.length}}</p>
+      <ul *ngFor="let e of obj.allocations">
+        <li>{{e.stagiaire?.nom}} {{e.stagiaire?.prenom}}</li>
       </ul>
-
+    <p class="card-text">programmes:</p>
   </div>
   <div class="card-footer clearfix">
     <a [routerLink]="['/formation-edit', obj.id]">
@@ -19,9 +19,9 @@
     </a>
     <button pButton type="button" label="Delete" (click)="deleteObj()" icon="fa-trash" class="btn btn-{{globals.theme}}"></button>
 
-    <app-formation-add-child [id]="obj.id" (eventemitter)="getFromChild($event)"></app-formation-add-child>
-    <button pButton type="button" label="Programme" icon="fa-file-text" class="btn btn-{{globals.theme}} float-right"></button>
-    <app-formation-add-stagiaire [id]="obj.id"></app-formation-add-stagiaire>
+    <app-formation-add-materiel [id]="id" (eventemitter)="getFromChild($event)"></app-formation-add-materiel>
+    <app-formation-add-matiere [id]="id" (eventemitter)="getFromChild($event)"></app-formation-add-matiere>
+    <app-formation-add-stagiaire [id]="id" (eventemitter)="getFromChild($event)"></app-formation-add-stagiaire>
   </div>
 </div>
 <p-confirmDialog></p-confirmDialog>

@@ -5,12 +5,10 @@ export class Stagiaire {
   public id: number;
   public nom: string;
   public prenom: string;
-  public dateNaissance:string;
-  public adresse:string;
-  public numTel:string;
-  public email:string;
-  public allocations:Set<Allocation>;
-
+  public dateNaissance: string;
+  public adresse: string;
+  public numTel: string;
+  public email: string;
 
   constructor() { }
 }

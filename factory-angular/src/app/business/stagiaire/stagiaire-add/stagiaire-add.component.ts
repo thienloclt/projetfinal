@@ -2,12 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Globals} from '../../../framework/globals';
-import {OrdinateurService} from '../../../service/ordinateur.service';
-import {Ordinateur} from '../../../model/ordinateur.model';
 import {StagiaireService} from '../../../service/stagiaire.service';
 import {Stagiaire} from '../../../model/stagiaire';
-import {All} from 'tslint/lib/rules/completedDocsRule';
-import {Allocation} from '../../../model/allocation.model';
 
 @Component({
   selector: 'app-stagiaire-add',

@@ -1,20 +1,19 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Globals} from '../../../framework/globals';
-import {Form, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FormationService} from '../../../service/formation.service';
 import {Projecteur} from '../../../model/projecteur.model';
 import {Salle} from '../../../model/salle.model';
 import {ProjecteurService} from '../../../service/projecteur.service';
 import {SalleService} from '../../../service/salle.service';
 import {Formation} from '../../../model/formation.model';
-import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-formation-add-child',
-  templateUrl: './formation-add-child.component.html',
-  styleUrls: ['./formation-add-child.component.css']
+  selector: 'app-formation-add-materiel',
+  templateUrl: './formation-add-materiel.component.html',
+  styleUrls: ['./formation-add-materiel.component.css']
 })
-export class FormationAddChildComponent implements OnInit {
+export class FormationAddMaterielComponent implements OnInit {
 
   @Input() id: number;
   @Output() eventemitter: EventEmitter<string> = new EventEmitter<string>();
@@ -27,21 +26,17 @@ export class FormationAddChildComponent implements OnInit {
 
   salles: Array<Salle> = [];
   projecteurs: Array<Projecteur> = [];
-  selectedSalle: Salle;
-  selectedProjecteur: Projecteur;
 
   constructor(public globals: Globals, private fb: FormBuilder, private objService: FormationService, private salleService: SalleService, private projecteurService: ProjecteurService) {
     this.myForm = this.fb.group({
-      'version': [''],
-      'salle': [''],
-      'projecteur': ['']
+      'salle': [null],
+      'projecteur': [null]
     });
   }
 
   ngOnInit() {
     this.objService.get(this.id).subscribe(objFromREST => {
       this.obj = objFromREST;
-      this.myForm.controls['version'].setValue(this.obj.version);
       this.myForm.controls['salle'].setValue(this.obj.salle);
       this.myForm.controls['projecteur'].setValue(this.obj.projecteur);
     });
@@ -49,16 +44,10 @@ export class FormationAddChildComponent implements OnInit {
     this.salleService.list().subscribe(objsFromREST => {
       this.salles = objsFromREST;
     });
+
     this.projecteurService.list().subscribe(objsFromREST => {
       this.projecteurs = objsFromREST;
     });
-/*    if (this.id) {
-      this.objService.get(this.id).subscribe(objFromREST => {
-        this.myForm.controls['id'].setValue(objFromREST.id);
-        this.myForm.controls['salle'].setValue(objFromREST.salle);
-        this.myForm.controls['projecteur'].setValue(objFromREST.projecteur);
-      });
-    }*/
   }
 
   showDialog() {
@@ -66,36 +55,29 @@ export class FormationAddChildComponent implements OnInit {
   }
 
   onSubmit() {
-    this.formsubmitted = true;
-    console.log(this.myForm.value);
-    this.objService.get(this.id).subscribe(objFromREST => {
-      this.obj = objFromREST;
-      console.log(this.obj);
-      this.obj.salle = this.myForm.controls['salle'].value;
-      this.obj.projecteur = this.myForm.controls['projecteur'].value;
-      console.log(this.obj);
-      this.objService.update(this.obj).subscribe(val => {
-        this.display = false;
-        this.eventemitter.emit('Object deleted');
-      });
+    this.obj.salle = this.myForm.controls['salle'].value;
+    this.obj.projecteur = this.myForm.controls['projecteur'].value;
 
+    this.objService.update(this.obj).subscribe(val => {
+      this.eventemitter.emit('tranfere');
+      this.display = false;
     });
-
-/*    if (this.myForm.valid) {
-      let obj: Formation;
-      obj = this.myForm.value;
-
-      console.log(obj);
-      if (this.id) {
-      } else {
-
-      }
-    }*/
-
   }
 
-  CancelDialog() {
+  onCancel() {
     console.log('cancel');
     this.display = false;
+  }
+
+  equalsSalle(o1: Salle, o2: Salle) {
+    if (o1 == null || o2 == null)
+      return false;
+    return o1.id === o2.id;
+  }
+
+  equalsProjecteur(o1: Projecteur, o2: Projecteur) {
+    if (o1 == null || o2 == null)
+      return false;
+    return o1.id === o2.id;
   }
 }
