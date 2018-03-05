@@ -61,6 +61,7 @@ public class TechnicienRestController {
 	public ResponseEntity<Technicien> updateTechnicien(@RequestBody Technicien technicien) {
 		Technicien technicienFind = technicienDao.find(technicien.getId());
 		if (technicienFind != null) {
+			technicien.setVersion(technicienFind.getVersion());
 			technicienDao.update(technicien);
 			return new ResponseEntity<Technicien>(technicienFind, HttpStatus.OK);
 		}

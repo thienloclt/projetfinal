@@ -70,6 +70,7 @@ public class ProgrammeRestController {
 	public ResponseEntity<Programme> updateProgramme(@RequestBody Programme programme) {
 		Programme programmeFind = programmeDao.find(programme.getId());
 		if (programmeFind != null) {
+			programme.setVersion(programmeFind.getVersion());
 			programmeDao.update(programme);
 			return new ResponseEntity<Programme>(programmeFind, HttpStatus.OK);
 		}

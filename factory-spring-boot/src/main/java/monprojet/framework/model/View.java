@@ -3,6 +3,10 @@ package monprojet.framework.model;
 public interface View {
 	
 	public static interface Common{}
+	public static interface Common1a extends Common{}
+	public static interface Common2a extends Common1a{}
+	public static interface Common1b extends Common{}
+	public static interface Common2b extends Common1b{}
 	
 	public static interface FormationJSON extends Common{}
 	public static interface MatiereJSON extends Common{}
@@ -26,11 +30,6 @@ public interface View {
 	public static interface ProjecteurWithEveythingJSON extends FormationJSON{}
 	public static interface OrdinateurWithEveythingJSON extends AllocationJSON{}
 	public static interface StagiaireWithEveythingJSON extends AllocationJSON{}
-	public static interface AllocationWithEveythingJSON extends FormationJSON, StagiaireJSON, OrdinateurJSON, ProjecteurJSON{}
-	public static interface FormationWithEveythingJSON extends ProgrammeJSON, AllocationJSON, SalleJSON, ProjecteurJSON, GestionnaireJSON{}
-
-	
-
-	
-	
+	public static interface AllocationWithEveythingJSON extends FormationJSON, StagiaireJSON, OrdinateurJSON{}
+	public static interface FormationWithEveythingJSON extends AllocationJSON, ProgrammeJSON, SalleJSON, ProjecteurJSON, GestionnaireJSON{}
 }

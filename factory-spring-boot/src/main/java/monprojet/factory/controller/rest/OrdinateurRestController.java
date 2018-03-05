@@ -70,6 +70,7 @@ public class OrdinateurRestController {
 	public ResponseEntity<Ordinateur> updateOrdinateur(@RequestBody Ordinateur ordinateur) {
 		Ordinateur ordinateurFind = ordinateurDao.find(ordinateur.getId());
 		if (ordinateurFind != null) {
+			ordinateur.setVersion(ordinateurFind.getVersion());
 			ordinateurDao.update(ordinateur);
 			return new ResponseEntity<Ordinateur>(ordinateurFind, HttpStatus.OK);
 		}

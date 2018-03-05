@@ -26,6 +26,28 @@ public class StagiaireDaoJpa implements StagiaireDao {
 	public void create(Stagiaire obj) {
 		em.persist(obj);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Stagiaire> findByOutOfFormation(Integer formation_id) {
+		List<Stagiaire> list = null;
+
+		Query query = em.createQuery("SELECT s FROM Stagiaire s WHERE s NOT IN(SELECT a.stagiaire FROM Allocation a, Formation f WHERE (a.formation = f) AND (f.id = :formation_id))");
+		query.setParameter("formation_id", formation_id);
+		list = query.getResultList();	
+
+		return list;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Stagiaire> findByFormation(Integer formation_id) {
+		List<Stagiaire> list = null;
+
+		Query query = em.createQuery("SELECT s FROM Stagiaire s, Allocation a, Formation f WHERE (a.stagiaire = s) AND (a.formation = f) AND (f.id = :formation_id)");
+		query.setParameter("formation_id", formation_id);
+		list = query.getResultList();	
+
+		return list;
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<Stagiaire> findAll() {

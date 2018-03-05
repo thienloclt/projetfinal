@@ -67,6 +67,7 @@ public class SalleRestController {
 	public ResponseEntity<Salle> updateSalle(@RequestBody Salle salle) {
 		Salle salleFind = salleDao.find(salle.getId());
 		if (salleFind != null) {
+			salle.setVersion(salleFind.getVersion());
 			salleDao.update(salle);
 			return new ResponseEntity<Salle>(salleFind, HttpStatus.OK);
 		}
