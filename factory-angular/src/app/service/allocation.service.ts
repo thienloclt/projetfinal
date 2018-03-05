@@ -11,16 +11,12 @@ export class AllocationService {
   }
 
 
-
   list(): Observable<any> {
     return this.http.get(this.url);
   }
   get(id: number): Observable<any> {
     return this.http.get(this.url + id);
   }
-
-  url = 'http://localhost:8080/factory/api/allocation/';
-
 
 
   getStagiairesByFormation(id: number): Observable<any> {
@@ -31,9 +27,7 @@ export class AllocationService {
     return this.http.get(this.url + 'byformation/' + id);
   }
 
-  get(id: number): Observable<any> {
-    return this.http.get(this.url + id);
-  }
+
 
   add(obj: Allocation): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });

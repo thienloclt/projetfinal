@@ -4,7 +4,7 @@ import {StagiaireService} from '../../../service/stagiaire.service';
 import {FormationService} from '../../../service/formation.service';
 import {Formation} from '../../../model/formation.model';
 import {AllocationService} from '../../../service/allocation.service';
-import {Stagiaire} from '../../../model/stagiaire';
+import {Stagiaire} from '../../../model/stagiaire.model';
 import {FormBuilder} from '@angular/forms';
 import {Globals} from '../../../framework/globals';
 import {MatiereService} from '../../../service/matiere.service';

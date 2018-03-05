@@ -1,15 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Globals} from '../../../framework/globals';
 import {FormationService} from '../../../service/formation.service';
-<<<<<<< HEAD
+
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Salle} from '../../../model/salle.model';
-import {SalleService} from '../../../service/salle.service';
+
 import {Stagiaire} from '../../../model/stagiaire.model';
-=======
-import {FormBuilder} from '@angular/forms';
-import {Stagiaire} from '../../../model/stagiaire';
->>>>>>> master
+
 import {StagiaireService} from '../../../service/stagiaire.service';
 import {Formation} from '../../../model/formation.model';
 import {Allocation} from '../../../model/allocation.model';
