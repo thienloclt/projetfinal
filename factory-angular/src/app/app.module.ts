@@ -43,7 +43,6 @@ import { FormationService} from './service/formation.service';
 import { StagiaireService} from './service/stagiaire.service';
 import { TechnicienService} from './service/technicien.service';
 import {DialogModule} from 'primeng/dialog';
-import { FormationAddChildComponent } from './business/formation/formation-add-child/formation-add-child.component';
 import {FormateurAddComponent} from './business/formateur/formateur-add/formateur-add.component';
 import {FormateurListComponent} from './business/formateur/formateur-list/formateur-list.component';
 import {FormateurDetailComponent} from './business/formateur/formateur-detail/formateur-detail.component';
@@ -69,7 +68,7 @@ import { FormationAddStagiaireComponent } from './business/formation/formation-a
 import {FormationAddMaterielComponent} from './business/formation/formation-add-materiel/formation-add-materiel.component';
 import {ProgrammeService} from './service/programme.service';
 import {AllocationService} from './service/allocation.service';
-import { FormationAddMatiereComponent } from './business/formation/formation-add-matiere/formation-add-matiere.component';
+import {FormationAddMatiereComponent} from './business/formation/formation-add-matiere/formation-add-matiere.component';
 
 
 const routes: Routes = [
@@ -137,8 +136,7 @@ const routes: Routes = [
     FormationAddMaterielComponent,
     FormateurAddComponent,
     FormateurListComponent,
-    FormateurDetailComponent
-    FormationAddChildComponent
+    FormateurDetailComponent,
     FormationAddMaterielComponent,
     GestionnaireAddComponent,
     GestionnaireListComponent,
@@ -151,7 +149,7 @@ const routes: Routes = [
     ProjecteurDetailComponent,
     StagiaireAddComponent,
     StagiaireListComponent,
-    StagiaireDetailComponent,.
+    StagiaireDetailComponent,
     TechnicienAddComponent,
     TechnicienListComponent,
     TechnicienDetailComponent,
@@ -159,7 +157,9 @@ const routes: Routes = [
     EnseignementAddComponent,
     EnseignementListComponent,
     FormationAddStagiaireComponent,
-    FormationAddMatiereComponent
+    FormationAddMatiereComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -183,7 +183,7 @@ const routes: Routes = [
 
   providers: [ConfirmationService, Globals, DatePipe, IncidentService, EnseignementService, FormateurService,
     GestionnaireService, MatiereService, OrdinateurService, ProjecteurService,
-    SalleService, StagiaireService, TechnicienService, FormationService],
+    SalleService, StagiaireService, TechnicienService, FormationService,AllocationService,ProgrammeService],
 
   bootstrap: [AppComponent]
 })
