@@ -37,6 +37,21 @@ public class OrdinateurRestController {
 		List<Ordinateur> ordinateurs = ordinateurDao.findAll();
 		return new ResponseEntity<List<Ordinateur>>(ordinateurs, HttpStatus.OK);
 	}
+	
+	@GetMapping("/test")
+	@JsonView(View.OrdinateurWithEveythingJSON.class)
+	public ResponseEntity<List<Ordinateur>> test() {
+		Ordinateur ordinateur1 = new Ordinateur("ord1", "Ordinateur1", 10);
+		Ordinateur ordinateur2 = new Ordinateur("ord2", "Ordinateur2", 20);
+		Ordinateur ordinateur3 = new Ordinateur("ord3", "Ordinateur3", 30);
+		Ordinateur ordinateur4 = new Ordinateur("ord4", "Ordinateur4", 40);
+		ordinateurDao.create(ordinateur1);
+		ordinateurDao.create(ordinateur2);
+		ordinateurDao.create(ordinateur3);
+		ordinateurDao.create(ordinateur4);
+		List<Ordinateur> projecteurs = ordinateurDao.findAll();
+		return new ResponseEntity<List<Ordinateur>>(projecteurs, HttpStatus.OK);
+	}
 
 	@GetMapping("/{id}")
 	@JsonView(View.OrdinateurWithEveythingJSON.class)

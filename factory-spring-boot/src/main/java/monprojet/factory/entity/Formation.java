@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -72,9 +74,14 @@ public class Formation {
 	@JsonView(View.ProgrammeJSON.class)
 	private Set<Programme> programmes = new HashSet<Programme>();
 	
-	@OneToMany(mappedBy = "formation", fetch = FetchType.EAGER)
-	@JsonView(View.AllocationJSON.class)
-	private Set<Allocation> allocations = new HashSet<Allocation>();
+//	@OneToMany(mappedBy = "formation", fetch = FetchType.EAGER)
+//	@JsonView(View.AllocationJSON.class)
+//	private Set<Allocation> allocations = new HashSet<Allocation>();
+	
+	@JsonView(View.OrdinateurJSON.class)
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name = "formation_ordinateur_tbl", joinColumns = @JoinColumn(name = "formation_id"), inverseJoinColumns = @JoinColumn(name = "ordinateur_id"))
+	private Set<Ordinateur> ordinateurs = new HashSet<>();
 
 	public Formation() {
 		super();
@@ -159,11 +166,11 @@ public class Formation {
 		this.programmes = programmes;
 	}
 
-	public Set<Allocation> getAllocations() {
-		return allocations;
+	public Set<Ordinateur> getOrdinateurs() {
+		return ordinateurs;
 	}
 
-	public void setAllocations(Set<Allocation> allocations) {
-		this.allocations = allocations;
+	public void setOrdinateurs(Set<Ordinateur> ordinateurs) {
+		this.ordinateurs = ordinateurs;
 	}
 }

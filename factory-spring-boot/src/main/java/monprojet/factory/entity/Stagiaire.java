@@ -16,20 +16,12 @@ import monprojet.framework.model.View;
 @DiscriminatorValue(value = "Stagiaire")
 public class Stagiaire extends Personne {
 	
-	@OneToMany(mappedBy = "stagiaire", fetch = FetchType.EAGER)
-	@JsonView(View.AllocationJSON.class)
-	private Set<Allocation> allocations = new HashSet<Allocation>();
+//	@OneToMany(mappedBy = "stagiaire", fetch = FetchType.EAGER)
+//	@JsonView(View.AllocationJSON.class)
+//	private Set<Allocation> allocations = new HashSet<Allocation>();
 
 	public Stagiaire() {
 		super();
-	}
-
-	public Set<Allocation> getAllocations() {
-		return allocations;
-	}
-
-	public void setAllocations(Set<Allocation> allocations) {
-		this.allocations = allocations;
 	}
 
 }

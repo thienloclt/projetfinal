@@ -7,7 +7,9 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -33,20 +35,21 @@ public class Ordinateur extends Materiel {
 	@JsonView(View.Common.class)
 	private Integer anneeAchat;
 /*--------------------------------------------------------------------------*/
-	@OneToMany(mappedBy = "ordinateur", fetch = FetchType.EAGER)
-	@JsonView(View.AllocationJSON.class)
-	private Set<Allocation> allocations = new HashSet<Allocation>();
+//	@OneToMany(mappedBy = "ordinateur", fetch = FetchType.EAGER)
+//	@JsonView(View.AllocationJSON.class)
+//	private Set<Allocation> allocations = new HashSet<Allocation>();
+	
+	@JsonView(View.FormationJSON.class)
+	@ManyToMany(mappedBy = "ordinateurs", fetch = FetchType.EAGER)
+	Set<Formation> formations = new HashSet<Formation>();
 	
 	public Ordinateur() {
 		super();
 	}
-
-	public Ordinateur(String processeur, String ram, String disqueDur, int anneeAchat) {
-		super();
-		this.processeur = processeur;
-		this.ram = ram;
-		this.disqueDur = disqueDur;
-		this.anneeAchat = anneeAchat;
+	
+	public Ordinateur(@Size(min = 3) @NotNull String code, @Size(min = 3) @NotNull String nom, Integer coutJournalier) {
+		super(code, nom, coutJournalier);
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getProcesseur() {
@@ -81,11 +84,12 @@ public class Ordinateur extends Materiel {
 		this.anneeAchat = anneeAchat;
 	}
 
-	public Set<Allocation> getAllocations() {
-		return allocations;
+	public Set<Formation> getFormations() {
+		return formations;
 	}
 
-	public void setAllocations(Set<Allocation> allocations) {
-		this.allocations = allocations;
+	public void setFormations(Set<Formation> formations) {
+		this.formations = formations;
 	}
+
 }

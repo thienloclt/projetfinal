@@ -70,6 +70,7 @@ import {ProgrammeService} from './service/programme.service';
 import {AllocationService} from './service/allocation.service';
 import {FormationAddMatiereComponent} from './business/formation/formation-add-matiere/formation-add-matiere.component';
 import { FormationAddProgrammeComponent } from './business/formation/formation-add-programme/formation-add-programme.component';
+import { FormationAddOrdinateurComponent } from './business/formation/formation-add-ordinateur/formation-add-ordinateur.component';
 
 
 const routes: Routes = [
@@ -160,6 +161,7 @@ const routes: Routes = [
     FormationAddStagiaireComponent,
     FormationAddMatiereComponent,
     FormationAddProgrammeComponent,
+    FormationAddOrdinateurComponent,
 
 
   ],

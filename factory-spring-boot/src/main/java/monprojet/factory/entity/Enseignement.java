@@ -33,6 +33,7 @@ public class Enseignement {
 	@Column
 	@NotNull
 	@Enumerated(EnumType.STRING)
+	@JsonView(View.Common.class)
 	private Niveau niveau;
 /*-----------------------------------------------------------------*/
 	@ManyToOne

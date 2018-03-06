@@ -43,6 +43,7 @@ export class FormationDetailComponent implements OnInit {
   }
 
   getObj() {
+    this.obj = new Formation();
     this.objService.get(this.id).subscribe(objFromREST => {
       this.obj = objFromREST;
       this.allocationService.getByFormation(this.id).subscribe(objsFromREST => {
@@ -52,7 +53,6 @@ export class FormationDetailComponent implements OnInit {
       this.programmeService.getByFormation(this.id).subscribe(objsFromREST => {
         this.obj.programmes = objsFromREST;
       });
-      console.log(this.obj);
     });
   }
 

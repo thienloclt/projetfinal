@@ -22,6 +22,17 @@ public class OrdinateurDaoJpa implements OrdinateurDao {
 	public Ordinateur find(Integer id) {
 		return em.find(Ordinateur.class, id);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Ordinateur> findByOutOfFormation(Integer formation_id) {
+		List<Ordinateur> list = null;
+
+		Query query = em.createQuery("SELECT o FROM Ordinateur o, Formation f WHERE (o.formations.formation = f) AND (f.id = :formation_id)");
+		query.setParameter("formation_id", formation_id);
+		list = query.getResultList();	
+
+		return list;
+	}
 
 	public void create(Ordinateur obj) {
 		em.persist(obj);

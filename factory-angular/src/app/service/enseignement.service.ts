@@ -15,6 +15,11 @@ export class EnseignementService {
   list(): Observable<any> {
     return this.http.get(this.url);
   }
+
+  getByMatiereAndOutOfFormation(matiere_id: number, formation_id: number): Observable<any> {
+    return this.http.get(this.url + 'ByMatiereAndOutOfFormation/' + matiere_id + '/' + formation_id);
+  }
+
   get(id: number): Observable<any> {
     return this.http.get(this.url + id);
   }

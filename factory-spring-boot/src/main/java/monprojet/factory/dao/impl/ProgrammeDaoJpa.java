@@ -31,7 +31,7 @@ public class ProgrammeDaoJpa implements ProgrammeDao {
 	public List<Programme> findByFormation(Integer formation_id) {
 		List<Programme> list = null;
 
-		Query query = em.createQuery("SELECT p FROM Programme p, Formation f WHERE (p.formation = f) AND (f.id = :formation_id)");
+		Query query = em.createQuery("SELECT p FROM Programme p, Formation f WHERE (p.formation = f) AND (f.id = :formation_id) ORDER BY p.ordre ASC");
 		query.setParameter("formation_id", formation_id);
 		list = query.getResultList();
 
@@ -47,11 +47,22 @@ public class ProgrammeDaoJpa implements ProgrammeDao {
 
 		return list;
 	}
-
+	
 	public Programme update(Programme obj) {
 		return em.merge(obj);
 	}
-
+	
+//	public void deleteByFormationAndMatiere(Integer formation_id, Integer matiere_id) {
+//		List<Programme> list = null;
+//
+//		Query query = em.createQuery("SELECT p FROM Programme p, Formation f WHERE (p.formation = f) AND (f.id = :formation_id)");
+//		query.setParameter("formation_id", formation_id);
+//		list = query.getResultList();
+//
+//		return list;
+//		em.remove(em.merge(obj));
+//	}
+	
 	public void delete(Programme obj) {
 		em.remove(em.merge(obj));
 	}

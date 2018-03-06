@@ -20,39 +20,98 @@ export class FormationAddMatiereComponent implements OnInit {
   display: boolean = false;
 
   obj: Formation;
-  sourceMatieres: Matiere[] = [];
-  targetMatieres: Matiere[] = [];
+  sourceMatieres: Matiere[];
+  targetMatieres: Matiere[];
+  savedMatieres: number[];
 
   constructor(public globals: Globals, private fb: FormBuilder, private objService: FormationService, private matiereService: MatiereService, private programmeService: ProgrammeService) {
   }
 
   ngOnInit() {
+  }
+
+  loadData() {
+    this.sourceMatieres = [];
+    this.targetMatieres = [];
+    this.savedMatieres = [];
+
     this.objService.get(this.id).subscribe(objFromREST => {
       this.obj = objFromREST;
+      this.programmeService.getByFormation(this.id).subscribe(objsFromREST => {
+        this.obj.programmes = objsFromREST;
+        for(var e of this.obj.programmes) {
+          this.targetMatieres.push(e.matiere); //sorted
+          this.savedMatieres.push(e.matiere.id);
+        }
+      });
     });
 
     this.matiereService.getByOutOfFormation(this.id).subscribe(objsFromREST => {
       this.sourceMatieres = objsFromREST;
     });
 
-    this.matiereService.getByFormation(this.id).subscribe(objsFromREST => {
+/*    this.matiereService.getByFormation(this.id).subscribe(objsFromREST => {
       this.targetMatieres = objsFromREST;
-    });
+      for(var item of this.targetMatieres)
+        this.savedMatieres.push(item.id);
+    });*/
   }
 
   showDialog() {
+    this.loadData();
     this.display = true;
   }
 
   onSubmit() {
-    let i = 1;
-    for(var item of this.targetMatieres) {
-      let programme = new Programme();
-      programme.matiere = item;
-      programme.formation = this.obj;
-      programme.ordre = i++;
-      this.programmeService.add(programme).subscribe();
+    let found: boolean = false;
+    for (var itemsaved of this.savedMatieres) {
+      for (var itemnew of this.targetMatieres) {
+        if (itemsaved === itemnew.id) {
+          found = true;
+        }
+      }
+      if (!found) {
+        for(var e of this.obj.programmes) {
+          if (e.matiere.id === itemsaved) {
+            console.log('delete: ' + e.matiere.nom + ' ' + itemsaved);
+            this.programmeService.delete(e.id).subscribe();
+          }
+        }
+      }
+      found = false;
     }
+
+    let i = 1;
+    for (var itemnew of this.targetMatieres) {
+      for (var itemsaved of this.savedMatieres) {
+        if (itemnew.id === itemsaved) {
+          found = true;
+        }
+      }
+      if(!found) {
+        let programme = new Programme();
+        programme.matiere = itemnew;
+        programme.formation = this.obj;
+        programme.ordre = i;
+        console.log('add: ' + itemnew.nom + ' ' + itemnew.id);
+        this.programmeService.add(programme).subscribe();
+      }
+      else {
+        for(var e of this.obj.programmes) {
+          if (e.matiere.id === itemnew.id) {
+            console.log('update: ' + e.matiere.nom + ' ' + itemsaved);
+            let programme = new Programme();
+            programme = e;
+            programme.ordre = i;
+            this.programmeService.update(programme).subscribe();
+          }
+        }
+      }
+
+      i++;
+      found = false;
+    }
+
     this.eventemitter.emit('tranfere');
     this.display = false;
   }

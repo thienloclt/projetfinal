@@ -30,7 +30,7 @@ public class AllocationRestController {
 	AllocationDao allocationDao;
 
 	@GetMapping("")
-	@JsonView(View.AllocationWithEveythingJSON.class)
+	//@JsonView(View.AllocationWithEveythingJSON.class)
 	public ResponseEntity<List<Allocation>> findAll() {
 		List<Allocation> allocations = allocationDao.findAll();
 		return new ResponseEntity<List<Allocation>>(allocations, HttpStatus.OK);
@@ -44,21 +44,21 @@ public class AllocationRestController {
 //	}
 	
 	@GetMapping("/byformation/{id}")
-	@JsonView(View.AllocationWithEveythingJSON.class)
+	//@JsonView(View.AllocationWithEveythingJSON.class)
 	public ResponseEntity<List<Allocation>> findByFormation(@PathVariable("id") int id) {
 		List<Allocation> allocations = allocationDao.findByFormation(id);
 		return new ResponseEntity<List<Allocation>>(allocations, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(View.AllocationWithEveythingJSON.class)
+	//@JsonView(View.AllocationWithEveythingJSON.class)
 	public ResponseEntity<Allocation> findById(@PathVariable("id") int id) {
 		Allocation allocation = allocationDao.find(id);
 		return new ResponseEntity<Allocation>(allocation, (allocation != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/{id}")
-	@JsonView(View.AllocationWithEveythingJSON.class)
+	//@JsonView(View.AllocationWithEveythingJSON.class)
 	public ResponseEntity<Allocation> deleteAllocation(@PathVariable("id") int id) {
 		Allocation allocation = allocationDao.find(id);
 		if (allocation == null)
@@ -69,7 +69,7 @@ public class AllocationRestController {
 	}
 	
 	@PostMapping("")
-	@JsonView(View.AllocationWithEveythingJSON.class)
+	//@JsonView(View.AllocationWithEveythingJSON.class)
 	public ResponseEntity<Allocation> createAllocation(@RequestBody Allocation allocation) {
 		if(allocation.getId() != null)
 			return new ResponseEntity<Allocation>(allocation, HttpStatus.BAD_REQUEST);
@@ -78,7 +78,7 @@ public class AllocationRestController {
 	}
 	
 	@PutMapping("")
-	@JsonView(View.AllocationWithEveythingJSON.class)
+	//@JsonView(View.AllocationWithEveythingJSON.class)
 	public ResponseEntity<Allocation> updateAllocation(@RequestBody Allocation allocation) {
 		Allocation allocationFind = allocationDao.find(allocation.getId());
 		if (allocationFind != null) {

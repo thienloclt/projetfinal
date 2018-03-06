@@ -1,0 +1,12 @@
+http://localhost:8080/factory/api/formateur/test
+http://localhost:8080/factory/api/gestionnaire/test
+http://localhost:8080/factory/api/stagiaire/test
+
+http://localhost:8080/factory/api/matiere/test
+
+http://localhost:8080/factory/api/projecteur/test
+http://localhost:8080/factory/api/salle/test
+http://localhost:8080/factory/api/ordinateur/test
+
+http://localhost:8080/factory/api/enseignement/test
+

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {Matiere} from '../../../model/matiere.model';
 import {FormationService} from '../../../service/formation.service';
 import {MatiereService} from '../../../service/matiere.service';
@@ -7,6 +7,12 @@ import {Globals} from '../../../framework/globals';
 import {Programme} from '../../../model/programme.model';
 import {Formation} from '../../../model/formation.model';
 import {ProgrammeService} from '../../../service/programme.service';
+import {SalleService} from '../../../service/salle.service';
+import {ProjecteurService} from '../../../service/projecteur.service';
+import {Salle} from '../../../model/salle.model';
+import {Projecteur} from '../../../model/projecteur.model';
+import {EnseignementService} from '../../../service/enseignement.service';
+import {Enseignement} from '../../../model/enseignement.model';
 
 @Component({
   selector: 'app-formation-add-programme',
@@ -14,49 +20,61 @@ import {ProgrammeService} from '../../../service/programme.service';
   styleUrls: ['./formation-add-programme.component.css']
 })
 export class FormationAddProgrammeComponent implements OnInit {
-  @Input() id: number;
+  @Input() formation_id: number;
+  @Input() programme_id: number;
+  @Input() matiere_id: number;
   @Output() eventemitter: EventEmitter<string> = new EventEmitter<string>();
+
   display: boolean = false;
 
-  obj: Formation;
-  sourceMatieres: Matiere[] = [];
-  targetMatieres: Matiere[] = [];
+  myForm: FormGroup;
+  formsubmitted: boolean = false;
+  programme: Programme;
 
-  constructor(public globals: Globals, private fb: FormBuilder, private objService: FormationService, private matiereService: MatiereService, private programmeService: ProgrammeService) {
+  enseignements: Array<Enseignement> = [];
+  selectedEnseignement: Enseignement;
+
+  constructor(public globals: Globals, private fb: FormBuilder, private objService: FormationService, private enseignementService: EnseignementService, private programmeService: ProgrammeService) {
+    this.myForm = this.fb.group({
+      'enseignement': [null],
+    });
+
   }
 
   ngOnInit() {
-    this.objService.get(this.id).subscribe(objFromREST => {
-      this.obj = objFromREST;
-    });
+  }
 
-    this.matiereService.getByOutOfFormation(this.id).subscribe(objsFromREST => {
-      this.sourceMatieres = objsFromREST;
-    });
-
-    this.matiereService.getByFormation(this.id).subscribe(objsFromREST => {
-      this.targetMatieres = objsFromREST;
+  loadData() {
+    this.programmeService.get(this.programme_id).subscribe(objFromREST => {
+      this.programme = objFromREST;
+      this.enseignementService.getByMatiereAndOutOfFormation(this.programme.matiere.id, this.programme.formation.id).subscribe(objsFromREST => {
+        this.enseignements = objsFromREST;
+      });
     });
   }
 
   showDialog() {
+    this.loadData();
     this.display = true;
   }
 
   onSubmit() {
-    let i = 1;
-    for(var item of this.targetMatieres) {
-      let programme = new Programme();
-      programme.matiere = item;
-      programme.formation = this.obj;
-      programme.ordre = i++;
-      this.programmeService.add(programme).subscribe();
-    }
-    this.eventemitter.emit('tranfere');
-    this.display = false;
+    let enseignement: Enseignement;
+    enseignement = this.myForm.controls['enseignement'].value;
+    this.programme.formateur = enseignement.formateur;
+    this.programmeService.update(this.programme).subscribe(val => {
+      this.eventemitter.emit('tranfere');
+      this.display = false;
+    });
   }
 
   onCancel() {
     this.display = false;
+  }
+
+  equalsFormateur(o1: Enseignement, o2: Enseignement) {
+    if (o1 == null || o2 == null)
+      return false;
+    return o1.formateur.id === o2.formateur.id;
   }
 }

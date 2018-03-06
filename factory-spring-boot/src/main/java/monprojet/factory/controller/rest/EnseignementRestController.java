@@ -50,16 +50,16 @@ public class EnseignementRestController {
 	@JsonView(View.EnseignementWithEveythingJSON.class)
 	public ResponseEntity<List<Enseignement>> test() {
 		Enseignement obj1 = new Enseignement(Niveau.Débutant);
-		obj1.setFormateur(formateurDao.find(5));
+		obj1.setFormateur(formateurDao.find(1));
 		obj1.setMatiere(matiereDao.find(1));
 		Enseignement obj2 = new Enseignement(Niveau.Avancé);
-		obj2.setFormateur(formateurDao.find(6));
+		obj2.setFormateur(formateurDao.find(2));
 		obj2.setMatiere(matiereDao.find(2));
 		Enseignement obj3 = new Enseignement(Niveau.Expert);
-		obj3.setFormateur(formateurDao.find(7));
+		obj3.setFormateur(formateurDao.find(3));
 		obj3.setMatiere(matiereDao.find(3));
 		Enseignement obj4 = new Enseignement(Niveau.Intermédiaire);
-		obj4.setFormateur(formateurDao.find(8));
+		obj4.setFormateur(formateurDao.find(4));
 		obj4.setMatiere(matiereDao.find(4));
 		enseignementDao.create(obj1);
 		enseignementDao.create(obj2);
@@ -67,6 +67,20 @@ public class EnseignementRestController {
 		enseignementDao.create(obj4);
 		List<Enseignement> objs = enseignementDao.findAll();
 		return new ResponseEntity<List<Enseignement>>(objs, HttpStatus.OK);
+	}
+	
+	@GetMapping("/ByMatiereAndOutOfFormation/{matiere_id}/{formation_id}")
+	@JsonView(View.EnseignementWithEveythingJSON.class)
+	public ResponseEntity<List<Enseignement>> findByMatiereAndOutOfFormation(@PathVariable("matiere_id") int matiere_id, @PathVariable("formation_id") int formation_id) {
+		try {
+			List<Enseignement> enseignements = enseignementDao.findByMatiereAndOutOfFormation(matiere_id, formation_id);
+			return new ResponseEntity<List<Enseignement>>(enseignements, HttpStatus.OK);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return new ResponseEntity<List<Enseignement>>(HttpStatus.NOT_FOUND);
+		
 	}
 
 	@GetMapping("/{id}")
