@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,6 +36,29 @@ public class GestionnaireRestController {
 		return new ResponseEntity<List<Gestionnaire>>(gestionnaires, HttpStatus.OK);
 	}
 
+	@GetMapping("/test")
+	@JsonView(View.GestionnaireWithEveythingJSON.class)
+	public ResponseEntity<List<Gestionnaire>> test() {
+		Gestionnaire gestionnaire1 = new Gestionnaire();
+		gestionnaire1.setNom("gestionnaire1");
+		gestionnaire1.setPrenom("gestionnaire1");
+		Gestionnaire gestionnaire2 = new Gestionnaire();
+		gestionnaire2.setNom("gestionnaire2");
+		gestionnaire2.setPrenom("gestionnaire2");
+		Gestionnaire gestionnaire3 = new Gestionnaire();
+		gestionnaire3.setNom("gestionnaire3");
+		gestionnaire3.setPrenom("gestionnaire3");
+		Gestionnaire gestionnaire4 = new Gestionnaire();
+		gestionnaire4.setNom("gestionnaire4");
+		gestionnaire4.setPrenom("gestionnaire4");
+		gestionnaireDao.create(gestionnaire1);
+		gestionnaireDao.create(gestionnaire2);
+		gestionnaireDao.create(gestionnaire3);
+		gestionnaireDao.create(gestionnaire4);
+		List<Gestionnaire> gestionnaires = gestionnaireDao.findAll();
+		return new ResponseEntity<List<Gestionnaire>>(gestionnaires, HttpStatus.OK);
+	}
+	
 	@GetMapping("/{id}")
 	@JsonView(View.GestionnaireWithEveythingJSON.class)
 	public ResponseEntity<Gestionnaire> findById(@PathVariable("id") int id) {

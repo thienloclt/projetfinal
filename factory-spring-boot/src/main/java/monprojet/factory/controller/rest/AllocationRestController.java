@@ -19,7 +19,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import monprojet.factory.dao.AllocationDao;
 import monprojet.factory.entity.Allocation;
-import monprojet.factory.entity.Stagiaire;
 import monprojet.framework.model.View;
 
 @CrossOrigin
@@ -37,17 +36,17 @@ public class AllocationRestController {
 		return new ResponseEntity<List<Allocation>>(allocations, HttpStatus.OK);
 	}
 	
-	@GetMapping("/stagiairebyformation/{id}")
-	@JsonView(View.AllocationWithEveythingJSON.class)
-	public ResponseEntity<List<Stagiaire>> findStagiairesByFormation(@PathVariable("id") int id) {
-		List<Stagiaire> stagiaires = allocationDao.findStagiairesByFormation(id);
-		return new ResponseEntity<List<Stagiaire>>(stagiaires, HttpStatus.OK);
-	}
+//	@GetMapping("/stagiairebyformation/{id}")
+//	@JsonView(View.AllocationWithEveythingJSON.class)
+//	public ResponseEntity<List<Stagiaire>> findStagiairesByFormation(@PathVariable("id") int id) {
+//		List<Stagiaire> stagiaires = allocationDao.findStagiairesByFormation(id);
+//		return new ResponseEntity<List<Stagiaire>>(stagiaires, HttpStatus.OK);
+//	}
 	
 	@GetMapping("/byformation/{id}")
 	@JsonView(View.AllocationWithEveythingJSON.class)
 	public ResponseEntity<List<Allocation>> findByFormation(@PathVariable("id") int id) {
-		List<Allocation> allocations = allocationDao.findAllocationsByFormation(id);
+		List<Allocation> allocations = allocationDao.findByFormation(id);
 		return new ResponseEntity<List<Allocation>>(allocations, HttpStatus.OK);
 	}
 

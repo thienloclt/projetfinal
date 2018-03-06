@@ -18,16 +18,9 @@ export class AllocationService {
     return this.http.get(this.url + id);
   }
 
-
-  getStagiairesByFormation(id: number): Observable<any> {
-    return this.http.get(this.url + 'stagiairebyformation/' + id);
-  }
-
-  getAllocationsByFormation(id: number): Observable<any> {
+  getByFormation(id: number): Observable<any> {
     return this.http.get(this.url + 'byformation/' + id);
   }
-
-
 
   add(obj: Allocation): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });

@@ -34,19 +34,19 @@ public class Programme {
 /*-----------------------------------------------------------------*/
 	@ManyToOne
 	@JoinColumn(name = "formation_id")
-	@NotNull
+	//@NotNull
 	@JsonView(View.FormationJSON.class)
 	private Formation formation;
 	
 	@ManyToOne
 	@JoinColumn(name = "formateur_id")
-	@NotNull
+	//@NotNull
 	@JsonView(View.FormateurJSON.class)
 	private Formateur formateur;
 	
 	@ManyToOne
 	@JoinColumn(name = "matiere_id")
-	@NotNull
+	//@NotNull
 	@JsonView(View.MatiereJSON.class)
 	private Matiere matiere;
 

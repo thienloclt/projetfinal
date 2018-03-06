@@ -8,7 +8,7 @@ import monprojet.framework.dao.Dao;
 
 public interface AllocationDao extends Dao<Allocation, Integer> {
 	
-	public List<Stagiaire> findStagiairesByFormation(Integer formation_id);
-	public List<Allocation> findAllocationsByFormation(Integer formation_id);
+	//public List<Stagiaire> findStagiairesByFormation(Integer formation_id);
+	public List<Allocation> findByFormation(Integer formation_id);
 
 }

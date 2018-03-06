@@ -35,6 +35,25 @@ public class SalleRestController {
 		List<Salle> salles = salleDao.findAll();
 		return new ResponseEntity<List<Salle>>(salles, HttpStatus.OK);
 	}
+	
+	@GetMapping("/test")
+	@JsonView(View.SalleWithEveythingJSON.class)
+	public ResponseEntity<List<Salle>> test() {
+		Salle salle1 = new Salle("pro1", "Projecteur1", 10);
+		salle1.setCapacite(10);
+		Salle salle2 = new Salle("pro2", "Projecteur2", 20);
+		salle2.setCapacite(20);
+		Salle salle3 = new Salle("pro3", "Projecteur3", 30);
+		salle3.setCapacite(30);
+		Salle salle4 = new Salle("pro4", "Projecteur4", 40);
+		salle4.setCapacite(40);
+		salleDao.create(salle1);
+		salleDao.create(salle2);
+		salleDao.create(salle3);
+		salleDao.create(salle4);
+		List<Salle> salles = salleDao.findAll();
+		return new ResponseEntity<List<Salle>>(salles, HttpStatus.OK);
+	}
 
 	@GetMapping("/{id}")
 	@JsonView(View.SalleWithEveythingJSON.class)
