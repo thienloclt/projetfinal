@@ -1,4 +1,5 @@
 import {Formation} from './formation.model';
+import {Allocation} from './allocation.model';
 
 export class Ordinateur {
 
@@ -10,7 +11,7 @@ export class Ordinateur {
   public ram: string;
   public disqueDur: string;
   public anneeAchat: number;
-  public formations: Array<Formation> = [];
+  public allocations: Array<Allocation> = [];
 
 
   constructor() { }

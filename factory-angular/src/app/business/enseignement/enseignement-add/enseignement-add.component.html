@@ -21,28 +21,25 @@
         <!-----------Begin Modifier pour la forme --------------------------------------------------->
         <div class="form-group">
           <label>Niveau *</label>
-          <input formControlName="nom" required class="form-control"/>
+          <select formControlName="niveau" class="form-control">
+            <option *ngFor="let key of niveaux" [ngValue]="key">{{niveau[key]}}</option>
+          </select>
         </div>
-        <div class="form-group">
-          <label>Formateur *</label>
-          <input formControlName="formateur" required class="form-control"/>
-        </div>
-        <div class="form-group">
-          <label>Matiere *</label>
-          <input formControlName="matiere" required class="form-control"/>
-        </div>
+        <ng-template #nothing>Il n'y a pas de niveau dans la liste</ng-template>
+
         <div *ngIf="formateurs?.length > 0; else nothing;">
         <div class="form-group">
-          <label>Formateur:</label>
-          <select formControlName="gestionnaire" [(ngModel)]="selectedFormateur" class="form-control">
-            <option *ngFor="let gestionnaire of formateurs" [ngValue]="formateur">{{formateur.nom}} {{formateur.prenom}</option>
+          <label>Formateur *</label>
+          <select formControlName="formateur" [(ngModel)]="selectedFormateur" class="form-control">
+            <option *ngFor="let formateur of formateurs" [ngValue]="formateur">{{formateur.nom}}</option>
           </select>
         </div>
       </div>
         <ng-template #nothing>Il n'y a pas de formateur dans la liste</ng-template>
-        <div *ngIf="formateurs?.length > 0; else nothing;">
+
+        <div *ngIf="matieres?.length > 0; else nothing;">
           <div class="form-group">
-            <label>Matiere:</label>
+            <label>Matiere *</label>
             <select formControlName="matiere" [(ngModel)]="selectedMatiere" class="form-control">
               <option *ngFor="let matiere of matieres" [ngValue]="matiere">{{matiere.nom}} </option>
             </select>
