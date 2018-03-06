@@ -1,3 +1,28 @@
-<p>
-  formateur-detail works!
-</p>
+<div class="card border-{{globals.theme}} rounded-0 mb-3" style="margin-top: 10px">
+  <div class="card-header">nom: {{obj.nom}}</div>
+  <div class="card-body text-secondary">
+    <p class="card-text">id: {{obj.id}}</p>
+    <p class="card-text">prenom: {{obj.prenom}}</p>
+    <p class="card-text">nom: {{obj.nom}}</p>
+    <p class="card-text">competence: {{obj.competence }}</p>
+    <p class="card-text">date de naissance: {{obj.dateNaissance }}</p>
+    <p class="card-text">tel: {{obj.numTel}}</p>
+    <p class="card-text">email: {{obj.email}}</p>
+    <p class="card-text">adresse: {{obj.adresse}}</p>
+    <ul *ngFor="let e of obj.enseignements">
+    <li>{{e.formateur?.enseignements}} </li>
+  </ul>
+    <ul *ngFor="let p of obj.programmes">
+      <li>{{e.formateur?.programmes}} </li>
+    </ul>
+
+  </div>
+  <div class="card-footer clearfix">
+    <a [routerLink]="['/formateur-edit', obj.id]">
+      <button pButton type="button" label="Edit" icon="fa-edit" class="btn btn-{{globals.theme}}"></button>
+    </a>
+    <button pButton type="button" label="Delete" (click)="deleteObj()" icon="fa-trash" class="btn btn-{{globals.theme}}"></button>
+
+
+  </div>
+  <p-confirmDialog></p-confirmDialog>

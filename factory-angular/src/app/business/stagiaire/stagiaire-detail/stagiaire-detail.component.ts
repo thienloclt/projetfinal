@@ -44,14 +44,14 @@ export class StagiaireDetailComponent implements OnInit {
   getObj() {
     this.objService.get(this.id).subscribe(objFromREST => {
       this.obj = objFromREST;
-      this.allocationService.getAllocationsByStagiaire(this.id).subscribe(objsFromREST => {
+      this.allocationService.getStagiairesByFormation(this.id).subscribe(objsFromREST => {
         console.log('getObj');
         this.obj.allocations = objsFromREST;
       });
     });
   }
 
-  getFromChild(event) {
+  getFromParent(event) {
     this.getObj();
   }
 }

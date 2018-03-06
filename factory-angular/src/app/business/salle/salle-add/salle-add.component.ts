@@ -55,7 +55,7 @@ export class SalleAddComponent implements OnInit {
       if (this.id) {
       } else {
         this.objService.add(obj).subscribe(val => {
-          this.router.navigateByUrl('/incident');
+          this.router.navigateByUrl('/salle');
         });
       }
     }

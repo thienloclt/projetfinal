@@ -1,3 +1,25 @@
-<p>
-  enseignement-detail works!
-</p>
+<div class="card border-{{globals.theme}} rounded-0 mb-3" style="margin-top: 10px">
+  <div class="card-header">niveau: {{obj.niveau}}</div>
+  <div class="card-body text-secondary">
+    <p class="card-text">id: {{obj.id}}</p>
+    <p class="card-text">niveau: {{obj.niveau}}</p>
+    <p class="card-text">formateur: {{obj.formateur}}</p>
+    <p class="card-text">matière: {{obj.matiere }}</p>
+
+    <ul *ngFor="let e of obj.formateur">
+      <li>{{e.formateur?.nom}} </li>
+    </ul>
+    <ul *ngFor="let p of obj.matieres">
+      <li>{{e.matiere?.nom}} </li>
+    </ul>
+
+  </div>
+  <div class="card-footer clearfix">
+    <a [routerLink]="['/enseignement-edit', obj.id]">
+      <button pButton type="button" label="Edit" icon="fa-edit" class="btn btn-{{globals.theme}}"></button>
+    </a>
+    <button pButton type="button" label="Delete" (click)="deleteObj()" icon="fa-trash" class="btn btn-{{globals.theme}}"></button>
+
+
+  </div>
+  <p-confirmDialog></p-confirmDialog>

@@ -26,7 +26,7 @@ export class FormateurAddComponent implements OnInit {
   enseignements:Array<Enseignement> = [];
   selectedEnseignement = Enseignement;
 
-  formations:Array<Programme> = [];
+  programmes:Array<Programme> = [];
   selectedProgramme = Programme;
 
   constructor(public globals: Globals, private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
@@ -42,7 +42,7 @@ export class FormateurAddComponent implements OnInit {
     });
 
     this.programmeService.list().subscribe(objsFromREST => {
-      this.formations = objsFromREST;
+      this.programmes = objsFromREST;
     });
 
     this.myForm = this.fb.group({
