@@ -11,7 +11,10 @@
       <ul *ngFor="let e of obj.allocations">
         <li>{{e.stagiaire?.nom}} {{e.stagiaire?.prenom}}</li>
       </ul>
-    <p class="card-text">programmes:</p>
+    <p class="card-text">programmes:  {{obj.programmes?.length}}</p>
+      <ul *ngFor="let e of obj.programmes">
+        <li>{{e.matiere?.nom}} {{e.matiere?.couleur}} <app-formation-add-programme [id]="id" (eventemitter)="getFromChild($event)"></app-formation-add-programme></li>
+      </ul>
   </div>
   <div class="card-footer clearfix">
     <a [routerLink]="['/formation-edit', obj.id]">

@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -30,10 +31,9 @@ public class Salle extends Materiel{
 	public Salle() {
 		super();
 	}
-
-	public Salle(@NotNull int capacite) {
-		super();
-		this.capacite = capacite;
+	
+	public Salle(@Size(min = 3) @NotNull String code, @Size(min = 3) @NotNull String nom, Integer coutJournalier) {
+		super(code, nom, coutJournalier);
 	}
 
 	public Integer getCapacite() {

@@ -1,20 +1,19 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormationService} from '../../../service/formation.service';
-import {Formation} from '../../../model/formation.model';
 import {FormBuilder} from '@angular/forms';
-import {Globals} from '../../../framework/globals';
-import {MatiereService} from '../../../service/matiere.service';
-import {ProgrammeService} from '../../../service/programme.service';
-import {Programme} from '../../../model/programme.model';
 import {Matiere} from '../../../model/matiere.model';
+import {FormationService} from '../../../service/formation.service';
+import {MatiereService} from '../../../service/matiere.service';
+import {Globals} from '../../../framework/globals';
+import {Programme} from '../../../model/programme.model';
+import {Formation} from '../../../model/formation.model';
+import {ProgrammeService} from '../../../service/programme.service';
 
 @Component({
-  selector: 'app-formation-add-matiere',
-  templateUrl: './formation-add-matiere.component.html',
-  styleUrls: ['./formation-add-matiere.component.css']
+  selector: 'app-formation-add-programme',
+  templateUrl: './formation-add-programme.component.html',
+  styleUrls: ['./formation-add-programme.component.css']
 })
-
-export class FormationAddMatiereComponent implements OnInit {
+export class FormationAddProgrammeComponent implements OnInit {
   @Input() id: number;
   @Output() eventemitter: EventEmitter<string> = new EventEmitter<string>();
   display: boolean = false;

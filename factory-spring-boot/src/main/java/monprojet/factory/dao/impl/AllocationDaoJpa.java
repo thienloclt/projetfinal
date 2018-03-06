@@ -24,23 +24,23 @@ public class AllocationDaoJpa implements AllocationDao {
 		return em.find(Allocation.class, id);
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Stagiaire> findStagiairesByFormation(Integer formation_id) {
-		List<Stagiaire> list = null;
-
-		Query query = em.createQuery("SELECT a.stagiaire FROM Allocation a, Formation f WHERE (a.formation = f) AND (f.id = :formation_id)");
-		query.setParameter("formation_id", formation_id);
-		list = query.getResultList();	
-
-		return list;
-	}
+//	@SuppressWarnings("unchecked")
+//	public List<Stagiaire> findStagiairesByFormation(Integer formation_id) {
+//		List<Stagiaire> list = null;
+//
+//		Query query = em.createQuery("SELECT a.stagiaire FROM Allocation a, Formation f WHERE (a.formation = f) AND (f.id = :formation_id)");
+//		query.setParameter("formation_id", formation_id);
+//		list = query.getResultList();	
+//
+//		return list;
+//	}
 	
 	public void create(Allocation obj) {
 		em.persist(obj);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Allocation> findAllocationsByFormation(Integer formation_id) {
+	public List<Allocation> findByFormation(Integer formation_id) {
 		List<Allocation> list = null;
 
 		Query query = em.createQuery("SELECT a FROM Allocation a, Formation f WHERE (a.formation = f) AND (f.id = :formation_id)");

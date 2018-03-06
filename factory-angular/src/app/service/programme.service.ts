@@ -19,6 +19,10 @@ export class ProgrammeService {
     return this.http.get(this.url + id);
   }
 
+  getByFormation(id: number): Observable<any> {
+    return this.http.get(this.url + 'byformation/' + id);
+  }
+
   add(obj: Programme): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(this.url, obj,  {headers});

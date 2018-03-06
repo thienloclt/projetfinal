@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,6 +33,21 @@ public class ProjecteurRestController {
 	@GetMapping("")
 	@JsonView(View.ProjecteurWithEveythingJSON.class)
 	public ResponseEntity<List<Projecteur>> findAll() {
+		List<Projecteur> projecteurs = projecteurDao.findAll();
+		return new ResponseEntity<List<Projecteur>>(projecteurs, HttpStatus.OK);
+	}
+	
+	@GetMapping("/test")
+	@JsonView(View.ProjecteurWithEveythingJSON.class)
+	public ResponseEntity<List<Projecteur>> test() {
+		Projecteur projecteur1 = new Projecteur("pro1", "Projecteur1", 10);
+		Projecteur projecteur2 = new Projecteur("pro2", "Projecteur2", 20);
+		Projecteur projecteur3 = new Projecteur("pro3", "Projecteur3", 30);
+		Projecteur projecteur4 = new Projecteur("pro4", "Projecteur4", 40);
+		projecteurDao.create(projecteur1);
+		projecteurDao.create(projecteur2);
+		projecteurDao.create(projecteur3);
+		projecteurDao.create(projecteur4);
 		List<Projecteur> projecteurs = projecteurDao.findAll();
 		return new ResponseEntity<List<Projecteur>>(projecteurs, HttpStatus.OK);
 	}

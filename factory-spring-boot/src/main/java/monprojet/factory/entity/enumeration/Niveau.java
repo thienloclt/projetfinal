@@ -1,5 +1,5 @@
 package monprojet.factory.entity.enumeration;
 
 public enum Niveau {
-	Debutant, Avence, Expert
+	Débutant, Intermédiaire, Avancé, Expert
 }

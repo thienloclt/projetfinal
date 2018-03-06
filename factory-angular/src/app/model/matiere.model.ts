@@ -12,6 +12,7 @@ export class Matiere {
   constructor() {
   }
 }
+
 export enum Couleur {
   ROUGE, NOIR, BLANC, BLEU,
 }

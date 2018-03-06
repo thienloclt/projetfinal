@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +35,47 @@ public class FormateurRestController {
 	public ResponseEntity<List<Formateur>> findAll() {
 		List<Formateur> formateurs = formateurDao.findAll();
 		return new ResponseEntity<List<Formateur>>(formateurs, HttpStatus.OK);
+	}
+	
+	@GetMapping("/test")
+	@JsonView(View.FormateurWithEveythingJSON.class)
+	public ResponseEntity<List<Formateur>> test() {
+		Formateur formateur1 = new Formateur();
+		formateur1.setNom("formateur1");
+		formateur1.setPrenom("formateur1");
+		formateur1.setCompetence("competence1");
+		Formateur formateur2 = new Formateur();
+		formateur2.setNom("formateur2");
+		formateur2.setPrenom("formateur2");
+		formateur2.setCompetence("competence2");
+		Formateur formateur3 = new Formateur();
+		formateur3.setNom("formateur3");
+		formateur3.setPrenom("formateur3");
+		formateur3.setCompetence("competence3");
+		Formateur formateur4 = new Formateur();
+		formateur4.setNom("formateur4");
+		formateur4.setPrenom("formateur4");
+		formateur4.setCompetence("competence4");
+		formateurDao.create(formateur1);
+		formateurDao.create(formateur2);
+		formateurDao.create(formateur3);
+		formateurDao.create(formateur4);
+		List<Formateur> formateurs = formateurDao.findAll();
+		return new ResponseEntity<List<Formateur>>(formateurs, HttpStatus.OK);
+	}
+	
+	@GetMapping("/ByMatiereAndOutOfFormation/{matiere_id}/{formation_id}")
+	@JsonView(View.FormateurWithEveythingJSON.class)
+	public ResponseEntity<List<Formateur>> findByMatiereAndOutOfFormation(@PathVariable("matiere_id") int matiere_id, @PathVariable("formation_id") int formation_id) {
+		try {
+			List<Formateur> formateurs = formateurDao.findByMatiereAndOutOfFormation(matiere_id, formation_id);
+			return new ResponseEntity<List<Formateur>>(formateurs, HttpStatus.OK);
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return new ResponseEntity<List<Formateur>>(HttpStatus.NOT_FOUND);
+		
 	}
 
 	@GetMapping("/{id}")

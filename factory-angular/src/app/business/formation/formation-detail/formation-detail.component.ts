@@ -5,6 +5,7 @@ import {FormationService} from '../../../service/formation.service';
 import {Formation} from '../../../model/formation.model';
 import {ConfirmationService} from 'primeng/api';
 import {AllocationService} from '../../../service/allocation.service';
+import {ProgrammeService} from '../../../service/programme.service';
 
 @Component({
   selector: 'app-formation-detail',
@@ -16,7 +17,7 @@ export class FormationDetailComponent implements OnInit {
   id: number;
   obj = new Formation();
 
-  constructor(public globals: Globals, private route: ActivatedRoute, private router: Router, private objService: FormationService, private allocationService: AllocationService, private confirmationService: ConfirmationService) {
+  constructor(public globals: Globals, private route: ActivatedRoute, private router: Router, private objService: FormationService, private allocationService: AllocationService, private programmeService: ProgrammeService, private confirmationService: ConfirmationService) {
   }
 
   ngOnInit() {
@@ -44,10 +45,14 @@ export class FormationDetailComponent implements OnInit {
   getObj() {
     this.objService.get(this.id).subscribe(objFromREST => {
       this.obj = objFromREST;
-      this.allocationService.getAllocationsByFormation(this.id).subscribe(objsFromREST => {
-        console.log('getObj');
+      this.allocationService.getByFormation(this.id).subscribe(objsFromREST => {
         this.obj.allocations = objsFromREST;
       });
+
+      this.programmeService.getByFormation(this.id).subscribe(objsFromREST => {
+        this.obj.programmes = objsFromREST;
+      });
+      console.log(this.obj);
     });
   }
 
