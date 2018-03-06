@@ -2,8 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {Globals} from '../../../framework/globals';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Formateur} from '../../../model/formateur.model';
+import {Enseignement, Niveau} from '../../../model/enseignement.model';
+import {FormateurService} from '../../../service/formateur.service';
+import {MatiereService} from '../../../service/matiere.service';
+import {Matiere} from '../../../model/matiere.model';
 import {EnseignementService} from '../../../service/enseignement.service';
-import {Enseignement} from '../../../model/enseignement.model';
+
 
 
 
@@ -18,27 +23,39 @@ export class EnseignementAddComponent implements OnInit {
   myForm: FormGroup;
   formsubmitted: boolean = false;
 
-  cars: ['aaaaa', 'bbbb', 'ccccc'];
+  formateurs: Array<Formateur> = [];
+  selectedFormateur = Formateur;
+
+  matieres: Array<Matiere> = [];
+  selectedMatiere = Matiere;
+
+  niveau = Niveau;
+  niveaux: any[];
+
 
   constructor(public globals: Globals, private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
-              private objService: EnseignementService) {
+              private objService: EnseignementService, private matiereService: MatiereService, private formateurService: FormateurService) {
 
     this.route.params.subscribe(param => {
       this.id = param['id'];
     });
 
+    this.formateurService.list().subscribe(objsFromREST => {
+      this.formateurs = objsFromREST;
+    });
+
     this.myForm = this.fb.group({
       'id': [''],
-      'nom': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-      'dateDebut': ['', Validators.compose([Validators.required])],
-      'dateFin': ['', Validators.compose([Validators.required])]
+      'niveau': ['', Validators.compose([Validators.required])],
+      'formateur': ['', Validators.compose([Validators.required])],
+      'matiere': ['', Validators.compose([Validators.required])],
+
     });
+
+    this.niveaux = Object.keys(this.niveau).filter(String);
   }
 
   ngOnInit() {
-
-    this.cars = ['aaaaa', 'bbbb', 'ccccc'];
-
     if (this.id) {
     }
   }
@@ -51,7 +68,6 @@ export class EnseignementAddComponent implements OnInit {
       obj = this.myForm.value;
 
       console.log(obj);
-      console.log(this.cars);
       if (this.id) {
       } else {
         this.objService.add(obj).subscribe(val => {

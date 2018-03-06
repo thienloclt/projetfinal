@@ -9,6 +9,7 @@
         <div *ngIf="myForm.controls['nom'].hasError('required')" class="ui error message">titre is required</div>
         <div *ngIf="!myForm.controls['prenom'].valid " class="ui error message">prenom is invalid</div>
         <div *ngIf="myForm.controls['prenom'].hasError('required')" class="ui error message">prenom is required</div>
+        <div *ngIf="myForm.controls['competence'].hasError('required')" class="ui error message">competence is required</div>
         <!-----------End Modifier pour alert erreur --------------------------------------------------->
       </div>
     </div>
@@ -26,8 +27,8 @@
           <input formControlName="prenom" required class="form-control"/>
         </div>
         <div class="form-group">
-          <label>dateNaissance </label>
-          <input formControlName="dateNaissance"  class="form-control"/>
+          <label>Compétence *</label>
+          <input formControlName="competence" required class="form-control"/>
         </div>
         <div class="form-group">
           <label>Adresse </label>

@@ -5,9 +5,14 @@ export class Enseignement {
 
   public id: number;
   public niveau: string;
-  public  formateur: Formateur;
+  public formateur: Formateur;
   public matiere: Matiere;
 
   constructor() { }
 }
 
+export enum Niveau {
+ Debutant ='Debutant',
+ Avence ='Avence',
+ Expert = 'Expert'
+}

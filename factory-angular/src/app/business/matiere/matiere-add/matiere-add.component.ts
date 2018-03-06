@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {Matiere} from '../../../model/matiere.model';
+import {Couleur, Matiere} from '../../../model/matiere.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatiereService} from '../../../service/matiere.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Globals} from '../../../framework/globals';
-import {Message} from 'primeng/api';
+import {ProgrammeService} from '../../../service/programme.service';
+import {EnseignementService} from '../../../service/enseignement.service';
+import {Enseignement} from '../../../model/enseignement.model';
+import {Programme} from '../../../model/programme.model';
 
 @Component({
   selector: 'app-matiere-add',
@@ -16,25 +19,48 @@ export class MatiereAddComponent implements OnInit {
   myForm: FormGroup;
   formsubmitted : boolean = false;
 
-  matieres: Array<Matiere> = [];
+  couleur = Couleur;
+  couleurs: any [];
 
+  //matieres: Array<Matiere> = [];
 
-  val1 = 0;
-  msgs: Message[];
+  enseignements: Array<Enseignement> = [];
+  selectedEnseignement = Enseignement;
+
+  programmes: Array<Programme> = [];
+  selectedProgramme = Programme;
+
 
   constructor(public globals: Globals, private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
-             private matiereService: MatiereService) {
+             private objService: MatiereService, private programmeService: ProgrammeService,private enseignementService: EnseignementService) {
 
     this.route.params.subscribe(param => {
       this.id = param['id'];
     });
 
-    this.myForm = this.fb.group({
-      'id': [''],
-      'nom': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-      'couleur': ['', Validators.compose([Validators.required, Validators.minLength(3)])]
+
+    this.enseignementService.list().subscribe(objsFromREST => {
+      this.enseignements = objsFromREST;
     });
 
+
+    this.programmeService.list().subscribe(objsFromREST => {
+      this.programmes = objsFromREST;
+    });
+
+    this.myForm = this.fb.group({
+      'id': [''],
+      'nom': ['', Validators.compose([Validators.required])],
+      'couleur': ['', Validators.compose([Validators.required])],
+      'duree': ['', Validators.compose([Validators.required])],
+      'objectif': ['', Validators.compose([Validators.required])],
+      'prerequis': ['', Validators.compose([Validators.required])],
+      'contenu': ['', Validators.compose([Validators.required])],
+      'programmes' : [''],
+      'enseignements' : [''],
+    });
+
+    this.couleurs = Object.keys(this.couleur).filter(String);
   }
 
   ngOnInit() {
@@ -46,16 +72,20 @@ export class MatiereAddComponent implements OnInit {
     this.formsubmitted = true;
 
     if (this.myForm.valid) {
-      let matiere: Matiere;
-      matiere  = this.myForm.value;
+      let obj: Matiere;
+      obj = this.myForm.value;
 
       if (this.id) {
       } else {
-        this.matiereService.add(matiere).subscribe(val => {
-          this.msgs = [];
-          this.msgs.push({ severity: 'info', summary: 'Matiere Added', detail: 'Saved!!!' });
+        this.objService.add(obj).subscribe(val => {
           this.router.navigateByUrl('/matiere');
         });
+      // } else {
+      //   this.matiereService.add(matiere).subscribe(val => {
+      //     this.msgs = [];
+      //     this.msgs.push({ severity: 'info', summary: 'Matiere Added', detail: 'Saved!!!' });
+      //     this.router.navigateByUrl('/matiere');
+       // });
       }
     }
   }

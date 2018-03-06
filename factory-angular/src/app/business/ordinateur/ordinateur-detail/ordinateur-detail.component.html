@@ -1,3 +1,25 @@
-<p>
-  ordinateur-detail works!
-</p>
+<div class="card border-{{globals.theme}} rounded-0 mb-3" style="margin-top: 10px">
+  <div class="card-header">titre: {{obj.nom}}</div>
+  <div class="card-body text-secondary">
+    <p class="card-text">id: {{obj.id}}</p>
+    <p class="card-text">nom: {{obj.nom}}</p>
+    <p class="card-text">code: {{obj.code}}</p>
+    <p class="card-text">processeur: {{obj.processeur }}</p>
+    <p class="card-text">disqueDur: {{obj.disqueDur}}</p>
+    <p class="card-text">anneeAchat: {{obj.anneeAchat}}</p>
+    <ul *ngFor="let a of obj.allocations">
+      <li>{{a.stagiaire?.nom}} </li>
+    </ul>
+
+  </div>
+  <div class="card-footer clearfix">
+    <a [routerLink]="['/ordinateur-edit', obj.id]">
+      <button pButton type="button" label="Edit" icon="fa-edit" class="btn btn-{{globals.theme}}"></button>
+    </a>
+    <button pButton type="button" label="Delete" (click)="deleteObj()" icon="fa-trash" class="btn btn-{{globals.theme}}"></button>
+
+
+    <app-formation-add-stagiaire [id]="id" (eventemitter)="getFromChild($event)"></app-formation-add-stagiaire>
+  </div>
+</div>
+<p-confirmDialog></p-confirmDialog>

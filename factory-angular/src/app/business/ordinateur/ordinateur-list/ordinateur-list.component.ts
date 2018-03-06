@@ -62,7 +62,7 @@ export class OrdinateurListComponent implements OnInit {
   }
 
   detailObj(obj: Ordinateur) {
-    this.router.navigateByUrl('/formation/' + obj.id);
+    this.router.navigateByUrl('/ordinateur/' + obj.id);
   }
 
   deleteObj(obj: Ordinateur) {
