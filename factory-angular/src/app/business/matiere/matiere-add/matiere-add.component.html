@@ -8,8 +8,14 @@
         <div *ngIf="myForm.controls['nom'].hasError('required')" class="ui error message">nom is required</div>
         <div *ngIf="!myForm.controls['couleur'].valid" class="ui error message">couleur is invalid</div>
         <div *ngIf="myForm.controls['couleur'].hasError('required')" class="ui error message">couleur required</div>
-        <div *ngIf="!myForm.controls['formations'].valid" class="ui error message">formation is invalid</div>
-        <div *ngIf="myForm.controls['formations'].hasError('required')" class="ui error message">formation is required</div>
+        <div *ngIf="!myForm.controls['duree'].valid" class="ui error message">formation is invalid</div>
+        <div *ngIf="myForm.controls['duree'].hasError('required')" class="ui error message">formation is required</div>
+        <div *ngIf="!myForm.controls['objectif'].valid" class="ui error message">formation is invalid</div>
+        <div *ngIf="myForm.controls['objectif'].hasError('required')" class="ui error message">formation is required</div>
+        <div *ngIf="!myForm.controls['prerequis'].valid" class="ui error message">formation is invalid</div>
+        <div *ngIf="myForm.controls['prerequis'].hasError('required')" class="ui error message">formation is required</div>
+        <div *ngIf="!myForm.controls['contenu'].valid" class="ui error message">formation is invalid</div>
+        <div *ngIf="myForm.controls['contenu'].hasError('required')" class="ui error message">formation is required</div>
 
       </div>
     </div>
@@ -23,17 +29,45 @@
         </div>
         <div class="form-group">
           <label>Couleur *</label>
-          <input formControlName="couleur" class="form-control"/>
-        </div>
-        <div class="form-group">
-          <label>Formations *</label>
-          <select formControlName="formations" class="form-control" multiple
-         (ngModelChange)="addFormation($event);" id="formations">
-            <option *ngFor="let p of programmes" [ngValue]="p.id">{{p.objectif}} {{f.contenu}}</option>
-            <option *ngFor="let e of enseignements" [ngValue]="e.id">{{e.niveau}} </option>
+          <select formControlName="couleur" class="form-control">
+            <option *ngFor="let key of couleurs" [ngValue]="key">{{couleur[key]}}</option>
           </select>
         </div>
+          <div class="form-group">
+            <label>Durée *</label>
+            <input formControlName="duree" required class="form-control"/>
+          </div>
+            <div class="form-group">
+              <label>Objectif *</label>
+              <input formControlName="objectif" required class="form-control"/>
+            </div>
+              <div class="form-group">
+                <label>Contenu *</label>
+                <input formControlName="contenu" required class="form-control"/>
+              </div>
+        <div class="form-group">
+          <label>Prerequis *</label>
+          <input formControlName="prerequis" required class="form-control"/>
+        </div>
 
+        <div *ngIf="enseignements?.length > 0; else nothing;">
+          <div class="form-group">
+            <label>Enseignements </label>
+            <select formControlName="enseignement" [(ngModel)]="selectedEnseignement" class="form-control">
+              <option *ngFor="let enseignement of enseignements" [ngValue]="enseignement">{{enseignement.niveau}}</option>
+            </select>
+          </div>
+        </div>
+        <div *ngIf="programmes?.length > 0; else nothing;">
+          <div class="form-group">
+            <label>Programmes </label>
+            <select formControlName="programme" [(ngModel)]="selectedProgramme" class="form-control">
+              <option *ngFor="let programme of programmes" [ngValue]="programme">{{programme.id}}</option>
+            </select>
+          </div>
+        </div>
+        <!-----------End Modifier pour la forme --------------------------------------------------->
+        <input type="hidden" path="id" />
         <input type="hidden" path="id" />
         <input type="hidden" path="version" />
       </div>

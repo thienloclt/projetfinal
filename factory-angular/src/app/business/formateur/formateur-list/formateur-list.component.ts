@@ -2,8 +2,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ConfirmationService, SortEvent} from 'primeng/api';
 import {DatePipe} from '@angular/common';
-
-
 import {Router} from '@angular/router';
 import {Formateur} from '../../../model/formateur.model';
 import {FormateurService} from '../../../service/formateur.service';

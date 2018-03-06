@@ -21,9 +21,9 @@ export class EnseignementListComponent implements OnInit {
     this.getList();
     this.cols = [
       { field: 'id', header: '#' },
-      { field: 'nom', header: 'nom' },
-      { field: 'dateDebut', header: 'dateDebut' },
-      { field: 'dateFin', header: 'dateFin' }
+      { field: 'niveau', header: 'niveau' },
+      { field: 'formateur', header: 'formateur' },
+      { field: 'matiere', header: 'matiere' }
     ];
   }
 
@@ -55,7 +55,7 @@ export class EnseignementListComponent implements OnInit {
   }
 
   detailObj(obj: Enseignement) {
-    this.router.navigateByUrl('/formation/' + obj.id);
+    this.router.navigateByUrl('/enseignement/' + obj.id);
   }
 
   deleteObj(obj: Enseignement) {
