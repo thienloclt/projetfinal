@@ -63,7 +63,7 @@ export class MatiereAddComponent implements OnInit {
       'enseignements' : [''],
     });
 
-   
+
   }
 
   ngOnInit() {
