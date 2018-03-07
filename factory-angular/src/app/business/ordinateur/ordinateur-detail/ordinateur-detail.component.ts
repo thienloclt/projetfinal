@@ -47,7 +47,7 @@ export class OrdinateurDetailComponent implements OnInit {
     this.objService.get(this.id).subscribe(objFromREST => {
       this.obj = objFromREST;
       this.allocationService.getStagiairesByFormation(this.id).subscribe(objsFromREST => {
-        this.obj.allocations = objsFromREST;
+        this.obj.formations = objsFromREST;
       });
 
       console.log(this.obj);

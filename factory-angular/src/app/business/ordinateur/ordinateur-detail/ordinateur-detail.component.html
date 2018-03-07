@@ -7,8 +7,8 @@
     <p class="card-text">processeur: {{obj.processeur }}</p>
     <p class="card-text">disqueDur: {{obj.disqueDur}}</p>
     <p class="card-text">anneeAchat: {{obj.anneeAchat}}</p>
-    <ul *ngFor="let a of obj.allocations">
-      <li>{{a.stagiaire?.nom}} </li>
+    <ul *ngFor="let a of obj.formations">
+      <li>{{a.formation?.titre}} </li>
     </ul>
 
   </div>
