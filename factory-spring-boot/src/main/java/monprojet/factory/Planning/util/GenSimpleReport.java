@@ -21,6 +21,8 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import monprojet.factory.dao.FormationDao;
+import monprojet.factory.entity.Formation;
 import monprojet.factory.entity.Planning;
 
 public class GenSimpleReport {
@@ -30,10 +32,14 @@ public class GenSimpleReport {
 		Document document = new Document();
 		// GenSimpleReport creates PDF file from the provided data.
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		String dateDebut = "18-01-2018";
-		String dateFin = "02-02-2018";
-
 		
+	/*	FormationDao d;
+		Formation f = d.find(id);
+		f.getDateDebut();
+		f.getDateFin();
+	*/	
+		String dateDebut = "18-01-2018";
+		String dateFin = "28-01-2018";
 		////////////duree de la formation////////àsupp///////////
 		
 		try {
