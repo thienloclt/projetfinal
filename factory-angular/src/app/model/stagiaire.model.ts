@@ -1,4 +1,4 @@
-import {Allocation} from './allocation.model';
+import {Formation} from './formation.model';
 
 export class Stagiaire {
 
@@ -9,9 +9,8 @@ export class Stagiaire {
   public adresse:string;
   public numTel:string;
   public email:string;
-  public allocations: Array<Allocation> = [];
 
-
+  public formations: Formation[];
 
   constructor() { }
 }

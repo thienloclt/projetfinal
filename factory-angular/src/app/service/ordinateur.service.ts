@@ -10,6 +10,13 @@ export class OrdinateurService {
   constructor(private http: HttpClient) {
   }
 
+  getByOutOfFormation(id: number): Observable<any> {
+    return this.http.get(this.url + 'ByOutOfFormation/' + id);
+  }
+
+  getByFormation(id: number): Observable<any> {
+    return this.http.get(this.url + 'ByFormation/' + id);
+  }
 
   list(): Observable<any> {
     return this.http.get(this.url);

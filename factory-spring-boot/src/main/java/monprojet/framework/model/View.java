@@ -18,7 +18,6 @@ public interface View {
 	public static interface OrdinateurJSON extends Common{}
 	public static interface ProgrammeJSON extends Common{}
 	public static interface EnseignementJSON extends Common{}
-	//public static interface AllocationJSON extends Common{}
 	public static interface ProjecteurJSON extends Common{}
 	
 	public static interface ProgrammeWithEveythingJSON extends FormationJSON, FormateurJSON, MatiereJSON{}
@@ -30,6 +29,5 @@ public interface View {
 	public static interface ProjecteurWithEveythingJSON extends FormationJSON{}
 	public static interface OrdinateurWithEveythingJSON extends FormationJSON{}
 	public static interface StagiaireWithEveythingJSON extends FormationJSON{}
-	//public static interface AllocationWithEveythingJSON extends FormationJSON, StagiaireJSON, OrdinateurJSON{}
-	public static interface FormationWithEveythingJSON extends ProgrammeJSON, SalleJSON, ProjecteurJSON, GestionnaireJSON, OrdinateurJSON{}
+	public static interface FormationWithEveythingJSON extends GestionnaireJSON, ProgrammeJSON, SalleJSON, ProjecteurJSON, StagiaireJSON, OrdinateurJSON{}
 }

@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,6 +50,20 @@ public class OrdinateurRestController {
 		ordinateurDao.create(ordinateur4);
 		List<Ordinateur> projecteurs = ordinateurDao.findAll();
 		return new ResponseEntity<List<Ordinateur>>(projecteurs, HttpStatus.OK);
+	}
+	
+	@GetMapping("/ByFormation/{id}")
+	@JsonView(View.OrdinateurWithEveythingJSON.class)
+	public ResponseEntity<List<Ordinateur>> findByFormation(@PathVariable("id") int id) {
+		List<Ordinateur> ordinateurs = ordinateurDao.findByFormation(id);
+		return new ResponseEntity<List<Ordinateur>>(ordinateurs, HttpStatus.OK);
+	}
+	
+	@GetMapping("/ByOutOfFormation/{id}")
+	@JsonView(View.OrdinateurWithEveythingJSON.class)
+	public ResponseEntity<List<Ordinateur>> findByOutOfFormation(@PathVariable("id") int id) {
+		List<Ordinateur> ordinateurs = ordinateurDao.findByOutOfFormation(id);
+		return new ResponseEntity<List<Ordinateur>>(ordinateurs, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")

@@ -31,7 +31,7 @@ public class StagiaireDaoJpa implements StagiaireDao {
 	public List<Stagiaire> findByOutOfFormation(Integer formation_id) {
 		List<Stagiaire> list = null;
 
-		Query query = em.createQuery("SELECT s FROM Stagiaire s WHERE s NOT IN(SELECT a.stagiaire FROM Allocation a, Formation f WHERE (a.formation = f) AND (f.id = :formation_id))");
+		Query query = em.createQuery("SELECT s FROM Stagiaire s JOIN s.formations fs WHERE fs.id <> :formation_id");
 		query.setParameter("formation_id", formation_id);
 		list = query.getResultList();	
 
@@ -42,7 +42,7 @@ public class StagiaireDaoJpa implements StagiaireDao {
 	public List<Stagiaire> findByFormation(Integer formation_id) {
 		List<Stagiaire> list = null;
 
-		Query query = em.createQuery("SELECT s FROM Stagiaire s, Allocation a, Formation f WHERE (a.stagiaire = s) AND (a.formation = f) AND (f.id = :formation_id)");
+		Query query = em.createQuery("SELECT s FROM Stagiaire s JOIN s.formations fs WHERE fs.id = :formation_id");
 		query.setParameter("formation_id", formation_id);
 		list = query.getResultList();	
 

@@ -27,13 +27,31 @@ public class OrdinateurDaoJpa implements OrdinateurDao {
 	public List<Ordinateur> findByOutOfFormation(Integer formation_id) {
 		List<Ordinateur> list = null;
 
-		Query query = em.createQuery("SELECT o FROM Ordinateur o, Formation f WHERE (o.formations.formation = f) AND (f.id = :formation_id)");
+		String sOrdinateurHasFormation = "(SELECT o.id FROM Ordinateur o JOIN o.formations fs "
+				+ "WHERE EXISTS "
+				+ "(SELECT f1.id FROM Formation f1 WHERE f1.id = :formation_id AND "
+				+ "((fs.dateDebut BETWEEN f1.dateDebut AND f1.dateFin) OR (fs.dateFin BETWEEN f1.dateDebut AND f1.dateFin))))";
+		
+		Query query = em.createQuery("SELECT ord FROM Ordinateur ord WHERE ord.id NOT IN " + sOrdinateurHasFormation);
+
 		query.setParameter("formation_id", formation_id);
-		list = query.getResultList();	
+		list = query.getResultList();
 
 		return list;
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Ordinateur> findByFormation(Integer formation_id) {
+		List<Ordinateur> list = null;
+
+		Query query = em.createQuery("SELECT o FROM Ordinateur o JOIN o.formations fs WHERE fs.id = :formation_id");
+
+		query.setParameter("formation_id", formation_id);
+		list = query.getResultList();
+
+		return list;
+	}
+	
 	public void create(Ordinateur obj) {
 		em.persist(obj);
 	}

@@ -67,14 +67,14 @@ public class StagiaireRestController {
 		return new ResponseEntity<Stagiaire>(stagiaire, (stagiaire != null) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 	
-	@GetMapping("/outofformation/{id}")
+	@GetMapping("/ByOutOfFormation/{id}")
 	@JsonView(View.StagiaireWithEveythingJSON.class)
 	public ResponseEntity<List<Stagiaire>> findByOutOfFormation(@PathVariable("id") int id) {
 		List<Stagiaire> stagiaires = stagiaireDao.findByOutOfFormation(id);
 		return new ResponseEntity<List<Stagiaire>>(stagiaires, HttpStatus.OK);
 	}
 	
-	@GetMapping("/formation/{id}")
+	@GetMapping("/ByFormation/{id}")
 	@JsonView(View.StagiaireWithEveythingJSON.class)
 	public ResponseEntity<List<Stagiaire>> findByFormation(@PathVariable("id") int id) {
 		List<Stagiaire> stagiaires = stagiaireDao.findByFormation(id);

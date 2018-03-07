@@ -6,6 +6,7 @@ import {Formation} from '../../../model/formation.model';
 import {ConfirmationService} from 'primeng/api';
 import {AllocationService} from '../../../service/allocation.service';
 import {ProgrammeService} from '../../../service/programme.service';
+import {OrdinateurService} from '../../../service/ordinateur.service';
 
 @Component({
   selector: 'app-formation-detail',
@@ -15,9 +16,9 @@ import {ProgrammeService} from '../../../service/programme.service';
 
 export class FormationDetailComponent implements OnInit {
   id: number;
-  obj = new Formation();
+  formation: Formation = null;
 
-  constructor(public globals: Globals, private route: ActivatedRoute, private router: Router, private objService: FormationService, private allocationService: AllocationService, private programmeService: ProgrammeService, private confirmationService: ConfirmationService) {
+  constructor(public globals: Globals, private route: ActivatedRoute, private router: Router, private formationService: FormationService, private ordinateurService: OrdinateurService, private programmeService: ProgrammeService, private confirmationService: ConfirmationService) {
   }
 
   ngOnInit() {
@@ -33,7 +34,7 @@ export class FormationDetailComponent implements OnInit {
       header: 'Delete Confirmation',
       icon: 'fa fa-trash',
       accept: () => {
-        this.objService.delete(this.id).subscribe( value => {
+        this.formationService.delete(this.id).subscribe( value => {
           this.router.navigateByUrl('/formation');
         });
       },
@@ -43,20 +44,28 @@ export class FormationDetailComponent implements OnInit {
   }
 
   getObj() {
-    this.obj = new Formation();
-    this.objService.get(this.id).subscribe(objFromREST => {
-      this.obj = objFromREST;
-      this.allocationService.getByFormation(this.id).subscribe(objsFromREST => {
-        this.obj.allocations = objsFromREST;
-      });
-
+    console.log('begin---refreshing-----');
+    this.formation = new Formation();
+    this.formationService.get(this.id).subscribe(objFromREST => {
+      this.formation = objFromREST;
       this.programmeService.getByFormation(this.id).subscribe(objsFromREST => {
-        this.obj.programmes = objsFromREST;
+        this.formation.programmes = objsFromREST;
       });
+      console.log(this.formation);
     });
+    console.log('end---refreshing-----');
   }
 
   getFromChild(event) {
     this.getObj();
+  }
+
+  getFromChildOrdinateur(event) {
+    this.formation.ordinateurs = null;
+    this.ordinateurService.getByFormation(this.id).subscribe(objsFromREST => {
+      this.formation.ordinateurs = objsFromREST;
+      console.log('getFromChildOrdinateur: ');
+      console.log(this.formation);
+    });
   }
 }

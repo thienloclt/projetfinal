@@ -1,11 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Stagiaire} from '../../../model/stagiaire.model';
 import {Globals} from '../../../framework/globals';
 import {FormationService} from '../../../service/formation.service';
-import {Allocation} from '../../../model/allocation.model';
-import {FormBuilder} from '@angular/forms';
-import {AllocationService} from '../../../service/allocation.service';
-import {StagiaireService} from '../../../service/stagiaire.service';
 import {Formation} from '../../../model/formation.model';
 import {Ordinateur} from '../../../model/ordinateur.model';
 import {OrdinateurService} from '../../../service/ordinateur.service';
@@ -21,23 +16,27 @@ export class FormationAddOrdinateurComponent implements OnInit {
   @Output() eventemitter: EventEmitter<string> = new EventEmitter<string>();
   display: boolean = false;
 
-  obj: Formation;
-  sourceOrdinateurs: Ordinateur[] = [];
-  targetOrdinateurs: Ordinateur[] = [];
+  formation: Formation;
+  sourceOrdinateurs: Ordinateur[];
+  targetOrdinateurs: Ordinateur[];
 
-  constructor(public globals: Globals, private fb: FormBuilder, private objService: FormationService, private ordinateurService: OrdinateurService) {
+  constructor(public globals: Globals, private formationService: FormationService, private ordinateurService: OrdinateurService) {
   }
 
   ngOnInit() {
   }
 
   loadData() {
-    this.objService.get(this.id).subscribe(objFromREST => {
-      this.obj = objFromREST;
+    this.sourceOrdinateurs = [];
+    this.targetOrdinateurs = [];
+
+    this.formationService.get(this.id).subscribe(objFromREST => {
+      this.formation = objFromREST;
+      this.targetOrdinateurs = this.formation.ordinateurs;
     });
 
     this.ordinateurService.getByOutOfFormation(this.id).subscribe(objsFromREST => {
-      this.sourceStagiaires = objsFromREST;
+      this.sourceOrdinateurs = objsFromREST;
     });
   }
 
@@ -47,12 +46,8 @@ export class FormationAddOrdinateurComponent implements OnInit {
   }
 
   onSubmit() {
-    for (var item of this.targetStagiaires) {
-      let allocation: Allocation = new Allocation();
-      allocation.stagiaire = item;
-      allocation.formation = this.obj;
-      this.allocationService.add(allocation).subscribe();
-    }
+    this.formation.ordinateurs = this.targetOrdinateurs;
+    this.formationService.update(this.formation).subscribe();
     this.eventemitter.emit('tranfere');
     this.display = false;
   }

@@ -1,15 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Globals} from '../../../framework/globals';
 import {FormationService} from '../../../service/formation.service';
-
-import {FormBuilder, FormGroup} from '@angular/forms';
-
 import {Stagiaire} from '../../../model/stagiaire.model';
-
 import {StagiaireService} from '../../../service/stagiaire.service';
 import {Formation} from '../../../model/formation.model';
-import {Allocation} from '../../../model/allocation.model';
-import {AllocationService} from '../../../service/allocation.service';
 
 @Component({
   selector: 'app-formation-add-stagiaire',
@@ -22,38 +16,38 @@ export class FormationAddStagiaireComponent implements OnInit {
   @Output() eventemitter: EventEmitter<string> = new EventEmitter<string>();
   display: boolean = false;
 
-  obj: Formation;
-  sourceStagiaires: Stagiaire[] = [];
-  targetStagiaires: Stagiaire[] = [];
+  formation: Formation;
+  sourceStagiaires: Stagiaire[];
+  targetStagiaires: Stagiaire[];
 
-  constructor(public globals: Globals, private fb: FormBuilder, private objService: FormationService, private stagiaireService: StagiaireService, private allocationService: AllocationService) {
+  constructor(public globals: Globals, private formationService: FormationService, private stagiaireService: StagiaireService) {
   }
 
   ngOnInit() {
-    this.objService.get(this.id).subscribe(objFromREST => {
-      this.obj = objFromREST;
+  }
+
+  loadData() {
+    this.sourceStagiaires = [];
+    this.targetStagiaires = [];
+
+    this.formationService.get(this.id).subscribe(objFromREST => {
+      this.formation = objFromREST;
+      this.targetStagiaires = this.formation.stagiaires;
     });
 
     this.stagiaireService.getByOutOfFormation(this.id).subscribe(objsFromREST => {
       this.sourceStagiaires = objsFromREST;
     });
-
-    this.stagiaireService.getByFormation(this.id).subscribe(objsFromREST => {
-      this.targetStagiaires = objsFromREST;
-    });
   }
 
   showDialog() {
+    this.loadData();
     this.display = true;
   }
 
   onSubmit() {
-    for(var item of this.targetStagiaires) {
-      let allocation: Allocation = new Allocation();
-      allocation.stagiaire = item;
-      allocation.formation = this.obj;
-      this.allocationService.add(allocation).subscribe();
-    }
+    this.formation.stagiaires = this.targetStagiaires;
+    this.formationService.update(this.formation).subscribe();
     this.eventemitter.emit('tranfere');
     this.display = false;
   }

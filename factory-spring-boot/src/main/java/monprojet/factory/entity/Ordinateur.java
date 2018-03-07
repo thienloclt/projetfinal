@@ -35,10 +35,6 @@ public class Ordinateur extends Materiel {
 	@JsonView(View.Common.class)
 	private Integer anneeAchat;
 /*--------------------------------------------------------------------------*/
-//	@OneToMany(mappedBy = "ordinateur", fetch = FetchType.EAGER)
-//	@JsonView(View.AllocationJSON.class)
-//	private Set<Allocation> allocations = new HashSet<Allocation>();
-	
 	@JsonView(View.FormationJSON.class)
 	@ManyToMany(mappedBy = "ordinateurs", fetch = FetchType.EAGER)
 	Set<Formation> formations = new HashSet<Formation>();

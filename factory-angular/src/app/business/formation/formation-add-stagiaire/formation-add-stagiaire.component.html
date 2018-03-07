@@ -1,13 +1,5 @@
 <button pButton type="button" (click)="showDialog()" label="Stagiaire" icon="fa-child" class="btn btn-{{globals.theme}} float-right"></button>
 <p-dialog header="Formation-Stagiaire" [(visible)]="display" [width]="800" modal="modal" [closeOnEscape]="false" [closable]="false">
-<!--    <p-orderList [value]="cars">
-      <ng-template let-car pTemplate="item">
-        <div class="ui-helper-clearfix">
-          <img src="assets/images/add.png" style="display:inline-block; margin:2px 0 2px 2px;" width="40">
-          <div style="float:right; margin: 15px 0 0 0;;">{{car}}</div>
-        </div>
-      </ng-template>
-    </p-orderList>-->
 
     <p-pickList [source]="sourceStagiaires" [target]="targetStagiaires" [showSourceControls]="false" [showTargetControls]="false" sourceHeader="Available" targetHeader="Selected" [responsive]="true" filterBy="nom"
                 dragdrop="true" dragdropScope="stagiaires" sourceFilterPlaceholder="Search by nom" targetFilterPlaceholder="Search by nom">

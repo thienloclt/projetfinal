@@ -9,11 +9,11 @@
         </ng-template>
       </p-orderList>-->
 
-  <p-pickList [source]="sourceStagiaires" [target]="targetStagiaires" [showSourceControls]="false" [showTargetControls]="false" sourceHeader="Available" targetHeader="Selected" [responsive]="true" filterBy="nom"
-              dragdrop="true" dragdropScope="stagiaires" sourceFilterPlaceholder="Search by nom" targetFilterPlaceholder="Search by nom">
-    <ng-template let-stagiaire pTemplate="item">
+  <p-pickList [source]="sourceOrdinateurs" [target]="targetOrdinateurs" [showSourceControls]="false" [showTargetControls]="false" sourceHeader="Available" targetHeader="Selected" [responsive]="true" filterBy="nom"
+              dragdrop="true" dragdropScope="ordinateurs" sourceFilterPlaceholder="Search by nom" targetFilterPlaceholder="Search by nom">
+    <ng-template let-ordinateur pTemplate="item">
       <div class="ui-helper-clearfix">
-        {{stagiaire.nom}} {{stagiaire.prenom}}
+        {{ordinateur.nom}} {{ordinateur.code}}
       </div>
     </ng-template>
   </p-pickList>

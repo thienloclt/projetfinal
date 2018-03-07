@@ -74,9 +74,10 @@ public class Formation {
 	@JsonView(View.ProgrammeJSON.class)
 	private Set<Programme> programmes = new HashSet<Programme>();
 	
-//	@OneToMany(mappedBy = "formation", fetch = FetchType.EAGER)
-//	@JsonView(View.AllocationJSON.class)
-//	private Set<Allocation> allocations = new HashSet<Allocation>();
+	@JsonView(View.StagiaireJSON.class)
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name = "formation_stagiaire_tbl", joinColumns = @JoinColumn(name = "formation_id"), inverseJoinColumns = @JoinColumn(name = "stagiaire_id"))
+	private Set<Stagiaire> stagiaires = new HashSet<>();
 	
 	@JsonView(View.OrdinateurJSON.class)
 	@ManyToMany(fetch=FetchType.EAGER)
