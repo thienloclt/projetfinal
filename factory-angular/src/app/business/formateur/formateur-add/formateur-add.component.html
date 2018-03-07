@@ -27,6 +27,10 @@
           <input formControlName="prenom" required class="form-control"/>
         </div>
         <div class="form-group">
+          <label>dateNaissance </label>
+          <p-calendar formControlName="dateNaissance" [(ngModel)]="dateNaissance" [showIcon]="true" [yearNavigator]="true" yearRange="1910:2018" class="form-control"></p-calendar>
+        </div>
+        <div class="form-group">
           <label>Compétence *</label>
           <input formControlName="competence" required class="form-control"/>
         </div>
