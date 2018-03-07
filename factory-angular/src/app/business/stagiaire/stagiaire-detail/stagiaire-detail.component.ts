@@ -46,7 +46,7 @@ export class StagiaireDetailComponent implements OnInit {
       this.obj = objFromREST;
       this.allocationService.getStagiairesByFormation(this.id).subscribe(objsFromREST => {
         console.log('getObj');
-        this.obj.allocations = objsFromREST;
+        this.obj.formations = objsFromREST;
       });
     });
   }
