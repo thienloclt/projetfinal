@@ -3,11 +3,12 @@ import {Globals} from '../../../framework/globals';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Formateur} from '../../../model/formateur.model';
-import {Enseignement, Niveau} from '../../../model/enseignement.model';
+import {Enseignement} from '../../../model/enseignement.model';
 import {FormateurService} from '../../../service/formateur.service';
 import {MatiereService} from '../../../service/matiere.service';
 import {Matiere} from '../../../model/matiere.model';
 import {EnseignementService} from '../../../service/enseignement.service';
+import {Niveau} from '../../../model/niveau.enum';
 
 
 
@@ -44,11 +45,15 @@ export class EnseignementAddComponent implements OnInit {
       this.formateurs = objsFromREST;
     });
 
+    this.matiereService.list().subscribe(objsFromREST => {
+      this.matieres = objsFromREST;
+    });
+
     this.myForm = this.fb.group({
       'id': [''],
       'niveau': ['', Validators.compose([Validators.required])],
       'formateur': ['', Validators.compose([Validators.required])],
-      'matiere': ['', Validators.compose([Validators.required])],
+      'matiere': ['', Validators.compose([Validators.required])]
 
     });
 

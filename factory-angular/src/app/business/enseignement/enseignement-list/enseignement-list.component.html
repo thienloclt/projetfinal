@@ -9,11 +9,17 @@
         <th style="width:6em"></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <!--<ng-template pTemplate="body" let-rowData let-columns="columns">-->
+      <!--<tr>-->
+        <!--<td *ngFor="let col of columns">-->
+          <!--{{rowData[col.field]}}-->
+        <!--</td>-->
+    <ng-template pTemplate="body" let-enseignement>
       <tr>
-        <td *ngFor="let col of columns">
-          {{rowData[col.field]}}
-        </td>
+      <td>{{enseignement.id}}</td>
+      <td>{{enseignement.niveau}}</td>
+      <td>{{enseignement.formateur.nom}}</td>
+      <td>{{enseignement.matiere.nom}}</td>
         <td>
           <button pButton icon="fa-search" (click)="detailObj(rowData)"></button>
           <button pButton icon="fa-trash" (click)="deleteObj(rowData)"></button>
