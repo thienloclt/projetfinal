@@ -25,7 +25,7 @@ import monprojet.factory.dao.FormationDao;
 import monprojet.factory.entity.Formation;
 import monprojet.factory.entity.Planning;
 
-public class GenSimpleReport {
+public class GenSimpleReportVersionOK {
 
 	public static ByteArrayInputStream simpleReport(List<Planning> modules) {
 
@@ -33,11 +33,11 @@ public class GenSimpleReport {
 		// GenSimpleReport creates PDF file from the provided data.
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		
-	/*	FormationDao d = null ;
+		FormationDao d = null ;
 		Formation f = d.find(1);
 		f.getDateDebut();
 		f.getDateFin();
-	*/	
+		
 		String dateDebut = "18-01-2018";
 		String dateFin = "28-01-2018";
 		////////////duree de la formation////////àsupp///////////
@@ -209,7 +209,7 @@ public class GenSimpleReport {
 
 		DocumentException ex) {
 
-			Logger.getLogger(GenSimpleReport.class.getName()).log(Level.SEVERE, null, ex); // à revoire
+			Logger.getLogger(GenSimpleReportVersionOK.class.getName()).log(Level.SEVERE, null, ex); // à revoire
 		}
 		// In the end, the data is returned as ByteArrayInputStream.
 		return new ByteArrayInputStream(out.toByteArray());

@@ -22,15 +22,17 @@ public class PlanningDaoJpa implements PlanningDao {
 
 	//////////// à rectifier <<< Planning////
 	@Override
-	public List<Planning> findAll() {
+	public List<Planning> findMix(Integer formation_id) {
 
 		String querystring = "SELECT f.dateDebut, f.dateFin, p.ordre, m.couleur, m.nom, m.duree, ft.nom,"
 				+ " ft.titre FROM Programme p, Matiere m, Formateur ft,"
 				+ " Formation f WHERE (p.formateur = ft) AND (p.matiere = m)"
-				+ " AND (p.formation = f) AND (f.id = 1) ORDER BY ordre";
+				+ " AND (p.formation = f) AND (f.id = :formation_id) ORDER BY ordre";
 
 		// String querystring = "SELECT i FROM Planning i ORDER BY ordre";
 		Query query = em.createQuery(querystring);
+		query.setParameter("formation_id", formation_id);
+		
 		List<Object[]> resultSets = query.getResultList();
 		List<Planning> plannings = new ArrayList<>();
 		for (Object[] e : resultSets) {
@@ -68,6 +70,12 @@ public class PlanningDaoJpa implements PlanningDao {
 	public void delete(Planning obj) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public List<Planning> findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

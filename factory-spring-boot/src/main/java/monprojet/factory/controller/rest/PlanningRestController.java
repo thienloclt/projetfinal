@@ -57,9 +57,9 @@ public class PlanningRestController {
 	}
 	///////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////// GenSimpleReport
-	@RequestMapping(value = "/simplereport", method = RequestMethod.GET, produces = MediaType.APPLICATION_PDF_VALUE)
-	public ResponseEntity<InputStreamResource> simpleReport() throws IOException {
-		List<Planning> modules = (List<Planning>) planningDao.findAll();
+	@RequestMapping(value = "/simplereport/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_PDF_VALUE)
+	public ResponseEntity<InputStreamResource> simpleReport(@PathVariable("id") int id) throws IOException {
+		List<Planning> modules = (List<Planning>) planningDao.findMix(id);
 		ByteArrayInputStream bis = GenSimpleReport.simpleReport(modules);
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Disposition", "inline; filename=simpleReport.pdf");

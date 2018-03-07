@@ -24,7 +24,7 @@
           {{rowData['dateFin'] | date: 'dd/MM/yyyy'}}
         </td>
         <td>
-          <button pButton icon="fa-calendar" (click)="detailObj(rowData)"></button>
+          <a href="http://localhost:8080/factory/simplereport/{{rowData['id']}}" target="_blank"><button pButton icon="fa-calendar" (click)="detailObj(rowData)"></button></a>
           <button pButton icon="fa-search" (click)="detailObj(rowData)"></button>
           <button pButton icon="fa-trash" (click)="deleteObj(rowData)"></button>
         </td>
