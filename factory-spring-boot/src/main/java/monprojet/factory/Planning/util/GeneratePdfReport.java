@@ -27,7 +27,7 @@ public class GeneratePdfReport {
 		// GeneratePdfReport creates PDF file from the provided data.
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		String dateDebut = "18-01-2018";
-		String dateFin = "28-01-2018";
+		String dateFin = "02-02-2018";
 
 		TraitementDate tDate = new TraitementDate();
 		List<DateFormatee> listDateF = new ArrayList<DateFormatee>();

@@ -3,7 +3,9 @@ package monprojet.factory.Planning.util;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,6 +14,8 @@ import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -27,8 +31,27 @@ public class GenSimpleReport {
 		// GenSimpleReport creates PDF file from the provided data.
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		String dateDebut = "18-01-2018";
-		String dateFin = "28-01-2018";
+		String dateFin = "02-02-2018";
 
+		
+		////////////duree de la formation////////àsupp///////////
+		
+		try {
+			String DATE_FORMAT = "dd-MM-yyyy";
+			SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+			Date date1;
+			date1 = (Date) sdf.parse(dateDebut);
+			Date date2 = (Date) sdf.parse(dateFin);
+			
+			long jrs_formation = ((date2.getTime() - date1.getTime()) / 86400000) + 1;
+			System.out.println("duree de la formation : "+jrs_formation);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		//////////àsupp/////////////
+		
 		TraitementDate tDate = new TraitementDate();
 		List<DateFormatee> listDateF = new ArrayList<DateFormatee>();
 		try {
@@ -54,24 +77,25 @@ public class GenSimpleReport {
 			if (weekend) {
 				j--;
 			}
-//			System.out.println("matiere = " + modules.get(j).getNom());
+			// System.out.println("matiere = " + modules.get(j).getNom());
 			int duree = modules.get(j).getDuree();
 			weekend = false;
 
-//			System.out.println("duree = " + duree);
+			// System.out.println("duree = " + duree);
 
 			for (int i = 1; i <= duree; i++) {
 
-//				System.out.println("jour = " + listeJourFormation.get(indice).getJour());
+				// System.out.println("jour = " + listeJourFormation.get(indice).getJour());
 				if (listeJourFormation.get(indice).getJour().equals("sam")
 						|| listeJourFormation.get(indice).getJour().equals("dim")) {
 					duree = 2;
-//					System.out.println("c'est un weekend");
+					// System.out.println("c'est un weekend");
 					weekend = true;
 
 				} else {
 
-//					System.out.println("ce n'est pas un weekend " + listeJourFormation.get(indice).getJour());
+					// System.out.println("ce n'est pas un weekend " +
+					// listeJourFormation.get(indice).getJour());
 					listeJourFormation.get(indice).setMatiere(modules.get(j).getNom());
 					listeJourFormation.get(indice).setFormateur(modules.get(j).getFormateur());
 					listeJourFormation.get(indice).setTitre(modules.get(j).getTitreFormateur());
@@ -80,163 +104,96 @@ public class GenSimpleReport {
 				indice++;
 			}
 		}
-		for (jourFormation jourFormation : listeJourFormation) {
-			System.out.println("******* : "+jourFormation.toString());
+	for (jourFormation jourFormation : listeJourFormation) {
+			System.out.println("******* : " + jourFormation.toString());
 		}
+		//////////////////////////////////////// debut du tableau///////////////
 
 		try {
-			// a table with 6 columns
+			// We will put our data in a table; for this, we have the PdfPTable class. 
 			PdfPTable mytable = new PdfPTable(6);
 			mytable.setWidthPercentage(90);
-			mytable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
-			mytable.setTotalWidth(new float[] { 4, 3, 2, 10, 5, 4 });// tailles des cellules
+			mytable.setWidths(new int[] { 2, 2, 1, 8, 4, 4 });
+		//	mytable.completeRow();
 
-			/****************************************
-			 ********* l'entête du tableau **********
-			 ***************************************/
+			// For the table header, we use bold Helvetica font.
+			Font headFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+			// The data is placed inside table cells, represented by PdfPCell. The text is
+			// horizontally aligned using the setHorizontalAlignment() method.
+			PdfPCell hcell;
 
-			// the cell object
-			PdfPCell cell;
+			// **********************************************************************************header
+			hcell = new PdfPCell(new Phrase("Mois", headFont));
+			hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+			mytable.addCell(hcell);
 
-			cell = new PdfPCell(new Phrase("Mois"));
-			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-			mytable.addCell(cell);
-			mytable.setHeaderRows(1); // -------------------------------------------setHeaderRows
+			hcell = new PdfPCell(new Phrase("Date", headFont));
+			hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+			hcell.setColspan(2);
+			mytable.addCell(hcell);
 
-			// we add a cell with colspan 2
-			cell = new PdfPCell(new Phrase("Date"));
-			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-			cell.setColspan(2);
-			mytable.addCell(cell);
+			hcell = new PdfPCell(new Phrase("Module", headFont));
+			hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+			mytable.addCell(hcell);
 
-			mytable.addCell(new PdfPCell(new Phrase("Planning")));
-			mytable.addCell(new PdfPCell(new Phrase("Formateurs")));
-			mytable.addCell(new PdfPCell(new Phrase("Titres")));
-			/****************************************
-			 ********* les lignes **********
-			 ***************************************/
-			// 1re ligne
-			// now we add a cell with rowspan n1= 2
+			hcell = new PdfPCell(new Phrase("Formateur", headFont));
+			hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+			mytable.addCell(hcell);
 
-			String mois1 = "";
-			String mois2 = "";
-			int i = 0;
-			int cpt = 0;
-			int indTab = 0;
+			hcell = new PdfPCell(new Phrase("Titre", headFont));
+			hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+			mytable.addCell(hcell);
+			// *******************************************************************fin header
 
-			while (i < listeJourFormation.size()) {
-				System.out.println("je place un mois");
+			for (jourFormation jourFormation : listeJourFormation) {
+				System.out.println("list des jours*******"+jourFormation.toString());
 
-				mois1 = listeJourFormation.get(i).getMois();
-				mois2 = listeJourFormation.get(i + 1).getMois();
-				while (mois1.equals(mois2) && i < listeJourFormation.size()) {
-					cpt++;
-					i++;
-					// System.out.println(cpt);
-					if (i + 1 < listeJourFormation.size()) {
-						mois1 = listeJourFormation.get(i).getMois();
-						mois2 = listeJourFormation.get(i + 1).getMois();
-					}
-				}
-				// System.out.println("cpt = " + cpt);
-				cell = new PdfPCell(new Phrase(mois1));
+				PdfPCell cell;
+
+				cell = new PdfPCell(new Phrase(jourFormation.getMois()));
+				// cell.setPaddingLeft(5);
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				cell.setRowspan(cpt + 1);
-				cell.setRotation(90);
+				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 				mytable.addCell(cell);
-				int count = 0;
-				int nbLiMat = 0;
-				int nbLiMatS = 0;
-				boolean mise = false;
-				for (int j = 0; j <= cpt; j++) {
-					System.out.println("je place les matieres");
-					String matiere1 = "";
-					String matiere2 = "";
 
-					if (j + indTab + count + 1 < listeJourFormation.size()) {
-						matiere1 = listeJourFormation.get(j + indTab + count).getMatiere();
-						matiere2 = listeJourFormation.get(j + indTab + count + 1).getMatiere();
-						System.out.println("matiere1 = " + matiere1);
-						System.out.println("matiere2 = " + matiere2);
-					}
+				cell = new PdfPCell(new Phrase(jourFormation.getJour()));
+				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+				mytable.addCell(cell);
 
-					while (matiere1.equals(matiere2) && j + indTab + count < listeJourFormation.size()) {
-						count++;
-						if (j + indTab + count + 1 < listeJourFormation.size()) {
-							matiere1 = listeJourFormation.get(j + indTab + count).getMatiere();
-							matiere2 = listeJourFormation.get(j + indTab + count + 1).getMatiere();
-						}
-						System.out.println("count = " + count);
-						System.out.println("matiere1 = " + matiere1);
-						System.out.println("matiere2 = " + matiere2);
-					}
-					// System.out.println("count = " + count);
-					nbLiMat = count;
+				cell = new PdfPCell(new Phrase(jourFormation.getIndiceJour()));
+				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+				mytable.addCell(cell);
 
-					count = 0;
+				cell = new PdfPCell(new Phrase(jourFormation.getMatiere()));
+				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+				// Ajout de la couleur
+				Integer red = Integer.valueOf(jourFormation.getCouleur().substring(1, 3), 16);
+				Integer green = Integer.valueOf(jourFormation.getCouleur().substring(3, 5), 16);
+				Integer blue = Integer.valueOf(jourFormation.getCouleur().substring(5, 7), 16);
+				cell.setBackgroundColor(new BaseColor(red, green, blue));
+				mytable.addCell(cell);
 
-					int x = nbLiMat + 1;
-					System.out.println("la matiere est sur " + x + " ligne");
-					if (!mise) {
-						System.out.println("la matiere n'est pas encore mise dans le tableau donc on la place");
-						cell = new PdfPCell(new Phrase(listeJourFormation.get(j + indTab).getJour()));
-						mytable.addCell(cell);
-						cell = new PdfPCell(new Phrase(listeJourFormation.get(j + indTab).getIndiceJour()));
-						mytable.addCell(cell);
+				cell = new PdfPCell(new Phrase(jourFormation.getFormateur()));
+				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+				mytable.addCell(cell);
 
-						cell = new PdfPCell(new Phrase(listeJourFormation.get(j + indTab).getMatiere()));
-
-						//////////////////////////////////////////////////////////////////////// couleur
-
-						Integer red = Integer.valueOf((listeJourFormation.get(j + indTab).getCouleur()).substring(1, 3),
-								16);
-						Integer green = Integer
-								.valueOf((listeJourFormation.get(j + indTab).getCouleur()).substring(3, 5), 16);
-						Integer blue = Integer
-								.valueOf((listeJourFormation.get(j + indTab).getCouleur()).substring(5, 7), 16);
-						cell.setBackgroundColor(new BaseColor(red, green, blue));
-						//////////////////////////////////////////////////////////////////////// couleur
-						cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-						cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-						cell.setRowspan(nbLiMat + 1);
-						nbLiMatS = nbLiMat;
-						mytable.addCell(cell);
-
-						cell = new PdfPCell(new Phrase(listeJourFormation.get(j + indTab).getFormateur()));
-						mytable.addCell(cell);
-						cell = new PdfPCell(new Phrase(listeJourFormation.get(j + indTab).getTitre()));
-						mytable.addCell(cell);
-						mise = true;
-						System.out.println("mise = " + mise);
-					} else {
-						System.out.println("la matiere existe déja il faut la sauter");
-						for (int k = 0; k < nbLiMatS; k++) {
-							cell = new PdfPCell(new Phrase(listeJourFormation.get(j + indTab).getJour()));
-							mytable.addCell(cell);
-							cell = new PdfPCell(new Phrase(listeJourFormation.get(j + indTab).getIndiceJour()));
-							mytable.addCell(cell);
-							cell = new PdfPCell(new Phrase(listeJourFormation.get(j + indTab).getFormateur()));
-							mytable.addCell(cell);
-							cell = new PdfPCell(new Phrase(listeJourFormation.get(j + indTab).getTitre()));
-							mytable.addCell(cell);
-							mise = false;
-						}
-						// }
-						nbLiMat = 0;
-					}
-				}
-				indTab = cpt;
-				cpt = 0;
-				i++;
+				cell = new PdfPCell(new Phrase(jourFormation.getTitre()));
+				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+				mytable.addCell(cell);
 			}
-
-			// -------------------------------------------------------------------------------------fin
-			// du tableau
+			
+			/////////////////////////////// fin du tableau//////////////////////
 
 			// With PdfWriter, the document is written to the ByteArrayOutputStream.
 			PdfWriter.getInstance(document, out);
 			// The table is inserted into the PDF document.
 			document.open();
+			
 			document.add(mytable);
 			// In order for the data to be written to the ByteArrayOutputStream, the
 			// document must be closed.
