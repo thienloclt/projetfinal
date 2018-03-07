@@ -1,16 +1,16 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Globals} from '../../../framework/globals';
 import {FormationService} from '../../../service/formation.service';
 import {Formation} from '../../../model/formation.model';
 import {Ordinateur} from '../../../model/ordinateur.model';
 import {OrdinateurService} from '../../../service/ordinateur.service';
-import {ProgressBarComponent} from '../../../framework/progress-bar/progress-bar.component';
 
 @Component({
   selector: 'app-formation-add-ordinateur',
   templateUrl: './formation-add-ordinateur.component.html',
   styleUrls: ['./formation-add-ordinateur.component.css']
 })
+
 export class FormationAddOrdinateurComponent implements OnInit {
 
   @Input() id: number;
@@ -19,6 +19,7 @@ export class FormationAddOrdinateurComponent implements OnInit {
   display: boolean = false;
 
   formation: Formation;
+
   sourceOrdinateurs: Ordinateur[];
   targetOrdinateurs: Ordinateur[];
 
@@ -29,8 +30,8 @@ export class FormationAddOrdinateurComponent implements OnInit {
   }
 
   loadData() {
-    this.sourceOrdinateurs = [];
-    this.targetOrdinateurs = [];
+    this.sourceOrdinateurs = null;
+    this.targetOrdinateurs = null;
 
     this.formationService.get(this.id).subscribe(objFromREST => {
       this.formation = objFromREST;

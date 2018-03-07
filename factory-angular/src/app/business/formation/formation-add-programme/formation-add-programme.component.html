@@ -1,19 +1,19 @@
 <button pButton type="button" (click)="showDialog()" icon="fa-file-text" class="btn btn-{{globals.theme}}"></button>
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate style="display:inline!important;"> <p-dialog header="Formation-Materiel" [(visible)]="display" [width]="600" modal="modal" [closeOnEscape]="false" [closable]="false">
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate style="display:inline!important;"> <p-dialog header="Adjouter un formateur à la formation" [(visible)]="display" [width]="600" modal="modal" [closeOnEscape]="false" [closable]="false">
 
   <div *ngIf="enseignements?.length > 0; else nothing;">
     <div class="form-group">
       <label>Formateur:</label>
       <select formControlName="enseignement" [compareWith]="equalsFormateur" [(ngModel)]="selectedEnseignement" class="form-control">
-        <option *ngFor="let e of enseignements" [ngValue]="e">{{e.formateur?.nom}} {{e.formateur?.prenom}} - {{e.niveau}}</option>
+        <option *ngFor="let e of enseignements" [ngValue]="e">{{e.formateur?.nom.toUpperCase()}} {{e.formateur?.prenom}} au niveau {{e.niveau}}</option>
       </select>
     </div>
   </div>
   <ng-template #nothing>Il n'y a plus d'auteurs dans la liste</ng-template>
 
   <p-footer>
-    <button type="submit" pButton icon="fa-check" label="Yes"></button>
-    <button type="button" pButton icon="fa-close" (click)="onCancel()" label="No"></button>
+    <button type="submit" pButton icon="fa-check" label="Oui"></button>
+    <button type="button" pButton icon="fa-close" (click)="onCancel()" label="Non"></button>
   </p-footer>
 
 </p-dialog>

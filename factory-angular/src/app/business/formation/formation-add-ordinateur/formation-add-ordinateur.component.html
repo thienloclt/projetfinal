@@ -1,26 +1,18 @@
 <button pButton type="button" (click)="showDialog()" label="Ordinateur" icon="fa-laptop" class="btn btn-{{globals.theme}} float-right"></button>
-<p-dialog header="Formation-Stagiaire" [(visible)]="display" [width]="800" modal="modal" [closeOnEscape]="false" [closable]="false">
-  <!--    <p-orderList [value]="cars">
-        <ng-template let-car pTemplate="item">
-          <div class="ui-helper-clearfix">
-            <img src="assets/images/add.png" style="display:inline-block; margin:2px 0 2px 2px;" width="40">
-            <div style="float:right; margin: 15px 0 0 0;;">{{car}}</div>
-          </div>
-        </ng-template>
-      </p-orderList>-->
+<p-dialog header="Ajouter des ordinateurs à la formation" [(visible)]="display" [width]="800" modal="modal" [closeOnEscape]="false" [closable]="false">
 
-  <p-pickList [source]="sourceOrdinateurs" [target]="targetOrdinateurs" [showSourceControls]="false" [showTargetControls]="false" sourceHeader="Available" targetHeader="Selected" [responsive]="true" filterBy="nom"
-              dragdrop="true" dragdropScope="ordinateurs" sourceFilterPlaceholder="Search by nom" targetFilterPlaceholder="Search by nom">
+  <p-pickList [source]="sourceOrdinateurs" [target]="targetOrdinateurs" [showSourceControls]="false" [showTargetControls]="false" sourceHeader="Disponible" targetHeader="Sélectionné" [responsive]="true" filterBy="nom"
+              dragdrop="true" dragdropScope="ordinateurs" sourceFilterPlaceholder="Chercher par nom" targetFilterPlaceholder="Chercher par nom">
     <ng-template let-ordinateur pTemplate="item">
       <div class="ui-helper-clearfix">
-        {{ordinateur.nom}} {{ordinateur.code}}
+        Code: {{ordinateur.code}}, nom: {{ordinateur.nom}}
       </div>
     </ng-template>
   </p-pickList>
 
   <p-footer>
-    <button type="button" pButton icon="fa-check" (click)="onSubmit()" label="Yes"></button>
-    <button type="button" pButton icon="fa-close" (click)="onCancel()" label="No"></button>
+    <button type="button" pButton icon="fa-check" (click)="onSubmit()" label="Oui"></button>
+    <button type="button" pButton icon="fa-close" (click)="onCancel()" label="Non"></button>
   </p-footer>
 </p-dialog>
 

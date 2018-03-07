@@ -10,6 +10,7 @@ import {Formation} from '../../../model/formation.model';
   templateUrl: './formation-add-stagiaire.component.html',
   styleUrls: ['./formation-add-stagiaire.component.css']
 })
+
 export class FormationAddStagiaireComponent implements OnInit {
 
   @Input() id: number;
@@ -27,8 +28,8 @@ export class FormationAddStagiaireComponent implements OnInit {
   }
 
   loadData() {
-    this.sourceStagiaires = [];
-    this.targetStagiaires = [];
+    this.sourceStagiaires = null;
+    this.targetStagiaires = null;
 
     this.formationService.get(this.id).subscribe(objFromREST => {
       this.formation = objFromREST;

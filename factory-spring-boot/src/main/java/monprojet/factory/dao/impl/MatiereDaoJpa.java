@@ -31,7 +31,7 @@ public class MatiereDaoJpa implements MatiereDao {
 	public List<Matiere> findByOutOfFormation(Integer formation_id) {
 		List<Matiere> list = null;
 
-		Query query = em.createQuery("SELECT m FROM Matiere m WHERE m NOT IN (SELECT p.matiere FROM Programme p, Formation f WHERE (p.formation = f) AND (f.id = :formation_id))");
+		Query query = em.createQuery("SELECT m FROM Matiere m WHERE m NOT IN (SELECT p.matiere FROM Programme p, Formation f WHERE (p.formation = f) AND (f.id = :formation_id)) ORDER BY m.nom ASC");
 		query.setParameter("formation_id", formation_id);
 		list = query.getResultList();	
 

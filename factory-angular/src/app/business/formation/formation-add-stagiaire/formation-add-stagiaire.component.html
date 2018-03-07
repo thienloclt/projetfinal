@@ -1,17 +1,17 @@
 <button pButton type="button" (click)="showDialog()" label="Stagiaire" icon="fa-child" class="btn btn-{{globals.theme}} float-right"></button>
-<p-dialog header="Formation-Stagiaire" [(visible)]="display" [width]="800" modal="modal" [closeOnEscape]="false" [closable]="false">
+<p-dialog header="Ajouter des stagiaires à la formation" [(visible)]="display" [width]="800" modal="modal" [closeOnEscape]="false" [closable]="false">
 
-    <p-pickList [source]="sourceStagiaires" [target]="targetStagiaires" [showSourceControls]="false" [showTargetControls]="false" sourceHeader="Available" targetHeader="Selected" [responsive]="true" filterBy="nom"
-                dragdrop="true" dragdropScope="stagiaires" sourceFilterPlaceholder="Search by nom" targetFilterPlaceholder="Search by nom">
+    <p-pickList [source]="sourceStagiaires" [target]="targetStagiaires" [showSourceControls]="false" [showTargetControls]="false" sourceHeader="Disponible" targetHeader="Sélectionné" [responsive]="true" filterBy="nom"
+                dragdrop="true" dragdropScope="stagiaires" sourceFilterPlaceholder="Chercher par nom" targetFilterPlaceholder="Chercher par nom">
       <ng-template let-stagiaire pTemplate="item">
         <div class="ui-helper-clearfix">
-          {{stagiaire.nom}} {{stagiaire.prenom}}
+          {{stagiaire.nom.toUpperCase()}} {{stagiaire.prenom}}
         </div>
       </ng-template>
     </p-pickList>
 
     <p-footer>
-      <button type="button" pButton icon="fa-check" (click)="onSubmit()" label="Yes"></button>
-      <button type="button" pButton icon="fa-close" (click)="onCancel()" label="No"></button>
+      <button type="button" pButton icon="fa-check" (click)="onSubmit()" label="Oui"></button>
+      <button type="button" pButton icon="fa-close" (click)="onCancel()" label="Non"></button>
     </p-footer>
 </p-dialog>

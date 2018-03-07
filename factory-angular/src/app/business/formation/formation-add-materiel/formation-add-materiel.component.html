@@ -5,7 +5,7 @@
       <div class="form-group">
         <label>Salle:</label>
         <select formControlName="salle" [compareWith]="equalsSalle" class="form-control">
-          <option *ngFor="let salle of salles" [ngValue]="salle">{{salle.nom}}</option>
+          <option *ngFor="let salle of salles" [ngValue]="salle">code: {{salle.code}}, nom: {{salle.nom}}</option>
         </select>
       </div>
     </div>
@@ -15,7 +15,7 @@
       <div class="form-group">
         <label>Projecteur:</label>
         <select formControlName="projecteur" [compareWith]="equalsProjecteur" class="form-control">
-          <option *ngFor="let projecteur of projecteurs" [ngValue]="projecteur">{{projecteur.nom}}</option>
+          <option *ngFor="let projecteur of projecteurs" [ngValue]="projecteur">code: {{projecteur.code}}, nom: {{projecteur.nom}}</option>
         </select>
       </div>
     </div>

@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormationService} from '../../../service/formation.service';
 import {Formation} from '../../../model/formation.model';
-import {FormBuilder} from '@angular/forms';
 import {Globals} from '../../../framework/globals';
 import {MatiereService} from '../../../service/matiere.service';
 import {ProgrammeService} from '../../../service/programme.service';
@@ -19,29 +18,32 @@ export class FormationAddMatiereComponent implements OnInit {
   @Output() eventemitter: EventEmitter<string> = new EventEmitter<string>();
   display: boolean = false;
 
-  obj: Formation;
+  formation: Formation;
+
   sourceMatieres: Matiere[];
   targetMatieres: Matiere[];
-  savedMatieres: number[];
+  savedMatiere_IDs: number[];
 
-  constructor(public globals: Globals, private fb: FormBuilder, private objService: FormationService, private matiereService: MatiereService, private programmeService: ProgrammeService) {
+  constructor(public globals: Globals, private formationService: FormationService, private matiereService: MatiereService, private programmeService: ProgrammeService) {
   }
 
   ngOnInit() {
   }
 
   loadData() {
-    this.sourceMatieres = [];
+    this.sourceMatieres = null;
     this.targetMatieres = [];
-    this.savedMatieres = [];
+    this.savedMatiere_IDs = [];
 
-    this.objService.get(this.id).subscribe(objFromREST => {
-      this.obj = objFromREST;
+    this.formationService.get(this.id).subscribe(objFromREST => {
+      this.formation = objFromREST;
+
       this.programmeService.getByFormation(this.id).subscribe(objsFromREST => {
-        this.obj.programmes = objsFromREST;
-        for(var e of this.obj.programmes) {
-          this.targetMatieres.push(e.matiere); //sorted
-          this.savedMatieres.push(e.matiere.id);
+        this.formation.programmes = objsFromREST;
+
+        for(var e of this.formation.programmes) {
+          this.targetMatieres.push(e.matiere); //sorted by field "ORDRE" par SQL
+          this.savedMatiere_IDs.push(e.matiere.id);
         }
       });
     });
@@ -49,12 +51,6 @@ export class FormationAddMatiereComponent implements OnInit {
     this.matiereService.getByOutOfFormation(this.id).subscribe(objsFromREST => {
       this.sourceMatieres = objsFromREST;
     });
-
-/*    this.matiereService.getByFormation(this.id).subscribe(objsFromREST => {
-      this.targetMatieres = objsFromREST;
-      for(var item of this.targetMatieres)
-        this.savedMatieres.push(item.id);
-    });*/
   }
 
   showDialog() {
@@ -64,16 +60,16 @@ export class FormationAddMatiereComponent implements OnInit {
 
   onSubmit() {
     let found: boolean = false;
-    for (var itemsaved of this.savedMatieres) {
+    for (var itemsaved of this.savedMatiere_IDs) {
       for (var itemnew of this.targetMatieres) {
         if (itemsaved === itemnew.id) {
           found = true;
         }
       }
       if (!found) {
-        for(var e of this.obj.programmes) {
+        for(var e of this.formation.programmes) {
           if (e.matiere.id === itemsaved) {
-            console.log('delete: ' + e.matiere.nom + ' ' + itemsaved);
+            console.log('delete: ' + e.matiere.nom);
             this.programmeService.delete(e.id).subscribe();
           }
         }
@@ -81,9 +77,9 @@ export class FormationAddMatiereComponent implements OnInit {
       found = false;
     }
 
-    let i = 1;
+    let ordre = 1;
     for (var itemnew of this.targetMatieres) {
-      for (var itemsaved of this.savedMatieres) {
+      for (var itemsaved of this.savedMatiere_IDs) {
         if (itemnew.id === itemsaved) {
           found = true;
         }
@@ -91,24 +87,24 @@ export class FormationAddMatiereComponent implements OnInit {
       if(!found) {
         let programme = new Programme();
         programme.matiere = itemnew;
-        programme.formation = this.obj;
-        programme.ordre = i;
-        console.log('add: ' + itemnew.nom + ' ' + itemnew.id);
+        programme.formation = this.formation;
+        programme.ordre = ordre;
+        console.log('add: ' + itemnew.nom);
         this.programmeService.add(programme).subscribe();
       }
       else {
-        for(var e of this.obj.programmes) {
+        for(var e of this.formation.programmes) {
           if (e.matiere.id === itemnew.id) {
-            console.log('update: ' + e.matiere.nom + ' ' + itemsaved);
+            console.log('update: ' + e.matiere.nom);
             let programme = new Programme();
             programme = e;
-            programme.ordre = i;
+            programme.ordre = ordre;
             this.programmeService.update(programme).subscribe();
           }
         }
       }
 
-      i++;
+      ordre++;
       found = false;
     }
 
