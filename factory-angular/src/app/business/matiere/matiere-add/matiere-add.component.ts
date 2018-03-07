@@ -22,6 +22,8 @@ export class MatiereAddComponent implements OnInit {
   couleur = Couleur;
   couleurs: any [];
 
+  color2: string = '#1976D2';
+
   //matieres: Array<Matiere> = [];
 
   enseignements: Array<Enseignement> = [];

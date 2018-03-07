@@ -5,8 +5,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +17,6 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import monprojet.factory.entity.enumeration.Couleur;
 import monprojet.framework.model.View;
 
 @Entity
@@ -42,9 +39,8 @@ public class Matiere {
 	
 	@Column
 	@NotNull
-	@Enumerated(EnumType.STRING)
 	@JsonView(View.Common.class)
-	private Couleur couleur;
+	private String couleur;
 	
 	@Column
 	@NotNull
@@ -81,7 +77,7 @@ public class Matiere {
 		super();
 	}
 
-	public Matiere(@Size(min = 2) @NotNull String nom, @NotNull Couleur couleur, @NotNull Integer duree,
+	public Matiere(@Size(min = 2) @NotNull String nom, @NotNull String couleur, @NotNull Integer duree,
 			@Size(min = 3) @NotNull String objectif, @Size(min = 3) @NotNull String prerequis,
 			@Size(min = 3) @NotNull String contenu) {
 		super();
@@ -117,11 +113,11 @@ public class Matiere {
 		this.nom = nom;
 	}
 
-	public Couleur getCouleur() {
+	public String getCouleur() {
 		return couleur;
 	}
 
-	public void setCouleur(Couleur couleur) {
+	public void setCouleur(String couleur) {
 		this.couleur = couleur;
 	}
 

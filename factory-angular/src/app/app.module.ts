@@ -7,7 +7,7 @@ import { DatePipe} from '@angular/common';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { TableModule} from 'primeng/table';
 import {
-  CalendarModule, ConfirmDialogModule, DropdownModule, OrderListModule, PickListModule, ProgressBarModule,
+  CalendarModule, ColorPickerModule, ConfirmDialogModule, DropdownModule, OrderListModule, PickListModule, ProgressBarModule,
   ScrollPanelModule
 } from 'primeng/primeng';
 import { SliderModule} from 'primeng/slider';
@@ -188,7 +188,8 @@ const routes: Routes = [
     DialogModule,
     DropdownModule,
     PickListModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    ColorPickerModule
   ],
 
   providers: [ConfirmationService, Globals, DatePipe, IncidentService, EnseignementService, FormateurService,

@@ -20,6 +20,12 @@ import monprojet.framework.model.View;
 @Entity
 @DiscriminatorValue(value = "Formateur")
 public class Formateur extends Personne {
+
+	@Size(min = 3)
+	@NotNull
+	@Column
+	@JsonView(View.Common.class)
+	private String titre;
 	
 	@Size(min = 3)
 	@NotNull
@@ -27,11 +33,6 @@ public class Formateur extends Personne {
 	@JsonView(View.Common.class)
 	private String competence;
 	
-	@Size(min = 3)
-	@NotNull
-	@Column
-	@JsonView(View.Common.class)
-	private String titre;
 	/*-----------------------------------------------------------------------------------*/
 	@OneToMany(mappedBy = "formateur", fetch = FetchType.EAGER)
 	@JsonView(View.ProgrammeJSON.class)

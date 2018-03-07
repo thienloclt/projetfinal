@@ -9,11 +9,11 @@
         <th style="width:6em"></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <ng-template pTemplate="body" let-rowData>
       <tr>
-        <td *ngFor="let col of columns">
-          {{rowData[col.field]}}
-        </td>
+
+
+
         <td>
           <button pButton icon="fa-search" (click)="detailObj(rowData)"></button>
           <button pButton icon="fa-trash" (click)="deleteObj(rowData)"></button>

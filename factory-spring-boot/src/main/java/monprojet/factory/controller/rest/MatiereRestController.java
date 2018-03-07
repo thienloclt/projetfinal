@@ -19,7 +19,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import monprojet.factory.dao.MatiereDao;
 import monprojet.factory.entity.Matiere;
-import monprojet.factory.entity.enumeration.Couleur;
 import monprojet.framework.model.View;
 
 @CrossOrigin
@@ -40,10 +39,10 @@ public class MatiereRestController {
 	@GetMapping("/test")
 	@JsonView(View.MatiereWithEveythingJSON.class)
 	public ResponseEntity<List<Matiere>> test() {
-		Matiere matiere1 = new Matiere("matiere1", Couleur.BLEU, 3, "objectif1", "prerequis1", "contenu1");
-		Matiere matiere2 = new Matiere("matiere2", Couleur.NOIR, 7, "objectif2", "prerequis2", "contenu2");
-		Matiere matiere3 = new Matiere("matiere3", Couleur.ROUGE, 10, "objectif3", "prerequis3", "contenu3");
-		Matiere matiere4 = new Matiere("matiere4", Couleur.ROUGE, 5, "objectif4", "prerequis4", "contenu4");
+		Matiere matiere1 = new Matiere("matiere1", "#d2194a", 3, "objectif1", "prerequis1", "contenu1");
+		Matiere matiere2 = new Matiere("matiere2", "#4119d2", 7, "objectif2", "prerequis2", "contenu2");
+		Matiere matiere3 = new Matiere("matiere3", "#19d25d", 10, "objectif3", "prerequis3", "contenu3");
+		Matiere matiere4 = new Matiere("matiere4", "#c9d219", 5, "objectif4", "prerequis4", "contenu4");
 		matiereDao.create(matiere1);
 		matiereDao.create(matiere2);
 		matiereDao.create(matiere3);
