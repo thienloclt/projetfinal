@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Globals} from '../../../framework/globals';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {FormationService} from '../../../service/formation.service';
 import {Projecteur} from '../../../model/projecteur.model';
 import {Salle} from '../../../model/salle.model';
@@ -13,6 +13,7 @@ import {Formation} from '../../../model/formation.model';
   templateUrl: './formation-add-materiel.component.html',
   styleUrls: ['./formation-add-materiel.component.css']
 })
+
 export class FormationAddMaterielComponent implements OnInit {
 
   @Input() id: number;
@@ -22,12 +23,15 @@ export class FormationAddMaterielComponent implements OnInit {
 
   myForm: FormGroup;
   formsubmitted: boolean = false;
-  obj: Formation;
 
-  salles: Array<Salle> = [];
-  projecteurs: Array<Projecteur> = [];
+  formation: Formation;
 
-  constructor(public globals: Globals, private fb: FormBuilder, private objService: FormationService, private salleService: SalleService, private projecteurService: ProjecteurService) {
+  salles: Salle[];
+  selectedSalle: Salle;
+  projecteurs: Projecteur[];
+  selectedProjecteur: Projecteur;
+
+  constructor(public globals: Globals, private fb: FormBuilder, private formationService: FormationService, private salleService: SalleService, private projecteurService: ProjecteurService) {
     this.myForm = this.fb.group({
       'salle': [null],
       'projecteur': [null]
@@ -35,10 +39,16 @@ export class FormationAddMaterielComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.objService.get(this.id).subscribe(objFromREST => {
-      this.obj = objFromREST;
-      this.myForm.controls['salle'].setValue(this.obj.salle);
-      this.myForm.controls['projecteur'].setValue(this.obj.projecteur);
+  }
+
+  loadData() {
+    this.salles = null;
+    this.projecteurs = null;
+
+    this.formationService.get(this.id).subscribe(objFromREST => {
+      this.formation = objFromREST;
+      this.myForm.controls['salle'].setValue(this.formation.salle);
+      this.myForm.controls['projecteur'].setValue(this.formation.projecteur);
     });
 
     this.salleService.list().subscribe(objsFromREST => {
@@ -51,21 +61,21 @@ export class FormationAddMaterielComponent implements OnInit {
   }
 
   showDialog() {
+    this.loadData();
     this.display = true;
   }
 
   onSubmit() {
-    this.obj.salle = this.myForm.controls['salle'].value;
-    this.obj.projecteur = this.myForm.controls['projecteur'].value;
+    this.formation.salle = this.myForm.controls['salle'].value;
+    this.formation.projecteur = this.myForm.controls['projecteur'].value;
 
-    this.objService.update(this.obj).subscribe(val => {
+    this.formationService.update(this.formation).subscribe(val => {
       this.eventemitter.emit('tranfere');
       this.display = false;
     });
   }
 
   onCancel() {
-    console.log('cancel');
     this.display = false;
   }
 

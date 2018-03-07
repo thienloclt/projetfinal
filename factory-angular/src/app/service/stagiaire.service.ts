@@ -17,11 +17,11 @@ export class StagiaireService {
   }
 
   getByOutOfFormation(id: number): Observable<any> {
-    return this.http.get(this.url + 'outofformation/' + id);
+    return this.http.get(this.url + 'ByOutOfFormation/' + id);
   }
 
   getByFormation(id: number): Observable<any> {
-    return this.http.get(this.url + 'formation/' + id);
+    return this.http.get(this.url + 'ByFormation/' + id);
   }
 
   get(id: number): Observable<any> {

@@ -26,7 +26,8 @@ export class MatiereListComponent implements OnInit {
       { field: 'couleur', header: 'couleur' },
       { field: 'duree', header: 'duree' },
       { field: 'objectif', header: 'objectif' },
-      { field: 'prerequis', header: 'prerequis' }
+      { field: 'prerequis', header: 'prerequis' },
+      { field: 'contenu', header: 'contenu' }
 
   ];
   }
