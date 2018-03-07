@@ -7,7 +7,7 @@ import {Globals, Themes} from '../globals';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  color: Themes = Themes.GREEN;
+  color: Themes = Themes.BLUE;
 
   constructor(public globals: Globals) { }
 

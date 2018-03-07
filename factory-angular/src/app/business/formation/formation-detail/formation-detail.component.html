@@ -1,19 +1,22 @@
 <div class="card border-{{globals.theme}} rounded-0 mb-3" style="margin-top: 10px">
-  <div class="card-header">titre: {{formation.titre}}</div>
+  <div class="card-header">{{formation.titre}}</div>
   <div class="card-body text-secondary">
-    <p class="card-text">id: {{formation.id}}</p>
-    <p class="card-text">dateDebut: {{formation.dateDebut}}</p>
-    <p class="card-text">dateFin: {{formation.dateFin}}</p>
-    <p class="card-text">gestionnaire: {{formation.gestionnaire != null ? formation.gestionnaire.nom : ''}}</p>
-    <p class="card-text">projecteur: {{formation.projecteur != null ? formation.projecteur.nom : ''}}</p>
-    <p class="card-text">salle: {{formation.salle != null ? formation.salle.nom : ''}}</p>
-    <p class="card-text">ordinateur: {{formation.ordinateurs?.length}}</p>
-      <ul *ngFor="let e of formation.ordinateurs">
-        <li>{{e?.nom}} {{e?.code}}</li>
-      </ul>
-    <p class="card-text">programmes: {{formation.programmes?.length}}</p>
+    <p class="card-text">Debut:    {{formation.dateDebut | date: 'dd/MM/yyyy'}}</p>
+    <p class="card-text">Fin:      {{formation.dateFin | date: 'dd/MM/yyyy'}}</p>
+    <p class="card-text">Gestionnaire:  {{formation.gestionnaire != null ? formation.gestionnaire.nom : ''}}</p>
+    <p class="card-text">Salle:         {{formation.salle != null ? formation.salle.nom : ''}}</p>
+    <p class="card-text">Projecteur:    {{formation.projecteur != null ? formation.projecteur.nom : ''}}</p>
+    <p class="card-text">Programmes:    {{formation.programmes?.length}}</p>
       <ul *ngFor="let e of formation.programmes">
         <li>{{e.matiere?.nom}} {{e.matiere?.couleur}} {{e.formateur?.nom}} <app-formation-add-programme [formation_id]="id" [programme_id]="e.id" [matiere_id]="e.matiere?.id" (eventemitter)="getFromChild($event)"></app-formation-add-programme></li>
+      </ul>
+    <p class="card-text">Stagiaires:    {{formation.stagiaires?.length}}</p>
+      <ul *ngFor="let e of formation.stagiaires">
+        <li>{{e?.nom}} {{e?.prenom}}</li>
+      </ul>
+    <p class="card-text">Ordinateurs:   {{formation.ordinateurs?.length}}</p>
+      <ul *ngFor="let e of formation.ordinateurs">
+        <li>{{e?.nom}} {{e?.code}}</li>
       </ul>
   </div>
   <div class="card-footer clearfix">
@@ -22,10 +25,11 @@
     </a>
     <button pButton type="button" label="Delete" (click)="deleteObj()" icon="fa-trash" class="btn btn-{{globals.theme}}"></button>
 
+    <app-formation-add-ordinateur [id]="id" (eventemitter)="getFromChild($event)"></app-formation-add-ordinateur>
     <app-formation-add-materiel [id]="id" (eventemitter)="getFromChild($event)"></app-formation-add-materiel>
-    <app-formation-add-matiere [id]="id" (eventemitter)="getFromChild($event)"></app-formation-add-matiere>
-    <app-formation-add-ordinateur [id]="id" (eventemitter)="getFromChildOrdinateur($event)"></app-formation-add-ordinateur>
     <app-formation-add-stagiaire [id]="id" (eventemitter)="getFromChild($event)"></app-formation-add-stagiaire>
+    <app-formation-add-matiere [id]="id" (eventemitter)="getFromChild($event)"></app-formation-add-matiere>
   </div>
 </div>
 <p-confirmDialog></p-confirmDialog>
+<app-progress-bar (eventemitter)="getFromChildProgressBar($event)"></app-progress-bar>
