@@ -3,15 +3,9 @@
   <div class="card-body text-secondary">
     <p class="card-text">id: {{obj.id}}</p>
     <p class="card-text">niveau: {{obj.niveau}}</p>
-    <p class="card-text">formateur: {{obj.formateur}}</p>
-    <p class="card-text">matière: {{obj.matiere }}</p>
+    <p class="card-text">formateur: {{obj.formateur.nom}}</p>
+    <p class="card-text">matière: {{obj.matiere.nom}}</p>
 
-    <ul *ngFor="let e of obj.formateur">
-      <li>{{e.formateur?.nom}} </li>
-    </ul>
-    <ul *ngFor="let p of obj.matieres">
-      <li>{{e.matiere?.nom}} </li>
-    </ul>
 
   </div>
   <div class="card-footer clearfix">

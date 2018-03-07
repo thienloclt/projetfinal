@@ -58,7 +58,7 @@ export class TechnicienListComponent implements OnInit {
   }
 
   detailObj(obj: Technicien) {
-    this.router.navigateByUrl('/formation/' + obj.id);
+    this.router.navigateByUrl('/technicien/' + obj.id);
   }
 
   deleteObj(obj: Technicien) {

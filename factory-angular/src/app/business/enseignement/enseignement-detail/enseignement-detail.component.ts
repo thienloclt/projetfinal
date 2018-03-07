@@ -26,10 +26,16 @@ export class EnseignementDetailComponent implements OnInit {
   obj = new Enseignement();
   formsubmitted: boolean = false;
 
+  enseignement: Enseignement;
+
+
   formateur:Formateur;
+  formateurs: Array<Formateur> = [];
 
   matiere: Matiere;
-  constructor(public globals: Globals, private route: ActivatedRoute, private router: Router, private objService: FormationService, private allocationService: AllocationService, private confirmationService: ConfirmationService) {
+  matieres: Array<Matiere> = [];
+
+  constructor(public globals: Globals, private route: ActivatedRoute, private router: Router, private objService: EnseignementService, private allocationService: AllocationService, private confirmationService: ConfirmationService) {
   }
 
   ngOnInit() {

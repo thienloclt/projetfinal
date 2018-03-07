@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ConfirmationService} from 'primeng/api';
 import {Gestionnaire} from '../../../model/gestionnaire.model';
 import {GestionnaireService} from '../../../service/gestionnaire.service';
+import {ProgrammeService} from '../../../service/programme.service';
 
 @Component({
   selector: 'app-gestionnaire-detail',
@@ -14,17 +15,17 @@ import {GestionnaireService} from '../../../service/gestionnaire.service';
 })
 export class GestionnaireDetailComponent implements OnInit {
   id: number;
-  obj = Gestionnaire;
+  obj = new Gestionnaire();
 
-  constructor(public globals: Globals, private route: ActivatedRoute, private router: Router, private objService: GestionnaireService, private confirmationService: ConfirmationService) {
-    route.params.subscribe(param => {
-      this.id = param['id'];
-    });
+  constructor(public globals: Globals, private route: ActivatedRoute, private router: Router, private objService: GestionnaireService,
+              private programmeService: ProgrammeService, private confirmationService: ConfirmationService) {
   }
 
+
   ngOnInit() {
-    this.objService.get(this.id).subscribe(objFromREST => {
-      this.obj = objFromREST;
+    this.route.params.subscribe(param => {
+      this.id = param['id'];
+      this.getObj();
     });
   }
 
@@ -41,5 +42,20 @@ export class GestionnaireDetailComponent implements OnInit {
       reject: () => {
       }
     });
+  }
+
+  getObj() {
+    this.objService.get(this.id).subscribe(objFromREST => {
+      this.obj = objFromREST;
+      this.programmeService.getByFormation(this.id).subscribe(objsFromREST => {
+        this.obj.formations = objsFromREST;
+      });
+
+      console.log(this.obj);
+    });
+  }
+
+  getFromChild(event) {
+    this.getObj();
   }
 }

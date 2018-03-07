@@ -14,7 +14,7 @@
         <!--<td *ngFor="let col of columns">-->
           <!--{{rowData[col.field]}}-->
         <!--</td>-->
-    <ng-template pTemplate="body" let-enseignement>
+    <ng-template pTemplate="body" let-rowData let-enseignement>
       <tr>
       <td>{{enseignement.id}}</td>
       <td>{{enseignement.niveau}}</td>

@@ -9,10 +9,29 @@
         <th style="width:6em"></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
+
+        <ng-template pTemplate="body" let-rowData >
       <tr>
-        <td *ngFor="let col of columns">
-          {{rowData[col.field]}}
+        <td>
+          {{rowData['id']}}
+        </td>
+        <td>
+          {{rowData['nom']}}
+        </td>
+        <td>
+          {{rowData['prenom']}}
+        </td>
+        <td>
+          {{rowData['dateNaissance']  | date: 'dd/MM/yyyy' }}
+        </td>
+        <td>
+          {{rowData['adresse']}}
+        </td>
+        <td>
+          {{rowData['email']}}
+        </td>
+        <td>
+          {{rowData['numTel']}}
         </td>
         <td>
           <button pButton icon="fa-search" (click)="detailObj(rowData)"></button>

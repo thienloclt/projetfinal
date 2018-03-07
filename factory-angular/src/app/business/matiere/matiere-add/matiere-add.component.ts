@@ -8,6 +8,7 @@ import {ProgrammeService} from '../../../service/programme.service';
 import {EnseignementService} from '../../../service/enseignement.service';
 import {Enseignement} from '../../../model/enseignement.model';
 import {Programme} from '../../../model/programme.model';
+import {stringDistance} from 'codelyzer/util/utils';
 
 @Component({
   selector: 'app-matiere-add',
@@ -19,7 +20,7 @@ export class MatiereAddComponent implements OnInit {
   myForm: FormGroup;
   formsubmitted : boolean = false;
 
-  couleur = Couleur;
+  couleur: string;
   couleurs: any [];
 
   color2: string = '#1976D2';
@@ -62,7 +63,7 @@ export class MatiereAddComponent implements OnInit {
       'enseignements' : [''],
     });
 
-    this.couleurs = Object.keys(this.couleur).filter(String);
+   
   }
 
   ngOnInit() {
