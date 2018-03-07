@@ -1,8 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {SortEvent} from 'primeng/api';
+import {ConfirmationService, SortEvent} from 'primeng/api';
 import {DatePipe} from '@angular/common';
 import {SalleService} from '../../../service/salle.service';
 import {Salle} from '../../../model/salle.model';
+import {Router} from '@angular/router';
+
+
 
 @Component({
   selector: 'app-salle-list',
@@ -12,26 +15,23 @@ import {Salle} from '../../../model/salle.model';
 export class SalleListComponent implements OnInit {
   objs: Array<Salle> = [];
   cols: any[];
-  value: number = 20;
 
-  constructor(private objservice: SalleService, private datePipe: DatePipe) {}
+
+  constructor(private objService: SalleService, private datePipe: DatePipe, private confirmationService: ConfirmationService, private router: Router) {}
 
   ngOnInit() {
     this.getList();
     this.cols = [
       { field: 'id', header: '#' },
-      { field: 'nom', header: 'Nom' },
-      { field: 'email', header: 'Email' },
-      { field: 'level', header: 'level' },
-      { field: 'type', header: 'Type' },
-      { field: 'progress', header: 'Progress' },
-      { field: 'dateCreation', header: 'Progress' },
-      { field: 'dateModification', header: 'Progress' },
+      { field: 'code', header: 'code' },
+      { field: 'nom', header: 'nom' },
+      { field:'capacite', header:'capacite' },
+      { field: 'coutJournalier', header: 'coutJournalier' }
     ];
   }
 
   getList() {
-    this.objservice.list().subscribe(objsFromREST => {
+    this.objService.list().subscribe(objsFromREST => {
       this.objs = objsFromREST;
     });
   }
@@ -54,6 +54,32 @@ export class SalleListComponent implements OnInit {
         result = (value1 < value2) ? -1 : (value1 > value2) ? 1 : 0;
 
       return (event.order * result);
+    });
+  }
+
+  detailObj(obj: Salle) {
+    this.router.navigateByUrl('/salle/' + obj.id);
+  }
+
+  deleteObj(obj: Salle) {
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'fa fa-trash',
+      accept: () => {
+        this.objService.delete(obj.id).subscribe( value => {
+          let index = -1;
+          for (let i = 0; i < this.objs.length; i++) {
+            if (this.objs[i].id === obj.id) {
+              index = i;
+              break;
+            }
+          }
+          this.objs.splice(index, 1);
+        });
+      },
+      reject: () => {
+      }
     });
   }
 }
