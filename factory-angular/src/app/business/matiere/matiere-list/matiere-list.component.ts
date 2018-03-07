@@ -23,9 +23,12 @@ export class MatiereListComponent implements OnInit {
     this.cols = [
       { field: 'id', header: '#' },
       { field: 'nom', header: 'nom' },
-      { field: 'dateDebut', header: 'dateDebut' },
-      { field: 'dateFin', header: 'dateFin' }
-    ];
+      { field: 'couleur', header: 'couleur' },
+      { field: 'duree', header: 'duree' },
+      { field: 'objectif', header: 'objectif' },
+      { field: 'prerequis', header: 'prerequis' }
+
+  ];
   }
 
   getList() {
@@ -56,7 +59,7 @@ export class MatiereListComponent implements OnInit {
   }
 
   detailObj(obj: Matiere) {
-    this.router.navigateByUrl('/formation/' + obj.id);
+    this.router.navigateByUrl('/matiere/' + obj.id);
   }
 
   deleteObj(obj: Matiere) {

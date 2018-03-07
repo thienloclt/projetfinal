@@ -1,3 +1,28 @@
-<p>
-  matiere-detail works!
-</p>
+<div class="card border-{{globals.theme}} rounded-0 mb-3" style="margin-top: 10px">
+  <div class="card-header">titre: {{obj.nom}}</div>
+  <div class="card-body text-secondary">
+    <p class="card-text">id: {{obj.id}}</p>
+    <p class="card-text">nom: {{obj.nom}}</p>
+    <p class="card-text">couleur: {{obj.couleur}}</p>
+    <p class="card-text">durée: {{obj.duree }}</p>
+    <p class="card-text">objectif: {{obj.objectif}}</p>
+    <p class="card-text">prérequis: {{obj.prerequis}}</p>
+    <ul *ngFor="let a of obj.programmes">
+      <li>{{a?.titre}} </li>
+    </ul>
+    <ul *ngFor="let a of obj.enseignements">
+      <li>{{a?.niveau}} </li>
+    </ul>
+
+  </div>
+  <div class="card-footer clearfix">
+    <a [routerLink]="['/matiere-edit', obj.id]">
+      <button pButton type="button" label="Edit" icon="fa-edit" class="btn btn-{{globals.theme}}"></button>
+    </a>
+    <button pButton type="button" label="Delete" (click)="deleteObj()" icon="fa-trash" class="btn btn-{{globals.theme}}"></button>
+
+
+    <app-formation-add-stagiaire [id]="id" (eventemitter)="getFromChild($event)"></app-formation-add-stagiaire>
+  </div>
+</div>
+<p-confirmDialog></p-confirmDialog>

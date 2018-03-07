@@ -1,3 +1,25 @@
-<p>
-  salle-detail works!
-</p>
+<div class="card border-{{globals.theme}} rounded-0 mb-3" style="margin-top: 10px">
+  <div class="card-header">titre: {{obj.nom}}</div>
+  <div class="card-body text-secondary">
+    <p class="card-text">id: {{obj.id}}</p>
+    <p class="card-text">code: {{obj.code}}</p>
+    <p class="card-text">nom: {{obj.nom}}</p>
+    <p class="card-text">code: {{obj.capacite}}</p>
+    <p class="card-text">coût journalier: {{obj.coutJournalier }}</p>
+    <p class="card-text">formation: {{obj.formations?.length}}</p>
+    <ul *ngFor="let a of obj.formations">
+      <li>{{a?.titre}} {{a?.id}} </li>
+    </ul>
+
+  </div>
+  <div class="card-footer clearfix">
+    <a [routerLink]="['/salle-edit', obj.id]">
+      <button pButton type="button" label="Edit" icon="fa-edit" class="btn btn-{{globals.theme}}"></button>
+    </a>
+    <button pButton type="button" label="Delete" (click)="deleteObj()" icon="fa-trash" class="btn btn-{{globals.theme}}"></button>
+
+
+    <app-formation-add-materiel [id]="id" (eventemitter)="getFromChild($event)"></app-formation-add-materiel>
+  </div>
+</div>
+<p-confirmDialog></p-confirmDialog>
