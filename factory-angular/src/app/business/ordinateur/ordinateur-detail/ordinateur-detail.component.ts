@@ -35,7 +35,7 @@ export class OrdinateurDetailComponent implements OnInit {
       icon: 'fa fa-trash',
       accept: () => {
         this.objService.delete(this.id).subscribe( value => {
-          this.router.navigateByUrl('/formation');
+          this.router.navigateByUrl('/ordinateur');
         });
       },
       reject: () => {

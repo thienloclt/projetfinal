@@ -4,14 +4,15 @@
     <p class="card-text">id: {{obj.id}}</p>
     <p class="card-text">prenom: {{obj.prenom}}</p>
     <p class="card-text">nom: {{obj.nom}}</p>
-    <p class="card-text">allocation: {{obj.allocations != null ? obj.allocations.ordinateur : ''}}</p>
-    <p class="card-text">date de naissance: {{obj.dateNaissance }}</p>
+    <p class="card-text">formation: {{obj.formations != null ? obj.formations.length : ''}}</p>
+    <ul *ngFor="let e of obj.formations">
+      <li>titre de la formation: {{e?.titre}} </li>
+    </ul>
+    <p class="card-text">date de naissance: {{obj.dateNaissance | date: 'dd/MM/yyyy' }}</p>
     <p class="card-text">tel: {{obj.numTel}}</p>
     <p class="card-text">email: {{obj.email}}</p>
     <p class="card-text">adresse: {{obj.adresse}}</p>
-    <ul *ngFor="let e of obj.allocations">
-      <li>{{e.stagiaire?.allocations}} </li>
-    </ul>
+
 
   </div>
   <div class="card-footer clearfix">
