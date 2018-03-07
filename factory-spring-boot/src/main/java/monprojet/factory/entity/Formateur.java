@@ -26,7 +26,13 @@ public class Formateur extends Personne {
 	@Column
 	@JsonView(View.Common.class)
 	private String competence;
-/*-----------------------------------------------------------------------------------*/
+	
+	@Size(min = 3)
+	@NotNull
+	@Column
+	@JsonView(View.Common.class)
+	private String titre;
+	/*-----------------------------------------------------------------------------------*/
 	@OneToMany(mappedBy = "formateur", fetch = FetchType.EAGER)
 	@JsonView(View.ProgrammeJSON.class)
 	private Set<Programme> programmes = new HashSet<Programme>();
@@ -40,9 +46,10 @@ public class Formateur extends Personne {
 	}
 	
 	public Formateur(@Size(min = 3) @NotNull String nom, @Size(min = 3) @NotNull String prenom, Date dateNaissance,
-			String adresse, @Email String email, String numTel, @Size(min = 3) @NotNull String competence) {
+			String adresse, @Email String email, String numTel, @Size(min = 3) @NotNull String competence, @Size(min = 3) @NotNull String titre) {
 		super(nom, prenom, dateNaissance, adresse, email, numTel);
 		this.competence = competence;
+		this.titre = titre;
 	}
 
 	public String getCompetence() {
@@ -53,6 +60,15 @@ public class Formateur extends Personne {
 		this.competence = competence;
 	}
 
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+	
+	
 	public Set<Programme> getProgrammes() {
 		return programmes;
 	}
