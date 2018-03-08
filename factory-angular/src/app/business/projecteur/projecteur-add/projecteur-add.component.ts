@@ -51,6 +51,11 @@ export class ProjecteurAddComponent implements OnInit {
 
 
       if (this.id) {
+        obj.id = this.id;
+        this.objService.update(obj).subscribe(val => {
+
+          this.router.navigateByUrl('/projecteur');
+        });
       } else {
         this.objService.add(obj).subscribe(val => {
           this.router.navigateByUrl('/projecteur');

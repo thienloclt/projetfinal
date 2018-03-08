@@ -78,16 +78,18 @@ export class MatiereAddComponent implements OnInit {
       obj = this.myForm.value;
 
       if (this.id) {
-      } else {
-        this.objService.add(obj).subscribe(val => {
+        obj.id = this.id;
+        this.objService.update(obj).subscribe(val => {
+
           this.router.navigateByUrl('/matiere');
         });
-      // } else {
-      //   this.matiereService.add(matiere).subscribe(val => {
-      //     this.msgs = [];
-      //     this.msgs.push({ severity: 'info', summary: 'Matiere Added', detail: 'Saved!!!' });
-      //     this.router.navigateByUrl('/matiere');
-       // });
+
+      } else {
+        this.objService.add(obj).subscribe(val => {
+
+          this.router.navigateByUrl('/matiere');
+        });
+
       }
     }
   }

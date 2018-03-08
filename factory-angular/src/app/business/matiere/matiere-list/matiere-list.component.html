@@ -15,15 +15,11 @@
           {{rowData['id']}}
         </td>
         <td>
-          {{rowData['nom']}}
+         {{rowData['nom']}}
         </td>
-        <!--<td>-->
 
-          <!--<p-colorPicker [(ngModel)]='couleur'></p-colorPicker>-->
-        <!--</td>-->
-
-        <td class="colo">
-          {{rowData['couleur']}}
+        <td>
+          <span [ngStyle]="{'color': rowData['couleur']}">{{rowData['couleur']}}</span>
         </td>
         <td>
           {{rowData['duree']}}

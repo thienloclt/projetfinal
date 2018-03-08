@@ -74,8 +74,13 @@ export class FormateurAddComponent implements OnInit {
       obj = this.myForm.value;
 
 
-      console.log(obj);
+
       if (this.id) {
+        obj.id = this.id;
+        this.objService.update(obj).subscribe(val => {
+
+          this.router.navigateByUrl('/formateur');
+        });
       } else {
         this.objService.add(obj).subscribe(val => {
 
