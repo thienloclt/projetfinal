@@ -46,16 +46,16 @@ export class FormateurAddComponent implements OnInit {
     });
 
     this.myForm = this.fb.group({
-      'id': [null],
+      'id': [''],
       'nom': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       'prenom': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       'competence': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'titre': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       'dateNaissance': [''],
       'adresse': [''],
       'email': ['', Validators.compose([Validators.email])],
       'numTel': [''],
-      'enseignement': [null],
-      'programme': [null]
+      'enseignement': ['']
     });
   }
 

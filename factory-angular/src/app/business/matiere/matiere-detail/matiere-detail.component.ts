@@ -20,7 +20,7 @@ import {MatiereService} from '../../../service/matiere.service';
 export class MatiereDetailComponent implements OnInit {
   id: number;
   obj = new Matiere();
-
+couleur:string;
   enseignements: Array<Enseignement> = [];
 
   programmes:Array<Programme> = [];

@@ -20,7 +20,7 @@ export class MatiereAddComponent implements OnInit {
   myForm: FormGroup;
   formsubmitted : boolean = false;
 
-  couleur: string;
+
   couleurs: any [];
 
   color2: string = '#1976D2';
@@ -58,9 +58,8 @@ export class MatiereAddComponent implements OnInit {
       'duree': ['', Validators.compose([Validators.required])],
       'objectif': ['', Validators.compose([Validators.required])],
       'prerequis': ['', Validators.compose([Validators.required])],
-      'contenu': ['', Validators.compose([Validators.required])],
-      'programmes' : [''],
-      'enseignements' : [''],
+      'contenu': ['', Validators.compose([Validators.required])]
+
     });
 
 
