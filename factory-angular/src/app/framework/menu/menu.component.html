@@ -16,7 +16,12 @@
 
     <li class="list-group-item list-group-item-info"><a [routerLink] = "['/gestionnaire']"><i class="fa fa-user"></i> Gestionnaire</a></li>
     <li class="list-group-item list-group-item-info"><a [routerLink] = "['/technicien']"><i class="fa fa-linux"></i> Technicien</a></li>
-
-    <li class="list-group-item list-group-item-info"><a href=""><i class="fa fa-lock"></i> S'enregistrer</a></li>
+    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/technicien']"><i class="fa fa-search"></i> Rapport</a></li>
+    <ul class="list-group list-group-flush text-dark">
+        <li class="list-group-item list-group-item-info"><a [routerLink] = "['/technicien']">&nbsp;&nbsp;&nbsp;<i class="fa fa-calendar"></i> D’occupation	des	salles</a></li>
+        <li class="list-group-item list-group-item-info"><a [routerLink] = "['/technicien']">&nbsp;&nbsp;&nbsp;<i class="fa fa-calendar-minus-o"></i> Technicien</a></li>
+        <li class="list-group-item list-group-item-info"><a [routerLink] = "['/technicien']">&nbsp;&nbsp;&nbsp;<i class="fa fa-linux"></i> Technicien</a></li>
+      </ul>
+        <li class="list-group-item list-group-item-info"><a href=""><i class="fa fa-lock"></i> S'enregistrer</a></li>
   </ul>
 </div>

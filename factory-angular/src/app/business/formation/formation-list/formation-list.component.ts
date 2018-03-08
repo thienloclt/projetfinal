@@ -78,4 +78,8 @@ export class FormationListComponent implements OnInit {
       }
     });
   }
+
+  getFromChild(event) {
+    this.getList();
+  }
 }

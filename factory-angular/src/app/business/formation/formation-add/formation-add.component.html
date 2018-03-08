@@ -1,54 +1,54 @@
-<div class="card border-{{globals.theme}}">
-  <div class="card-header">Edition</div>
-  <div class="card-body" style="padding-bottom: 0;">
-    <!--Begin Error Message-->
-    <div *ngIf="!myForm.valid && formsubmitted" class="ui error message">
-      <div class="alert alert-secondary" role="alert">
-        <!-----------Begin Modifier pour alert erreur --------------------------------------------------->
-        <div *ngIf="!myForm.controls['titre'].valid " class="ui error message">titre is invalid</div>
-        <div *ngIf="myForm.controls['titre'].hasError('required')" class="ui error message">titre is required</div>
+<button pButton type="button" (click)="showDialog()" label="Ajouter" icon="fa-plus" class="btn btn-{{globals.theme}}" style="margin-top: 10px;"></button>
+<p-dialog header="Ajouter des matieres à la formation" [(visible)]="display" [width]="600" modal="modal" [closeOnEscape]="false" [closable]="false">
 
-        <div *ngIf="!myForm.controls['titre'].valid " class="ui error message">titre is invalid</div>
-        <div *ngIf="myForm.controls['titre'].hasError('required')" class="ui error message">titre is required</div>
+  <!--Begin Error Message-->
+  <div *ngIf="!myForm.valid && formsubmitted" class="ui error message">
+    <div class="alert alert-secondary" role="alert">
+      <!-----------Begin Modifier pour alert erreur --------------------------------------------------->
+      <div *ngIf="!myForm.controls['titre'].valid " class="ui error message">titre is invalid</div>
+      <div *ngIf="myForm.controls['titre'].hasError('required')" class="ui error message">titre is required</div>
 
-        <div *ngIf="!myForm.controls['dateFin'].valid " class="ui error message">dateFin is invalid</div>
-        <div *ngIf="myForm.controls['dateFin'].hasError('required')" class="ui error message">dateFin is required</div>
-        <!-----------End Modifier pour alert erreur --------------------------------------------------->
-      </div>
+      <div *ngIf="!myForm.controls['dateDebut'].valid " class="ui error message">dateDebut is invalid</div>
+      <div *ngIf="myForm.controls['dateDebut'].hasError('required')" class="ui error message">dateDebut is required</div>
+      <!-----------End Modifier pour alert erreur --------------------------------------------------->
     </div>
-    <!--End Error Message-->
-    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
-      <input formControlName="id" type="hidden" class="form-control"/>
-      <div class="modal-body" style="padding-top: 0;">
-        <!-----------Begin Modifier pour la forme --------------------------------------------------->
-        <div class="form-group">
-          <label>Titre *</label>
-          <input formControlName="titre" required class="form-control"/>
-        </div>
-        <div class="form-group">
-          <label>Date debut *</label>
-          <p-calendar formControlName="dateDebut" [(ngModel)]="dateDebut" [showIcon]="true" required class="form-control"></p-calendar>
-        </div>
-        <div class="form-group">
-          <label>Date fin *</label>
-          <p-calendar formControlName="dateFin" [(ngModel)]="dateFin" [showIcon]="true" required class="form-control"></p-calendar>
-        </div>
-        <div *ngIf="gestionnaires?.length > 0; else nothing;">
-          <div class="form-group">
-            <label>Gestionnaire:</label>
-            <select formControlName="gestionnaire" [(ngModel)]="selectedGestionnaire" class="form-control">
-              <option *ngFor="let gestionnaire of gestionnaires" [ngValue]="gestionnaire">{{gestionnaire.nom}}</option>
-            </select>
-          </div>
-        </div>
-        <ng-template #nothing>Il n'y a plus des gestionnaires dans la liste</ng-template>
-        <!-----------End Modifier pour la forme --------------------------------------------------->
-        <input type="hidden" path="id" />
-      </div>
-      <div class="modal-footer">
-        <button pButton type="submit" label="Edit" icon="fa-check" class="btn btn-{{globals.theme}}"></button>
-        <button pButton type="reset" label="Delete" icon="fa-refresh" class="btn btn-{{globals.theme}}"></button>
-      </div>
-    </form>
   </div>
-</div>
+  <!--End Error Message-->
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
+    <input formControlName="id" type="hidden" class="form-control"/>
+    <div class="modal-body" style="padding-top: 0;">
+      <!-----------Begin Modifier pour la forme --------------------------------------------------->
+      <div class="form-group">
+        <label>Titre *</label>
+        <input formControlName="titre" required class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label>Date debut *</label>
+        <p-calendar formControlName="dateDebut" [(ngModel)]="dateDebut" [showIcon]="true" required class="form-control"></p-calendar>
+      </div>
+      <div class="form-group">
+        <label>Date fin *</label>
+        <p-calendar formControlName="dateFin" [(ngModel)]="dateFin" [showIcon]="true" required class="form-control"></p-calendar>
+      </div>
+      <div *ngIf="gestionnaires?.length > 0; else nothing;">
+        <div class="form-group">
+          <label>Gestionnaire:</label>
+          <select formControlName="gestionnaire" [(ngModel)]="selectedGestionnaire" class="form-control">
+            <option *ngFor="let gestionnaire of gestionnaires" [ngValue]="gestionnaire">{{gestionnaire.nom}}</option>
+          </select>
+        </div>
+      </div>
+      <ng-template #nothing>Il n'y a plus des gestionnaires dans la liste</ng-template>
+      <!-----------End Modifier pour la forme --------------------------------------------------->
+      <input type="hidden" path="id" />
+    </div>
+  </form>
+
+  <p-footer>
+    <button type="button" pButton icon="fa-check" (click)="onSubmit()" label="Oui"></button>
+    <button type="button" pButton icon="fa-close" (click)="onCancel()" label="Non"></button>
+
+<!--    <button pButton type="submit" label="Edit" icon="fa-check" class="btn btn-{{globals.theme}}"></button>
+    <button pButton type="reset" label="Delete" icon="fa-refresh" class="btn btn-{{globals.theme}}"></button>-->
+  </p-footer>
+</p-dialog>

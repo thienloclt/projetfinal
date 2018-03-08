@@ -25,9 +25,9 @@
   </div>
   <div class="card-footer clearfix">
     <a [routerLink]="['/formation-edit', formation.id]">
-      <button pButton type="button" label="Edit" icon="fa-edit" class="btn btn-{{globals.theme}}"></button>
+      <button pButton type="button" label="Modifier" icon="fa-edit" class="btn btn-{{globals.theme}}"></button>
     </a>
-    <button pButton type="button" label="Delete" (click)="deleteObj()" icon="fa-trash" class="btn btn-{{globals.theme}}"></button>
+    <button pButton type="button" label="Supprimer" (click)="deleteObj()" icon="fa-trash" class="btn btn-{{globals.theme}}"></button>
 
     <app-formation-add-ordinateur [id]="id" (eventemitter)="getFromChild($event)"></app-formation-add-ordinateur>
     <app-formation-add-materiel [id]="id" (eventemitter)="getFromChild($event)"></app-formation-add-materiel>
