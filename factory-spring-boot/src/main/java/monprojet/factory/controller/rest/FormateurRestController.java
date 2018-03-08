@@ -42,10 +42,10 @@ public class FormateurRestController {
 	@JsonView(View.FormateurWithEveythingJSON.class)
 	public ResponseEntity<List<Formateur>> test() {
 		try {
-			Formateur formateur1 = new Formateur("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel", "competence", "titre");
-			Formateur formateur2 = new Formateur("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel", "competence", "titre");
-			Formateur formateur3 = new Formateur("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel", "competence", "titre");
-			Formateur formateur4 = new Formateur("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel", "competence", "titre");
+			Formateur formateur1 = new Formateur("LHOMME", "Thomas", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1985"), "adresse", "email@gmail.com", "numTel", "competence", "Formateur JEE");
+			Formateur formateur2 = new Formateur("SULTAN", "Eric", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1978"), "adresse", "email@gmail.com", "numTel", "competence", "Formateur JEE");
+			Formateur formateur3 = new Formateur("GOZLAN", "Olivier", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1975"), "adresse", "email@gmail.com", "numTel", "competence", "Formateur JEE");
+			Formateur formateur4 = new Formateur("RAZON", "Didier", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1956"), "adresse", "email@gmail.com", "numTel", "competence", "Coach Management");
 			formateurDao.create(formateur1);
 			formateurDao.create(formateur2);
 			formateurDao.create(formateur3);
