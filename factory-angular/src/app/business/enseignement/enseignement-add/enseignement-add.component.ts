@@ -74,6 +74,11 @@ export class EnseignementAddComponent implements OnInit {
 
       console.log(obj);
       if (this.id) {
+        obj.id = this.id;
+        this.objService.update(obj).subscribe(val => {
+
+          this.router.navigateByUrl('/enseignement');
+        });
       } else {
         this.objService.add(obj).subscribe(val => {
           this.router.navigateByUrl('/enseignement');

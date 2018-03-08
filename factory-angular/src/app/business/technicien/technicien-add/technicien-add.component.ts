@@ -53,19 +53,14 @@ export class TechnicienAddComponent implements OnInit {
       obj = this.myForm.value;
 
 
-      /*      let centreEquestres: CentreEquestre[];
-        centreEquestres = this.myForm.controls['centreEquestre'].value;
-        for (let i = 0; i < centreEquestres.length; i++) {
-        }*/
 
-
-      //     let centreEquestres: CentreEquestre[];
-      //     centreEquestres = this.centreequestres.filter(value => value.id === parseInt(this.myForm.controls['centreEquestre'].value));
-      //     cheval.centreEquestre = centreEquestres[0];
-
-      //incident.centreEquestre = this.myForm.controls['centreEquestre'].value;
 
       if (this.id) {
+        obj.id = this.id;
+        this.objService.update(obj).subscribe(val => {
+
+          this.router.navigateByUrl('/technicien');
+        });
       } else {
         this.objService.add(obj).subscribe(val => {
           this.router.navigateByUrl('/technicien');

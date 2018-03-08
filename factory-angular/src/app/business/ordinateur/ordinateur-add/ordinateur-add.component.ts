@@ -17,7 +17,7 @@ export class OrdinateurAddComponent implements OnInit {
   myForm: FormGroup;
   formsubmitted: boolean = false;
 
-  cars: ['aaaaa', 'bbbb', 'ccccc'];
+
 
   constructor(public globals: Globals, private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
               private objService: OrdinateurService) {
@@ -40,8 +40,6 @@ export class OrdinateurAddComponent implements OnInit {
 
   ngOnInit() {
 
-    this.cars = ['aaaaa', 'bbbb', 'ccccc'];
-
     if (this.id) {
     }
   }
@@ -53,9 +51,14 @@ export class OrdinateurAddComponent implements OnInit {
       let obj: Ordinateur;
       obj = this.myForm.value;
 
-      console.log(obj);
-      console.log(this.cars);
+
+
       if (this.id) {
+        obj.id = this.id;
+        this.objService.update(obj).subscribe(val => {
+
+          this.router.navigateByUrl('/ordinateur');
+        });
       } else {
         this.objService.add(obj).subscribe(val => {
           this.router.navigateByUrl('/ordinateur');
