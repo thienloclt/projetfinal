@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ConfirmationService, SortEvent} from 'primeng/api';
 import {DatePipe} from '@angular/common';
 import {Formation} from '../../../model/formation.model';
 import {FormationService} from '../../../service/formation.service';
 import {Router} from '@angular/router';
+import {FormationAddComponent} from '../formation-add/formation-add.component';
+import {ProgressBarComponent} from '../../../framework/progress-bar/progress-bar.component';
 
 @Component({
   selector: 'app-formation-list',
@@ -11,6 +13,10 @@ import {Router} from '@angular/router';
   styleUrls: ['./formation-list.component.css']
 })
 export class FormationListComponent implements OnInit {
+
+  @ViewChild(ProgressBarComponent) progrssBar: ProgressBarComponent;
+  @ViewChild(FormationAddComponent) formationAddComponent: FormationAddComponent;
+
   objs: Array<Formation> = [];
   cols: any[];
 
@@ -57,6 +63,10 @@ export class FormationListComponent implements OnInit {
     this.router.navigateByUrl('/formation/' + obj.id);
   }
 
+  addObj() {
+    this.formationAddComponent.showDialog();
+  }
+
   deleteObj(obj: Formation) {
     this.confirmationService.confirm({
       message: 'Do you want to delete this record?',
@@ -80,6 +90,10 @@ export class FormationListComponent implements OnInit {
   }
 
   getFromChild(event) {
+    this.progrssBar.showDialog();
+  }
+
+  getFromChildProgressBar(event) {
     this.getList();
   }
 }
