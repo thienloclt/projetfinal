@@ -29,7 +29,6 @@ public class PlanningDaoJpa implements PlanningDao {
 				+ " Formation f WHERE (p.formateur = ft) AND (p.matiere = m)"
 				+ " AND (p.formation = f) AND (f.id = :formation_id) ORDER BY ordre";
 
-		// String querystring = "SELECT i FROM Planning i ORDER BY ordre";
 		Query query = em.createQuery(querystring);
 		query.setParameter("formation_id", formation_id);
 		
@@ -74,8 +73,10 @@ public class PlanningDaoJpa implements PlanningDao {
 
 	@Override
 	public List<Planning> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		 String querystring = "SELECT i FROM Planning i ORDER BY ordre";
+		 Query query = em.createQuery(querystring);
+		 List<Planning> list =query.getResultList();
+		return list;
 	}
 
 }

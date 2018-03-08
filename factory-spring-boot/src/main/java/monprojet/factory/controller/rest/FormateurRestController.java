@@ -48,17 +48,17 @@ public class FormateurRestController {
 		Formateur formateur2 = new Formateur();
 		formateur2.setNom("formateur2");
 		formateur2.setPrenom("formateur2");
-		formateur1.setTitre("titre2");
+		formateur2.setTitre("titre2");
 		formateur2.setCompetence("competence2");
 		Formateur formateur3 = new Formateur();
 		formateur3.setNom("formateur3");
 		formateur3.setPrenom("formateur3");
-		formateur1.setTitre("titre3");
+		formateur3.setTitre("titre3");
 		formateur3.setCompetence("competence3");
 		Formateur formateur4 = new Formateur();
 		formateur4.setNom("formateur4");
 		formateur4.setPrenom("formateur4");
-		formateur1.setTitre("titre4");
+		formateur4.setTitre("titre4");
 		formateur4.setCompetence("competence4");
 		formateurDao.create(formateur1);
 		formateurDao.create(formateur2);
@@ -68,20 +68,6 @@ public class FormateurRestController {
 		return new ResponseEntity<List<Formateur>>(formateurs, HttpStatus.OK);
 	}
 	
-//	@GetMapping("/ByMatiereAndOutOfFormation/{matiere_id}/{formation_id}")
-//	@JsonView(View.FormateurWithEveythingJSON.class)
-//	public ResponseEntity<List<Formateur>> findByMatiereAndOutOfFormation(@PathVariable("matiere_id") int matiere_id, @PathVariable("formation_id") int formation_id) {
-//		try {
-//			List<Formateur> formateurs = formateurDao.findByMatiereAndOutOfFormation(matiere_id, formation_id);
-//			return new ResponseEntity<List<Formateur>>(formateurs, HttpStatus.OK);
-//		}
-//		catch (Exception e) {
-//			System.out.println(e.getMessage());
-//		}
-//		return new ResponseEntity<List<Formateur>>(HttpStatus.NOT_FOUND);
-//		
-//	}
-
 	@GetMapping("/{id}")
 	@JsonView(View.FormateurWithEveythingJSON.class)
 	public ResponseEntity<Formateur> findById(@PathVariable("id") int id) {
