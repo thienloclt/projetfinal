@@ -41,10 +41,10 @@ public class GestionnaireRestController {
 	@JsonView(View.GestionnaireWithEveythingJSON.class)
 	public ResponseEntity<List<Gestionnaire>> test() {
 		try {
-			Gestionnaire gestionnaire1 = new Gestionnaire("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel");
-			Gestionnaire gestionnaire2 = new Gestionnaire("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel");
-			Gestionnaire gestionnaire3 = new Gestionnaire("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel");
-			Gestionnaire gestionnaire4 = new Gestionnaire("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel");
+			Gestionnaire gestionnaire1 = new Gestionnaire("DRIDI", "Hachem", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel");
+			Gestionnaire gestionnaire2 = new Gestionnaire("THEN", "Loc", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel");
+			Gestionnaire gestionnaire3 = new Gestionnaire("RONALDINO", "Cristiano", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel");
+			Gestionnaire gestionnaire4 = new Gestionnaire("ZIDANE", "ZINEDDINE", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel");
 			gestionnaireDao.create(gestionnaire1);
 			gestionnaireDao.create(gestionnaire2);
 			gestionnaireDao.create(gestionnaire3);
