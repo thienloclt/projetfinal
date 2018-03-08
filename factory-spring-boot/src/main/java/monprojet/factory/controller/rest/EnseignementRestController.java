@@ -58,87 +58,102 @@ public class EnseignementRestController {
 		Enseignement obj2 = new Enseignement();
 		obj2.setFormateur(formateurDao.find(2));
 		obj2.setMatiere(matiereDao.find(1));
-		obj1.setNiveau(Niveau.Débutant);
+		obj2.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj3 = new Enseignement();
 		obj3.setFormateur(formateurDao.find(4));
 		obj3.setMatiere(matiereDao.find(1));
+		obj3.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj4 = new Enseignement();
 		obj4.setFormateur(formateurDao.find(1));
 		obj4.setMatiere(matiereDao.find(2));
+		obj4.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj5 = new Enseignement();
 		obj5.setFormateur(formateurDao.find(3));
 		obj5.setMatiere(matiereDao.find(2));
+		obj5.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj6 = new Enseignement();
 		obj6.setFormateur(formateurDao.find(4));
 		obj6.setMatiere(matiereDao.find(2));
+		obj6.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj7 = new Enseignement();
 		obj7.setFormateur(formateurDao.find(2));
 		obj7.setMatiere(matiereDao.find(3));
-		
+		obj7.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj8 = new Enseignement();
 		obj8.setFormateur(formateurDao.find(1));
 		obj8.setMatiere(matiereDao.find(3));
+		obj8.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj9= new Enseignement();
 		obj9.setFormateur(formateurDao.find(1));
 		obj9.setMatiere(matiereDao.find(4));
+		obj9.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj10= new Enseignement();
 		obj10.setFormateur(formateurDao.find(1));
 		obj10.setMatiere(matiereDao.find(5));
+		obj10.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj11= new Enseignement();
 		obj11.setFormateur(formateurDao.find(2));
 		obj11.setMatiere(matiereDao.find(5));
+		obj11.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj12= new Enseignement();
 		obj12.setFormateur(formateurDao.find(2));
 		obj12.setMatiere(matiereDao.find(6));
+		obj2.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj13= new Enseignement();
 		obj13.setFormateur(formateurDao.find(2));
 		obj13.setMatiere(matiereDao.find(7));
+		obj13.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj14= new Enseignement();
 		obj14.setFormateur(formateurDao.find(2));
 		obj14.setMatiere(matiereDao.find(8));
-		
+		obj14.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj15= new Enseignement();
 		obj15.setFormateur(formateurDao.find(3));
 		obj15.setMatiere(matiereDao.find(9));
+		obj15.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj16= new Enseignement();
 		obj16.setFormateur(formateurDao.find(3));
 		obj16.setMatiere(matiereDao.find(10));
-		
+		obj16.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj17= new Enseignement();
 		obj17.setFormateur(formateurDao.find(3));
 		obj17.setMatiere(matiereDao.find(11));
+		obj17.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj18= new Enseignement();
 		obj18.setFormateur(formateurDao.find(4));
 		obj18.setMatiere(matiereDao.find(12));
+		obj18.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj19= new Enseignement();
 		obj19.setFormateur(formateurDao.find(4));
 		obj19.setMatiere(matiereDao.find(13));
+		obj19.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj20= new Enseignement();
 		obj20.setFormateur(formateurDao.find(4));
 		obj20.setMatiere(matiereDao.find(14));
+		obj20.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj21= new Enseignement();
 		obj21.setFormateur(formateurDao.find(4));
 		obj21.setMatiere(matiereDao.find(15));
-		
+		obj21.setNiveau(Niveau.Débutant);
 		
 		enseignementDao.create(obj1);
 		enseignementDao.create(obj2);
