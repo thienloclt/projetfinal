@@ -46,13 +46,13 @@ public abstract class Materiel {
 
 	@Column
 	@JsonView(View.Common.class)
-	private Integer coutJournalier;
+	private Double coutJournalier;
 
 	public Materiel() {
 		super();
 	}
 
-	public Materiel(@Size(min = 3) @NotNull String code, @Size(min = 3) @NotNull String nom, Integer coutJournalier) {
+	public Materiel(@Size(min = 3) @NotNull String code, @Size(min = 3) @NotNull String nom, Double coutJournalier) {
 		super();
 		this.code = code;
 		this.nom = nom;
@@ -91,11 +91,11 @@ public abstract class Materiel {
 		this.nom = nom;
 	}
 
-	public Integer getCoutJournalier() {
+	public Double getCoutJournalier() {
 		return coutJournalier;
 	}
 
-	public void setCoutJournalier(Integer coutJournalier) {
+	public void setCoutJournalier(Double coutJournalier) {
 		this.coutJournalier = coutJournalier;
 	}
 

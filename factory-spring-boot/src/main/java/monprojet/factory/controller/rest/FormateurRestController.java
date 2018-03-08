@@ -1,5 +1,6 @@
 package monprojet.factory.controller.rest;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,32 +41,21 @@ public class FormateurRestController {
 	@GetMapping("/test")
 	@JsonView(View.FormateurWithEveythingJSON.class)
 	public ResponseEntity<List<Formateur>> test() {
-		Formateur formateur1 = new Formateur();
-		formateur1.setNom("formateur1");
-		formateur1.setPrenom("formateur1");
-		formateur1.setTitre("titre1");
-		formateur1.setCompetence("competence1");
-		Formateur formateur2 = new Formateur();
-		formateur2.setNom("formateur2");
-		formateur2.setPrenom("formateur2");
-		formateur2.setTitre("titre2");
-		formateur2.setCompetence("competence2");
-		Formateur formateur3 = new Formateur();
-		formateur3.setNom("formateur3");
-		formateur3.setPrenom("formateur3");
-		formateur3.setTitre("titre3");
-		formateur3.setCompetence("competence3");
-		Formateur formateur4 = new Formateur();
-		formateur4.setNom("formateur4");
-		formateur4.setPrenom("formateur4");
-		formateur4.setTitre("titre4");
-		formateur4.setCompetence("competence4");
-		formateurDao.create(formateur1);
-		formateurDao.create(formateur2);
-		formateurDao.create(formateur3);
-		formateurDao.create(formateur4);
+		try {
+			Formateur formateur1 = new Formateur("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel", "competence", "titre");
+			Formateur formateur2 = new Formateur("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel", "competence", "titre");
+			Formateur formateur3 = new Formateur("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel", "competence", "titre");
+			Formateur formateur4 = new Formateur("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel", "competence", "titre");
+			formateurDao.create(formateur1);
+			formateurDao.create(formateur2);
+			formateurDao.create(formateur3);
+			formateurDao.create(formateur4);
+		}
+		catch (Exception e) {
+		}
 		List<Formateur> formateurs = formateurDao.findAll();
 		return new ResponseEntity<List<Formateur>>(formateurs, HttpStatus.OK);
+		
 	}
 	
 	@GetMapping("/{id}")

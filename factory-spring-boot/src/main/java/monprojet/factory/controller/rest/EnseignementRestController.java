@@ -49,22 +49,45 @@ public class EnseignementRestController {
 	@GetMapping("/test")
 	@JsonView(View.EnseignementWithEveythingJSON.class)
 	public ResponseEntity<List<Enseignement>> test() {
+		
 		Enseignement obj1 = new Enseignement(Niveau.Débutant);
 		obj1.setFormateur(formateurDao.find(1));
 		obj1.setMatiere(matiereDao.find(1));
+		obj1.setNiveau(Niveau.Avancé);
+		
 		Enseignement obj2 = new Enseignement(Niveau.Avancé);
 		obj2.setFormateur(formateurDao.find(2));
-		obj2.setMatiere(matiereDao.find(2));
+		obj2.setMatiere(matiereDao.find(1));
+		obj1.setNiveau(Niveau.Débutant);
+		
 		Enseignement obj3 = new Enseignement(Niveau.Expert);
-		obj3.setFormateur(formateurDao.find(3));
-		obj3.setMatiere(matiereDao.find(3));
+		obj3.setFormateur(formateurDao.find(4));
+		obj3.setMatiere(matiereDao.find(1));
+		
 		Enseignement obj4 = new Enseignement(Niveau.Intermédiaire);
+		obj4.setFormateur(formateurDao.find(1));
+		obj4.setMatiere(matiereDao.find(2));
+		
+		Enseignement obj5 = new Enseignement(Niveau.Intermédiaire);
+		obj4.setFormateur(formateurDao.find(3));
+		obj4.setMatiere(matiereDao.find(2));
+		
+		Enseignement obj6 = new Enseignement(Niveau.Intermédiaire);
 		obj4.setFormateur(formateurDao.find(4));
-		obj4.setMatiere(matiereDao.find(4));
+		obj4.setMatiere(matiereDao.find(2));
+		
+		Enseignement obj7 = new Enseignement(Niveau.Intermédiaire);
+		obj4.setFormateur(formateurDao.find(2));
+		obj4.setMatiere(matiereDao.find(3));
+		
 		enseignementDao.create(obj1);
 		enseignementDao.create(obj2);
 		enseignementDao.create(obj3);
 		enseignementDao.create(obj4);
+		enseignementDao.create(obj5);
+		enseignementDao.create(obj6);
+		enseignementDao.create(obj7);
+		
 		List<Enseignement> objs = enseignementDao.findAll();
 		return new ResponseEntity<List<Enseignement>>(objs, HttpStatus.OK);
 	}

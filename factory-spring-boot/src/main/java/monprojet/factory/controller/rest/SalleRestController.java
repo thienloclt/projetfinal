@@ -1,5 +1,7 @@
 package monprojet.factory.controller.rest;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +41,10 @@ public class SalleRestController {
 	@GetMapping("/test")
 	@JsonView(View.SalleWithEveythingJSON.class)
 	public ResponseEntity<List<Salle>> test() {
-		Salle salle1 = new Salle("sal1", "Salle1", 10);
-		salle1.setCapacite(10);
-		Salle salle2 = new Salle("sal2", "Salle2", 20);
-		salle2.setCapacite(20);
-		Salle salle3 = new Salle("sal3", "Salle3", 30);
-		salle3.setCapacite(30);
-		Salle salle4 = new Salle("sal4", "Salle4", 40);
+		Salle salle1 = new Salle("sal1", "Salle1", 10.3, 10);
+		Salle salle2 = new Salle("sal2", "Salle2", 50.8, 20);
+		Salle salle3 = new Salle("sal3", "Salle3", 20.0, 30);
+		Salle salle4 = new Salle("sal4", "Salle4", 40.6, 40);
 		salle4.setCapacite(40);
 		salleDao.create(salle1);
 		salleDao.create(salle2);
@@ -53,6 +52,27 @@ public class SalleRestController {
 		salleDao.create(salle4);
 		List<Salle> salles = salleDao.findAll();
 		return new ResponseEntity<List<Salle>>(salles, HttpStatus.OK);
+	}
+	
+	@GetMapping("/ByDuration/{fromDate}/{endDate}")
+	@JsonView(View.SalleWithEveythingJSON.class)
+	public ResponseEntity<List<Salle>> findByDuration(@PathVariable("fromDate") String fromDate, @PathVariable("endDate") String endDate) {
+		
+		List<Salle> salles = null;
+		try {
+//			Date d, d1;
+//			System.out.println(fromDate + "  " +endDate);
+//			d = new SimpleDateFormat("yyyy-MM-dd").parse(fromDate);
+//			d1
+//			
+//			System.out.println( + "  " +(new SimpleDateFormat("yyyy-MM-dd").parse(endDate)).toString());
+			salles = salleDao.findByDuration(new SimpleDateFormat("dd-MM-yyyy").parse(fromDate), new SimpleDateFormat("dd-MM-yyyy").parse(endDate));
+			return new ResponseEntity<List<Salle>>(salles, HttpStatus.OK);
+		}
+		catch (Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<List<Salle>>(salles, HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@GetMapping("/ByOutOfFormation/{id}")

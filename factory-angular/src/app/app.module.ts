@@ -69,10 +69,12 @@ import { OrdinateurAddComponent } from './business/ordinateur/ordinateur-add/ord
 import { FormationAddComponent } from './business/formation/formation-add/formation-add.component';
 import { FormationListComponent } from './business/formation/formation-list/formation-list.component';
 import { FormationDetailComponent } from './business/formation/formation-detail/formation-detail.component';
+import { SalleAvailableReportComponent } from './business/report/salle-available-report/salle-available-report.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: DashboardComponent},
+  {path: 'report1', component: SalleAvailableReportComponent},
   {path: 'matiere', component: MatiereListComponent},
   {path: 'matiere-add', component: MatiereAddComponent},
   {path: 'matiere-edit/:id', component: MatiereAddComponent},
@@ -159,7 +161,8 @@ const routes: Routes = [
     FormationAddMatiereComponent,
     FormationAddProgrammeComponent,
     FormationAddOrdinateurComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    SalleAvailableReportComponent
   ],
 
   imports: [

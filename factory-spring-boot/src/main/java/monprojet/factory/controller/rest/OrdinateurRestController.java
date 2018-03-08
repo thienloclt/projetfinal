@@ -40,10 +40,10 @@ public class OrdinateurRestController {
 	@GetMapping("/test")
 	@JsonView(View.OrdinateurWithEveythingJSON.class)
 	public ResponseEntity<List<Ordinateur>> test() {
-		Ordinateur ordinateur1 = new Ordinateur("ord1", "Ordinateur1", 10);
-		Ordinateur ordinateur2 = new Ordinateur("ord2", "Ordinateur2", 20);
-		Ordinateur ordinateur3 = new Ordinateur("ord3", "Ordinateur3", 30);
-		Ordinateur ordinateur4 = new Ordinateur("ord4", "Ordinateur4", 40);
+		Ordinateur ordinateur1 = new Ordinateur("code", "nom", 2.2, "processeur", "ram", "disqueDur", 2014);
+		Ordinateur ordinateur2 = new Ordinateur("code", "nom", 10.4, "processeur", "ram", "disqueDur", 2015);
+		Ordinateur ordinateur3 = new Ordinateur("code", "nom", 7.8, "processeur", "ram", "disqueDur", 2016);
+		Ordinateur ordinateur4 = new Ordinateur("code", "nom", 5.6, "processeur", "ram", "disqueDur", 2015);
 		ordinateurDao.create(ordinateur1);
 		ordinateurDao.create(ordinateur2);
 		ordinateurDao.create(ordinateur3);

@@ -1,5 +1,6 @@
 package monprojet.factory.controller.rest;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,22 +40,18 @@ public class GestionnaireRestController {
 	@GetMapping("/test")
 	@JsonView(View.GestionnaireWithEveythingJSON.class)
 	public ResponseEntity<List<Gestionnaire>> test() {
-		Gestionnaire gestionnaire1 = new Gestionnaire();
-		gestionnaire1.setNom("gestionnaire1");
-		gestionnaire1.setPrenom("gestionnaire1");
-		Gestionnaire gestionnaire2 = new Gestionnaire();
-		gestionnaire2.setNom("gestionnaire2");
-		gestionnaire2.setPrenom("gestionnaire2");
-		Gestionnaire gestionnaire3 = new Gestionnaire();
-		gestionnaire3.setNom("gestionnaire3");
-		gestionnaire3.setPrenom("gestionnaire3");
-		Gestionnaire gestionnaire4 = new Gestionnaire();
-		gestionnaire4.setNom("gestionnaire4");
-		gestionnaire4.setPrenom("gestionnaire4");
-		gestionnaireDao.create(gestionnaire1);
-		gestionnaireDao.create(gestionnaire2);
-		gestionnaireDao.create(gestionnaire3);
-		gestionnaireDao.create(gestionnaire4);
+		try {
+			Gestionnaire gestionnaire1 = new Gestionnaire("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel");
+			Gestionnaire gestionnaire2 = new Gestionnaire("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel");
+			Gestionnaire gestionnaire3 = new Gestionnaire("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel");
+			Gestionnaire gestionnaire4 = new Gestionnaire("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel");
+			gestionnaireDao.create(gestionnaire1);
+			gestionnaireDao.create(gestionnaire2);
+			gestionnaireDao.create(gestionnaire3);
+			gestionnaireDao.create(gestionnaire4);
+		}
+		catch (Exception e) {
+		}
 		List<Gestionnaire> gestionnaires = gestionnaireDao.findAll();
 		return new ResponseEntity<List<Gestionnaire>>(gestionnaires, HttpStatus.OK);
 	}

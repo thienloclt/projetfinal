@@ -26,9 +26,9 @@ export class FormationListComponent implements OnInit {
     this.getList();
     this.cols = [
       { field: 'id', header: '#' },
-      { field: 'titre', header: 'titre' },
-      { field: 'dateDebut', header: 'dateDebut' },
-      { field: 'dateFin', header: 'dateFin' }
+      { field: 'titre', header: 'Titre' },
+      { field: 'dateDebut', header: 'Debut' },
+      { field: 'dateFin', header: 'Fin' }
     ];
   }
 
@@ -69,8 +69,8 @@ export class FormationListComponent implements OnInit {
 
   deleteObj(obj: Formation) {
     this.confirmationService.confirm({
-      message: 'Do you want to delete this record?',
-      header: 'Delete Confirmation',
+      message: 'Voulez-vous vraiment supprimer?',
+      header: 'Confirmation',
       icon: 'fa fa-trash',
       accept: () => {
         this.objService.delete(obj.id).subscribe( value => {

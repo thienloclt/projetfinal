@@ -40,10 +40,10 @@ public class ProjecteurRestController {
 	@GetMapping("/test")
 	@JsonView(View.ProjecteurWithEveythingJSON.class)
 	public ResponseEntity<List<Projecteur>> test() {
-		Projecteur projecteur1 = new Projecteur("pro1", "Projecteur1", 10);
-		Projecteur projecteur2 = new Projecteur("pro2", "Projecteur2", 20);
-		Projecteur projecteur3 = new Projecteur("pro3", "Projecteur3", 30);
-		Projecteur projecteur4 = new Projecteur("pro4", "Projecteur4", 40);
+		Projecteur projecteur1 = new Projecteur("pro1", "Projecteur1", 10.5);
+		Projecteur projecteur2 = new Projecteur("pro2", "Projecteur2", 20.0);
+		Projecteur projecteur3 = new Projecteur("pro3", "Projecteur3", 30.7);
+		Projecteur projecteur4 = new Projecteur("pro4", "Projecteur4", 40.4);
 		projecteurDao.create(projecteur1);
 		projecteurDao.create(projecteur2);
 		projecteurDao.create(projecteur3);

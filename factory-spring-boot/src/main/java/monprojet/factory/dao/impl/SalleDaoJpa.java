@@ -1,10 +1,12 @@
 package monprojet.factory.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +44,21 @@ public class SalleDaoJpa implements SalleDao {
 		Query query = em.createQuery("SELECT s FROM Salle s WHERE s.id NOT IN " + sSalleHasFormation);
 
 		query.setParameter("formation_id", formation_id);
+		list = query.getResultList();
+
+		return list;
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<Salle> findByDuration(Date fromDate, Date endDate) {
+		List<Salle> list = null;
+
+		Query query = em.createQuery("SELECT DISTINCT  s FROM Salle s JOIN s.formations f WHERE f.dateFin >= :fromDate AND f.dateDebut <= :endDate");
+
+		System.out.println(fromDate.toString() + "  " +endDate.toString());
+		query.setParameter("fromDate", fromDate, TemporalType.DATE);
+		query.setParameter("endDate", endDate, TemporalType.DATE);
 		list = query.getResultList();
 
 		return list;

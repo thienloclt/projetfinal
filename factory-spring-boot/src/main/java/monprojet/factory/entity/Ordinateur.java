@@ -3,6 +3,7 @@ package monprojet.factory.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -36,16 +37,20 @@ public class Ordinateur extends Materiel {
 	private Integer anneeAchat;
 /*--------------------------------------------------------------------------*/
 	@JsonView(View.FormationJSON.class)
-	@ManyToMany(mappedBy = "ordinateurs", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "ordinateurs", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	Set<Formation> formations = new HashSet<Formation>();
 	
 	public Ordinateur() {
 		super();
 	}
 	
-	public Ordinateur(@Size(min = 3) @NotNull String code, @Size(min = 3) @NotNull String nom, Integer coutJournalier) {
+	public Ordinateur(@Size(min = 3) @NotNull String code, @Size(min = 3) @NotNull String nom, Double coutJournalier,
+			String processeur, String ram, String disqueDur, Integer anneeAchat) {
 		super(code, nom, coutJournalier);
-		// TODO Auto-generated constructor stub
+		this.processeur = processeur;
+		this.ram = ram;
+		this.disqueDur = disqueDur;
+		this.anneeAchat = anneeAchat;
 	}
 
 	public String getProcesseur() {

@@ -9,7 +9,7 @@
       <p class="card-text"><i>Projecteur:</i> {{formation.projecteur?.code}} {{formation.projecteur?.nom}}</p>
       <p class="card-text"><i>Programmes:</i> {{formation.programmes?.length}}</p>
       <ul *ngFor="let e of formation.programmes">
-        <li><app-formation-add-programme [programme_id]="e.id" (eventemitter)="getFromChild($event)"></app-formation-add-programme> {{e.matiere?.nom}} <i>dure</i> {{e.matiere?.duree}} <i>jour(s) avec</i> {{e.formateur?.nom.toUpperCase()}} {{e.formateur?.prenom}}</li>
+        <li><app-formation-add-programme [programme_id]="e.id" (eventemitter)="getFromChild($event)"></app-formation-add-programme> {{e.matiere?.nom}} <i>dure</i> {{e.matiere?.duree}} <i>jour(s){{e.formateur != null ? ' avec ' : ''}}</i> {{e.formateur?.nom.toUpperCase()}} {{e.formateur?.prenom}}</li>
       </ul>
     </div>
     <div class="ui-g-12 ui-md-6">

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,7 +22,7 @@ import monprojet.framework.model.View;
 public class Stagiaire extends Personne {
 	
 	@JsonView(View.FormationJSON.class)
-	@ManyToMany(mappedBy = "stagiaires", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "stagiaires", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	Set<Formation> formations = new HashSet<Formation>();
 
 	public Stagiaire() {
