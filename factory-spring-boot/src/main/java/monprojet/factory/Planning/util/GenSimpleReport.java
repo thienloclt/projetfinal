@@ -32,14 +32,14 @@ public class GenSimpleReport {
 		Document document = new Document();
 		// GenSimpleReport creates PDF file from the provided data.
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		
-	/*	FormationDao d = null ;
+	/*	
+		FormationDao d = null ;
 		Formation f = d.find(1);
 		f.getDateDebut();
 		f.getDateFin();
 	*/	
 		String dateDebut = "18-01-2018";
-		String dateFin = "28-01-2018";
+		String dateFin = "26-01-2018";
 		////////////duree de la formation////////àsupp///////////
 		
 		try {
