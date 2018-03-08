@@ -32,7 +32,6 @@ public class Gestionnaire extends Personne {
 	public Gestionnaire(@Size(min = 3) @NotNull String nom, @Size(min = 3) @NotNull String prenom, Date dateNaissance,
 			String adresse, @Email String email, String numTel) {
 		super(nom, prenom, dateNaissance, adresse, email, numTel);
-		// TODO Auto-generated constructor stub
 	}
 
 	public Set<Formation> getFormations() {

@@ -66,7 +66,7 @@ public class Formation {
 	@JsonView(View.ProjecteurJSON.class)
 	private Projecteur projecteur;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "gestionnaire_id")
 	@JsonView(View.GestionnaireJSON.class)
 	private Gestionnaire gestionnaire;
