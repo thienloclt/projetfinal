@@ -108,7 +108,7 @@ public class EnseignementRestController {
 		Enseignement obj12= new Enseignement();
 		obj12.setFormateur(formateurDao.find(2));
 		obj12.setMatiere(matiereDao.find(6));
-		obj2.setNiveau(Niveau.Débutant);
+		obj12.setNiveau(Niveau.Débutant);
 		
 		Enseignement obj13= new Enseignement();
 		obj13.setFormateur(formateurDao.find(2));
