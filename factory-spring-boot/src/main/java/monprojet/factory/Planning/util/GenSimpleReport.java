@@ -39,7 +39,7 @@ public class GenSimpleReport {
 		f.getDateFin();
 	*/	
 		String dateDebut = "18-01-2018";
-		String dateFin = "26-01-2018";
+		String dateFin = "23-02-2018";
 		////////////duree de la formation////////àsupp///////////
 		
 		try {
