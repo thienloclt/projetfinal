@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import {Ordinateur} from '../../../model/ordinateur.model';
 import {OrdinateurService} from '../../../service/ordinateur.service';

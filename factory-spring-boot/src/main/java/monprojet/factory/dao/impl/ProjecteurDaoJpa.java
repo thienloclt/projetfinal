@@ -28,6 +28,26 @@ public class ProjecteurDaoJpa implements ProjecteurDao {
 	}
 
 	@SuppressWarnings("unchecked")
+	public List<Projecteur> findByOutOfFormation(Integer formation_id) {
+		List<Projecteur> list = null;
+
+		String sProjecteurHasFormation = "(SELECT p1.id FROM Projecteur p1, Formation f "
+				+ "WHERE (f.projecteur = p1) AND (f.id <> :formation_id) AND EXISTS "
+				+ "(SELECT fviewing.id FROM Formation fviewing WHERE fviewing.id = :formation_id AND "
+				+ "((f.dateDebut BETWEEN fviewing.dateDebut AND fviewing.dateFin) "
+				+ "OR (f.dateFin BETWEEN fviewing.dateDebut AND fviewing.dateFin) "
+				+ "OR (f.dateDebut < fviewing.dateDebut AND f.dateFin > fviewing.dateFin)"
+				+ ")))";
+		
+		Query query = em.createQuery("SELECT p FROM Projecteur p WHERE p.id NOT IN " + sProjecteurHasFormation);
+
+		query.setParameter("formation_id", formation_id);
+		list = query.getResultList();
+
+		return list;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<Projecteur> findAll() {
 		List<Projecteur> list = null;
 

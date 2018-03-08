@@ -1,4 +1,4 @@
-<button pButton type="button" (click)="showDialog()" label="Materiel" icon="fa-camera-retro" class="btn btn-{{globals.theme}} float-right"></button>
+<button pButton type="button" (click)="showDialog()" label="Materiel" icon="fa-camera-retro" class="btn btn-{{globals.theme}} float-right" style="margin-left: 5px;"></button>
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate style="display:inline!important;"> <p-dialog header="Ajouter des materiels à la formation" [(visible)]="display" [width]="600" modal="modal" [closeOnEscape]="false" [closable]="false">
 
     <div *ngIf="salles?.length > 0; else nothing;">
@@ -9,7 +9,7 @@
         </select>
       </div>
     </div>
-    <ng-template #nothing><p>Il n'y a plus d'auteurs dans la liste</p></ng-template>
+    <ng-template #nothing><p>Il n'y a plus des salles dans la liste</p></ng-template>
 
     <div *ngIf="projecteurs?.length > 0; else nothing;">
       <div class="form-group">
@@ -19,7 +19,7 @@
         </select>
       </div>
     </div>
-    <ng-template #nothing><p>Il n'y a plus d'auteurs dans la liste</p></ng-template>
+    <ng-template #nothing><p>Il n'y a plus des projecteurs dans la liste</p></ng-template>
 
   <p-footer>
     <button type="submit" pButton icon="fa-check" label="Oui"></button>

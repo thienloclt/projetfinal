@@ -28,6 +28,7 @@ export class FormateurService {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.put(this.url, obj,  {headers});
   }
+
   delete(id: number): Observable<any> {
     return this.http.delete(this.url + id);
   }

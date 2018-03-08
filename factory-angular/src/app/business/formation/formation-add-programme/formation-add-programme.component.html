@@ -1,4 +1,4 @@
-<button pButton type="button" (click)="showDialog()" icon="fa-file-text" class="btn btn-{{globals.theme}}"></button>
+<i class="fa fa-file-text" (click)="showDialog()" style="cursor:pointer"></i>
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate style="display:inline!important;"> <p-dialog header="Adjouter un formateur à la formation" [(visible)]="display" [width]="600" modal="modal" [closeOnEscape]="false" [closable]="false">
 
   <div *ngIf="enseignements?.length > 0; else nothing;">
@@ -9,7 +9,7 @@
       </select>
     </div>
   </div>
-  <ng-template #nothing>Il n'y a plus d'auteurs dans la liste</ng-template>
+  <ng-template #nothing>Il n'y a plus des formateurs dans la liste</ng-template>
 
   <p-footer>
     <button type="submit" pButton icon="fa-check" label="Oui"></button>

@@ -29,8 +29,11 @@ public class OrdinateurDaoJpa implements OrdinateurDao {
 
 		String sOrdinateurHasFormation = "(SELECT o.id FROM Ordinateur o JOIN o.formations fs "
 				+ "WHERE EXISTS "
-				+ "(SELECT f1.id FROM Formation f1 WHERE f1.id = :formation_id AND "
-				+ "((fs.dateDebut BETWEEN f1.dateDebut AND f1.dateFin) OR (fs.dateFin BETWEEN f1.dateDebut AND f1.dateFin))))";
+				+ "(SELECT fviewing.id FROM Formation fviewing WHERE fviewing.id = :formation_id "
+				+ "AND ((fs.dateDebut BETWEEN fviewing.dateDebut AND fviewing.dateFin) "
+				+ "OR (fs.dateFin BETWEEN fviewing.dateDebut AND fviewing.dateFin) "
+				+ "OR (fs.dateDebut < fviewing.dateDebut AND fs.dateFin > fviewing.dateFin)"
+				+ ")))";
 		
 		Query query = em.createQuery("SELECT ord FROM Ordinateur ord WHERE ord.id NOT IN " + sOrdinateurHasFormation);
 

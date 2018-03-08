@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Globals} from '../../../framework/globals';
 import {StagiaireService} from '../../../service/stagiaire.service';
 import {Stagiaire} from '../../../model/stagiaire.model';
 import {Allocation} from '../../../model/allocation.model';
-import {AllocationService} from '../../../service/allocation.service';
 
 @Component({
   selector: 'app-stagiaire-add',
@@ -18,19 +17,12 @@ export class StagiaireAddComponent implements OnInit {
   myForm: FormGroup;
   formsubmitted: boolean = false;
 
-  allocations: Array<Allocation> = [];
-  selectedAllocation = Allocation;
-
   constructor(public globals: Globals, private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
-              private objService: StagiaireService, private allocationService: AllocationService) {
+              private objService: StagiaireService) {
 
 
     this.route.params.subscribe(param => {
       this.id = param['id'];
-    });
-
-    this.allocationService.list().subscribe(objsFromREST => {
-      this.allocations = objsFromREST;
     });
 
     this.myForm = this.fb.group({
@@ -54,10 +46,7 @@ export class StagiaireAddComponent implements OnInit {
 
   onSubmit() {
 
-
     this.formsubmitted = true;
-
-
     if (this.myForm.valid) {
       let obj: Stagiaire;
       obj = this.myForm.value;

@@ -1,19 +1,22 @@
-<div class="card bg-{{globals.theme}} text-white rounded-0" style="margin-top: 10px">
+<div class="card bg-{{globals.theme}} text-white rounded-0" style="margin-top: 3px">
   <div class="card-header">Menu</div>
   <ul class="list-group list-group-flush text-dark">
-    <li class="list-group-item list-group-item-info"><a [routerLink] = "['']">Accueil</a></li>
+    <li class="list-group-item list-group-item-info"><a [routerLink] = "['']"><i class="fa fa-home"></i> Accueil</a></li>
 
-    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/formation']">Formation</a></li>
-    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/salle']">Salle</a></li>
-    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/matiere']">Matiere</a></li>
-    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/technicien']">Technicien</a></li>
-    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/gestionnaire']">Gestionnaire</a></li>
-    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/stagiaire']">Stagiaire</a></li>
-    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/formateur']">Formateur</a></li>
-    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/enseignement']">Enseignement</a></li>
-    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/projecteur']">Projecteur</a></li>
-    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/ordinateur']">Ordinateur</a></li>
+    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/formation']"><i class="fa fa-graduation-cap"></i> Formation</a></li>
 
-    <li class="list-group-item list-group-item-info"><a href="">S'enregistrer</a></li>
+    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/matiere']"><i class="fa fa-book"></i> Matiere</a></li>
+    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/formateur']"><i class="fa fa-user-secret"></i> Formateur</a></li>
+    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/enseignement']"><i class="fa fa-cogs"></i> Enseignement</a></li>
+    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/stagiaire']"><i class="fa fa-group"></i> Stagiaire</a></li>
+
+    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/salle']"><i class="fa fa-building"></i> Salle</a></li>
+    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/projecteur']"><i class="fa fa-camera-retro"></i> Projecteur</a></li>
+    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/ordinateur']"><i class="fa fa-laptop"></i> Ordinateur</a></li>
+
+    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/gestionnaire']"><i class="fa fa-user"></i> Gestionnaire</a></li>
+    <li class="list-group-item list-group-item-info"><a [routerLink] = "['/technicien']"><i class="fa fa-linux"></i> Technicien</a></li>
+
+    <li class="list-group-item list-group-item-info"><a href=""><i class="fa fa-lock"></i> S'enregistrer</a></li>
   </ul>
 </div>

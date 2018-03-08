@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ConfirmationService} from 'primeng/api';
-import {AllocationService} from '../../../service/allocation.service';
 import {Globals} from '../../../framework/globals';
 import {Stagiaire} from '../../../model/stagiaire.model';
 import {StagiaireService} from '../../../service/stagiaire.service';

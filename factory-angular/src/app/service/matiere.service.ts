@@ -5,7 +5,9 @@ import {Matiere} from '../model/matiere.model';
 
 @Injectable()
 export class MatiereService {
+
   url = 'http://localhost:8080/factory/api/matiere/';
+
   constructor(private http: HttpClient) {
   }
 
@@ -19,10 +21,6 @@ export class MatiereService {
 
   getByOutOfFormation(id: number): Observable<any> {
     return this.http.get(this.url + 'outofformation/' + id);
-  }
-
-  getByFormation(id: number): Observable<any> {
-    return this.http.get(this.url + 'formation/' + id);
   }
 
   add(obj: Matiere): Observable<any> {

@@ -31,7 +31,8 @@ public class StagiaireDaoJpa implements StagiaireDao {
 	public List<Stagiaire> findByOutOfFormation(Integer formation_id) {
 		List<Stagiaire> list = null;
 
-		Query query = em.createQuery("SELECT s FROM Stagiaire s WHERE s.id NOT IN (SELECT s.id FROM Stagiaire s JOIN s.formations fs WHERE fs.id = :formation_id) ORDER BY s.nom ASC");
+		Query query = em.createQuery("SELECT s FROM Stagiaire s WHERE s.id NOT IN "
+				+ "(SELECT s.id FROM Stagiaire s JOIN s.formations fs WHERE fs.id = :formation_id) ORDER BY s.nom ASC");
 		query.setParameter("formation_id", formation_id);
 		list = query.getResultList();	
 

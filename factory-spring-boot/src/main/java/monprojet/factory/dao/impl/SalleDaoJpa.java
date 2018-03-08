@@ -26,6 +26,26 @@ public class SalleDaoJpa implements SalleDao {
 	public void create(Salle obj) {
 		em.persist(obj);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Salle> findByOutOfFormation(Integer formation_id) {
+		List<Salle> list = null;
+
+		String sSalleHasFormation = "(SELECT s1.id FROM Salle s1, Formation f "
+				+ "WHERE (f.salle = s1) AND (f.id <> :formation_id) AND EXISTS "
+				+ "(SELECT fviewing.id FROM Formation fviewing WHERE fviewing.id = :formation_id AND "
+				+ "((f.dateDebut BETWEEN fviewing.dateDebut AND fviewing.dateFin) "
+				+ "OR (f.dateFin BETWEEN fviewing.dateDebut AND fviewing.dateFin) "
+				+ "OR (f.dateDebut < fviewing.dateDebut AND f.dateFin > fviewing.dateFin)"
+				+ ")))";
+		
+		Query query = em.createQuery("SELECT s FROM Salle s WHERE s.id NOT IN " + sSalleHasFormation);
+
+		query.setParameter("formation_id", formation_id);
+		list = query.getResultList();
+
+		return list;
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<Salle> findAll() {

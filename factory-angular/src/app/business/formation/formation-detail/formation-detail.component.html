@@ -1,23 +1,27 @@
-<div class="card border-{{globals.theme}} rounded-0 mb-3" style="margin-top: 10px">
-  <div class="card-header">{{formation.titre}}</div>
-  <div class="card-body text-secondary">
-    <p class="card-text">Debut:    {{formation.dateDebut | date: 'dd/MM/yyyy'}}</p>
-    <p class="card-text">Fin:      {{formation.dateFin | date: 'dd/MM/yyyy'}}</p>
-    <p class="card-text">Gestionnaire:  {{formation.gestionnaire != null ? formation.gestionnaire.nom : ''}}</p>
-    <p class="card-text">Salle:         {{formation.salle != null ? formation.salle.nom : ''}}</p>
-    <p class="card-text">Projecteur:    {{formation.projecteur != null ? formation.projecteur.nom : ''}}</p>
-    <p class="card-text">Programmes:    {{formation.programmes?.length}}</p>
+<div class="card border-{{globals.theme}} rounded-0 mb-3">
+  <div class="card-header text-primary font-weight-bold">{{formation.titre}}</div>
+  <div class="card-body text-primary">
+    <div class="ui-g-12 ui-md-6">
+      <p class="card-text"><i>Debut:</i> {{formation.dateDebut | date: 'dd/MM/yyyy'}}</p>
+      <p class="card-text"><i>Fin:</i> {{formation.dateFin | date: 'dd/MM/yyyy'}}</p>
+      <p class="card-text"><i>Gestionnaire:</i> {{formation.gestionnaire?.nom.toUpperCase()}} {{formation.gestionnaire?.prenom}}</p>
+      <p class="card-text"><i>Salle:</i> {{formation.salle?.code}} {{formation.salle?.nom}}</p>
+      <p class="card-text"><i>Projecteur:</i> {{formation.projecteur?.code}} {{formation.projecteur?.nom}}</p>
+      <p class="card-text"><i>Programmes:</i> {{formation.programmes?.length}}</p>
       <ul *ngFor="let e of formation.programmes">
-        <li>{{e.matiere?.nom}} {{e.matiere?.couleur}} {{e.formateur?.nom}} <app-formation-add-programme [formation_id]="id" [programme_id]="e.id" [matiere_id]="e.matiere?.id" (eventemitter)="getFromChild($event)"></app-formation-add-programme></li>
+        <li><app-formation-add-programme [programme_id]="e.id" (eventemitter)="getFromChild($event)"></app-formation-add-programme> {{e.matiere?.nom}} <i>dure</i> {{e.matiere?.duree}} <i>jour(s) avec</i> {{e.formateur?.nom.toUpperCase()}} {{e.formateur?.prenom}}</li>
       </ul>
-    <p class="card-text">Stagiaires:    {{formation.stagiaires?.length}}</p>
+    </div>
+    <div class="ui-g-12 ui-md-6">
+      <p class="card-text"><i>Stagiaires:</i>    {{formation.stagiaires?.length}}</p>
       <ul *ngFor="let e of formation.stagiaires">
-        <li>{{e?.nom}} {{e?.prenom}}</li>
+        <li>{{e?.nom.toUpperCase()}} {{e?.prenom}}</li>
       </ul>
-    <p class="card-text">Ordinateurs:   {{formation.ordinateurs?.length}}</p>
+      <p class="card-text"><i>Ordinateurs:</i>   {{formation.ordinateurs?.length}}</p>
       <ul *ngFor="let e of formation.ordinateurs">
-        <li>{{e?.nom}} {{e?.code}}</li>
+        <li><i>Code:</i> {{e?.code}}<i>, nom:</i> {{e?.nom}}</li>
       </ul>
+    </div>
   </div>
   <div class="card-footer clearfix">
     <a [routerLink]="['/formation-edit', formation.id]">

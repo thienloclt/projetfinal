@@ -68,19 +68,19 @@ public class FormateurRestController {
 		return new ResponseEntity<List<Formateur>>(formateurs, HttpStatus.OK);
 	}
 	
-	@GetMapping("/ByMatiereAndOutOfFormation/{matiere_id}/{formation_id}")
-	@JsonView(View.FormateurWithEveythingJSON.class)
-	public ResponseEntity<List<Formateur>> findByMatiereAndOutOfFormation(@PathVariable("matiere_id") int matiere_id, @PathVariable("formation_id") int formation_id) {
-		try {
-			List<Formateur> formateurs = formateurDao.findByMatiereAndOutOfFormation(matiere_id, formation_id);
-			return new ResponseEntity<List<Formateur>>(formateurs, HttpStatus.OK);
-		}
-		catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return new ResponseEntity<List<Formateur>>(HttpStatus.NOT_FOUND);
-		
-	}
+//	@GetMapping("/ByMatiereAndOutOfFormation/{matiere_id}/{formation_id}")
+//	@JsonView(View.FormateurWithEveythingJSON.class)
+//	public ResponseEntity<List<Formateur>> findByMatiereAndOutOfFormation(@PathVariable("matiere_id") int matiere_id, @PathVariable("formation_id") int formation_id) {
+//		try {
+//			List<Formateur> formateurs = formateurDao.findByMatiereAndOutOfFormation(matiere_id, formation_id);
+//			return new ResponseEntity<List<Formateur>>(formateurs, HttpStatus.OK);
+//		}
+//		catch (Exception e) {
+//			System.out.println(e.getMessage());
+//		}
+//		return new ResponseEntity<List<Formateur>>(HttpStatus.NOT_FOUND);
+//		
+//	}
 
 	@GetMapping("/{id}")
 	@JsonView(View.FormateurWithEveythingJSON.class)

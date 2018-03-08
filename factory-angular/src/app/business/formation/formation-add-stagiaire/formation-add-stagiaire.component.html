@@ -1,4 +1,4 @@
-<button pButton type="button" (click)="showDialog()" label="Stagiaire" icon="fa-child" class="btn btn-{{globals.theme}} float-right"></button>
+<button pButton type="button" (click)="showDialog()" label="Stagiaire" icon="fa-child" class="btn btn-{{globals.theme}} float-right" style="margin-left: 5px;"></button>
 <p-dialog header="Ajouter des stagiaires à la formation" [(visible)]="display" [width]="800" modal="modal" [closeOnEscape]="false" [closable]="false">
 
     <p-pickList [source]="sourceStagiaires" [target]="targetStagiaires" [showSourceControls]="false" [showTargetControls]="false" sourceHeader="Disponible" targetHeader="Sélectionné" [responsive]="true" filterBy="nom"

@@ -51,6 +51,13 @@ public class ProjecteurRestController {
 		List<Projecteur> projecteurs = projecteurDao.findAll();
 		return new ResponseEntity<List<Projecteur>>(projecteurs, HttpStatus.OK);
 	}
+	
+	@GetMapping("/ByOutOfFormation/{id}")
+	@JsonView(View.ProjecteurWithEveythingJSON.class)
+	public ResponseEntity<List<Projecteur>> findByOutOfFormation(@PathVariable("id") int id) {
+		List<Projecteur> projecteurs = projecteurDao.findByOutOfFormation(id);
+		return new ResponseEntity<List<Projecteur>>(projecteurs, HttpStatus.OK);
+	}
 
 	@GetMapping("/{id}")
 	@JsonView(View.ProjecteurWithEveythingJSON.class)

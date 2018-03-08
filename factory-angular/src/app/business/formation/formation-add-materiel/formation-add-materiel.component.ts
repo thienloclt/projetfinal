@@ -51,11 +51,11 @@ export class FormationAddMaterielComponent implements OnInit {
       this.myForm.controls['projecteur'].setValue(this.formation.projecteur);
     });
 
-    this.salleService.list().subscribe(objsFromREST => {
+    this.salleService.getByOutOfFormation(this.id).subscribe(objsFromREST => {
       this.salles = objsFromREST;
     });
 
-    this.projecteurService.list().subscribe(objsFromREST => {
+    this.projecteurService.getByOutOfFormation(this.id).subscribe(objsFromREST => {
       this.projecteurs = objsFromREST;
     });
   }

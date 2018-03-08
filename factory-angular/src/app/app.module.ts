@@ -6,35 +6,22 @@ import { RouterModule, Routes} from '@angular/router';
 import { DatePipe} from '@angular/common';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { TableModule} from 'primeng/table';
-import {
-  CalendarModule, ColorPickerModule, ConfirmDialogModule, DropdownModule, OrderListModule, PickListModule, ProgressBarModule,
-  ScrollPanelModule
-} from 'primeng/primeng';
+import { CalendarModule, ColorPickerModule, ConfirmDialogModule, DropdownModule, OrderListModule,
+  PickListModule, ProgressBarModule, ScrollPanelModule} from 'primeng/primeng';
 import { SliderModule} from 'primeng/slider';
 import { GrowlModule} from 'primeng/growl';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ConfirmationService} from 'primeng/api';
-
+import { ConfirmationService} from 'primeng/api';
+import { DialogModule} from 'primeng/dialog';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './framework/header/header.component';
 import { FooterComponent } from './framework/footer/footer.component';
 import { MenuComponent } from './framework/menu/menu.component';
 import { DashboardComponent } from './framework/dashboard/dashboard.component';
-
-import { MatiereAddComponent } from './business/matiere/matiere-add/matiere-add.component';
-import { MatiereListComponent } from './business/matiere/matiere-list/matiere-list.component';
-import { SalleAddComponent } from './business/salle/salle-add/salle-add.component';
-import { SalleListComponent } from './business/salle/salle-list/salle-list.component';
-import { SalleDetailComponent } from './business/salle/salle-detail/salle-detail.component';
-import { OrdinateurAddComponent } from './business/ordinateur/ordinateur-add/ordinateur-add.component';
-import { FormationAddComponent } from './business/formation/formation-add/formation-add.component';
-import { FormationListComponent } from './business/formation/formation-list/formation-list.component';
-import { FormationDetailComponent } from './business/formation/formation-detail/formation-detail.component';
-
+import { ProgressBarComponent } from './framework/progress-bar/progress-bar.component';
 
 import { Globals} from './framework/globals';
-import { IncidentService} from './service/incident.service';
 import { EnseignementService} from './service/enseignement.service';
 import { FormateurService} from './service/formateur.service';
 import { GestionnaireService} from './service/gestionnaire.service';
@@ -45,37 +32,43 @@ import { SalleService} from './service/salle.service';
 import { FormationService} from './service/formation.service';
 import { StagiaireService} from './service/stagiaire.service';
 import { TechnicienService} from './service/technicien.service';
-import {DialogModule} from 'primeng/dialog';
-import {FormateurAddComponent} from './business/formateur/formateur-add/formateur-add.component';
-import {FormateurListComponent} from './business/formateur/formateur-list/formateur-list.component';
-import {FormateurDetailComponent} from './business/formateur/formateur-detail/formateur-detail.component';
-import {GestionnaireAddComponent} from './business/gestionnaire/gestionnaire-add/gestionnaire-add.component';
-import {GestionnaireListComponent} from './business/gestionnaire/gestionnaire-list/gestionnaire-list.component';
-import {GestionnaireDetailComponent} from './business/gestionnaire/gestionnaire-detail/gestionnaire-detail.component';
-import {OrdinateurDetailComponent} from './business/ordinateur/ordinateur-detail/ordinateur-detail.component';
-import {OrdinateurListComponent} from './business/ordinateur/ordinateur-list/ordinateur-list.component';
-import {ProjecteurAddComponent} from './business/projecteur/projecteur-add/projecteur-add.component';
-import {ProjecteurListComponent} from './business/projecteur/projecteur-list/projecteur-list.component';
-import {ProjecteurDetailComponent} from './business/projecteur/projecteur-detail/projecteur-detail.component';
-import {StagiaireAddComponent} from './business/stagiaire/stagiaire-add/stagiaire-add.component';
-import {StagiaireListComponent} from './business/stagiaire/stagiaire-list/stagiaire-list.component';
-import {StagiaireDetailComponent} from './business/stagiaire/stagiaire-detail/stagiaire-detail.component';
-import {TechnicienDetailComponent} from './business/technicien/technicien-detail/technicien-detail.component';
-import {TechnicienAddComponent} from './business/technicien/technicien-add/technicien-add.component';
-import {TechnicienListComponent} from './business/technicien/technicien-list/technicien-list.component';
+import { ProgrammeService} from './service/programme.service';
+
+import { FormateurAddComponent} from './business/formateur/formateur-add/formateur-add.component';
+import { FormateurListComponent} from './business/formateur/formateur-list/formateur-list.component';
+import { FormateurDetailComponent} from './business/formateur/formateur-detail/formateur-detail.component';
+import { GestionnaireAddComponent} from './business/gestionnaire/gestionnaire-add/gestionnaire-add.component';
+import { GestionnaireListComponent} from './business/gestionnaire/gestionnaire-list/gestionnaire-list.component';
+import { GestionnaireDetailComponent} from './business/gestionnaire/gestionnaire-detail/gestionnaire-detail.component';
+import { OrdinateurDetailComponent} from './business/ordinateur/ordinateur-detail/ordinateur-detail.component';
+import { OrdinateurListComponent} from './business/ordinateur/ordinateur-list/ordinateur-list.component';
+import { ProjecteurAddComponent} from './business/projecteur/projecteur-add/projecteur-add.component';
+import { ProjecteurListComponent} from './business/projecteur/projecteur-list/projecteur-list.component';
+import { ProjecteurDetailComponent} from './business/projecteur/projecteur-detail/projecteur-detail.component';
+import { StagiaireAddComponent} from './business/stagiaire/stagiaire-add/stagiaire-add.component';
+import { StagiaireListComponent} from './business/stagiaire/stagiaire-list/stagiaire-list.component';
+import { StagiaireDetailComponent} from './business/stagiaire/stagiaire-detail/stagiaire-detail.component';
+import { TechnicienDetailComponent} from './business/technicien/technicien-detail/technicien-detail.component';
+import { TechnicienAddComponent} from './business/technicien/technicien-add/technicien-add.component';
+import { TechnicienListComponent} from './business/technicien/technicien-list/technicien-list.component';
 import { MatiereDetailComponent } from './business/matiere/matiere-detail/matiere-detail.component';
 import { EnseignementDetailComponent } from './business/enseignement/enseignement-detail/enseignement-detail.component';
 import { EnseignementAddComponent } from './business/enseignement/enseignement-add/enseignement-add.component';
 import { EnseignementListComponent } from './business/enseignement/enseignement-list/enseignement-list.component';
 import { FormationAddStagiaireComponent } from './business/formation/formation-add-stagiaire/formation-add-stagiaire.component';
-import {FormationAddMaterielComponent} from './business/formation/formation-add-materiel/formation-add-materiel.component';
-import {ProgrammeService} from './service/programme.service';
-import {AllocationService} from './service/allocation.service';
-import {FormationAddMatiereComponent} from './business/formation/formation-add-matiere/formation-add-matiere.component';
+import { FormationAddMaterielComponent} from './business/formation/formation-add-materiel/formation-add-materiel.component';
+import { FormationAddMatiereComponent} from './business/formation/formation-add-matiere/formation-add-matiere.component';
 import { FormationAddProgrammeComponent } from './business/formation/formation-add-programme/formation-add-programme.component';
 import { FormationAddOrdinateurComponent } from './business/formation/formation-add-ordinateur/formation-add-ordinateur.component';
-import { ProgressBarComponent } from './framework/progress-bar/progress-bar.component';
-
+import { MatiereAddComponent } from './business/matiere/matiere-add/matiere-add.component';
+import { MatiereListComponent } from './business/matiere/matiere-list/matiere-list.component';
+import { SalleAddComponent } from './business/salle/salle-add/salle-add.component';
+import { SalleListComponent } from './business/salle/salle-list/salle-list.component';
+import { SalleDetailComponent } from './business/salle/salle-detail/salle-detail.component';
+import { OrdinateurAddComponent } from './business/ordinateur/ordinateur-add/ordinateur-add.component';
+import { FormationAddComponent } from './business/formation/formation-add/formation-add.component';
+import { FormationListComponent } from './business/formation/formation-list/formation-list.component';
+import { FormationDetailComponent } from './business/formation/formation-detail/formation-detail.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -166,10 +159,9 @@ const routes: Routes = [
     FormationAddMatiereComponent,
     FormationAddProgrammeComponent,
     FormationAddOrdinateurComponent,
-    ProgressBarComponent,
-
-
+    ProgressBarComponent
   ],
+
   imports: [
     BrowserModule,
     FormsModule,
@@ -192,9 +184,9 @@ const routes: Routes = [
     ColorPickerModule
   ],
 
-  providers: [ConfirmationService, Globals, DatePipe, IncidentService, EnseignementService, FormateurService,
+  providers: [ConfirmationService, Globals, DatePipe, EnseignementService, FormateurService,
     GestionnaireService, MatiereService, OrdinateurService, ProjecteurService,
-    SalleService, StagiaireService, TechnicienService, FormationService,AllocationService,ProgrammeService],
+    SalleService, StagiaireService, TechnicienService, FormationService, ProgrammeService],
 
   bootstrap: [AppComponent]
 })

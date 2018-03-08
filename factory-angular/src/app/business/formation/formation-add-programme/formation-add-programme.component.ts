@@ -14,10 +14,7 @@ import {Enseignement} from '../../../model/enseignement.model';
 })
 export class FormationAddProgrammeComponent implements OnInit {
 
-  @Input() formation_id: number;
   @Input() programme_id: number;
-  @Input() matiere_id: number;
-
   @Output() eventemitter: EventEmitter<string> = new EventEmitter<string>();
 
   display: boolean = false;
@@ -30,7 +27,7 @@ export class FormationAddProgrammeComponent implements OnInit {
   enseignements: Enseignement[];
   selectedEnseignement: Enseignement;
 
-  constructor(public globals: Globals, private fb: FormBuilder, private formationService: FormationService, private enseignementService: EnseignementService, private programmeService: ProgrammeService) {
+  constructor(public globals: Globals, private fb: FormBuilder, private enseignementService: EnseignementService, private programmeService: ProgrammeService) {
     this.myForm = this.fb.group({
       'enseignement': [null],
     });
@@ -74,7 +71,7 @@ export class FormationAddProgrammeComponent implements OnInit {
   }
 
   equalsFormateur(o1: Enseignement, o2: Enseignement) {
-    if (o1 == null || o2 == null)
+    if (o1 == null || o2 == null || o1.formateur == null || o2.formateur == null)
       return false;
     return o1.formateur.id === o2.formateur.id;
   }
