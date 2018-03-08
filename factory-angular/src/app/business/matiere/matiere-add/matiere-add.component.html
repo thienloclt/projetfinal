@@ -30,13 +30,13 @@
         <div class="form-group">
           <label>Couleur *</label>
 
+
+
+          <p-colorPicker formControlName="couleur"></p-colorPicker>
+
+
+
         </div>
-
-          <p-colorPicker [(ngModel)]="color2"></p-colorPicker>
-        <span [ngStyle]="{'color':color2}"></span>
-
-
-
 
 
           <div class="form-group">
@@ -56,22 +56,22 @@
           <input formControlName="prerequis" required class="form-control"/>
         </div>
 
-        <div *ngIf="enseignements?.length > 0; else nothing;">
-          <div class="form-group">
-            <label>Enseignements </label>
-            <select formControlName="enseignement" [(ngModel)]="selectedEnseignement" class="form-control">
-              <option *ngFor="let enseignement of enseignements" [ngValue]="enseignement">{{enseignement.niveau}}</option>
-            </select>
-          </div>
-        </div>
-        <div *ngIf="programmes?.length > 0; else nothing;">
-          <div class="form-group">
-            <label>Programmes </label>
-            <select formControlName="programme" [(ngModel)]="selectedProgramme" class="form-control">
-              <option *ngFor="let programme of programmes" [ngValue]="programme">{{programme.id}}</option>
-            </select>
-          </div>
-        </div>
+        <!--<div *ngIf="enseignements?.length > 0; else nothing;">-->
+          <!--<div class="form-group">-->
+            <!--<label>Enseignements </label>-->
+            <!--<select formControlName="enseignement" [(ngModel)]="selectedEnseignement" class="form-control">-->
+              <!--<option *ngFor="let enseignement of enseignements" [ngValue]="enseignement">{{enseignement.niveau}}</option>-->
+            <!--</select>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div *ngIf="programmes?.length > 0; else nothing;">-->
+          <!--<div class="form-group">-->
+            <!--<label>Programmes </label>-->
+            <!--<select formControlName="programme" [(ngModel)]="selectedProgramme" class="form-control">-->
+              <!--<option *ngFor="let programme of programmes" [ngValue]="programme">{{programme.id}}</option>-->
+            <!--</select>-->
+          <!--</div>-->
+        <!--</div>-->
         <!-----------End Modifier pour la forme --------------------------------------------------->
         <input type="hidden" path="id" />
 

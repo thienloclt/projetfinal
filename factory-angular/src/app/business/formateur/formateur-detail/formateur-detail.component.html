@@ -1,10 +1,11 @@
 <div class="card border-{{globals.theme}} rounded-0 mb-3" style="margin-top: 10px">
-  <div class="card-header">nom: {{obj.nom}}</div>
+  <div class="card-header">{{obj.titre }} {{obj.prenom}} {{obj.nom}}</div>
   <div class="card-body text-secondary">
     <p class="card-text">id: {{obj.id}}</p>
     <p class="card-text">prenom: {{obj.prenom}}</p>
     <p class="card-text">nom: {{obj.nom}}</p>
     <p class="card-text">competence: {{obj.competence }}</p>
+    <p class="card-text">competence: {{obj.titre }}</p>
     <p class="card-text">date de naissance: {{obj.dateNaissance | date: 'dd/MM/yyyy' }}</p>
     <p class="card-text">tel: {{obj.numTel}}</p>
     <p class="card-text">email: {{obj.email}}</p>

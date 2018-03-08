@@ -23,6 +23,8 @@ export class FormateurListComponent implements OnInit {
       { field: 'id', header: '#' },
       { field: 'nom', header: 'nom' },
       { field: 'prenom', header: 'prenom' },
+      { field: 'competence', header: 'competence' },
+      { field: 'titre', header: 'titre' },
       { field: 'dateNaissance', header: 'dateNaissance' },
       { field: 'adresse', header: 'adresse' },
       { field: 'email', header: 'email' },

@@ -11,6 +11,7 @@ export class Formateur {
   public numTel:string;
   public email:string;
   public competence: string;
+  public titre: string;
   public enseignements: Array<Enseignement> = [];
   public programmes: Array<Programme> = [];
 

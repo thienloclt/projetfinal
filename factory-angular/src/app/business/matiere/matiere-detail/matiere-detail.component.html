@@ -1,9 +1,10 @@
 <div class="card border-{{globals.theme}} rounded-0 mb-3" style="margin-top: 10px">
-  <div class="card-header">titre: {{obj.nom}}</div>
+  <div class="card-header">Matière: {{obj.nom}}</div>
   <div class="card-body text-secondary">
     <p class="card-text">id: {{obj.id}}</p>
     <p class="card-text">nom: {{obj.nom}}</p>
-    <p class="card-text">couleur: {{obj.couleur}}</p>
+    <p class="card-text">nom: {{obj.couleur}}</p>
+    <!--<p-colorPicker [(ngModel)]="couleur"></p-colorPicker>-->
     <p class="card-text">durée: {{obj.duree }}</p>
     <p class="card-text">objectif: {{obj.objectif}}</p>
     <p class="card-text">prérequis: {{obj.prerequis}}</p>

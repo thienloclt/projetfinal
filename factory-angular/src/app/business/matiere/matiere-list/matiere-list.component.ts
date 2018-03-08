@@ -15,6 +15,9 @@ import {DatePipe} from '@angular/common';
 export class MatiereListComponent implements OnInit {
   objs: Array<Matiere> = [];
   cols: any[];
+  color: string;
+  couleurs: any [];
+  couleur:string;
 
   constructor(private objService: MatiereService, private datePipe: DatePipe, private confirmationService: ConfirmationService, private router: Router) {}
 

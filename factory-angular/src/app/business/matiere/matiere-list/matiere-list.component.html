@@ -11,9 +11,32 @@
     </ng-template>
     <ng-template pTemplate="body" let-rowData>
       <tr>
+        <td>
+          {{rowData['id']}}
+        </td>
+        <td>
+          {{rowData['nom']}}
+        </td>
+        <!--<td>-->
 
+          <!--<p-colorPicker [(ngModel)]='couleur'></p-colorPicker>-->
+        <!--</td>-->
 
-
+        <td class="colo">
+          {{rowData['couleur']}}
+        </td>
+        <td>
+          {{rowData['duree']}}
+        </td>
+        <td>
+          {{rowData['objectif']}}
+        </td>
+        <td>
+          {{rowData['prerequis']}}
+        </td>
+        <td>
+          {{rowData['contenu']}}
+        </td>
         <td>
           <button pButton icon="fa-search" (click)="detailObj(rowData)"></button>
           <button pButton icon="fa-trash" (click)="deleteObj(rowData)"></button>
