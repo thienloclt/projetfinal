@@ -39,12 +39,12 @@ public class MatiereRestController {
 	@GetMapping("/test")
 	@JsonView(View.MatiereWithEveythingJSON.class)
 	public ResponseEntity<List<Matiere>> test() {
-		Matiere matiere1 = new Matiere("matiere1", "#ff0037", 3, "objectif1", "prerequis1", "contenu1");
-		Matiere matiere2 = new Matiere("matiere2", "#fb00ff", 7, "objectif2", "prerequis2", "contenu2");
-		Matiere matiere3 = new Matiere("matiere3", "#0055ff", 10, "objectif3", "prerequis3", "contenu3");
-		Matiere matiere4 = new Matiere("matiere4", "#00ff80", 5, "objectif4", "prerequis4", "contenu4");
-		Matiere matiere5 = new Matiere("matiere5", "#44ff00", 6, "objectif5", "prerequis5", "contenu5");
-		Matiere matiere6 = new Matiere("matiere6", "#ffaa00", 4, "objectif6", "prerequis6", "contenu6");
+		Matiere matiere1 = new Matiere("matiere1", "#ff0037", 2, "objectif1", "prerequis1", "contenu1");
+		Matiere matiere2 = new Matiere("matiere2", "#fb00ff", 2, "objectif2", "prerequis2", "contenu2");
+		Matiere matiere3 = new Matiere("matiere3", "#0055ff", 3, "objectif3", "prerequis3", "contenu3");
+		Matiere matiere4 = new Matiere("matiere4", "#00ff80", 2, "objectif4", "prerequis4", "contenu4");
+		Matiere matiere5 = new Matiere("matiere5", "#44ff00", 3, "objectif5", "prerequis5", "contenu5");
+		Matiere matiere6 = new Matiere("matiere6", "#ffaa00", 2, "objectif6", "prerequis6", "contenu6");
 		matiereDao.create(matiere1);
 		matiereDao.create(matiere2);
 		matiereDao.create(matiere3);
