@@ -1,7 +1,7 @@
 <button pButton type="button" (click)="showDialog()" label="Matiere" icon="fa-file-text" class="btn btn-{{globals.theme}} float-right" style="margin-left: 5px;"></button>
-<p-dialog header="Ajouter des matieres à la formation" [(visible)]="display" [width]="800" modal="modal" [closeOnEscape]="false" [closable]="false">
+<p-dialog header="Ajouter des programmes à la formation" [(visible)]="display" [width]="800" modal="modal" [closeOnEscape]="false" [closable]="false">
 
-  <p-pickList [source]="sourceMatieres" [target]="targetMatieres" [showSourceControls]="false" [showTargetControls]="true" sourceHeader="Disponible" targetHeader="Sélectionné" [responsive]="true" filterBy="nom"
+  <p-pickList [source]="sourceMatieres" [target]="targetMatieres" [showSourceControls]="false" [showTargetControls]="true" sourceHeader="Liste" targetHeader="Sélectionné" [responsive]="true" filterBy="nom"
               dragdrop="true" dragdropScope="stagiaires" sourceFilterPlaceholder="Chercher par nom" targetFilterPlaceholder="Chercher par nom">
     <ng-template let-matiere pTemplate="item">
       <div class="ui-helper-clearfix">

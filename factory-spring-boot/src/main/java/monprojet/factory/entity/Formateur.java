@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -34,11 +35,11 @@ public class Formateur extends Personne {
 	private String competence;
 	
 	/*-----------------------------------------------------------------------------------*/
-	@OneToMany(mappedBy = "formateur", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "formateur", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonView(View.ProgrammeJSON.class)
 	private Set<Programme> programmes = new HashSet<Programme>();
 	
-	@OneToMany(mappedBy = "formateur", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "formateur", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonView(View.EnseignementJSON.class)
 	private Set<Enseignement> enseignements = new HashSet<Enseignement>();
 

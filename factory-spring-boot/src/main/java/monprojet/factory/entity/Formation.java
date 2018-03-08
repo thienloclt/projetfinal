@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -65,22 +66,22 @@ public class Formation {
 	@JsonView(View.ProjecteurJSON.class)
 	private Projecteur projecteur;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "gestionnaire_id")
 	@JsonView(View.GestionnaireJSON.class)
 	private Gestionnaire gestionnaire;
 	
-	@OneToMany(mappedBy = "formation", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "formation", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonView(View.ProgrammeJSON.class)
 	private Set<Programme> programmes = new HashSet<Programme>();
 	
 	@JsonView(View.StagiaireJSON.class)
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "formation_stagiaire_tbl", joinColumns = @JoinColumn(name = "formation_id"), inverseJoinColumns = @JoinColumn(name = "stagiaire_id"))
 	private Set<Stagiaire> stagiaires = new HashSet<>();
 	
 	@JsonView(View.OrdinateurJSON.class)
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "formation_ordinateur_tbl", joinColumns = @JoinColumn(name = "formation_id"), inverseJoinColumns = @JoinColumn(name = "ordinateur_id"))
 	private Set<Ordinateur> ordinateurs = new HashSet<>();
 

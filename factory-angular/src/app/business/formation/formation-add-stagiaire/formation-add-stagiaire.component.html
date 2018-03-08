@@ -1,7 +1,7 @@
 <button pButton type="button" (click)="showDialog()" label="Stagiaire" icon="fa-child" class="btn btn-{{globals.theme}} float-right" style="margin-left: 5px;"></button>
 <p-dialog header="Ajouter des stagiaires à la formation" [(visible)]="display" [width]="800" modal="modal" [closeOnEscape]="false" [closable]="false">
 
-    <p-pickList [source]="sourceStagiaires" [target]="targetStagiaires" [showSourceControls]="false" [showTargetControls]="false" sourceHeader="Disponible" targetHeader="Sélectionné" [responsive]="true" filterBy="nom"
+    <p-pickList [source]="sourceStagiaires" [target]="targetStagiaires" [showSourceControls]="false" [showTargetControls]="false" sourceHeader="Liste" targetHeader="Sélectionné" [responsive]="true" filterBy="nom"
                 dragdrop="true" dragdropScope="stagiaires" sourceFilterPlaceholder="Chercher par nom" targetFilterPlaceholder="Chercher par nom">
       <ng-template let-stagiaire pTemplate="item">
         <div class="ui-helper-clearfix">

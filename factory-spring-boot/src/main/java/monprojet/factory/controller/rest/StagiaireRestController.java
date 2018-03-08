@@ -1,5 +1,6 @@
 package monprojet.factory.controller.rest;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,22 +41,18 @@ public class StagiaireRestController {
 	@GetMapping("/test")
 	@JsonView(View.StagiaireWithEveythingJSON.class)
 	public ResponseEntity<List<Stagiaire>> test() {
-		Stagiaire stagiaire1 = new Stagiaire();
-		stagiaire1.setNom("stagiaire1");
-		stagiaire1.setPrenom("stagiaire1");
-		Stagiaire stagiaire2 = new Stagiaire();
-		stagiaire2.setNom("stagiaire2");
-		stagiaire2.setPrenom("stagiaire2");
-		Stagiaire stagiaire3 = new Stagiaire();
-		stagiaire3.setNom("stagiaire3");
-		stagiaire3.setPrenom("stagiaire3");
-		Stagiaire stagiaire4 = new Stagiaire();
-		stagiaire4.setNom("stagiaire4");
-		stagiaire4.setPrenom("stagiaire4");
-		stagiaireDao.create(stagiaire1);
-		stagiaireDao.create(stagiaire2);
-		stagiaireDao.create(stagiaire3);
-		stagiaireDao.create(stagiaire4);
+		try {
+			Stagiaire stagiaire1 = new Stagiaire("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel");
+			Stagiaire stagiaire2 = new Stagiaire("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel");
+			Stagiaire stagiaire3 = new Stagiaire("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel");
+			Stagiaire stagiaire4 = new Stagiaire("nom", "prenom", new SimpleDateFormat("dd-MM-yyyy").parse("10-01-1986"), "adresse", "email@gmail.ocm", "numTel");
+			stagiaireDao.create(stagiaire1);
+			stagiaireDao.create(stagiaire2);
+			stagiaireDao.create(stagiaire3);
+			stagiaireDao.create(stagiaire4);
+		}
+		catch (Exception e) {
+		}
 		List<Stagiaire> stagiaires = stagiaireDao.findAll();
 		return new ResponseEntity<List<Stagiaire>>(stagiaires, HttpStatus.OK);
 	}

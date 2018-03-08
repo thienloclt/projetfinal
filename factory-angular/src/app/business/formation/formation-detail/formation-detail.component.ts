@@ -35,8 +35,8 @@ export class FormationDetailComponent implements OnInit {
 
   deleteObj() {
     this.confirmationService.confirm({
-      message: 'Do you want to delete this record?',
-      header: 'Delete Confirmation',
+      message: 'Voulez-vous vraiment supprimer?',
+      header: 'Confirmation',
       icon: 'fa fa-trash',
       accept: () => {
         this.formationService.delete(this.id).subscribe( value => {

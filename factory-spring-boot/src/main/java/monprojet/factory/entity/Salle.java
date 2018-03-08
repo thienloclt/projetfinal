@@ -3,6 +3,7 @@ package monprojet.factory.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -24,7 +25,7 @@ public class Salle extends Materiel{
 	@JsonView(View.Common.class)
 	private Integer capacite;
 /*-----------------------------------------------------------------*/
-	@OneToMany(mappedBy = "salle", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "salle", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonView(View.FormationJSON.class)
 	private Set<Formation> formations = new HashSet<Formation>();
 
@@ -32,8 +33,10 @@ public class Salle extends Materiel{
 		super();
 	}
 	
-	public Salle(@Size(min = 3) @NotNull String code, @Size(min = 3) @NotNull String nom, Integer coutJournalier) {
+	public Salle(@Size(min = 3) @NotNull String code, @Size(min = 3) @NotNull String nom, Double coutJournalier,
+			@NotNull Integer capacite) {
 		super(code, nom, coutJournalier);
+		this.capacite = capacite;
 	}
 
 	public Integer getCapacite() {
