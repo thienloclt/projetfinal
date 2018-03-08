@@ -6,9 +6,8 @@ import {Formation} from '../../../model/formation.model';
 import {ConfirmationService} from 'primeng/api';
 import {ProgrammeService} from '../../../service/programme.service';
 import {OrdinateurService} from '../../../service/ordinateur.service';
-import {ISubscription} from 'rxjs/Subscription';
-import {ProgressBar} from 'primeng/primeng';
 import {ProgressBarComponent} from '../../../framework/progress-bar/progress-bar.component';
+import {FormationAddComponent} from '../formation-add/formation-add.component';
 
 @Component({
   selector: 'app-formation-detail',
@@ -17,11 +16,12 @@ import {ProgressBarComponent} from '../../../framework/progress-bar/progress-bar
 })
 
 export class FormationDetailComponent implements OnInit {
+
   id: number;
   formation: Formation = null;
-  private subscription: ISubscription;
 
   @ViewChild(ProgressBarComponent) progrssBar: ProgressBarComponent;
+  @ViewChild(FormationAddComponent) formationAddComponent: FormationAddComponent;
 
   constructor(public globals: Globals, private route: ActivatedRoute, private router: Router, private formationService: FormationService, private ordinateurService: OrdinateurService, private programmeService: ProgrammeService, private confirmationService: ConfirmationService) {
   }
@@ -56,6 +56,11 @@ export class FormationDetailComponent implements OnInit {
         this.formation.programmes = objsFromREST;
       });
     });
+  }
+
+  editObj() {
+    this.formationAddComponent.id = this.id;
+    this.formationAddComponent.showDialog();
   }
 
   getFromChild(event) {
