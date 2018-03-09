@@ -1,0 +1,977 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.4.15
+-- Dumped by pg_dump version 9.4.15
+-- Started on 2018-03-09 09:42:46
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+DROP DATABASE factory;
+--
+-- TOC entry 2115 (class 1262 OID 27355)
+-- Name: factory; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE factory WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'French_France.1252' LC_CTYPE = 'French_France.1252';
+
+
+ALTER DATABASE factory OWNER TO postgres;
+
+\connect factory
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 1 (class 3079 OID 11855)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2118 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 175 (class 1259 OID 28083)
+-- Name: enseignement_tbl; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE enseignement_tbl (
+    id integer NOT NULL,
+    niveau character varying(255) NOT NULL,
+    version integer NOT NULL,
+    formateur_id integer NOT NULL,
+    matiere_id integer NOT NULL
+);
+
+
+ALTER TABLE enseignement_tbl OWNER TO postgres;
+
+--
+-- TOC entry 174 (class 1259 OID 28081)
+-- Name: enseignement_tbl_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE enseignement_tbl_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE enseignement_tbl_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2119 (class 0 OID 0)
+-- Dependencies: 174
+-- Name: enseignement_tbl_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE enseignement_tbl_id_seq OWNED BY enseignement_tbl.id;
+
+
+--
+-- TOC entry 176 (class 1259 OID 28089)
+-- Name: formation_ordinateur_tbl; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE formation_ordinateur_tbl (
+    formation_id integer NOT NULL,
+    ordinateur_id integer NOT NULL
+);
+
+
+ALTER TABLE formation_ordinateur_tbl OWNER TO postgres;
+
+--
+-- TOC entry 177 (class 1259 OID 28094)
+-- Name: formation_stagiaire_tbl; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE formation_stagiaire_tbl (
+    formation_id integer NOT NULL,
+    stagiaire_id integer NOT NULL
+);
+
+
+ALTER TABLE formation_stagiaire_tbl OWNER TO postgres;
+
+--
+-- TOC entry 179 (class 1259 OID 28101)
+-- Name: formation_tbl; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE formation_tbl (
+    id integer NOT NULL,
+    date_debut date NOT NULL,
+    date_fin date,
+    titre character varying(255) NOT NULL,
+    version integer NOT NULL,
+    gestionnaire_id integer,
+    projecteur_id integer,
+    salle_id integer
+);
+
+
+ALTER TABLE formation_tbl OWNER TO postgres;
+
+--
+-- TOC entry 178 (class 1259 OID 28099)
+-- Name: formation_tbl_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE formation_tbl_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE formation_tbl_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2120 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: formation_tbl_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE formation_tbl_id_seq OWNED BY formation_tbl.id;
+
+
+--
+-- TOC entry 173 (class 1259 OID 27450)
+-- Name: hibernate_sequence; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE hibernate_sequence
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE hibernate_sequence OWNER TO postgres;
+
+--
+-- TOC entry 181 (class 1259 OID 28109)
+-- Name: materiel_tbl; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE materiel_tbl (
+    type character varying(20) NOT NULL,
+    id integer NOT NULL,
+    code character varying(255) NOT NULL,
+    cout_journalier double precision,
+    nom character varying(255) NOT NULL,
+    version integer NOT NULL,
+    capacite integer,
+    annee_achat integer,
+    disque_dur character varying(255),
+    processeur character varying(255),
+    ram character varying(255)
+);
+
+
+ALTER TABLE materiel_tbl OWNER TO postgres;
+
+--
+-- TOC entry 180 (class 1259 OID 28107)
+-- Name: materiel_tbl_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE materiel_tbl_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE materiel_tbl_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2121 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: materiel_tbl_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE materiel_tbl_id_seq OWNED BY materiel_tbl.id;
+
+
+--
+-- TOC entry 183 (class 1259 OID 28120)
+-- Name: matiere_tbl; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE matiere_tbl (
+    id integer NOT NULL,
+    contenu character varying(255) NOT NULL,
+    couleur character varying(255) NOT NULL,
+    duree integer NOT NULL,
+    nom character varying(255) NOT NULL,
+    objectif character varying(255) NOT NULL,
+    prerequis character varying(255) NOT NULL,
+    version integer NOT NULL
+);
+
+
+ALTER TABLE matiere_tbl OWNER TO postgres;
+
+--
+-- TOC entry 182 (class 1259 OID 28118)
+-- Name: matiere_tbl_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE matiere_tbl_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE matiere_tbl_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2122 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: matiere_tbl_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE matiere_tbl_id_seq OWNED BY matiere_tbl.id;
+
+
+--
+-- TOC entry 185 (class 1259 OID 28131)
+-- Name: personne_tbl; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE personne_tbl (
+    type character varying(20) NOT NULL,
+    id integer NOT NULL,
+    adresse character varying(255),
+    date_naissance date,
+    email character varying(255),
+    nom character varying(255) NOT NULL,
+    num_tel character varying(255),
+    prenom character varying(255) NOT NULL,
+    version integer NOT NULL,
+    competence character varying(255),
+    titre character varying(255)
+);
+
+
+ALTER TABLE personne_tbl OWNER TO postgres;
+
+--
+-- TOC entry 184 (class 1259 OID 28129)
+-- Name: personne_tbl_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE personne_tbl_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE personne_tbl_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2123 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: personne_tbl_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE personne_tbl_id_seq OWNED BY personne_tbl.id;
+
+
+--
+-- TOC entry 186 (class 1259 OID 28140)
+-- Name: planning; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE planning (
+    id integer NOT NULL,
+    couleur character varying(255),
+    duree integer,
+    formateur character varying(255),
+    nom character varying(255),
+    ordre integer,
+    titre_formateur character varying(255)
+);
+
+
+ALTER TABLE planning OWNER TO postgres;
+
+--
+-- TOC entry 188 (class 1259 OID 28150)
+-- Name: programme_tbl; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE programme_tbl (
+    id integer NOT NULL,
+    ordre integer NOT NULL,
+    version integer NOT NULL,
+    formateur_id integer,
+    formation_id integer,
+    matiere_id integer
+);
+
+
+ALTER TABLE programme_tbl OWNER TO postgres;
+
+--
+-- TOC entry 187 (class 1259 OID 28148)
+-- Name: programme_tbl_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE programme_tbl_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE programme_tbl_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2124 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: programme_tbl_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE programme_tbl_id_seq OWNED BY programme_tbl.id;
+
+
+--
+-- TOC entry 189 (class 1259 OID 28156)
+-- Name: user_tbl; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE user_tbl (
+    username character varying(255) NOT NULL,
+    enable boolean NOT NULL,
+    password character varying(255)
+);
+
+
+ALTER TABLE user_tbl OWNER TO postgres;
+
+--
+-- TOC entry 191 (class 1259 OID 28166)
+-- Name: userrole_tbl; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE userrole_tbl (
+    id integer NOT NULL,
+    role character varying(255),
+    username character varying(255)
+);
+
+
+ALTER TABLE userrole_tbl OWNER TO postgres;
+
+--
+-- TOC entry 190 (class 1259 OID 28164)
+-- Name: userrole_tbl_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE userrole_tbl_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE userrole_tbl_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2125 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: userrole_tbl_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE userrole_tbl_id_seq OWNED BY userrole_tbl.id;
+
+
+--
+-- TOC entry 1941 (class 2604 OID 28086)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY enseignement_tbl ALTER COLUMN id SET DEFAULT nextval('enseignement_tbl_id_seq'::regclass);
+
+
+--
+-- TOC entry 1942 (class 2604 OID 28104)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY formation_tbl ALTER COLUMN id SET DEFAULT nextval('formation_tbl_id_seq'::regclass);
+
+
+--
+-- TOC entry 1943 (class 2604 OID 28112)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY materiel_tbl ALTER COLUMN id SET DEFAULT nextval('materiel_tbl_id_seq'::regclass);
+
+
+--
+-- TOC entry 1944 (class 2604 OID 28123)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY matiere_tbl ALTER COLUMN id SET DEFAULT nextval('matiere_tbl_id_seq'::regclass);
+
+
+--
+-- TOC entry 1945 (class 2604 OID 28134)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY personne_tbl ALTER COLUMN id SET DEFAULT nextval('personne_tbl_id_seq'::regclass);
+
+
+--
+-- TOC entry 1946 (class 2604 OID 28153)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY programme_tbl ALTER COLUMN id SET DEFAULT nextval('programme_tbl_id_seq'::regclass);
+
+
+--
+-- TOC entry 1947 (class 2604 OID 28169)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY userrole_tbl ALTER COLUMN id SET DEFAULT nextval('userrole_tbl_id_seq'::regclass);
+
+
+--
+-- TOC entry 2094 (class 0 OID 28083)
+-- Dependencies: 175
+-- Data for Name: enseignement_tbl; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (1, 'Avancé', 0, 1, 1);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (2, 'Débutant', 0, 2, 1);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (3, 'Débutant', 0, 4, 1);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (4, 'Débutant', 0, 1, 2);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (5, 'Débutant', 0, 3, 2);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (6, 'Débutant', 0, 4, 2);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (7, 'Débutant', 0, 2, 3);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (8, 'Débutant', 0, 1, 3);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (9, 'Débutant', 0, 1, 4);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (10, 'Débutant', 0, 1, 5);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (11, 'Débutant', 0, 2, 5);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (12, 'Débutant', 0, 2, 6);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (13, 'Débutant', 0, 2, 7);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (14, 'Débutant', 0, 2, 8);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (15, 'Débutant', 0, 3, 9);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (16, 'Débutant', 0, 3, 10);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (17, 'Débutant', 0, 3, 11);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (18, 'Débutant', 0, 4, 12);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (19, 'Débutant', 0, 4, 13);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (20, 'Débutant', 0, 4, 14);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (21, 'Débutant', 0, 4, 15);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (22, 'Avancé', 0, 1, 1);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (23, 'Débutant', 0, 2, 1);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (24, 'Débutant', 0, 4, 1);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (25, 'Débutant', 0, 1, 2);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (26, 'Débutant', 0, 3, 2);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (27, 'Débutant', 0, 4, 2);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (28, 'Débutant', 0, 2, 3);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (29, 'Débutant', 0, 1, 3);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (30, 'Débutant', 0, 1, 4);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (31, 'Débutant', 0, 1, 5);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (32, 'Débutant', 0, 2, 5);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (33, 'Débutant', 0, 2, 6);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (34, 'Débutant', 0, 2, 7);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (35, 'Débutant', 0, 2, 8);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (36, 'Débutant', 0, 3, 9);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (37, 'Débutant', 0, 3, 10);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (38, 'Débutant', 0, 3, 11);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (39, 'Débutant', 0, 4, 12);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (40, 'Débutant', 0, 4, 13);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (41, 'Débutant', 0, 4, 14);
+INSERT INTO enseignement_tbl (id, niveau, version, formateur_id, matiere_id) VALUES (42, 'Débutant', 0, 4, 15);
+
+
+--
+-- TOC entry 2126 (class 0 OID 0)
+-- Dependencies: 174
+-- Name: enseignement_tbl_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('enseignement_tbl_id_seq', 42, true);
+
+
+--
+-- TOC entry 2095 (class 0 OID 28089)
+-- Dependencies: 176
+-- Data for Name: formation_ordinateur_tbl; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO formation_ordinateur_tbl (formation_id, ordinateur_id) VALUES (1, 9);
+
+
+--
+-- TOC entry 2096 (class 0 OID 28094)
+-- Dependencies: 177
+-- Data for Name: formation_stagiaire_tbl; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO formation_stagiaire_tbl (formation_id, stagiaire_id) VALUES (1, 13);
+
+
+--
+-- TOC entry 2098 (class 0 OID 28101)
+-- Dependencies: 179
+-- Data for Name: formation_tbl; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO formation_tbl (id, date_debut, date_fin, titre, version, gestionnaire_id, projecteur_id, salle_id) VALUES (1, '2018-01-18', '2018-01-23', 'Ingénieur JEE', 3, 10, 1, 5);
+
+
+--
+-- TOC entry 2127 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: formation_tbl_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('formation_tbl_id_seq', 1, true);
+
+
+--
+-- TOC entry 2128 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('hibernate_sequence', 1, false);
+
+
+--
+-- TOC entry 2100 (class 0 OID 28109)
+-- Dependencies: 181
+-- Data for Name: materiel_tbl; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO materiel_tbl (type, id, code, cout_journalier, nom, version, capacite, annee_achat, disque_dur, processeur, ram) VALUES ('Projecteur', 1, 'pro1', 10.5, 'Projecteur1', 0, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO materiel_tbl (type, id, code, cout_journalier, nom, version, capacite, annee_achat, disque_dur, processeur, ram) VALUES ('Projecteur', 2, 'pro2', 20, 'Projecteur2', 0, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO materiel_tbl (type, id, code, cout_journalier, nom, version, capacite, annee_achat, disque_dur, processeur, ram) VALUES ('Projecteur', 3, 'pro3', 30.699999999999999, 'Projecteur3', 0, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO materiel_tbl (type, id, code, cout_journalier, nom, version, capacite, annee_achat, disque_dur, processeur, ram) VALUES ('Projecteur', 4, 'pro4', 40.399999999999999, 'Projecteur4', 0, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO materiel_tbl (type, id, code, cout_journalier, nom, version, capacite, annee_achat, disque_dur, processeur, ram) VALUES ('Salle', 5, 'sal1', 10.300000000000001, 'Salle1', 0, 10, NULL, NULL, NULL, NULL);
+INSERT INTO materiel_tbl (type, id, code, cout_journalier, nom, version, capacite, annee_achat, disque_dur, processeur, ram) VALUES ('Salle', 6, 'sal2', 50.799999999999997, 'Salle2', 0, 20, NULL, NULL, NULL, NULL);
+INSERT INTO materiel_tbl (type, id, code, cout_journalier, nom, version, capacite, annee_achat, disque_dur, processeur, ram) VALUES ('Salle', 7, 'sal3', 20, 'Salle3', 0, 30, NULL, NULL, NULL, NULL);
+INSERT INTO materiel_tbl (type, id, code, cout_journalier, nom, version, capacite, annee_achat, disque_dur, processeur, ram) VALUES ('Salle', 8, 'sal4', 40.600000000000001, 'Salle4', 0, 40, NULL, NULL, NULL, NULL);
+INSERT INTO materiel_tbl (type, id, code, cout_journalier, nom, version, capacite, annee_achat, disque_dur, processeur, ram) VALUES ('Ordinateur', 9, 'code', 2.2000000000000002, 'nom', 0, NULL, 2014, 'disqueDur', 'processeur', 'ram');
+INSERT INTO materiel_tbl (type, id, code, cout_journalier, nom, version, capacite, annee_achat, disque_dur, processeur, ram) VALUES ('Ordinateur', 10, 'code', 10.4, 'nom', 0, NULL, 2015, 'disqueDur', 'processeur', 'ram');
+INSERT INTO materiel_tbl (type, id, code, cout_journalier, nom, version, capacite, annee_achat, disque_dur, processeur, ram) VALUES ('Ordinateur', 11, 'code', 7.7999999999999998, 'nom', 0, NULL, 2016, 'disqueDur', 'processeur', 'ram');
+INSERT INTO materiel_tbl (type, id, code, cout_journalier, nom, version, capacite, annee_achat, disque_dur, processeur, ram) VALUES ('Ordinateur', 12, 'code', 5.5999999999999996, 'nom', 0, NULL, 2015, 'disqueDur', 'processeur', 'ram');
+
+
+--
+-- TOC entry 2129 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: materiel_tbl_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('materiel_tbl_id_seq', 12, true);
+
+
+--
+-- TOC entry 2102 (class 0 OID 28120)
+-- Dependencies: 183
+-- Data for Name: matiere_tbl; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO matiere_tbl (id, contenu, couleur, duree, nom, objectif, prerequis, version) VALUES (1, 'contenu1', '#ff0037', 2, 'UML', 'objectif1', 'prerequis1', 0);
+INSERT INTO matiere_tbl (id, contenu, couleur, duree, nom, objectif, prerequis, version) VALUES (2, 'contenu2', '#fb00ff', 2, 'ALGO ET OBJET', 'objectif2', 'prerequis2', 0);
+INSERT INTO matiere_tbl (id, contenu, couleur, duree, nom, objectif, prerequis, version) VALUES (3, 'contenu3', '#0055ff', 3, 'INIT PROG JAVA', 'objectif3', 'prerequis3', 0);
+INSERT INTO matiere_tbl (id, contenu, couleur, duree, nom, objectif, prerequis, version) VALUES (4, 'contenu4', '#00ff80', 2, 'POO JAVA', 'objectif4', 'prerequis4', 0);
+INSERT INTO matiere_tbl (id, contenu, couleur, duree, nom, objectif, prerequis, version) VALUES (5, 'contenu5', '#44ff00', 3, 'HIBERNATE', 'objectif5', 'prerequis5', 0);
+INSERT INTO matiere_tbl (id, contenu, couleur, duree, nom, objectif, prerequis, version) VALUES (6, 'contenu6', '#ffaa00', 2, 'SPRING', 'objectif6', 'prerequis6', 0);
+INSERT INTO matiere_tbl (id, contenu, couleur, duree, nom, objectif, prerequis, version) VALUES (7, 'contenu7', '#ff33cc', 3, 'SERVLET/JSP', 'objectif7', 'prerequis7', 0);
+INSERT INTO matiere_tbl (id, contenu, couleur, duree, nom, objectif, prerequis, version) VALUES (8, 'contenu7', '#990000', 2, 'JAVASCRIPT', 'objectif8', 'prerequis7', 0);
+INSERT INTO matiere_tbl (id, contenu, couleur, duree, nom, objectif, prerequis, version) VALUES (9, 'contenu7', '#ff33cc', 3, 'JSF', 'objectif9', 'prerequis7', 0);
+INSERT INTO matiere_tbl (id, contenu, couleur, duree, nom, objectif, prerequis, version) VALUES (10, 'contenu', '#00ffcc', 2, 'HTML', 'objectif', 'prerequis', 0);
+INSERT INTO matiere_tbl (id, contenu, couleur, duree, nom, objectif, prerequis, version) VALUES (11, 'contenu', '#ff33cc', 3, 'CSS', 'objectif', 'prerequis', 0);
+INSERT INTO matiere_tbl (id, contenu, couleur, duree, nom, objectif, prerequis, version) VALUES (12, 'contenu', '#006600', 2, 'JQuery', 'objectif', 'prerequis', 0);
+INSERT INTO matiere_tbl (id, contenu, couleur, duree, nom, objectif, prerequis, version) VALUES (13, 'contenu', '#ff33cc', 1, 'Git', 'objectif', 'prerequis', 0);
+INSERT INTO matiere_tbl (id, contenu, couleur, duree, nom, objectif, prerequis, version) VALUES (14, 'contenu', '#ffff00', 2, 'SPRING Boot', 'objectif', 'prerequis', 0);
+INSERT INTO matiere_tbl (id, contenu, couleur, duree, nom, objectif, prerequis, version) VALUES (15, 'contenu', '#ff33cc', 4, 'Angular', 'objectif', 'prerequis', 0);
+
+
+--
+-- TOC entry 2130 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: matiere_tbl_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('matiere_tbl_id_seq', 15, true);
+
+
+--
+-- TOC entry 2104 (class 0 OID 28131)
+-- Dependencies: 185
+-- Data for Name: personne_tbl; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO personne_tbl (type, id, adresse, date_naissance, email, nom, num_tel, prenom, version, competence, titre) VALUES ('Formateur', 1, 'adresse', '1985-01-10', 'email@gmail.com', 'LHOMME', 'numTel', 'Thomas', 0, 'competence', 'Formateur JEE');
+INSERT INTO personne_tbl (type, id, adresse, date_naissance, email, nom, num_tel, prenom, version, competence, titre) VALUES ('Formateur', 2, 'adresse', '1978-01-10', 'email@gmail.com', 'SULTAN', 'numTel', 'Eric', 0, 'competence', 'Formateur JEE');
+INSERT INTO personne_tbl (type, id, adresse, date_naissance, email, nom, num_tel, prenom, version, competence, titre) VALUES ('Formateur', 3, 'adresse', '1975-01-10', 'email@gmail.com', 'GOZLAN', 'numTel', 'Olivier', 0, 'competence', 'Formateur JEE');
+INSERT INTO personne_tbl (type, id, adresse, date_naissance, email, nom, num_tel, prenom, version, competence, titre) VALUES ('Formateur', 4, 'adresse', '1956-01-10', 'email@gmail.com', 'RAZON', 'numTel', 'Didier', 0, 'competence', 'Coach Management');
+INSERT INTO personne_tbl (type, id, adresse, date_naissance, email, nom, num_tel, prenom, version, competence, titre) VALUES ('Formateur', 5, 'adresse', '1985-01-10', 'email@gmail.com', 'LHOMME', 'numTel', 'Thomas', 0, 'competence', 'Formateur JEE');
+INSERT INTO personne_tbl (type, id, adresse, date_naissance, email, nom, num_tel, prenom, version, competence, titre) VALUES ('Formateur', 6, 'adresse', '1978-01-10', 'email@gmail.com', 'SULTAN', 'numTel', 'Eric', 0, 'competence', 'Formateur JEE');
+INSERT INTO personne_tbl (type, id, adresse, date_naissance, email, nom, num_tel, prenom, version, competence, titre) VALUES ('Formateur', 7, 'adresse', '1975-01-10', 'email@gmail.com', 'GOZLAN', 'numTel', 'Olivier', 0, 'competence', 'Formateur JEE');
+INSERT INTO personne_tbl (type, id, adresse, date_naissance, email, nom, num_tel, prenom, version, competence, titre) VALUES ('Formateur', 8, 'adresse', '1956-01-10', 'email@gmail.com', 'RAZON', 'numTel', 'Didier', 0, 'competence', 'Coach Management');
+INSERT INTO personne_tbl (type, id, adresse, date_naissance, email, nom, num_tel, prenom, version, competence, titre) VALUES ('Gestionnaire', 9, 'adresse', '1986-01-10', 'email@gmail.ocm', 'DRIDI', 'numTel', 'Hachem', 0, NULL, NULL);
+INSERT INTO personne_tbl (type, id, adresse, date_naissance, email, nom, num_tel, prenom, version, competence, titre) VALUES ('Gestionnaire', 10, 'adresse', '1986-01-10', 'email@gmail.ocm', 'THEN', 'numTel', 'Loc', 0, NULL, NULL);
+INSERT INTO personne_tbl (type, id, adresse, date_naissance, email, nom, num_tel, prenom, version, competence, titre) VALUES ('Gestionnaire', 11, 'adresse', '1986-01-10', 'email@gmail.ocm', 'RONALDINO', 'numTel', 'Cristiano', 0, NULL, NULL);
+INSERT INTO personne_tbl (type, id, adresse, date_naissance, email, nom, num_tel, prenom, version, competence, titre) VALUES ('Gestionnaire', 12, 'adresse', '1986-01-10', 'email@gmail.ocm', 'ZIDANE', 'numTel', 'ZINEDDINE', 0, NULL, NULL);
+INSERT INTO personne_tbl (type, id, adresse, date_naissance, email, nom, num_tel, prenom, version, competence, titre) VALUES ('Stagiaire', 13, 'adresse', '1986-01-10', 'email@gmail.ocm', 'nom', 'numTel', 'prenom', 0, NULL, NULL);
+INSERT INTO personne_tbl (type, id, adresse, date_naissance, email, nom, num_tel, prenom, version, competence, titre) VALUES ('Stagiaire', 14, 'adresse', '1986-01-10', 'email@gmail.ocm', 'nom', 'numTel', 'prenom', 0, NULL, NULL);
+INSERT INTO personne_tbl (type, id, adresse, date_naissance, email, nom, num_tel, prenom, version, competence, titre) VALUES ('Stagiaire', 15, 'adresse', '1986-01-10', 'email@gmail.ocm', 'nom', 'numTel', 'prenom', 0, NULL, NULL);
+INSERT INTO personne_tbl (type, id, adresse, date_naissance, email, nom, num_tel, prenom, version, competence, titre) VALUES ('Stagiaire', 16, 'adresse', '1986-01-10', 'email@gmail.ocm', 'nom', 'numTel', 'prenom', 0, NULL, NULL);
+
+
+--
+-- TOC entry 2131 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: personne_tbl_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('personne_tbl_id_seq', 16, true);
+
+
+--
+-- TOC entry 2105 (class 0 OID 28140)
+-- Dependencies: 186
+-- Data for Name: planning; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2107 (class 0 OID 28150)
+-- Dependencies: 188
+-- Data for Name: programme_tbl; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO programme_tbl (id, ordre, version, formateur_id, formation_id, matiere_id) VALUES (6, 1, 1, 3, 1, 2);
+INSERT INTO programme_tbl (id, ordre, version, formateur_id, formation_id, matiere_id) VALUES (5, 2, 1, 3, 1, 10);
+INSERT INTO programme_tbl (id, ordre, version, formateur_id, formation_id, matiere_id) VALUES (4, 3, 1, 2, 1, 5);
+INSERT INTO programme_tbl (id, ordre, version, formateur_id, formation_id, matiere_id) VALUES (9, 6, 1, 4, 1, 12);
+INSERT INTO programme_tbl (id, ordre, version, formateur_id, formation_id, matiere_id) VALUES (10, 8, 1, 1, 1, 4);
+INSERT INTO programme_tbl (id, ordre, version, formateur_id, formation_id, matiere_id) VALUES (1, 10, 1, 2, 1, 6);
+INSERT INTO programme_tbl (id, ordre, version, formateur_id, formation_id, matiere_id) VALUES (8, 11, 1, 2, 1, 7);
+INSERT INTO programme_tbl (id, ordre, version, formateur_id, formation_id, matiere_id) VALUES (7, 9, 1, 3, 1, 9);
+INSERT INTO programme_tbl (id, ordre, version, formateur_id, formation_id, matiere_id) VALUES (11, 7, 1, 3, 1, 11);
+INSERT INTO programme_tbl (id, ordre, version, formateur_id, formation_id, matiere_id) VALUES (3, 4, 1, 2, 1, 8);
+INSERT INTO programme_tbl (id, ordre, version, formateur_id, formation_id, matiere_id) VALUES (2, 5, 1, 2, 1, 3);
+
+
+--
+-- TOC entry 2132 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: programme_tbl_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('programme_tbl_id_seq', 11, true);
+
+
+--
+-- TOC entry 2108 (class 0 OID 28156)
+-- Dependencies: 189
+-- Data for Name: user_tbl; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2110 (class 0 OID 28166)
+-- Dependencies: 191
+-- Data for Name: userrole_tbl; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2133 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: userrole_tbl_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('userrole_tbl_id_seq', 1, false);
+
+
+--
+-- TOC entry 1949 (class 2606 OID 28088)
+-- Name: enseignement_tbl_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY enseignement_tbl
+    ADD CONSTRAINT enseignement_tbl_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1951 (class 2606 OID 28093)
+-- Name: formation_ordinateur_tbl_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY formation_ordinateur_tbl
+    ADD CONSTRAINT formation_ordinateur_tbl_pkey PRIMARY KEY (formation_id, ordinateur_id);
+
+
+--
+-- TOC entry 1953 (class 2606 OID 28098)
+-- Name: formation_stagiaire_tbl_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY formation_stagiaire_tbl
+    ADD CONSTRAINT formation_stagiaire_tbl_pkey PRIMARY KEY (formation_id, stagiaire_id);
+
+
+--
+-- TOC entry 1955 (class 2606 OID 28106)
+-- Name: formation_tbl_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY formation_tbl
+    ADD CONSTRAINT formation_tbl_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1957 (class 2606 OID 28117)
+-- Name: materiel_tbl_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY materiel_tbl
+    ADD CONSTRAINT materiel_tbl_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1959 (class 2606 OID 28128)
+-- Name: matiere_tbl_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY matiere_tbl
+    ADD CONSTRAINT matiere_tbl_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1961 (class 2606 OID 28139)
+-- Name: personne_tbl_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY personne_tbl
+    ADD CONSTRAINT personne_tbl_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1963 (class 2606 OID 28147)
+-- Name: planning_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY planning
+    ADD CONSTRAINT planning_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1965 (class 2606 OID 28155)
+-- Name: programme_tbl_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY programme_tbl
+    ADD CONSTRAINT programme_tbl_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1967 (class 2606 OID 28163)
+-- Name: user_tbl_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY user_tbl
+    ADD CONSTRAINT user_tbl_pkey PRIMARY KEY (username);
+
+
+--
+-- TOC entry 1969 (class 2606 OID 28174)
+-- Name: userrole_tbl_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY userrole_tbl
+    ADD CONSTRAINT userrole_tbl_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1979 (class 2606 OID 28220)
+-- Name: fk3dafwbuft0kv7c5rx3x7hmrq6; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY programme_tbl
+    ADD CONSTRAINT fk3dafwbuft0kv7c5rx3x7hmrq6 FOREIGN KEY (formateur_id) REFERENCES personne_tbl(id);
+
+
+--
+-- TOC entry 1972 (class 2606 OID 28185)
+-- Name: fk3k3yg1fqrltj1xhdjeq5e4iis; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY formation_ordinateur_tbl
+    ADD CONSTRAINT fk3k3yg1fqrltj1xhdjeq5e4iis FOREIGN KEY (ordinateur_id) REFERENCES materiel_tbl(id);
+
+
+--
+-- TOC entry 1970 (class 2606 OID 28175)
+-- Name: fk5gnnk218ettruk55kgxlxltnu; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY enseignement_tbl
+    ADD CONSTRAINT fk5gnnk218ettruk55kgxlxltnu FOREIGN KEY (formateur_id) REFERENCES personne_tbl(id);
+
+
+--
+-- TOC entry 1978 (class 2606 OID 28215)
+-- Name: fk5gnyj0c2pk6pd5oadxhqyty5l; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY formation_tbl
+    ADD CONSTRAINT fk5gnyj0c2pk6pd5oadxhqyty5l FOREIGN KEY (salle_id) REFERENCES materiel_tbl(id);
+
+
+--
+-- TOC entry 1981 (class 2606 OID 28230)
+-- Name: fkctexx9ow1fssdpe1fqsl0bb56; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY programme_tbl
+    ADD CONSTRAINT fkctexx9ow1fssdpe1fqsl0bb56 FOREIGN KEY (matiere_id) REFERENCES matiere_tbl(id);
+
+
+--
+-- TOC entry 1973 (class 2606 OID 28190)
+-- Name: fkcuux9sgkupb6xxnfwtjlldm53; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY formation_ordinateur_tbl
+    ADD CONSTRAINT fkcuux9sgkupb6xxnfwtjlldm53 FOREIGN KEY (formation_id) REFERENCES formation_tbl(id);
+
+
+--
+-- TOC entry 1975 (class 2606 OID 28200)
+-- Name: fkjkferbgkhgm22ahsgsmp7rtoj; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY formation_stagiaire_tbl
+    ADD CONSTRAINT fkjkferbgkhgm22ahsgsmp7rtoj FOREIGN KEY (formation_id) REFERENCES formation_tbl(id);
+
+
+--
+-- TOC entry 1976 (class 2606 OID 28205)
+-- Name: fkltl1fr3mv8mjd8mn1gs3kl163; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY formation_tbl
+    ADD CONSTRAINT fkltl1fr3mv8mjd8mn1gs3kl163 FOREIGN KEY (gestionnaire_id) REFERENCES personne_tbl(id);
+
+
+--
+-- TOC entry 1982 (class 2606 OID 28235)
+-- Name: fkn0tjxiqpexk22208lxj6kia2s; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY userrole_tbl
+    ADD CONSTRAINT fkn0tjxiqpexk22208lxj6kia2s FOREIGN KEY (username) REFERENCES user_tbl(username);
+
+
+--
+-- TOC entry 1977 (class 2606 OID 28210)
+-- Name: fkox6711ws3df522mika872ispb; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY formation_tbl
+    ADD CONSTRAINT fkox6711ws3df522mika872ispb FOREIGN KEY (projecteur_id) REFERENCES materiel_tbl(id);
+
+
+--
+-- TOC entry 1974 (class 2606 OID 28195)
+-- Name: fkquhy3gygyb8vtlfrqcttoa1ai; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY formation_stagiaire_tbl
+    ADD CONSTRAINT fkquhy3gygyb8vtlfrqcttoa1ai FOREIGN KEY (stagiaire_id) REFERENCES personne_tbl(id);
+
+
+--
+-- TOC entry 1971 (class 2606 OID 28180)
+-- Name: fkr2jlxy27d7bj7bri345p3q7s1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY enseignement_tbl
+    ADD CONSTRAINT fkr2jlxy27d7bj7bri345p3q7s1 FOREIGN KEY (matiere_id) REFERENCES matiere_tbl(id);
+
+
+--
+-- TOC entry 1980 (class 2606 OID 28225)
+-- Name: fkto8oxvgu85lk3bdh2kjykr34y; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY programme_tbl
+    ADD CONSTRAINT fkto8oxvgu85lk3bdh2kjykr34y FOREIGN KEY (formation_id) REFERENCES formation_tbl(id);
+
+
+--
+-- TOC entry 2117 (class 0 OID 0)
+-- Dependencies: 6
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2018-03-09 09:42:46
+
+--
+-- PostgreSQL database dump complete
+--
+
