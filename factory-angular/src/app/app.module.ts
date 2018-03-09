@@ -6,8 +6,10 @@ import { RouterModule, Routes} from '@angular/router';
 import { DatePipe} from '@angular/common';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { TableModule} from 'primeng/table';
-import { CalendarModule, ColorPickerModule, ConfirmDialogModule, DropdownModule, OrderListModule,
-  PickListModule, ProgressBarModule, ScrollPanelModule} from 'primeng/primeng';
+import {
+  CalendarModule, ColorPickerModule, ConfirmDialogModule, DropdownModule, OrderListModule,
+  PickListModule, ProgressBarModule, ScheduleModule, ScrollPanelModule
+} from 'primeng/primeng';
 import { SliderModule} from 'primeng/slider';
 import { GrowlModule} from 'primeng/growl';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -70,11 +72,16 @@ import { FormationAddComponent } from './business/formation/formation-add/format
 import { FormationListComponent } from './business/formation/formation-list/formation-list.component';
 import { FormationDetailComponent } from './business/formation/formation-detail/formation-detail.component';
 import { SalleAvailableReportComponent } from './business/report/salle-available-report/salle-available-report.component';
+import { FormationReportComponent } from './business/formation/formation-report/formation-report.component';
+import * as jQuery from 'jquery/dist/jquery.js';
+import {ChartModule} from 'primeng/chart';
+(window as any).jQuery = (window as any).$ = jQuery;
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: DashboardComponent},
   {path: 'report1', component: SalleAvailableReportComponent},
+  {path: 'formation-report/:id/:datedebut', component: FormationReportComponent},
   {path: 'matiere', component: MatiereListComponent},
   {path: 'matiere-add', component: MatiereAddComponent},
   {path: 'matiere-edit/:id', component: MatiereAddComponent},
@@ -162,7 +169,8 @@ const routes: Routes = [
     FormationAddProgrammeComponent,
     FormationAddOrdinateurComponent,
     ProgressBarComponent,
-    SalleAvailableReportComponent
+    SalleAvailableReportComponent,
+    FormationReportComponent
   ],
 
   imports: [
@@ -184,7 +192,9 @@ const routes: Routes = [
     DropdownModule,
     PickListModule,
     ScrollPanelModule,
-    ColorPickerModule
+    ColorPickerModule,
+    ScheduleModule,
+    ChartModule
   ],
 
   providers: [ConfirmationService, Globals, DatePipe, EnseignementService, FormateurService,

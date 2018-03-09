@@ -14,3 +14,38 @@ http://localhost:8080/factory/api/
 http://localhost:8080/factory/api/
 
 
+
+
+
+down vote
+Install jQuery using NPM Jquery NPM
+
+npm install jquery
+Install the jQuery declaration file
+
+npm install -D @types/jquery
+
+npm install --save @types/jquery@latest
+
+
+Install jQuery
+
+npm install --save jquery
+Install jQuery type defination for type checking.
+
+npm install --save-dev @types/jquery
+Add refenece of jquery file in "scripts" array inside angular-cli.json file.
+
+"scripts": [
+    "../node_modules/jquery/dist/jquery.min.js"
+ ]
+import jquery in any component you want to use.
+
+import * as jQuery from 'jquery';
+
+
+npm install fullcalendar
+npm install fullcalendar --save
+npm install chart.js --save
+npm install jquery — save
+
