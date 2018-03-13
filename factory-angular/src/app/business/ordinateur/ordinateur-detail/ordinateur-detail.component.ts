@@ -6,7 +6,6 @@ import {Ordinateur} from '../../../model/ordinateur.model';
 import {OrdinateurService} from '../../../service/ordinateur.service';
 import {ProgrammeService} from '../../../service/programme.service';
 
-
 @Component({
   selector: 'app-ordinateur-detail',
   templateUrl: './ordinateur-detail.component.html',

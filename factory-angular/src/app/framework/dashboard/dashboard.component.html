@@ -1,32 +1,20 @@
 <div class="card-deck">
-  <div class="card text-white bg-success mb-3">
-    <div class="card-header">Dashboard</div>
-    <div class="card-body">
-      <h5 class="card-title">Title</h5>
-      <p class="card-text">Content</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Total: 10</small>
-    </div>
-  </div>
-  <div class="card text-white bg-danger mb-3">
-    <div class="card-header">Dashboard</div>
-    <div class="card-body">
-      <h5 class="card-title">Title</h5>
-      <p class="card-text">Content</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Total: 10</small>
+  <div class="ui-g-12 ui-md-6">
+    <div class="card text-white bg-success mb-4">
+      <div class="card-header">Statut</div>
+      <div class="card-body">
+        <p class="card-text">Il y a:</p>
+        <p class="card-text">  - 13 cursus des formations</p>
+        <p class="card-text">  - formateurs</p>
+        <p class="card-text">  - 306 stagiaires</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Dernière mise à jour: 09/03/2018 09:45:39</small>
+      </div>
     </div>
   </div>
-  <div class="card text-white bg-warning mb-3">
-    <div class="card-header">Dashboard</div>
-    <div class="card-body">
-      <h5 class="card-title">Title</h5>
-      <p class="card-text">Content</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Total: 10</small>
-    </div>
+  <div class="ui-g-12 ui-md-6">
+    <h4 class="text-center">Ordinateur</h4>
+    <p-chart type="pie" [data]="data"></p-chart>
   </div>
 </div>

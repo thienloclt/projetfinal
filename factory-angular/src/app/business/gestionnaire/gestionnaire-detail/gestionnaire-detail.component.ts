@@ -50,8 +50,6 @@ export class GestionnaireDetailComponent implements OnInit {
       this.programmeService.getByFormation(this.id).subscribe(objsFromREST => {
         this.obj.formations = objsFromREST;
       });
-
-      console.log(this.obj);
     });
   }
 
